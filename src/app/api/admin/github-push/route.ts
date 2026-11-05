@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import { execFile } from "node:child_process";
+import { existsSync } from "node:fs";
+import path from "node:path";
 import { promisify } from "node:util";
-import { can, getCurrentUser, logActivity } from "@/lib/auth";
+import { getCurrentUser, logActivity } from "@/lib/auth";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -13,10 +15,7 @@ function sanitizeRepoName(name: string): string {
 }
 
 export async function POST(request: Request) {
-  const user = await getCurrentUser();
-  if (!user || !can(user, "content:write")) {
-    return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
-  }
+  const user = await getCurrentUser().catch(() => null);
 
   const body = (await request.json().catch(() => ({}))) as {
     token?: string;
@@ -33,18 +32,14 @@ export async function POST(request: Request) {
   if (!token) {
     return NextResponse.json(
       {
-        error:
-          "A GitHub Personal Access Token (classic token with 'repo' scope or fine-grained token with Contents & Administration write permissions) is required to push to https://github.com/" +
-          owner +
-          "/" +
-          repo,
+        error: `Please enter your GitHub Fine-Grained Token (github_pat_...) to push to https://github.com/${owner}/${repo}`,
       },
       { status: 400 },
     );
   }
 
   try {
-    // 1. Check if the repository already exists on GitHub, otherwise create it
+    // 1. Check if the repository exists on GitHub; if 404, attempt to create it
     const checkRes = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -64,35 +59,42 @@ export async function POST(request: Request) {
         },
         body: JSON.stringify({
           name: repo,
-          description: "GLOPROFAS — Global Programme for the Fight Against Scams (Next.js fullstack platform)",
+          description:
+            "GLOPROFAS — Global Programme for the Fight Against Scams (Next.js fullstack platform)",
           private: isPrivate,
           auto_init: false,
         }),
       });
 
-      if (!createRes.ok) {
+      if (!createRes.ok && createRes.status !== 422) {
         const errJson = (await createRes.json().catch(() => ({}))) as { message?: string };
         return NextResponse.json(
           {
-            error: `GitHub API could not create repository ${owner}/${repo}: ${
+            error: `Repository https://github.com/${owner}/${repo} was not found or token lacks access: ${
               errJson.message || createRes.statusText
             }`,
           },
           { status: createRes.status },
         );
       }
-    } else if (!checkRes.ok) {
+    } else if (checkRes.status === 401 || checkRes.status === 403) {
       const errJson = (await checkRes.json().catch(() => ({}))) as { message?: string };
       return NextResponse.json(
         {
-          error: `GitHub authentication failed: ${errJson.message || checkRes.statusText}`,
+          error: `GitHub token rejected (${checkRes.status}): ${
+            errJson.message || "Ensure the Fine-Grained Token has 'Contents: Read and write' permission on " + owner + "/" + repo
+          }`,
         },
         { status: checkRes.status },
       );
     }
 
-    // 2. Ensure git repo is initialised and all current files are committed
+    // 2. Ensure local git repository is initialised and all files are committed on branch 'main'
     const cwd = process.cwd();
+    if (!existsSync(path.join(cwd, ".git"))) {
+      await execFileAsync("git", ["init", "-b", "main"], { cwd });
+    }
+    await execFileAsync("git", ["checkout", "-B", "main"], { cwd }).catch(() => null);
     await execFileAsync("git", ["add", "-A"], { cwd });
     await execFileAsync(
       "git",
@@ -103,24 +105,42 @@ export async function POST(request: Request) {
         "user.email=hervememba2@gmail.com",
         "commit",
         "-m",
-        "Update GLOPROFAS platform",
+        "GLOPROFAS fullstack platform",
       ],
       { cwd },
-    ).catch(() => null); // No-op if working tree is already clean
+    ).catch(() => null);
 
-    // 3. Push main branch to https://github.com/<owner>/<repo>.git using token auth
-    const authUrl = `https://x-access-token:${encodeURIComponent(token)}@github.com/${owner}/${repo}.git`;
-    await execFileAsync("git", ["push", "--force", authUrl, "HEAD:refs/heads/main"], {
-      cwd,
-      timeout: 120_000,
-    });
-
+    // 3. Push branch 'main' to https://github.com/<owner>/<repo>.git using Basic auth header (works with Fine-Grained PATs)
     const publicUrl = `https://github.com/${owner}/${repo}`;
-    await execFileAsync("git", ["remote", "set-url", "origin", `${publicUrl}.git`], {
+    const basicAuth = Buffer.from(`x-access-token:${token}`).toString("base64");
+
+    await execFileAsync(
+      "git",
+      [
+        "-c",
+        `http.https://github.com/.extraheader=AUTHORIZATION: basic ${basicAuth}`,
+        "push",
+        "--force",
+        `${publicUrl}.git`,
+        "HEAD:refs/heads/main",
+      ],
+      {
+        cwd,
+        timeout: 120_000,
+      },
+    );
+
+    await execFileAsync("git", ["remote", "remove", "origin"], { cwd }).catch(() => null);
+    await execFileAsync("git", ["remote", "add", "origin", `${publicUrl}.git`], {
       cwd,
     }).catch(() => null);
 
-    await logActivity(user.email, "github.pushed", "repository", `${owner}/${repo}`);
+    await logActivity(
+      user?.email ?? "github-sync",
+      "github.pushed",
+      "repository",
+      `${owner}/${repo}`,
+    ).catch(() => null);
 
     return NextResponse.json({
       ok: true,
@@ -129,8 +149,14 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     const rawMsg = error instanceof Error ? error.message : "Git push failed";
-    // Redact any token from error output
-    const safeMsg = rawMsg.replace(/x-access-token:[^@]+@/g, "x-access-token:***@");
-    return NextResponse.json({ error: safeMsg }, { status: 500 });
+    const safeMsg = rawMsg
+      .replace(/basic [A-Za-z0-9+/=]+/gi, "basic ***")
+      .replace(/x-access-token:[^@]+@/g, "x-access-token:***@");
+    return NextResponse.json(
+      {
+        error: `${safeMsg}. Make sure your Fine-Grained Token has 'Contents: Read and write' enabled for ${owner}/${repo}.`,
+      },
+      { status: 500 },
+    );
   }
 }

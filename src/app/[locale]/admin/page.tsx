@@ -177,6 +177,9 @@ export default async function AdminDashboardPage({
         </div>
       </section>
 
+      {/* 1-Click GitHub Push to membaherve-cyber/gloprofas */}
+      <GitHubPushPanel locale={locale} />
+
       {/* 12 Live KPI Cards */}
       <section aria-label="Key metrics">
         <dl className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
