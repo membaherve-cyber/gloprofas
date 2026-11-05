@@ -13,9 +13,13 @@ import {
   Database,
   Download,
   FileText,
+  Globe,
   Info,
   LoaderCircle,
+  Lock,
+  Mail,
   ShieldAlert,
+  ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
 import { Monogram } from "@/components/ui/logo";
@@ -609,47 +613,115 @@ export function ZiteHomeView({
 
       {/* 8. Report Section (HomeLower.tsx) */}
       <section id="report" className="section-y scroll-mt-28 bg-white">
-        <div className="container-g grid gap-14 lg:grid-cols-2 lg:items-center">
-          <div>
+        <div className="container-g grid gap-12 lg:grid-cols-12 lg:items-center">
+          <div className="lg:col-span-6">
             <SectionHeading
               eyebrow={R(L.reportSec.eyebrow, lang)}
               title={R(L.reportSec.h2, lang)}
               lead={R(L.reportSec.body, lang)}
             />
-            <Reveal className="mt-8 flex gap-3 rounded-[14px] border border-signal/60 bg-signal/10 p-5 text-sm text-ink">
-              <Info className="h-5 w-5 shrink-0 text-ink" strokeWidth={1.75} />
+            <Reveal className="mt-6 overflow-hidden rounded-[22px] border border-line shadow-e2">
+              <div className="group relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/market-cash.jpg"
+                  alt=""
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/25 to-transparent" />
+                <div className="absolute inset-x-4 bottom-4 flex flex-wrap items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-navy-950/80 px-3.5 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
+                    <Lock className="h-3.5 w-3.5 text-cyanx" />
+                    {lang === "fr"
+                      ? "Signalement privé · Aucun compte requis"
+                      : "Private intake · No account required"}
+                  </span>
+                  <span className="rounded-full bg-signal px-3 py-1 text-xs font-bold text-navy-950">
+                    ~5 min
+                  </span>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal className="mt-6 flex gap-3.5 rounded-[18px] border border-signal/50 bg-signal/10 p-5 text-sm leading-relaxed text-ink">
+              <Info className="mt-0.5 h-5 w-5 shrink-0 text-navy-900" strokeWidth={2} />
               <p>{R(L.reportSec.note, lang)}</p>
             </Reveal>
-            <Reveal className="mt-6 overflow-hidden rounded-[18px] border border-line shadow-e1">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/market-cash.jpg"
-                alt=""
-                loading="lazy"
-                className="aspect-[16/9] w-full object-cover"
-              />
-            </Reveal>
-            <div className="mt-8">
-              <Btn href={l("/report")} variant="signal">
-                {R(L.report, lang)}
-              </Btn>
-            </div>
           </div>
-          <ol className="grid gap-4">
-            {L.reportSec.steps.map((step, idx) => (
-              <Reveal key={idx} delay={idx * 60}>
-                <li className="flex gap-5 rounded-[22px] border border-line bg-mist p-6">
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-900 font-[family-name:var(--font-heading)] text-lg font-bold text-white">
-                    {idx + 1}
+
+          {/* Redesigned Interactive Scam-Reporting Box */}
+          <Reveal delay={100} className="lg:col-span-6">
+            <div className="on-dark relative overflow-hidden rounded-[26px] border border-white/15 bg-navy-900 p-7 text-white shadow-e3 sm:p-9">
+              <div
+                className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full opacity-20 blur-3xl"
+                style={{ background: "radial-gradient(circle, #2bd4e8, transparent 70%)" }}
+                aria-hidden="true"
+              />
+              <div className="relative flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-signal text-navy-950 shadow-sm">
+                    <ShieldAlert className="h-5 w-5" strokeWidth={2} />
                   </span>
                   <div>
-                    <h3 className="h4 text-ink">{R(step.t, lang)}</h3>
-                    <p className="mt-1 text-slatex-600">{R(step.d, lang)}</p>
+                    <p className="text-xs font-bold uppercase tracking-widest text-cyanx">
+                      {lang === "fr"
+                        ? "Canal de signalement confidentiel"
+                        : "Confidential Reporting Channel"}
+                    </p>
+                    <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-white">
+                      {lang === "fr"
+                        ? "Comment fonctionne votre signalement"
+                        : "How your scam report works"}
+                    </h3>
                   </div>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
+                </div>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-cyanx/35 bg-cyanx/10 px-3 py-1 text-xs font-semibold text-cyanx">
+                  <span className="animate-dot h-2 w-2 rounded-full bg-cyanx" />
+                  {lang === "fr" ? "Chiffré & privé" : "Private & protected"}
+                </span>
+              </div>
+
+              <ol className="relative mt-6 space-y-4">
+                {L.reportSec.steps.map((step, idx) => (
+                  <li
+                    key={idx}
+                    className="group relative flex items-start gap-4 rounded-[18px] border border-white/10 bg-navy-800/80 p-5 transition-all duration-200 hover:border-cyanx/40 hover:bg-navy-800"
+                  >
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-brand-500 font-[family-name:var(--font-heading)] text-base font-bold text-white shadow-sm">
+                      0{idx + 1}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between gap-2">
+                        <h4 className="font-[family-name:var(--font-heading)] text-base font-semibold text-white">
+                          {R(step.t, lang)}
+                        </h4>
+                        <span className="text-xs font-semibold text-slatex-300">
+                          {lang === "fr" ? `Étape ${idx + 1}/3` : `Step ${idx + 1} of 3`}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-sm leading-relaxed text-slatex-300">
+                        {R(step.d, lang)}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="mt-7 flex flex-col gap-3 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-2 text-xs text-slatex-300">
+                  <ShieldCheck className="h-4 w-4 shrink-0 text-cyanx" />
+                  <span>
+                    {lang === "fr"
+                      ? "Aucun mot de passe ou code PIN n’est jamais demandé."
+                      : "We never ask for passwords, PINs or one-time codes."}
+                  </span>
+                </div>
+                <Btn href={l("/report")} variant="signal" className="w-full sm:w-auto">
+                  {R(L.report, lang)}
+                </Btn>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -905,170 +977,404 @@ export function ZiteHomeView({
         </div>
       </section>
 
-      {/* 12. Newsletter (HomeBottom.tsx) */}
+      {/* 11B. Documented Case Studies & Victim-Support Guidance (Master Prompt Parts 6, 9 & 10) */}
+      <section id="case-studies" className="section-y scroll-mt-28 bg-white">
+        <div className="container-g">
+          <SectionHeading
+            eyebrow={
+              lang === "fr"
+                ? "Études de cas documentées & Aide aux victimes"
+                : "Documented Case Studies & Victim Support"
+            }
+            title={
+              lang === "fr"
+                ? "Scénarios réels observés en Afrique et dans le monde."
+                : "Real-world scam patterns documented across Africa and globally."
+            }
+            lead={
+              lang === "fr"
+                ? "Chaque cas est présenté à titre éducatif et illustratif à partir de schémas de fraude documentés (YIMA, SAFPS, Scamwatch, alertes opérateurs), sans accusation non vérifiée."
+                : "Each case study illustrates documented fraud mechanics (informed by public consumer-protection advisories including YIMA, SAFPS, Scamwatch and telecom operator warnings) without unverified allegations."
+            }
+          />
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                scope: lang === "fr" ? "Cameroun · Afrique centrale" : "Cameroon · Central Africa",
+                category: lang === "fr" ? "Fraude au mobile money" : "Mobile money fraud",
+                image: "/images/article-payment-pause.jpg",
+                title:
+                  lang === "fr"
+                    ? "Faux SMS de dépôt et appel pressant de « remboursement »"
+                    : "Fake deposit SMS followed by an urgent reversal call",
+                whatHappened:
+                  lang === "fr"
+                    ? "Une commerçante reçoit un SMS imitant une notification de dépôt de 50 000 FCFA depuis un numéro ordinaire, suivi d’un appel lui demandant de renvoyer la somme d’urgence."
+                    : "A shopkeeper receives an SMS from an ordinary number mimicking a 50,000 FCFA deposit notification, followed immediately by a caller pleading for an urgent return transfer.",
+                lesson:
+                  lang === "fr"
+                    ? "Vérifiez toujours le solde réel dans le menu officiel de l’opérateur et ne partagez jamais votre code PIN."
+                    : "Always check your actual account balance in the official operator menu and never share your PIN.",
+                href: "/scams/mobile-money-scams",
+              },
+              {
+                scope: lang === "fr" ? "Afrique de l’Ouest · International" : "West Africa · International",
+                category: lang === "fr" ? "Fausses offres d’emploi" : "Employment & task scams",
+                image: "/images/context/person-phone-desk.jpg",
+                title:
+                  lang === "fr"
+                    ? "Recrutement par messagerie exigeant des frais de dossier"
+                    : "Messaging-app recruitment demanding upfront registration fees",
+                whatHappened:
+                  lang === "fr"
+                    ? "Un candidat reçoit une promesse d’embauche après un simple échange écrit, conditionnée au paiement préalable de frais de formation et d’examen médical par mobile money."
+                    : "A job seeker is offered a high-paying role after a text-only chat, conditional on paying upfront training and medical clearance fees via mobile transfer.",
+                lesson:
+                  lang === "fr"
+                    ? "Un employeur légitime ne demande jamais d’argent avant l’embauche. Vérifiez l’entreprise par ses canaux officiels."
+                    : "Legitimate employers never charge fees to hire you. Verify the organisation independently through its official website.",
+                href: "/scams/employment-scams",
+              },
+              {
+                scope: lang === "fr" ? "Afrique du Sud · International" : "South Africa · International",
+                category: lang === "fr" ? "Compromission de facture (BEC)" : "Invoice & payment redirection",
+                image: "/images/article-business-controls.jpg",
+                title:
+                  lang === "fr"
+                    ? "Changement de coordonnées bancaires d’un fournisseur par courriel"
+                    : "Supplier bank-account change requested from a lookalike domain",
+                whatHappened:
+                  lang === "fr"
+                    ? "Une PME reçoit une facture attendue depuis une adresse quasi identique à celle de son fournisseur habituel, annonçant un nouveau RIB pour un règlement urgent."
+                    : "An SME receives an expected invoice from a domain differing by one letter from its regular supplier, requesting urgent payment to a newly updated bank account.",
+                lesson:
+                  lang === "fr"
+                    ? "Confirmez tout changement de compte bancaire par un contre-appel sur un numéro déjà connu et vérifié."
+                    : "Confirm every bank-detail change by calling back on a trusted phone number already on file.",
+                href: "/scams/business-email-compromise",
+              },
+            ].map((cs, idx) => (
+              <Reveal key={cs.title} delay={idx * 80}>
+                <article className="group flex h-full flex-col justify-between overflow-hidden rounded-[22px] border border-line bg-mist shadow-e1 transition-all duration-150 hover:-translate-y-1 hover:shadow-e2">
+                  <div>
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-900">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={cs.image}
+                        alt={cs.title}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
+                      <span className="absolute top-3 left-3 rounded-full bg-navy-950/85 px-3 py-1 text-xs font-bold uppercase tracking-wider text-cyanx backdrop-blur-sm">
+                        {cs.scope}
+                      </span>
+                    </div>
+                    <div className="p-6">
+                      <p className="text-xs font-bold uppercase tracking-wider text-brand-600">
+                        {cs.category}
+                      </p>
+                      <h3 className="h4 mt-2 text-ink">{cs.title}</h3>
+                      <p className="mt-3 text-sm leading-relaxed text-slatex-600">
+                        {cs.whatHappened}
+                      </p>
+                      <div className="mt-4 rounded-xl border border-brand-600/20 bg-white p-3.5 text-xs leading-relaxed text-ink">
+                        <strong className="block font-bold text-brand-600">
+                          {lang === "fr" ? "Leçon clé :" : "Key takeaway:"}
+                        </strong>
+                        {cs.lesson}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="px-6 pb-6">
+                    <Link
+                      href={l(cs.href)}
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:underline"
+                    >
+                      {lang === "fr" ? "Lire le guide de prévention →" : "Read prevention guide →"}
+                    </Link>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 12. Newsletter & Redesigned Reporting Box (HomeBottom.tsx) */}
       <section
         id="newsletter"
-        className="on-dark scroll-mt-28 py-20"
-        style={{ background: "linear-gradient(180deg, #0a1631, #10244d)" }}
+        className="on-dark relative overflow-hidden scroll-mt-28 py-20 lg:py-24"
+        style={{ background: "linear-gradient(180deg, #0a1631 0%, #10244d 100%)" }}
       >
-        <div className="container-g grid gap-10 lg:grid-cols-12">
-          <Reveal className="lg:col-span-4">
-            <h2 className="h3 text-white">{R(L.nl.h2, lang)}</h2>
-            <p className="mt-3 text-slatex-300">{R(L.nl.body, lang)}</p>
-          </Reveal>
+        <div className="container-g relative grid gap-10 lg:grid-cols-12 lg:items-stretch">
+          {/* Left Column: Stay Informed + Redesigned Scam-Reporting Box */}
+          <Reveal className="flex flex-col justify-between gap-8 lg:col-span-5">
+            <div>
+              <p className="eyebrow flex items-center gap-3 text-cyanx">
+                <span className="h-px w-8 bg-cyanx" />
+                {lang === "fr" ? "Restez informé" : "Stay informed"}
+              </p>
+              <h2 className="h2 mt-4 text-white">{R(L.nl.h2, lang)}</h2>
+              <p className="mt-3 text-base leading-relaxed text-slatex-300">
+                {R(L.nl.body, lang)}
+              </p>
+            </div>
 
-          {nlStatus === "done" ? (
-            <p
-              role="status"
-              className="flex items-center gap-3 text-lg font-semibold text-white lg:col-span-8"
-            >
-              <CheckCircle2 className="h-6 w-6 text-cyanx" />
-              {R(L.nl.done, lang)}
-            </p>
-          ) : (
-            <form
-              onSubmit={handleNewsletterSubmit}
-              noValidate
-              className="grid gap-4 sm:grid-cols-2 lg:col-span-8"
-            >
-              <input
-                type="text"
-                name="website"
-                value={nlState.website}
-                onChange={(e) => setNlState({ ...nlState, website: e.target.value })}
-                className="hidden"
-                tabIndex={-1}
-                autoComplete="off"
+            {/* Redesigned Premium Scam-Reporting Box */}
+            <div className="group relative overflow-hidden rounded-[24px] border border-signal/45 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 p-7 shadow-e3 transition-all duration-300 hover:border-signal">
+              <div
+                className="pointer-events-none absolute -top-16 -right-16 h-44 w-44 rounded-full opacity-25 blur-3xl transition-opacity duration-300 group-hover:opacity-40"
+                style={{ background: "radial-gradient(circle, #ffb02e, transparent 70%)" }}
                 aria-hidden="true"
               />
-              <div>
-                <label
-                  htmlFor="nl-name"
-                  className="mb-1.5 block text-sm font-semibold text-white"
-                >
-                  {R(L.nl.name, lang)}
-                </label>
-                <input
-                  id="nl-name"
-                  autoComplete="name"
-                  className={inputCls}
-                  value={nlState.name}
-                  onChange={(e) => setNlState({ ...nlState, name: e.target.value })}
-                />
-                {nlErrors.name ? (
-                  <p className="mt-1.5 flex items-center gap-1.5 text-sm text-signal">
-                    <AlertCircle className="h-4 w-4" />
-                    {nlErrors.name}
-                  </p>
-                ) : null}
-              </div>
+              <div className="relative">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-signal/40 bg-signal/15 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-signal">
+                    <ShieldAlert className="h-3.5 w-3.5" />
+                    {lang === "fr" ? "Signalement d’incident" : "Incident Reporting"}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-slatex-300">
+                    <Lock className="h-3 w-3 text-cyanx" />
+                    {lang === "fr" ? "Privé · Sans compte" : "Private · No account"}
+                  </span>
+                </div>
 
-              <div>
-                <label
-                  htmlFor="nl-email"
-                  className="mb-1.5 block text-sm font-semibold text-white"
-                >
-                  {R(L.nl.email, lang)}
-                </label>
-                <input
-                  id="nl-email"
-                  type="email"
-                  autoComplete="email"
-                  className={inputCls}
-                  value={nlState.email}
-                  onChange={(e) => setNlState({ ...nlState, email: e.target.value })}
-                />
-                {nlErrors.email ? (
-                  <p className="mt-1.5 flex items-center gap-1.5 text-sm text-signal">
-                    <AlertCircle className="h-4 w-4" />
-                    {nlErrors.email}
-                  </p>
-                ) : null}
-              </div>
+                <h3 className="mt-4 font-[family-name:var(--font-heading)] text-xl font-bold text-white">
+                  {lang === "fr"
+                    ? "Vous avez repéré ou subi une arnaque ?"
+                    : "Spotted or experienced a scam?"}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slatex-300">
+                  {lang === "fr"
+                    ? "Signalez un numéro, un SMS, une fausse offre d’emploi ou une demande de paiement suspecte. Vous recevez un numéro de référence immédiat."
+                    : "Report a suspicious phone number, SMS, fake job offer or payment request in 5 minutes and receive an immediate reference code."}
+                </p>
 
-              <div>
-                <label
-                  htmlFor="nl-country"
-                  className="mb-1.5 block text-sm font-semibold text-white"
-                >
-                  {R(L.nl.country, lang)}
-                </label>
-                <input
-                  id="nl-country"
-                  autoComplete="country-name"
-                  className={inputCls}
-                  value={nlState.country}
-                  onChange={(e) => setNlState({ ...nlState, country: e.target.value })}
-                />
-                {nlErrors.country ? (
-                  <p className="mt-1.5 flex items-center gap-1.5 text-sm text-signal">
-                    <AlertCircle className="h-4 w-4" />
-                    {nlErrors.country}
-                  </p>
-                ) : null}
-              </div>
-
-              <div>
-                <label
-                  htmlFor="nl-lang"
-                  className="mb-1.5 block text-sm font-semibold text-white"
-                >
-                  {R(L.nl.language, lang)}
-                </label>
-                <select
-                  id="nl-lang"
-                  className={inputCls}
-                  value={nlState.language}
-                  onChange={(e) => setNlState({ ...nlState, language: e.target.value })}
-                >
-                  <option value="EN" className="text-ink">
-                    English
-                  </option>
-                  <option value="FR" className="text-ink">
-                    Français
-                  </option>
-                </select>
-              </div>
-
-              <label className="flex min-h-[44px] items-start gap-3 text-sm text-slatex-300 sm:col-span-2">
-                <input
-                  type="checkbox"
-                  checked={nlState.consent}
-                  onChange={(e) =>
-                    setNlState({ ...nlState, consent: e.target.checked })
-                  }
-                  className="mt-0.5 h-5 w-5 accent-brand-500"
-                />
-                <span>
-                  {R(L.nl.consent, lang)}
-                  {nlErrors.consent ? (
-                    <span className="mt-1.5 flex items-center gap-1.5 text-sm text-signal">
-                      <AlertCircle className="h-4 w-4" />
-                      {nlErrors.consent}
+                <ul className="mt-4 grid grid-cols-3 gap-2 border-y border-white/10 py-3 text-center text-xs font-semibold text-white">
+                  <li className="rounded-xl bg-white/5 px-2 py-2">
+                    <span className="block font-[family-name:var(--font-heading)] text-sm font-bold text-cyanx">
+                      01
                     </span>
-                  ) : null}
-                </span>
-              </label>
+                    {lang === "fr" ? "Les faits" : "Incident"}
+                  </li>
+                  <li className="rounded-xl bg-white/5 px-2 py-2">
+                    <span className="block font-[family-name:var(--font-heading)] text-sm font-bold text-cyanx">
+                      02
+                    </span>
+                    {lang === "fr" ? "Preuves" : "Evidence"}
+                  </li>
+                  <li className="rounded-xl bg-white/5 px-2 py-2">
+                    <span className="block font-[family-name:var(--font-heading)] text-sm font-bold text-cyanx">
+                      03
+                    </span>
+                    {lang === "fr" ? "Référence" : "Reference"}
+                  </li>
+                </ul>
 
-              <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
-                <button
-                  type="submit"
-                  disabled={nlStatus === "loading"}
-                  className="inline-flex h-[52px] items-center gap-2 rounded-full bg-brand-600 px-7 font-semibold text-white hover:bg-brand-500 disabled:opacity-60"
-                >
-                  {nlStatus === "loading" ? (
-                    <LoaderCircle className="h-4 w-4 animate-spin" />
-                  ) : null}
-                  {R(L.nl.submit, lang)}
-                </button>
-                {nlStatus === "error" ? (
-                  <p role="alert" className="text-sm text-signal">
-                    {R(L.nl.err, lang)}
-                  </p>
-                ) : null}
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <Btn href={l("/report")} variant="signal" className="h-11 flex-1 px-5 text-sm">
+                    {R(L.report, lang)}
+                  </Btn>
+                  <Btn href={l("/check")} variant="outlineDark" className="h-11 px-5 text-sm">
+                    {lang === "fr" ? "Vérifier un message" : "Verify a Scam"}
+                  </Btn>
+                </div>
               </div>
-            </form>
-          )}
+            </div>
+          </Reveal>
+
+          {/* Right Column: Redesigned Alert Subscription Card */}
+          <Reveal delay={90} className="lg:col-span-7">
+            <div className="dark-surface flex h-full flex-col justify-between rounded-[26px] bg-navy-950/80 p-7 shadow-e3 backdrop-blur-md sm:p-9">
+              <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-brand-600/25 text-cyanx">
+                    <Mail className="h-5 w-5" />
+                  </span>
+                  <div>
+                    <p className="font-[family-name:var(--font-heading)] text-lg font-bold text-white">
+                      {lang === "fr"
+                        ? "Inscription aux alertes par courriel"
+                        : "Email Alert Subscription"}
+                    </p>
+                    <p className="text-xs text-slatex-300">
+                      {lang === "fr"
+                        ? "Mises en garde vérifiées en français ou en anglais · Désinscription en 1 clic"
+                        : "Verified scam warnings in English or French · One-click unsubscribe"}
+                    </p>
+                  </div>
+                </div>
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-cyanx/30 bg-cyanx/10 px-3 py-1 text-xs font-semibold text-cyanx">
+                  <Globe className="h-3.5 w-3.5" />
+                  EN / FR
+                </span>
+              </div>
+
+              {nlStatus === "done" ? (
+                <div
+                  role="status"
+                  className="my-auto flex flex-col items-center justify-center gap-3 rounded-[18px] border border-cyanx/35 bg-cyanx/10 p-8 text-center text-white"
+                >
+                  <CheckCircle2 className="h-10 w-10 text-cyanx" />
+                  <p className="text-lg font-semibold">{R(L.nl.done, lang)}</p>
+                </div>
+              ) : (
+                <form
+                  onSubmit={handleNewsletterSubmit}
+                  noValidate
+                  className="grid gap-5 sm:grid-cols-2"
+                >
+                  <input
+                    type="text"
+                    name="website"
+                    value={nlState.website}
+                    onChange={(e) => setNlState({ ...nlState, website: e.target.value })}
+                    className="hidden"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <label
+                      htmlFor="nl-name"
+                      className="mb-1.5 block text-sm font-semibold text-white"
+                    >
+                      {R(L.nl.name, lang)}
+                    </label>
+                    <input
+                      id="nl-name"
+                      autoComplete="name"
+                      placeholder={lang === "fr" ? "Votre nom" : "Your name"}
+                      className={inputCls}
+                      value={nlState.name}
+                      onChange={(e) => setNlState({ ...nlState, name: e.target.value })}
+                    />
+                    {nlErrors.name ? (
+                      <p className="mt-1.5 flex items-center gap-1.5 text-sm text-signal">
+                        <AlertCircle className="h-4 w-4" />
+                        {nlErrors.name}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="nl-email"
+                      className="mb-1.5 block text-sm font-semibold text-white"
+                    >
+                      {R(L.nl.email, lang)}
+                    </label>
+                    <input
+                      id="nl-email"
+                      type="email"
+                      autoComplete="email"
+                      placeholder="name@example.com"
+                      className={inputCls}
+                      value={nlState.email}
+                      onChange={(e) => setNlState({ ...nlState, email: e.target.value })}
+                    />
+                    {nlErrors.email ? (
+                      <p className="mt-1.5 flex items-center gap-1.5 text-sm text-signal">
+                        <AlertCircle className="h-4 w-4" />
+                        {nlErrors.email}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="nl-country"
+                      className="mb-1.5 block text-sm font-semibold text-white"
+                    >
+                      {R(L.nl.country, lang)}
+                    </label>
+                    <input
+                      id="nl-country"
+                      autoComplete="country-name"
+                      placeholder={lang === "fr" ? "Ex. Cameroun" : "e.g. Cameroon"}
+                      className={inputCls}
+                      value={nlState.country}
+                      onChange={(e) => setNlState({ ...nlState, country: e.target.value })}
+                    />
+                    {nlErrors.country ? (
+                      <p className="mt-1.5 flex items-center gap-1.5 text-sm text-signal">
+                        <AlertCircle className="h-4 w-4" />
+                        {nlErrors.country}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="nl-lang"
+                      className="mb-1.5 block text-sm font-semibold text-white"
+                    >
+                      {R(L.nl.language, lang)}
+                    </label>
+                    <select
+                      id="nl-lang"
+                      className={inputCls}
+                      value={nlState.language}
+                      onChange={(e) => setNlState({ ...nlState, language: e.target.value })}
+                    >
+                      <option value="EN" className="text-ink">
+                        English
+                      </option>
+                      <option value="FR" className="text-ink">
+                        Français
+                      </option>
+                    </select>
+                  </div>
+
+                  <label className="flex min-h-[44px] items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-3.5 text-sm text-slatex-300 sm:col-span-2">
+                    <input
+                      type="checkbox"
+                      checked={nlState.consent}
+                      onChange={(e) =>
+                        setNlState({ ...nlState, consent: e.target.checked })
+                      }
+                      className="mt-0.5 h-5 w-5 accent-brand-500"
+                    />
+                    <span>
+                      {R(L.nl.consent, lang)}
+                      {nlErrors.consent ? (
+                        <span className="mt-1.5 flex items-center gap-1.5 text-sm text-signal">
+                          <AlertCircle className="h-4 w-4" />
+                          {nlErrors.consent}
+                        </span>
+                      ) : null}
+                    </span>
+                  </label>
+
+                  <div className="flex flex-wrap items-center justify-between gap-4 pt-1 sm:col-span-2">
+                    <button
+                      type="submit"
+                      disabled={nlStatus === "loading"}
+                      className="inline-flex h-[52px] items-center gap-2 rounded-full bg-brand-600 px-8 font-semibold text-white shadow-sm transition hover:bg-brand-500 disabled:opacity-60"
+                    >
+                      {nlStatus === "loading" ? (
+                        <LoaderCircle className="h-4 w-4 animate-spin" />
+                      ) : null}
+                      {R(L.nl.submit, lang)}
+                    </button>
+                    <span className="flex items-center gap-1.5 text-xs text-slatex-300">
+                      <ShieldCheck className="h-4 w-4 text-cyanx" />
+                      {lang === "fr"
+                        ? "Vos données ne sont jamais vendues."
+                        : "We never sell or share your email."}
+                    </span>
+                    {nlStatus === "error" ? (
+                      <p role="alert" className="w-full text-sm text-signal">
+                        {R(L.nl.err, lang)}
+                      </p>
+                    ) : null}
+                  </div>
+                </form>
+              )}
+            </div>
+          </Reveal>
         </div>
       </section>
 
