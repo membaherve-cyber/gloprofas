@@ -22,6 +22,9 @@ function resolveDatabaseUrl(): string {
       "DATABASE_URL is not set. Add a PostgreSQL connection string to the server environment before serving pages that use the database.",
     );
   }
+  if (url.includes("sslmode=require") && !url.includes("uselibpqcompat=")) {
+    return `${url}&uselibpqcompat=true`;
+  }
   return url;
 }
 
