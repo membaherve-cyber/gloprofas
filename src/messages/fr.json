@@ -1,0 +1,410 @@
+{
+  "skip": "Aller au contenu",
+  "login": "Connexion équipe",
+  "contactTitle": "Contacter GLOPROFAS",
+  "contactLead": "Questions, partenariats, médias ou services : écrivez-nous. Pour signaler une arnaque, utilisez le formulaire dédié.",
+  "involvedTitle": "S’impliquer",
+  "awarenessCentreTitle": "Centre de sensibilisation aux arnaques",
+  "search": "Rechercher",
+  "searchPlaceholder": "Rechercher des conseils, alertes et ressources",
+  "menu": "Menu",
+  "close": "Fermer",
+  "language": "Langue",
+  "home": "Accueil",
+  "readMore": "Lire la suite",
+  "viewAll": "Tout voir",
+  "related": "Dans la même veine",
+  "published": "Publié",
+  "back": "Retour",
+  "next": "Suivant",
+  "submit": "Envoyer",
+  "send": "Envoyer",
+  "save": "Enregistrer",
+  "required": "Obligatoire",
+  "optional": "Facultatif",
+  "loading": "Chargement",
+  "empty": "Rien n’est publié dans cette vue pour le moment.",
+  "errorGeneric": "Une erreur s’est produite. Veuillez réessayer.",
+  "fallback": "Cette page est affichée en anglais pendant la préparation de la version française.",
+  "demoBadge": "Contenu de démonstration",
+  "illustrative": "Exemple illustratif. Il ne décrit aucune personne ni entreprise réelle.",
+  "notPolice": "Un signalement à GLOPROFAS n’est pas une plainte auprès de la police et ne garantit pas la récupération des fonds. Si vous avez envoyé de l’argent, contactez dès maintenant votre banque ou votre opérateur de mobile money par son canal officiel.",
+  "reportCta": "Signaler une arnaque",
+  "secondaryCta": "Apprendre à se protéger",
+  "eyebrow": "Prévention de la fraude et sécurité numérique",
+  "h1": "Repérez l’arnaque avant qu’elle ne vous coûte cher.",
+  "lead": "GLOPROFAS aide les particuliers, les familles et les entreprises à reconnaître la fraude, à protéger leur argent et à savoir quoi faire ensuite. Commencez par un guide gratuit ou signalez ce qui vous est arrivé.",
+  "strip": "Un message suspect ? Vérifiez avant de payer.",
+  "check": "Vérifier avec Jarvis",
+  "introEyebrow": "Qui nous sommes",
+  "introH2": "Lutter contre les arnaques par la sensibilisation, la prévention et l’action.",
+  "introBody": "Le Programme mondial de lutte contre les arnaques est une initiative indépendante à but non lucratif. Les arnaques circulent vite, d’un pays et d’un téléphone à l’autre ; l’information claire, moins. Nous comblons cet écart en transformant les signalements en mises en garde utiles à tous, avec une attention particulière à l’Afrique et au Cameroun.",
+  "outreachEyebrow": "Sur le terrain",
+  "outreachH2": "Des campagnes, des séminaires et des forums là où les gens se rassemblent.",
+  "outreachLead": "GLOPROFAS mène des campagnes, des séminaires et des forums de lutte contre les arnaques dans les écoles, les églises, les centres de jeunes et les entreprises. Ces rencontres sensibilisent le public aux menaces, aux risques et aux conséquences de toutes les formes de fraude, avec une attention particulière pour les schémas d’arnaque d’aujourd’hui.",
+  "places": [
+    {
+      "title": "Écoles",
+      "text": "Des séminaires en classe qui nomment les ruses avant qu’un frais, un code ou une fausse offre n’atteigne un élève."
+    },
+    {
+      "title": "Églises",
+      "text": "Des forums pour les assemblées sur l’usurpation, les appels aux dons et la pression de payer en secret."
+    },
+    {
+      "title": "Centres de jeunes",
+      "text": "Des ateliers sur les arnaques des réseaux, le mobile money et le droit de faire une pause."
+    },
+    {
+      "title": "Entreprises",
+      "text": "Des séminaires pour le personnel sur les factures détournées, l’hameçonnage et le coût d’une culture qui interdit la question."
+    }
+  ],
+  "loginTitle": "Connexion du personnel",
+  "loginLead": "Signalements, alertes et réglages. Ce n’est pas un compte public.",
+  "loginSide": "Identifiants de démonstration",
+  "loginHint": "Changez ce mot de passe avant un vrai lancement.",
+  "checks": [
+    "Écrit pour tout le monde, pas pour les spécialistes",
+    "Des mises en garde tirées de vrais signalements",
+    "Une aide aux foyers, aux entreprises et aux communautés",
+    "Une mission mondiale, ancrée dans les réalités africaines"
+  ],
+  "introCta": "Découvrir les arnaques courantes",
+  "statTypes": "Guides d’arnaques",
+  "statResources": "Ressources publiées",
+  "statLanguages": "Langues",
+  "marqueeLabel": "Types d’arnaques couverts par GLOPROFAS",
+  "scamsEyebrow": "Arnaques courantes",
+  "scamsH2": "Connaître les ruses les plus utilisées.",
+  "scamsLead": "Chaque guide explique le fonctionnement de l’arnaque, les signaux d’alerte et la marche à suivre si elle vous arrive.",
+  "howEyebrow": "Comment fonctionnent les arnaques",
+  "howH2": "La plupart des arnaques suivent les mêmes quatre étapes.",
+  "howLead": "",
+  "steps": [
+    {
+      "n": "01",
+      "title": "Le contact",
+      "text": "Un message, un appel ou une publication arrive, souvent d’apparence officielle ou amicale."
+    },
+    {
+      "n": "02",
+      "title": "La pression",
+      "text": "L’urgence, la peur ou une belle occasion vous pousse à agir tout de suite."
+    },
+    {
+      "n": "03",
+      "title": "Le paiement",
+      "text": "On vous demande de payer, de transférer ou de partager un code."
+    },
+    {
+      "n": "04",
+      "title": "La disparition",
+      "text": "Le contact disparaît, et l’argent avec lui."
+    }
+  ],
+  "techniques": "Techniques à reconnaître",
+  "techniqueItems": [
+    {
+      "title": "Manipulation psychologique",
+      "text": "Jouer sur la confiance, la peur, l’espoir ou la honte pour vous empêcher de douter."
+    },
+    {
+      "title": "Fausses identités",
+      "text": "Photos volées, profils inventés et noms empruntés."
+    },
+    {
+      "title": "Urgence et intimidation",
+      "text": "Délais, menaces de blocage de compte ou de poursuites."
+    },
+    {
+      "title": "Faux placements",
+      "text": "Gains garantis, premiers « gagnants » et pression pour recruter."
+    },
+    {
+      "title": "Usurpation",
+      "text": "Se faire passer pour un proche, une banque, un opérateur ou un agent."
+    },
+    {
+      "title": "Ingénierie sociale",
+      "text": "Collecter de petits détails pour rendre une demande crédible."
+    },
+    {
+      "title": "Demandes de paiement frauduleuses",
+      "text": "Fausses factures, coordonnées bancaires modifiées et demandes de renvoi."
+    },
+    {
+      "title": "Faux sites et applications",
+      "text": "Pages et applications copiées pour capter paiements ou identifiants."
+    }
+  ],
+  "findEyebrow": "Ce que vous trouverez ici",
+  "findH2": "Ce que vous trouverez ici.",
+  "reportEyebrow": "Signaler",
+  "reportH2": "Avez-vous été confronté à une arnaque ?",
+  "reportLead": "Cela prend environ cinq minutes. Vous n’êtes pas en faute, et ce que vous partagez aide d’autres personnes à se protéger. Aucun compte requis.",
+  "reportSteps": [
+    {
+      "t": "Ce qui s’est passé",
+      "d": "Le type d’arnaque, quand et comment elle vous a atteint."
+    },
+    {
+      "t": "Preuves",
+      "d": "Captures ou documents facultatifs, conservés en privé."
+    },
+    {
+      "t": "Numéro de référence",
+      "d": "Vous recevez une référence pour le suivi."
+    }
+  ],
+  "reportButton": "Commencer un signalement",
+  "resourcesEyebrow": "Protection et ressources",
+  "resourcesH2": "Des outils pratiques pour vous protéger.",
+  "resourcesLead": "",
+  "servicesEyebrow": "Nos services",
+  "servicesH2": "Gratuit pour le public. Un accompagnement professionnel si besoin.",
+  "freeTitle": "Actions d’intérêt public gratuites",
+  "freeTag": "Toujours gratuit",
+  "freeBody": "Les pages de sensibilisation, les alertes, le signalement et les conseils généraux sont gratuits. Ils ne créent pas de relation client.",
+  "freePoints": [
+    "Guides de sensibilisation et alertes publiques",
+    "Signalement des activités suspectes",
+    "Listes de vérification et ressources téléchargeables",
+    "Éducation des communautés"
+  ],
+  "freeCta": "Voir les ressources gratuites",
+  "paidCta": "Se renseigner sur les services",
+  "paidTitle": "Services professionnels",
+  "paidTag": "Payant ou sur devis",
+  "paidBody": "Les évaluations, les formations et le conseil sont distincts, facultatifs, et tarifés seulement lorsqu’un administrateur définit un mode. Nous n’inventons pas de prix.",
+  "paidPoints": [
+    "Évaluations de sécurité numérique individuelles",
+    "Évaluations des risques de fraude en entreprise",
+    "Programmes pour entreprises et institutions",
+    "Formation et renforcement des capacités"
+  ],
+  "newsEyebrow": "Alertes et actualités",
+  "newsH2": "Ce que l’on signale en ce moment.",
+  "alertsTitle": "Alertes arnaques",
+  "articlesTitle": "Derniers articles",
+  "newsCta": "Toutes les actualités",
+  "alertsCta": "Archives des alertes",
+  "newsletterEyebrow": "Rester informé",
+  "newsletterH2": "Recevez les alertes par courriel.",
+  "newsletterLead": "Un court courriel quand une nouvelle arnaque circule. Désinscription à tout moment.",
+  "newsletterName": "Nom",
+  "newsletterEmail": "Adresse électronique",
+  "newsletterCountry": "Pays",
+  "newsletterLanguage": "Langue souhaitée",
+  "newsletterConsent": "J’accepte de recevoir les courriels de GLOPROFAS et la politique de confidentialité.",
+  "newsletterSubmit": "S’inscrire",
+  "newsletterPending": "Consultez votre boîte pour confirmer cette adresse. Rien n’est envoyé avant cela.",
+  "finalH2": "Ensemble, rendons le monde numérique plus sûr.",
+  "finalLead": "Signalez ce que vous avez vu, lisez les conseils, ou écrivez à l’équipe.",
+  "finalResources": "Accéder aux ressources",
+  "finalContact": "Contacter GLOPROFAS",
+  "footerBlurb": "Un programme indépendant à but non lucratif de sensibilisation, de prévention, d’éducation et d’assistance contre les arnaques.",
+  "footerQuick": "Explorer",
+  "footerResources": "Ressources",
+  "footerContact": "Contact",
+  "footerLegal": "Mentions",
+  "footerDisclaimer": "GLOPROFAS n’est ni un organisme public ni une autorité policière, ne peut garantir la récupération des fonds et ne certifie aucun site ni aucune personne. Contactez votre institution financière et les autorités compétentes par leurs canaux officiels.",
+  "footerRights": "Programme mondial de lutte contre les arnaques. Tous droits réservés.",
+  "contactPending": "Le téléphone, le lieu et les liens sociaux n’apparaissent ici qu’après publication par un administrateur.",
+  "risk": {
+    "low": "Faible",
+    "medium": "Moyen",
+    "high": "Élevé",
+    "critical": "Critique"
+  },
+  "nav": {
+    "about": "À propos",
+    "awareness": "Sensibilisation",
+    "resources": "Ressources",
+    "services": "Services",
+    "news": "Actualités",
+    "involved": "S’impliquer",
+    "contact": "Contact"
+  },
+  "aboutLinks": [
+    "Qui nous sommes",
+    "Mission et vision",
+    "Objectifs",
+    "Approche",
+    "Ancrage géographique",
+    "Gouvernance et transparence"
+  ],
+  "newsLinks": [
+    "Actualités",
+    "Alertes arnaques",
+    "Campagnes",
+    "Communiqués"
+  ],
+  "involvedLinks": [
+    "Bénévolat",
+    "Partenariat",
+    "Soutenir la mission"
+  ],
+  "serviceLinks": [
+    "Particuliers",
+    "Entreprises",
+    "Institutions",
+    "Formation"
+  ],
+  "sections": {
+    "definition": "Définition",
+    "how": "Comment l’arnaque fonctionne",
+    "signs": "Signes d’alerte courants",
+    "techniques": "Techniques habituelles",
+    "example": "Exemple illustratif",
+    "protect": "Comment se protéger",
+    "affected": "Que faire si vous êtes concerné",
+    "relatedCats": "Catégories liées",
+    "relatedRes": "Ressources liées"
+  },
+  "filters": {
+    "all": "Tout",
+    "category": "Catégorie",
+    "country": "Pays ou région",
+    "risk": "Risque",
+    "type": "Type",
+    "clear": "Effacer les filtres"
+  },
+  "report": {
+    "eyebrow": "Signaler une arnaque",
+    "title": "Racontez ce qui s’est passé.",
+    "reassurance": "Cela prend environ cinq minutes. Vous n’êtes pas en faute, et ce que vous partagez aide d’autres personnes à rester en sécurité.",
+    "steps": [
+      "Ce qui s’est passé",
+      "Détails",
+      "Vous",
+      "Vérification"
+    ],
+    "category": "De quel type d’arnaque s’agissait-il ?",
+    "unsure": "Je ne sais pas",
+    "description": "Description de l’incident",
+    "date": "Date de l’incident",
+    "channel": "Canal de communication",
+    "country": "Pays",
+    "city": "Ville ou région",
+    "url": "Site ou URL suspect",
+    "phone": "Numéro de téléphone en cause",
+    "email": "Adresse électronique en cause",
+    "money": "De l’argent a-t-il été perdu ?",
+    "yes": "Oui",
+    "no": "Non",
+    "amount": "Montant",
+    "currency": "Devise",
+    "ongoing": "L’incident est-il toujours en cours ?",
+    "evidence": "Les preuves sont facultatives. Captures d’écran, images et PDF seulement. 5 fichiers maximum, 10 Mo chacun.",
+    "drop": "Choisir des fichiers",
+    "name": "Votre nom",
+    "yourEmail": "Adresse pour l’accusé de réception",
+    "prefLang": "Langue de contact souhaitée",
+    "review": "Vérifiez avant d’envoyer",
+    "edit": "Modifier",
+    "consent": "Je comprends qu’il ne s’agit pas d’une plainte officielle, que GLOPROFAS ne peut pas garantir le recouvrement des fonds, et que mes informations seront traitées comme indiqué dans la notice de confidentialité.",
+    "confirmTitle": "Merci pour votre signalement.",
+    "confirmLead": "Conservez ce numéro. C’est le seul moyen pour l’équipe de retrouver votre signalement. Nous ne publions pas les signalements.",
+    "copy": "Copier",
+    "copied": "Copié",
+    "nextSteps": "Et ensuite",
+    "nextBody": "Le personnel autorisé peut examiner le signalement. Nous pouvons vous écrire si des précisions sont nécessaires. Nous ne vous écrirons pas sur une messagerie au hasard pour demander des codes ou un nouveau paiement.",
+    "safetyTitle": "Si vous avez envoyé de l’argent, agissez maintenant par les canaux officiels.",
+    "safetyBody": "Contactez votre banque ou votre opérateur de mobile money avec le numéro indiqué sur votre carte, votre application ou votre reçu. N’utilisez pas un numéro arrivé dans le message suspect.",
+    "noConfirm": "Si vous venez d’envoyer un signalement, le numéro a été affiché sur cet appareil. Vérifiez aussi votre messagerie."
+  },
+  "forms": {
+    "honeypot": "Site de l’entreprise",
+    "tooFast": "Veuillez patienter un instant, puis réessayer.",
+    "limited": "Trop de tentatives. Réessayez plus tard.",
+    "invalid": "Veuillez vérifier les champs indiqués.",
+    "sent": "Merci. Votre message a bien été reçu.",
+    "enquirySent": "Votre demande a été reçue. Si la messagerie est configurée, vous recevrez un accusé.",
+    "subject": "Objet",
+    "message": "Message",
+    "category": "Catégorie",
+    "organisation": "Organisation",
+    "phone": "Téléphone",
+    "service": "Service demandé",
+    "requirements": "Description du besoin",
+    "method": "Mode de contact souhaité",
+    "background": "Parcours professionnel",
+    "skills": "Compétences",
+    "languages": "Langues",
+    "interests": "Centres d’intérêt",
+    "motivation": "Motivation",
+    "orgType": "Type d’organisation",
+    "contactPerson": "Personne de contact",
+    "proposal": "Proposition",
+    "general": "Général",
+    "partnership": "Partenariat",
+    "media": "Médias",
+    "professional": "Services professionnels"
+  },
+  "assistant": {
+    "name": "Jarvis",
+    "sub": "Assistant IA GLOPROFAS",
+    "open": "Discuter avec Jarvis",
+    "close": "Fermer l’assistant",
+    "clear": "Effacer la conversation",
+    "placeholder": "Décrivez le message ou l’offre…",
+    "send": "Envoyer",
+    "typing": "Consultation des conseils GLOPROFAS",
+    "disclaimer": "Conseils uniquement. Ne partagez jamais mots de passe, codes PIN ou codes.",
+    "error": "Désolé, l’assistant est indisponible. Réessayez plus tard.",
+    "limited": "La limite actuelle est atteinte. Réessayez plus tard ou consultez les guides.",
+    "disabled": "L’assistant est désactivé. Les guides et le signalement restent disponibles."
+  },
+  "searchPage": {
+    "title": "Recherche",
+    "lead": "Recherchez dans les conseils, alertes, ressources et pages publiés par GLOPROFAS.",
+    "results": "résultats"
+  },
+  "notFound": {
+    "title": "Cette page n’est pas disponible.",
+    "body": "Le lien est peut-être ancien, ou la page n’a pas été publiée."
+  },
+  "channels": [
+    "Appel",
+    "SMS",
+    "WhatsApp",
+    "Courriel",
+    "Réseau social",
+    "Site web",
+    "En personne",
+    "Autre"
+  ],
+  "pricing": {
+    "free": "Gratuit",
+    "paid": "Payant",
+    "quotation": "Devis sur mesure",
+    "consultation": "Demande de consultation",
+    "training": "Formule de formation"
+  },
+  "groups": {
+    "individuals": "Particuliers",
+    "businesses": "Entreprises",
+    "institutions": "Entreprises et institutions",
+    "training": "Formation et renforcement des capacités"
+  },
+  "verifyCta": "Vérifier une arnaque",
+  "reportIncidentCta": "Signaler un incident",
+  "pillarsEyebrow": "Pourquoi ça marche",
+  "pillarsH2": "Comment la plateforme vous protège.",
+  "pillarsLead": "Trois piliers, un seul objectif : moins de victimes paient les escrocs.",
+  "pillars": [
+    {
+      "title": "Vérification de la base de données en temps réel",
+      "desc": "Avant d’agir, l’assistant croise un message suspect avec la base de données en direct de GLOPROFAS, c’est-à-dire les schémas d’arnaque et les alertes publiés. Il donne des conseils et ne certifie jamais quiconque comme légitime."
+    },
+    {
+      "title": "Signalement communautaire",
+      "desc": "Les signalements privés, sans compte, sont examinés par le personnel autorisé et, une fois approuvés, deviennent des alertes publiques anonymisées qui protègent la personne suivante."
+    },
+    {
+      "title": "Analytique sécurisée",
+      "desc": "Les tendances des signalements sont analysées en privé pour montrer où frappera la prochaine vague de fraude. Vos informations ne sont ni vendues ni publiées."
+    }
+  ]
+}

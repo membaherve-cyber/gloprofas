@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { BarChart3, Check, DatabaseSearch, Users } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { NewsletterForm } from "@/components/forms";
 import { Button, IconTile, Photo, RiskBadge, SectionHeading } from "@/components/ui";
 import { Counter, OpenAssistant } from "@/components/widgets";
@@ -12,6 +13,8 @@ type Copy = { title: string; slug: string; summary: string };
 function copyOf(translations: unknown, locale: Locale) {
   return pickLocale(translations as Partial<Record<Locale, Copy>>, locale);
 }
+
+const PILLAR_ICONS: LucideIcon[] = [DatabaseSearch, Users, BarChart3];
 
 type Cat = { id: string; icon: string; homepage: boolean; tileSize: string; translations: unknown };
 type Alert = { id: string; risk: string; country: string; image: string | null; publishedAt: Date | null; translations: unknown };
@@ -65,8 +68,10 @@ export function HomeView({
           <h1>{t.h1}</h1>
           <p className="lead measure" style={{ color: "#d5deee" }}>{t.lead}</p>
           <div className="hero-actions">
-            <Button href={pathFor(locale, "report")} variant="signal">{t.reportCta}</Button>
-            <Button href={pathFor(locale, "awareness")} variant="outline">{t.secondaryCta}</Button>
+            <Button href={pathFor(locale, "report")} variant="signal">{t.reportIncidentCta}</Button>
+            <Button variant="outline" onClick={() => window.dispatchEvent(new Event("glp-open-assistant"))}>
+              {t.verifyCta}
+            </Button>
           </div>
         </div>
         <div className="chips" aria-label={t.marqueeLabel}>
@@ -108,6 +113,26 @@ export function HomeView({
               <span className="stat-num">{categories.length}</span>
               <span className="help">{t.statTypes}</span>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section" aria-label={t.pillarsH2}>
+        <div className="container">
+          <SectionHeading eyebrow={t.pillarsEyebrow} title={t.pillarsH2} lead={t.pillarsLead} />
+          <div className="grid-cards three" style={{ marginTop: 24 }}>
+            {t.pillars.map((pillar, index) => {
+              const Icon = PILLAR_ICONS[index % PILLAR_ICONS.length];
+              return (
+                <article className="card" key={pillar.title} style={{ display: "grid", gap: 10, alignItems: "start" }}>
+                  <span className="icon-tile">
+                    <Icon size={22} strokeWidth={1.5} aria-hidden="true" />
+                  </span>
+                  <h3 style={{ fontSize: "1.35rem", margin: 0 }}>{pillar.title}</h3>
+                  <p className="muted">{pillar.desc}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

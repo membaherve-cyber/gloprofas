@@ -1,0 +1,410 @@
+{
+  "skip": "Skip to content",
+  "login": "Team log in",
+  "contactTitle": "Contact GLOPROFAS",
+  "contactLead": "Questions, partnerships, media or professional services: write to us. To report a scam, use the dedicated form.",
+  "involvedTitle": "Get involved",
+  "awarenessCentreTitle": "Scam Awareness Centre",
+  "search": "Search",
+  "searchPlaceholder": "Search guidance, alerts and resources",
+  "menu": "Menu",
+  "close": "Close",
+  "language": "Language",
+  "home": "Home",
+  "readMore": "Read more",
+  "viewAll": "View all",
+  "related": "Related",
+  "published": "Published",
+  "back": "Back",
+  "next": "Next",
+  "submit": "Submit",
+  "send": "Send",
+  "save": "Save",
+  "required": "Required",
+  "optional": "Optional",
+  "loading": "Loading",
+  "empty": "Nothing published in this view yet.",
+  "errorGeneric": "Something went wrong. Please try again.",
+  "fallback": "This page is shown in English while the French version is being prepared.",
+  "demoBadge": "Demo content",
+  "illustrative": "Illustrative example. It does not describe a real person or business.",
+  "notPolice": "A report to GLOPROFAS is not a police report and does not guarantee recovery of funds. If you sent money, contact your bank or mobile money provider now through its official channel.",
+  "reportCta": "Report a scam",
+  "secondaryCta": "Learn how to stay safe",
+  "eyebrow": "Fraud prevention and digital safety",
+  "h1": "Spot the scam before it costs you.",
+  "lead": "GLOPROFAS helps individuals, families and businesses recognise fraud, protect their money and know what to do next. Start with a free guide, or report what happened to you.",
+  "strip": "Got a suspicious message? Check before you pay.",
+  "check": "Check it with Jarvis",
+  "introEyebrow": "Who we are",
+  "introH2": "Fighting scams through awareness, prevention and action.",
+  "introBody": "The Global Programme for the Fight Against Scams is an independent, not-for-profit initiative. Scams move fast across borders and phones; clear information moves slower. We close that gap by turning what people report into warnings anyone can act on, with particular attention to Africa and Cameroon.",
+  "outreachEyebrow": "In person",
+  "outreachH2": "Campaigns, seminars and forums where people already gather.",
+  "outreachLead": "GLOPROFAS leads anti-scam campaigns, seminars and forums in schools, churches, youth centres and companies. The sessions sensitise people to the threats, risks and consequences of every kind of fraud, with a particular focus on modern-day scamming schemes.",
+  "places": [
+    {
+      "title": "Schools",
+      "text": "Classroom seminars that name the tricks before a fee, a code or a fake job offer reaches a student."
+    },
+    {
+      "title": "Churches",
+      "text": "Forums for congregations on impersonation, charity appeals and pressure to pay in secret."
+    },
+    {
+      "title": "Youth centres",
+      "text": "Workshops on social-media scams, mobile money and the right to pause before sending anything."
+    },
+    {
+      "title": "Companies",
+      "text": "Seminars for staff on invoice swaps, phishing and the cost of a culture that forbids a question."
+    }
+  ],
+  "loginTitle": "Staff login",
+  "loginLead": "Reports, alerts and settings. This is not a public account.",
+  "loginSide": "Demo credentials",
+  "loginHint": "Change this password before a real launch.",
+  "checks": [
+    "Written for everyday people, not specialists",
+    "Warnings drawn from real public reports",
+    "Help for households, businesses and communities",
+    "A global mission, rooted in African realities"
+  ],
+  "introCta": "Explore common scams",
+  "statTypes": "Scam guides",
+  "statResources": "Resources published",
+  "statLanguages": "Languages",
+  "marqueeLabel": "Scam types covered by GLOPROFAS",
+  "scamsEyebrow": "Common scams",
+  "scamsH2": "Know the tricks people use most.",
+  "scamsLead": "Each guide explains how the scam works, the warning signs and what to do if it happens to you.",
+  "howEyebrow": "How scams work",
+  "howH2": "Most scams follow the same four moves.",
+  "howLead": "",
+  "steps": [
+    {
+      "n": "01",
+      "title": "Contact",
+      "text": "A message, call or post arrives, often looking official or friendly."
+    },
+    {
+      "n": "02",
+      "title": "Pressure",
+      "text": "Urgency, fear or a great opportunity pushes you to act now."
+    },
+    {
+      "n": "03",
+      "title": "Payment",
+      "text": "You are asked to pay, transfer or share a code."
+    },
+    {
+      "n": "04",
+      "title": "Disappearance",
+      "text": "The contact goes silent and the money is gone."
+    }
+  ],
+  "techniques": "Techniques to recognise",
+  "techniqueItems": [
+    {
+      "title": "Psychological manipulation",
+      "text": "Playing on trust, fear, hope or shame so you stop questioning."
+    },
+    {
+      "title": "Fake identities",
+      "text": "Stolen photos, invented profiles and borrowed names."
+    },
+    {
+      "title": "Urgency and intimidation",
+      "text": "Deadlines, threats of blocked accounts or legal trouble."
+    },
+    {
+      "title": "Fake investment opportunities",
+      "text": "Guaranteed returns, early “winners” and pressure to recruit."
+    },
+    {
+      "title": "Impersonation",
+      "text": "Posing as a relative, a bank, an operator or an official."
+    },
+    {
+      "title": "Social engineering",
+      "text": "Gathering small details to make a later request believable."
+    },
+    {
+      "title": "Fraudulent payment requests",
+      "text": "Fake invoices, changed bank details and reversal requests."
+    },
+    {
+      "title": "Fake websites and applications",
+      "text": "Copycat pages and apps built to take payments or logins."
+    }
+  ],
+  "findEyebrow": "What you will find here",
+  "findH2": "What you will find here.",
+  "reportEyebrow": "Report",
+  "reportH2": "Have you encountered a scam?",
+  "reportLead": "It takes about five minutes. You are not to blame, and what you share helps others stay safe. No account needed.",
+  "reportSteps": [
+    {
+      "t": "What happened",
+      "d": "The type of scam, when and how it reached you."
+    },
+    {
+      "t": "Evidence",
+      "d": "Optional screenshots or documents, kept private."
+    },
+    {
+      "t": "Reference number",
+      "d": "You receive a reference to follow up."
+    }
+  ],
+  "reportButton": "Start a report",
+  "resourcesEyebrow": "Protection and resources",
+  "resourcesH2": "Practical tools to protect yourself.",
+  "resourcesLead": "",
+  "servicesEyebrow": "Our services",
+  "servicesH2": "Free for the public. Professional support when you need more.",
+  "freeTitle": "Free public-interest work",
+  "freeTag": "Always free",
+  "freeBody": "Awareness pages, alerts, the reporting channel and general guidance are free. They do not create a client relationship.",
+  "freePoints": [
+    "Awareness guides and public alerts",
+    "Reporting suspicious activity",
+    "Downloadable checklists and resources",
+    "Community education"
+  ],
+  "freeCta": "Browse free resources",
+  "paidCta": "Ask about services",
+  "paidTitle": "Professional services",
+  "paidTag": "Paid or on quotation",
+  "paidBody": "Assessments, training and advisory work are separate, optional and priced only when an administrator sets a mode. We do not invent fees.",
+  "paidPoints": [
+    "Individual digital safety assessments",
+    "Business fraud risk assessments",
+    "Enterprise and institutional programmes",
+    "Training and capacity building"
+  ],
+  "newsEyebrow": "Alerts and news",
+  "newsH2": "What people are reporting now.",
+  "alertsTitle": "Scam alerts",
+  "articlesTitle": "Latest articles",
+  "newsCta": "All news",
+  "alertsCta": "Alert archive",
+  "newsletterEyebrow": "Stay informed",
+  "newsletterH2": "Get scam alerts in your inbox.",
+  "newsletterLead": "One short email when something new is spreading. Unsubscribe any time.",
+  "newsletterName": "Name",
+  "newsletterEmail": "Email",
+  "newsletterCountry": "Country",
+  "newsletterLanguage": "Preferred language",
+  "newsletterConsent": "I agree to receive GLOPROFAS emails and accept the privacy policy.",
+  "newsletterSubmit": "Subscribe",
+  "newsletterPending": "Check your inbox to confirm this address. Nothing is sent until you do.",
+  "finalH2": "Together, we can make the digital world safer.",
+  "finalLead": "Report what you saw, read the guidance, or write to the team.",
+  "finalResources": "Access resources",
+  "finalContact": "Contact GLOPROFAS",
+  "footerBlurb": "An independent, not-for-profit programme for scam awareness, prevention, education and assistance.",
+  "footerQuick": "Explore",
+  "footerResources": "Resources",
+  "footerContact": "Contact",
+  "footerLegal": "Legal",
+  "footerDisclaimer": "GLOPROFAS is not a government body or law enforcement authority, cannot guarantee recovery of funds and does not certify any website or person as legitimate. Contact your financial institution and the competent authorities through official channels.",
+  "footerRights": "Global Programme for the Fight Against Scams. All rights reserved.",
+  "contactPending": "Direct telephone, location and social links appear here only after an administrator publishes them.",
+  "risk": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High",
+    "critical": "Critical"
+  },
+  "nav": {
+    "about": "About",
+    "awareness": "Scam Awareness",
+    "resources": "Resources",
+    "services": "Services",
+    "news": "News",
+    "involved": "Get Involved",
+    "contact": "Contact"
+  },
+  "aboutLinks": [
+    "Who we are",
+    "Mission and vision",
+    "Objectives",
+    "Approach",
+    "Geographic focus",
+    "Governance and transparency"
+  ],
+  "newsLinks": [
+    "News",
+    "Scam alerts",
+    "Campaigns",
+    "Press releases"
+  ],
+  "involvedLinks": [
+    "Volunteer",
+    "Partner",
+    "Support our mission"
+  ],
+  "serviceLinks": [
+    "Individuals",
+    "Businesses",
+    "Enterprises and institutions",
+    "Training"
+  ],
+  "sections": {
+    "definition": "Definition",
+    "how": "How the scam works",
+    "signs": "Common warning signs",
+    "techniques": "Typical techniques",
+    "example": "Illustrative example",
+    "protect": "How to protect yourself",
+    "affected": "What to do if you are affected",
+    "relatedCats": "Related categories",
+    "relatedRes": "Related resources"
+  },
+  "filters": {
+    "all": "All",
+    "category": "Category",
+    "country": "Country or region",
+    "risk": "Risk",
+    "type": "Type",
+    "clear": "Clear filters"
+  },
+  "report": {
+    "eyebrow": "Report a scam",
+    "title": "Tell us what happened.",
+    "reassurance": "This takes about five minutes. You are not to blame, and what you share helps others stay safe.",
+    "steps": [
+      "What happened",
+      "Details",
+      "About you",
+      "Review"
+    ],
+    "category": "What kind of scam was it?",
+    "unsure": "Not sure",
+    "description": "Description of the incident",
+    "date": "Date of the incident",
+    "channel": "Communication channel",
+    "country": "Country",
+    "city": "City or region",
+    "url": "Suspicious website or URL",
+    "phone": "Phone number involved",
+    "email": "Email address involved",
+    "money": "Was money lost?",
+    "yes": "Yes",
+    "no": "No",
+    "amount": "Amount",
+    "currency": "Currency",
+    "ongoing": "Is the incident still ongoing?",
+    "evidence": "Evidence is optional. Screenshots, images and PDFs only. Up to 5 files, 10 MB each.",
+    "drop": "Choose files",
+    "name": "Your name",
+    "yourEmail": "Email for the acknowledgement",
+    "prefLang": "Preferred contact language",
+    "review": "Review before you send",
+    "edit": "Edit",
+    "consent": "I understand this is not a police report, that GLOPROFAS cannot guarantee recovery of funds, and that my information will be handled as described in the privacy notice.",
+    "confirmTitle": "Thank you for your report.",
+    "confirmLead": "Keep this number. It is the only way our team can find your report. We do not publish reports.",
+    "copy": "Copy",
+    "copied": "Copied",
+    "nextSteps": "What happens next",
+    "nextBody": "Authorised staff may review the report. We may email you if more information is needed. We will not contact you on a random messaging app and ask for codes or further payments.",
+    "safetyTitle": "If you sent money, act through official channels now.",
+    "safetyBody": "Contact your bank or mobile-money provider using the number on your card, app or receipt. Do not use a number that arrived inside the suspicious message.",
+    "noConfirm": "If you just submitted a report, the reference was shown on this device. Check your email for the acknowledgement."
+  },
+  "forms": {
+    "honeypot": "Company website",
+    "tooFast": "Please wait a moment and try again.",
+    "limited": "Too many attempts. Please try later.",
+    "invalid": "Please check the highlighted fields.",
+    "sent": "Thank you. Your message has been received.",
+    "enquirySent": "Your enquiry has been received. If email is configured, you will get an acknowledgement.",
+    "subject": "Subject",
+    "message": "Message",
+    "category": "Category",
+    "organisation": "Organisation",
+    "phone": "Phone",
+    "service": "Service required",
+    "requirements": "Description of requirements",
+    "method": "Preferred contact method",
+    "background": "Professional background",
+    "skills": "Skills",
+    "languages": "Languages",
+    "interests": "Areas of interest",
+    "motivation": "Motivation",
+    "orgType": "Organisation type",
+    "contactPerson": "Contact person",
+    "proposal": "Proposal",
+    "general": "General",
+    "partnership": "Partnership",
+    "media": "Media",
+    "professional": "Professional services"
+  },
+  "assistant": {
+    "name": "Jarvis",
+    "sub": "GLOPROFAS AI assistant",
+    "open": "Chat with Jarvis",
+    "close": "Close assistant",
+    "clear": "Clear conversation",
+    "placeholder": "Describe the message or offer…",
+    "send": "Send",
+    "typing": "Looking through GLOPROFAS guidance",
+    "disclaimer": "Guidance only. Never share passwords, PINs or codes.",
+    "error": "Sorry, the assistant is unavailable right now. Please try again.",
+    "limited": "You have reached the current limit. Please try again later or use the guides.",
+    "disabled": "The assistant is switched off. The guides and reporting form remain available."
+  },
+  "searchPage": {
+    "title": "Search",
+    "lead": "Search published GLOPROFAS guidance, alerts, resources and pages.",
+    "results": "results"
+  },
+  "notFound": {
+    "title": "This page is not available.",
+    "body": "The link may be old, or the page has not been published."
+  },
+  "channels": [
+    "Phone call",
+    "SMS",
+    "WhatsApp",
+    "Email",
+    "Social media",
+    "Website",
+    "In person",
+    "Other"
+  ],
+  "pricing": {
+    "free": "Free",
+    "paid": "Paid",
+    "quotation": "Custom quotation",
+    "consultation": "Consultation request",
+    "training": "Training package"
+  },
+  "groups": {
+    "individuals": "Individuals",
+    "businesses": "Businesses",
+    "institutions": "Enterprises and institutions",
+    "training": "Training and capacity building"
+  },
+  "verifyCta": "Verify a Scam",
+  "reportIncidentCta": "Report an Incident",
+  "pillarsEyebrow": "Why it works",
+  "pillarsH2": "How the platform protects you.",
+  "pillarsLead": "Three pillars, one goal: fewer people paying scammers.",
+  "pillars": [
+    {
+      "title": "Real-time Database Check",
+      "desc": "Before you act, the assistant cross-checks a suspicious message against GLOPROFAS's live database of published scam patterns and alerts. It gives guidance only and never certifies anyone as legitimate."
+    },
+    {
+      "title": "Community Reporting",
+      "desc": "Private, no-account reports from people on the ground are reviewed by authorised staff and, once approved, become anonymised public alerts that protect the next person."
+    },
+    {
+      "title": "Secure Analytics",
+      "desc": "Report trends are analysed privately to show where the next wave of fraud is heading. Your information is never sold and never published."
+    }
+  ]
+}
