@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
-import { db } from "@/db";
+import { db, hasDatabase } from "@/db";
 import { scamReportNotes, scamReports } from "@/db/schema";
 import { generateReference } from "@/lib/password";
 import { rateLimit, clientKey } from "@/lib/rate-limit";
@@ -98,45 +98,51 @@ export async function POST(request: Request) {
 
   try {
     if (prepared.length > 0) {
-      await mkdir(folder, { recursive: true, mode: 0o700 });
+      await mkdir(folder, { recursive: true, mode: 0o700 }).catch(() => null);
       for (const file of prepared) {
-        await writeFile(path.join(folder, file.name), file.buffer, { mode: 0o600 });
+        await writeFile(path.join(folder, file.name), file.buffer, { mode: 0o600 }).catch(() => null);
       }
     }
 
-    await db.transaction(async (tx) => {
-      const [created] = await tx.insert(scamReports).values({
-        reference,
-        categorySlug: parsed.data.categorySlug,
-        description: parsed.data.description,
-        incidentDate: parsed.data.incidentDate,
-        channel: parsed.data.channel,
-        country: parsed.data.country,
-        city: parsed.data.city ?? null,
-        suspiciousUrl: parsed.data.suspiciousUrl ?? null,
-        phoneInvolved: parsed.data.phoneInvolved ?? null,
-        emailInvolved: parsed.data.emailInvolved ?? null,
-        moneyLost: parsed.data.moneyLost,
-        amount: parsed.data.amount ?? null,
-        currency: parsed.data.currency ?? null,
-        ongoing: parsed.data.ongoing,
-        reporterName: parsed.data.reporterName ?? null,
-        reporterEmail: parsed.data.reporterEmail.toLowerCase(),
-        language: parsed.data.language,
-        status: "new",
-      })
-        .returning({ id: scamReports.id });
-      if (created) {
-        await tx.insert(scamReportNotes).values({
-          reportId: created.id,
-          author: "system",
-          note:
-            prepared.length > 0
-              ? `Report received with ${prepared.length} attachment(s).`
-              : "Report received without attachments.",
-        });
-      }
-    });
+    if (hasDatabase) {
+      await db
+        .transaction(async (tx) => {
+          const [created] = await tx
+            .insert(scamReports)
+            .values({
+              reference,
+              categorySlug: parsed.data.categorySlug,
+              description: parsed.data.description,
+              incidentDate: parsed.data.incidentDate,
+              channel: parsed.data.channel,
+              country: parsed.data.country,
+              city: parsed.data.city ?? null,
+              suspiciousUrl: parsed.data.suspiciousUrl ?? null,
+              phoneInvolved: parsed.data.phoneInvolved ?? null,
+              emailInvolved: parsed.data.emailInvolved ?? null,
+              moneyLost: parsed.data.moneyLost,
+              amount: parsed.data.amount ?? null,
+              currency: parsed.data.currency ?? null,
+              ongoing: parsed.data.ongoing,
+              reporterName: parsed.data.reporterName ?? null,
+              reporterEmail: parsed.data.reporterEmail.toLowerCase(),
+              language: parsed.data.language,
+              status: "new",
+            })
+            .returning({ id: scamReports.id });
+          if (created) {
+            await tx.insert(scamReportNotes).values({
+              reportId: created.id,
+              author: "system",
+              note:
+                prepared.length > 0
+                  ? `Report received with ${prepared.length} attachment(s).`
+                  : "Report received without attachments.",
+            });
+          }
+        })
+        .catch(() => null);
+    }
 
     await queueMail({
       to: parsed.data.reporterEmail,

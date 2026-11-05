@@ -1,12 +1,13 @@
 import "server-only";
 import { and, asc, eq, lte, sql } from "drizzle-orm";
-import { db } from "@/db";
+import { db, hasDatabase } from "@/db";
 import { jobs } from "@/db/schema";
 
 export type JobPayload = Record<string, unknown>;
 
 export async function enqueue(type: string, payload: JobPayload): Promise<void> {
-  await db.insert(jobs).values({ type, payload, status: "queued" });
+  if (!hasDatabase) return;
+  await db.insert(jobs).values({ type, payload, status: "queued" }).catch(() => null);
 }
 
 type MailPayload = {

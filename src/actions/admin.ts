@@ -54,7 +54,7 @@ export async function adminLogin(locale: Locale, _prev: FormState, formData: For
     return { status: "error", message: dict.admin.invalid };
   }
 
-  await createSession(user.id);
+  await createSession(user.id, user);
   await logActivity(user.email, "auth.login", "user", String(user.id));
   redirect(`/${locale}/admin`);
 }

@@ -2,8 +2,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { desc, eq } from "drizzle-orm";
-import { db } from "@/db";
-import { scamReportNotes, scamReports } from "@/db/schema";
+import { db, hasDatabase } from "@/db";
+import { scamReportNotes, scamReports, type ScamReport } from "@/db/schema";
 import { can, getCurrentUser } from "@/lib/auth";
 import { getDictionary, isLocale, routes, type Locale } from "@/lib/i18n";
 import { formatDate } from "@/lib/format";
@@ -26,15 +26,24 @@ export default async function AdminReportsPage({
     return <p className="rounded-[var(--radius-md)] border border-risk-critical/40 bg-white p-5 text-[0.9rem]">{dict.admin.accessDenied}</p>;
   }
 
-  const reports = await db.select().from(scamReports).orderBy(desc(scamReports.createdAt)).limit(50);
-  const selected = ref ? reports.find((report) => report.reference === ref) : reports[0];
-  const notes = selected
+  const reports: ScamReport[] = hasDatabase
     ? await db
         .select()
-        .from(scamReportNotes)
-        .where(eq(scamReportNotes.reportId, selected.id))
-        .orderBy(desc(scamReportNotes.createdAt))
+        .from(scamReports)
+        .orderBy(desc(scamReports.createdAt))
+        .limit(50)
+        .catch(() => [])
     : [];
+  const selected = ref ? reports.find((report) => report.reference === ref) : reports[0];
+  const notes =
+    selected && hasDatabase
+      ? await db
+          .select()
+          .from(scamReportNotes)
+          .where(eq(scamReportNotes.reportId, selected.id))
+          .orderBy(desc(scamReportNotes.createdAt))
+          .catch(() => [])
+      : [];
 
   return (
     <div>

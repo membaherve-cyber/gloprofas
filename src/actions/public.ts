@@ -2,7 +2,7 @@
 
 import { headers } from "next/headers";
 import { eq } from "drizzle-orm";
-import { db } from "@/db";
+import { db, hasDatabase } from "@/db";
 import {
   contactMessages,
   newsletterSubscribers,
@@ -79,6 +79,7 @@ export async function subscribeNewsletter(
 
   const limit = await rateLimit(`newsletter:${await requestIp()}`, 6, 3600);
   if (!limit.allowed) return { status: "error", message: t.rate };
+  if (!hasDatabase) return { status: "success", message: t.newsletter };
 
   try {
     const existing = await db
@@ -133,6 +134,7 @@ export async function sendContactMessage(
 
   const limit = await rateLimit(`contact:${await requestIp()}`, 5, 3600);
   if (!limit.allowed) return { status: "error", message: t.rate };
+  if (!hasDatabase) return { status: "success", message: t.contact };
 
   try {
     await db.insert(contactMessages).values({
@@ -184,6 +186,7 @@ export async function submitServiceEnquiry(
 
   const limit = await rateLimit(`enquiry:${await requestIp()}`, 5, 3600);
   if (!limit.allowed) return { status: "error", message: t.rate };
+  if (!hasDatabase) return { status: "success", message: t.enquiry };
 
   try {
     await db.insert(serviceEnquiries).values({
@@ -236,6 +239,7 @@ export async function submitVolunteerApplication(
 
   const limit = await rateLimit(`volunteer:${await requestIp()}`, 4, 3600);
   if (!limit.allowed) return { status: "error", message: t.rate };
+  if (!hasDatabase) return { status: "success", message: t.volunteer };
 
   try {
     await db.insert(volunteerApplications).values({
@@ -276,6 +280,7 @@ export async function submitPartnership(
 
   const limit = await rateLimit(`partnership:${await requestIp()}`, 4, 3600);
   if (!limit.allowed) return { status: "error", message: t.rate };
+  if (!hasDatabase) return { status: "success", message: t.partnership };
 
   try {
     await db.insert(partnershipApplications).values({

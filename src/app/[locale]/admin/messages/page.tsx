@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { desc } from "drizzle-orm";
-import { db } from "@/db";
+import { db, hasDatabase } from "@/db";
 import {
   contactMessages,
   newsletterSubscribers,
@@ -24,13 +24,15 @@ export default async function AdminMessagesPage({ params }: { params: Promise<{ 
     return <p className="rounded-[var(--radius-md)] border border-risk-critical/40 bg-white p-5 text-[0.9rem]">{dict.admin.accessDenied}</p>;
   }
 
-  const [messages, enquiries, volunteers, partnerships, subscribers] = await Promise.all([
-    db.select().from(contactMessages).orderBy(desc(contactMessages.createdAt)).limit(25),
-    db.select().from(serviceEnquiries).orderBy(desc(serviceEnquiries.createdAt)).limit(25),
-    db.select().from(volunteerApplications).orderBy(desc(volunteerApplications.createdAt)).limit(25),
-    db.select().from(partnershipApplications).orderBy(desc(partnershipApplications.createdAt)).limit(25),
-    db.select().from(newsletterSubscribers).orderBy(desc(newsletterSubscribers.createdAt)).limit(25),
-  ]);
+  const [messages, enquiries, volunteers, partnerships, subscribers] = hasDatabase
+    ? await Promise.all([
+        db.select().from(contactMessages).orderBy(desc(contactMessages.createdAt)).limit(25).catch(() => []),
+        db.select().from(serviceEnquiries).orderBy(desc(serviceEnquiries.createdAt)).limit(25).catch(() => []),
+        db.select().from(volunteerApplications).orderBy(desc(volunteerApplications.createdAt)).limit(25).catch(() => []),
+        db.select().from(partnershipApplications).orderBy(desc(partnershipApplications.createdAt)).limit(25).catch(() => []),
+        db.select().from(newsletterSubscribers).orderBy(desc(newsletterSubscribers.createdAt)).limit(25).catch(() => []),
+      ])
+    : [[], [], [], [], []];
 
   const sections = [
     {
