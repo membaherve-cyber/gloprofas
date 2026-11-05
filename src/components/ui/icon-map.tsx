@@ -1,0 +1,55 @@
+import {
+  Banknote,
+  Bitcoin,
+  Briefcase,
+  Building2,
+  CreditCard,
+  Globe,
+  Heart,
+  HeartHandshake,
+  Landmark,
+  Laptop,
+  Mail,
+  MailWarning,
+  Percent,
+  Receipt,
+  Share2,
+  ShieldAlert,
+  ShoppingBag,
+  Smartphone,
+  Ticket,
+  TrendingUp,
+  UserX,
+  VenetianMask,
+  type LucideIcon,
+} from "lucide-react";
+
+const iconMap: Record<string, LucideIcon> = {
+  banknote: Banknote,
+  bitcoin: Bitcoin,
+  briefcase: Briefcase,
+  "building-2": Building2,
+  "credit-card": CreditCard,
+  globe: Globe,
+  heart: Heart,
+  "heart-handshake": HeartHandshake,
+  landmark: Landmark,
+  laptop: Laptop,
+  mail: Mail,
+  "mail-warning": MailWarning,
+  percent: Percent,
+  receipt: Receipt,
+  "share-2": Share2,
+  "shield-alert": ShieldAlert,
+  "shopping-bag": ShoppingBag,
+  smartphone: Smartphone,
+  ticket: Ticket,
+  "trending-up": TrendingUp,
+  "user-x": UserX,
+  "venetian-mask": VenetianMask,
+};
+
+export function CategoryIcon({ name, size = 22 }: { name: string; size?: number }) {
+  const Icon = iconMap[name] ?? ShieldAlert;
+  return <Icon size={size} strokeWidth={1.5} aria-hidden="true" />;
+}

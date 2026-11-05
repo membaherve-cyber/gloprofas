@@ -1,0 +1,34 @@
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Next.js build output
+/.next/
+/out/
+/build
+
+# Environment variables & secrets (keep .env.example)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Private evidence storage (keep .gitkeep)
+/storage/private/*
+!/storage/private/.gitkeep
+
+# Logs & temporary files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+*.tsbuildinfo
+next-env.d.ts
+
+# OS / Editor
+.DS_Store
+*.pem
+.vercel
