@@ -406,5 +406,76 @@
       "title": "Secure Analytics",
       "desc": "Report trends are analysed privately to show where the next wave of fraud is heading. Your information is never sold and never published."
     }
-  ]
+  ],
+  "newsletterPoints": [
+    "One short email when something new is spreading",
+    "In English or French — your choice",
+    "No spam, and you can unsubscribe any time"
+  ],
+  "newsletterSuccess": "Thank you — check your inbox to confirm this address. Nothing is sent until you confirm.",
+  "support": {
+    "eyebrow": "Victim support",
+    "h2": "If something has already happened.",
+    "lead": "You are not to blame. These guides walk through the immediate protective actions for the situations people report most often. None of them promise that money can be recovered.",
+    "intro": "Choose your situation below. Each guide explains what to do first, what to preserve, and where to turn — through official channels you verify yourself.",
+    "ctaReport": "Start a report",
+    "situations": [
+      {
+        "t": "Money sent to a suspected scammer",
+        "d": "Contact your bank or mobile-money operator now through its official channel. Keep the messages, receipts and numbers involved."
+      },
+      {
+        "t": "My mobile-money account may be compromised",
+        "d": "Change your PIN, review your statement for unfamiliar entries and contact the operator through a channel you verify yourself."
+      },
+      {
+        "t": "I shared a password or one-time code",
+        "d": "Change that password from a device you trust, sign out of other sessions, and switch on two-factor authentication where the service offers it."
+      },
+      {
+        "t": "I clicked a suspicious link",
+        "d": "Do not enter any details on that page. Change any password you may have typed and check your recent transactions."
+      },
+      {
+        "t": "I installed a suspicious application",
+        "d": "Uninstall it, run a scan where possible and change any passwords you may have typed into it."
+      },
+      {
+        "t": "An identity document was exposed",
+        "d": "Watch for unexpected accounts or credit in your name and contact the affected institutions through official channels."
+      },
+      {
+        "t": "I suspect a SIM swap",
+        "d": "Call your provider on its official number to restore service, and warn the people closest to you."
+      },
+      {
+        "t": "I am being threatened or blackmailed",
+        "d": "Do not pay. Keep the messages as evidence and, if you feel unsafe, contact local authorities through official channels."
+      },
+      {
+        "t": "A fake investment asked for more money",
+        "d": "Stop sending money. Check any named operator with your country’s regulator through official channels."
+      },
+      {
+        "t": "A social-media account was taken over",
+        "d": "Use the platform’s recovery process to regain it and warn your contacts that it was misused."
+      },
+      {
+        "t": "A business invoice looks suspicious",
+        "d": "Before paying, confirm the payment details by a phone number you already had. Never rely on the email alone."
+      },
+      {
+        "t": "Someone offered to “recover” my lost money",
+        "d": "Recovery offers are very often a second scam. Use only the original provider’s official channels."
+      }
+    ]
+  },
+  "assess": {
+    "title": "Indicative check",
+    "found": "Suspicious indicators found",
+    "none": "No clear indicators found",
+    "note": "Indicative only. This does not prove the message is, or is not, a scam.",
+    "warning": "Before pasting any message, remove passwords, PINs, one-time codes, full card numbers and identity numbers.",
+    "actions": "Recommended actions"
+  }
 }

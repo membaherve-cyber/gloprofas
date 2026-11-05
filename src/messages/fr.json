@@ -406,5 +406,76 @@
       "title": "Analytique sécurisée",
       "desc": "Les tendances des signalements sont analysées en privé pour montrer où frappera la prochaine vague de fraude. Vos informations ne sont ni vendues ni publiées."
     }
-  ]
+  ],
+  "newsletterPoints": [
+    "Un court courriel quand une nouvelle arnaque circule",
+    "En anglais ou en français — votre choix",
+    "Pas de spam, et vous pouvez vous désinscrire à tout moment"
+  ],
+  "newsletterSuccess": "Merci — consultez votre boîte aux lettres pour confirmer cette adresse. Rien n’est envoyé avant votre confirmation.",
+  "support": {
+    "eyebrow": "Soutien aux victimes",
+    "h2": "Si quelque chose s’est déjà passé.",
+    "lead": "Vous n’êtes pas en faute. Ces guides expliquent les actions de protection immédiates pour les situations les plus souvent signalées. Aucun ne promet que l’argent peut être récupéré.",
+    "intro": "Choisissez votre situation ci-dessous. Chaque guide explique quoi faire d’abord, quoi conserver et où se tourner, par des canaux officiels que vous vérifiez vous-même.",
+    "ctaReport": "Déposer un signalement",
+    "situations": [
+      {
+        "t": "J’ai envoyé de l’argent à un escroc supposé",
+        "d": "Contactez immédiatement votre banque ou votre opérateur de mobile money par son canal officiel. Conservez les messages, reçus et numéros."
+      },
+      {
+        "t": "Mon compte mobile money est peut-être compromis",
+        "d": "Changez votre PIN, vérifiez votre relevé et contactez l’opérateur par un canal que vous vérifiez vous-même."
+      },
+      {
+        "t": "J’ai partagé un mot de passe ou un code",
+        "d": "Changez ce mot de passe depuis un appareil de confiance, fermez les autres sessions et activez la double authentification si le service le propose."
+      },
+      {
+        "t": "J’ai cliqué sur un lien suspect",
+        "d": "Ne saisissez aucune donnée sur cette page. Changez tout mot de passe que vous avez pu saisir et vérifiez vos transactions récentes."
+      },
+      {
+        "t": "J’ai installé une application suspecte",
+        "d": "Désinstallez-la, lancez une analyse si possible et changez les mots de passe que vous y avez saisis."
+      },
+      {
+        "t": "Un document d’identité a été exposé",
+        "d": "Surveillez les comptes ou crédits inattendus à votre nom et contactez les institutions concernées par les canaux officiels."
+      },
+      {
+        "t": "Je soupçonne un changement de SIM",
+        "d": "Appelez votre opérateur sur son numéro officiel pour rétablir le service et prévenez vos proches."
+      },
+      {
+        "t": "Je suis menacé ou chantage",
+        "d": "Ne payez pas. Conservez les messages et, si vous vous sentez en insécurité, contactez les autorités locales par les canaux officiels."
+      },
+      {
+        "t": "Une fausse demande d’investissement a demandé plus d’argent",
+        "d": "Arrêtez d’envoyer de l’argent. Vérifiez tout opérateur nommé auprès du régulateur de votre pays, par des canaux officiels."
+      },
+      {
+        "t": "Un compte sur les réseaux a été pris en charge",
+        "d": "Utilisez la procédure de récupération de la plateforme et prévenez vos contacts qu’il a été détourné."
+      },
+      {
+        "t": "Une facture d’entreprise semble suspecte",
+        "d": "Avant de payer, confirmez les coordonnées de paiement par un numéro que vous aviez déjà. Ne vous fiez pas au seul courriel."
+      },
+      {
+        "t": "Quelqu’un propose de « récupérer » mon argent",
+        "d": "Les offres de recouvrement sont très souvent une seconde arnaque. Utilisez uniquement les canaux officiels du prestataire d’origine."
+      }
+    ]
+  },
+  "assess": {
+    "title": "Vérification indicative",
+    "found": "Signes d’arnaque détectés",
+    "none": "Aucun signe clair détecté",
+    "note": "À titre indicatif seulement. Cela ne prouve pas que le message est ou n’est pas une arnaque.",
+    "warning": "Avant de coller un message, supprimez les mots de passe, codes PIN, codes à usage unique, numéros de carte complets et numéros d’identité.",
+    "actions": "Actions recommandées"
+  }
 }

@@ -24,17 +24,29 @@ function Shell({ children, state }: { children: ReactNode; state: FormState }) {
 export function NewsletterForm({ locale }: { locale: Locale }) {
   const t = m(locale);
   const [state, action, pending] = useActionState(newsletterAction, initial);
+  const error = state.error === "too_fast" ? t.forms.tooFast : state.error === "limited" ? t.forms.limited : state.error === "invalid" ? t.forms.invalid : null;
   return (
-    <form action={action} className="news-form">
-      <Shell state={state}>
-        <div className="field"><label htmlFor="nl-name">{t.newsletterName}</label><input id="nl-name" name="name" autoComplete="name" /></div>
-        <div className="field"><label htmlFor="nl-email">{t.newsletterEmail}</label><input id="nl-email" name="email" type="email" required autoComplete="email" /></div>
-        <div className="field"><label htmlFor="nl-country">{t.newsletterCountry}</label><CountrySelect id="nl-country" /></div>
-        <input type="hidden" name="language" value={locale} />
-        <label style={{ display: "flex", gap: 8, alignItems: "flex-start" }}><input type="checkbox" name="consent" value="yes" required /> {t.newsletterConsent}</label>
-        <button className="btn btn-signal" type="submit" disabled={pending}>{t.newsletterSubmit}</button>
-        {state.ok ? <p role="status">{t.newsletterPending}</p> : null}
-      </Shell>
+    <form action={action} className="nl-form" aria-label={t.newsletterH2}>
+      <input type="hidden" name="started_at" value={String(Date.now())} />
+      <p className="honeypot"><label>{t.forms.honeypot}<input name="company_website" tabIndex={-1} autoComplete="off" /></label></p>
+      <div className="nl-row">
+        <input name="name" placeholder={t.newsletterName} aria-label={t.newsletterName} autoComplete="name" />
+        <input name="email" type="email" required placeholder={t.newsletterEmail} aria-label={t.newsletterEmail} autoComplete="email" />
+      </div>
+      <div className="nl-row">
+        <select name="country" defaultValue="" aria-label={t.newsletterCountry}>
+          <option value="">{t.newsletterCountry}</option>
+          {COUNTRIES.map((country) => <option key={country}>{country}</option>)}
+        </select>
+        <select name="language" defaultValue={locale} aria-label={t.newsletterLanguage}>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+      <label className="nl-consent"><input type="checkbox" name="consent" value="yes" required /> {t.newsletterConsent}</label>
+      <button className="btn btn-signal nl-submit" type="submit" disabled={pending}>{t.newsletterSubmit}</button>
+      {error ? <p className="nl-error" role="alert">{error}</p> : null}
+      {state.ok ? <p className="nl-success" role="status">{t.newsletterSuccess}</p> : null}
     </form>
   );
 }

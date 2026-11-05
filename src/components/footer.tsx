@@ -29,6 +29,7 @@ export function Footer({ locale, settings }: { locale: Locale; settings: Website
           <h3>{t.footerResources}</h3>
           <ul>
             <li><Link href={pathFor(locale, "resources")}>{t.nav.resources}</Link></li>
+            <li><Link href={pathFor(locale, "support")}>{t.support.eyebrow}</Link></li>
             <li><Link href={pathFor(locale, "services")}>{t.nav.services}</Link></li>
             <li><Link href={pathFor(locale, "news")}>{t.nav.news}</Link></li>
             <li><Link href={pathFor(locale, "search")}>{t.search}</Link></li>

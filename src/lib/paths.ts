@@ -9,6 +9,7 @@ export const SECTIONS = {
   involved: { en: "get-involved", fr: "simpliquer" },
   contact: { en: "contact", fr: "contact" },
   alerts: { en: "alerts", fr: "alertes" },
+  support: { en: "support", fr: "soutien" },
   report: { en: "report", fr: "signaler" },
   search: { en: "search", fr: "recherche" },
   legal: { en: "legal", fr: "informations" },

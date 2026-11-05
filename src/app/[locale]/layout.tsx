@@ -45,7 +45,10 @@ export default async function LocaleLayout({ children, params }: { children: Rea
       const copy = pickLocale(item.translations, raw);
       return copy ? { label: copy.value.title, href: pathFor(raw, "awareness", copy.value.slug) } : null;
     }).filter((item): item is { label: string; href: string } => Boolean(item)) },
-    { label: t.nav.resources, href: pathFor(raw, "resources") },
+    { label: t.nav.resources, href: pathFor(raw, "resources"), children: [
+      { label: t.nav.resources, href: pathFor(raw, "resources") },
+      { label: t.support.eyebrow, href: pathFor(raw, "support") },
+    ] },
     { label: t.nav.services, href: pathFor(raw, "services"), children: (["individuals", "businesses", "institutions", "training"] as const).map((key) => ({ label: t.groups[key], href: pathFor(raw, "services", key) })) },
     { label: t.nav.news, href: pathFor(raw, "news"), children: [
       { label: t.nav.news, href: pathFor(raw, "news") },

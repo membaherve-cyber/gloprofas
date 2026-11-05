@@ -156,10 +156,13 @@ export type SearchHit = {
 
 export type SourceChip = { title: string; href: string };
 
+export type Assessment = { verdict: "found" | "none"; indicators: string[] };
+
 export type AssistantReply = {
   answer: string;
   sources: SourceChip[];
   action?: { type: "report"; label: string; href: string };
   disclaimer: string;
   blocked?: boolean;
+  assessment?: Assessment;
 };

@@ -320,8 +320,25 @@ export function HomeView({
 
       <section className="section band-dark">
         <div className="container">
-          <SectionHeading eyebrow={t.newsletterEyebrow} title={t.newsletterH2} lead={t.newsletterLead} light />
-          <div style={{ marginTop: 20 }}><NewsletterForm locale={locale} /></div>
+          <div className="nl-card">
+            <div className="nl-panel">
+              <div className="mark" aria-hidden="true">
+                <svg width="230" height="230" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="none" stroke="white" strokeWidth="1.5" /><circle cx="31" cy="9" r="2" fill="#2bd4e8" /></svg>
+              </div>
+              <p className="eyebrow">{t.newsletterEyebrow}</p>
+              <h2 style={{ fontSize: "clamp(1.6rem, 1.2rem + 1.4vw, 2.4rem)" }}>{t.newsletterH2}</h2>
+              <p className="lead" style={{ color: "#d5deee" }}>{t.newsletterLead}</p>
+              <ul className="nl-bullets">
+                {t.newsletterPoints.map((point) => (
+                  <li key={point}>
+                    <Check size={16} style={{ color: "#2bd4e8", flex: "none", marginTop: 4 }} aria-hidden="true" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <NewsletterForm locale={locale} />
+          </div>
         </div>
       </section>
 

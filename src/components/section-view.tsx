@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { AlertCircle, AppWindow, Fingerprint, FileText, KeyRound, Link2, Megaphone, Share2, ShieldAlert, ShieldQuestion, Smartphone, TrendingUp } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { notFound } from "next/navigation";
 import { ContactForm, EnquiryForm, PartnershipForm, VolunteerForm } from "@/components/forms";
 import { ReportWizard } from "@/components/report-wizard";
@@ -49,6 +51,7 @@ export async function SectionView({
   if (section === "news") return news(locale, slug[0], query);
   if (section === "services") return servicesView(locale, slug);
   if (section === "contact") return contact(locale, settings);
+  if (section === "support") return supportView(locale);
   if (section === "search") return searchView(locale, query.q || "", query.type);
   if (section === "report") return report(locale, slug[0], draftToken, confirmRef, moneyLost);
   notFound();
@@ -64,6 +67,8 @@ const CITY: Partial<Record<SectionKey, string>> = {
   alerts: "/images/city-nouakchott.jpg",
   involved: "/images/city-yaounde-2.jpg",
   contact: "/images/city-banjul.jpg",
+  // The support hub keeps a Douala market aerial (the only unused aerial; the homepage keeps its Douala video).
+  support: "/images/hero.jpg",
   report: "/images/city-nairobi-2.jpg",
   legal: "/images/city-kigali-2.jpg",
 };
@@ -428,6 +433,53 @@ async function contact(locale: Locale, settings: WebsiteSettings | null) {
         </div>
         <ContactForm locale={locale} />
       </div></section>
+    </>
+  );
+}
+
+const SUPPORT_ICONS: LucideIcon[] = [AlertCircle, Smartphone, KeyRound, Link2, AppWindow, Fingerprint, Megaphone, ShieldAlert, TrendingUp, Share2, FileText, ShieldQuestion];
+
+async function supportView(locale: Locale) {
+  const t = m(locale);
+  // Each situation links to the matching guide or the reporting channel.
+  const links = [
+    pathFor(locale, "report"),
+    pathFor(locale, "awareness", locale === "fr" ? "arnaques-mobile-money" : "mobile-money-scams"),
+    pathFor(locale, "awareness", locale === "fr" ? "hameconnage" : "phishing"),
+    pathFor(locale, "awareness", locale === "fr" ? "hameconnage" : "phishing"),
+    pathFor(locale, "awareness", locale === "fr" ? "faux-support-technique" : "technology-support-scams"),
+    pathFor(locale, "awareness", locale === "fr" ? "vol-identite" : "identity-theft"),
+    pathFor(locale, "awareness", locale === "fr" ? "vol-identite" : "identity-theft"),
+    pathFor(locale, "report"),
+    pathFor(locale, "awareness", locale === "fr" ? "arnaques-investissement" : "investment-scams"),
+    pathFor(locale, "awareness", locale === "fr" ? "reseaux-sociaux" : "social-media-scams"),
+    pathFor(locale, "awareness", locale === "fr" ? "compromission-messagerie" : "business-email-compromise"),
+    pathFor(locale, "report"),
+  ];
+  return (
+    <>
+      <Hero locale={locale} eyebrow={t.support.eyebrow} title={t.support.h2} lead={t.support.lead} city="/images/hero.jpg" />
+      <section className="section">
+        <div className="container">
+          <p className="lead measure muted">{t.support.intro}</p>
+          <div className="grid-cards three" style={{ marginTop: 24 }}>
+            {t.support.situations.map((situation, index) => {
+              const Icon = SUPPORT_ICONS[index % SUPPORT_ICONS.length];
+              return (
+                <article className="card situation-card" key={situation.t}>
+                  <span className="icon-tile"><Icon size={22} strokeWidth={1.5} aria-hidden="true" /></span>
+                  <h3 style={{ fontSize: "1.2rem", margin: 0 }}>{situation.t}</h3>
+                  <p className="muted">{situation.d}</p>
+                  <Link className="btn-text-link" href={links[index]}>{t.readMore} <span aria-hidden="true">→</span></Link>
+                </article>
+              );
+            })}
+          </div>
+          <div style={{ marginTop: 28 }}>
+            <Button href={pathFor(locale, "report")} variant="signal">{t.support.ctaReport}</Button>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

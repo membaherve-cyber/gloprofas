@@ -132,6 +132,18 @@ export function Assistant({ locale, welcome, suggestions }: { locale: Locale; we
             {messages.map((item, index) => (
               <div key={`${item.role}-${index}`} className={`bubble ${item.role === "user" ? "user" : "bot"}`}>
                 {item.content}
+                {item.reply?.assessment ? (
+                  <div className="assess">
+                    <h4>{t.assess.title}</h4>
+                    <span className={`assess-verdict ${item.reply.assessment.verdict === "found" ? "assess-found" : "assess-none"}`}>
+                      {item.reply.assessment.verdict === "found" ? t.assess.found : t.assess.none}
+                    </span>
+                    {item.reply.assessment.indicators.length > 0 ? (
+                      <ul>{item.reply.assessment.indicators.map((indicator) => <li key={indicator}>{indicator}</li>)}</ul>
+                    ) : null}
+                    <p className="assess-note">{t.assess.note} {t.assess.warning}</p>
+                  </div>
+                ) : null}
                 {item.reply?.sources?.length ? (
                   <div className="sources">
                     {item.reply.sources.map((source) => <a key={source.href} href={source.href}>{source.title}</a>)}
