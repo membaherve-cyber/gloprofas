@@ -1,0 +1,22 @@
+# dependencies
+node_modules/
+
+# builds
+.next/
+out/
+build/
+next-env.d.ts
+
+# secrets & environment — never commit
+.env
+.env.*
+!.env.example
+
+# private uploads (report evidence) — never commit
+storage/
+
+# logs and local artifacts
+*.log
+.DS_Store
+coverage/
+.tmp/
