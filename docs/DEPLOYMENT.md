@@ -1,5 +1,26 @@
 # Deployment notes
 
+## Vercel
+
+The build does not require a database (the pool is created lazily on first query), so `npm run build` succeeds with no env vars. Runtime needs:
+
+1. **Managed PostgreSQL** — e.g. Neon. Use the **pooled** connection string (port 6543 / `-pooler`).
+2. **Project environment variables**:
+   - `DATABASE_URL` — the pooled Postgres connection string
+   - `SESSION_SECRET` — 32+ random characters
+   - `APP_ENCRYPTION_KEY` — 32+ random characters
+   - `PRIVATE_STORAGE_PATH` — `/tmp/gloprofas-private`
+   - Optional: `GEMINI_API_KEY`, `GEMINI_MODEL`, `SMTP_HOST`/`SMTP_PORT`/`SMTP_USERNAME`/`SMTP_PASSWORD`/`MAIL_FROM_ADDRESS`, `NEXT_PUBLIC_SITE_URL`
+3. **One-time schema creation** (from a local clone of the repo):
+   `DATABASE_URL=<your-connection-string> npx drizzle-kit push`
+4. First page load seeds demo content and the staff accounts automatically.
+
+Known Vercel limits:
+- The filesystem is ephemeral: uploaded report evidence in `/tmp` only survives the lifetime of the request that created it. For real report handling use the VPS deployment below or add object storage.
+- There is no persistent job worker: call `POST /api/jobs/process?task=publish` (and `?task=purge`) from a cron or Vercel Cron for scheduled publishing and retention.
+
+## Linux VPS (original target)
+
 Target shape from the brief: one Linux VPS, Nginx, Node.js, a database, no Redis and no Kubernetes.
 
 This build uses PostgreSQL instead of MySQL because that is the database provided here. On a VPS, install PostgreSQL 16, Node.js LTS, and Nginx.
