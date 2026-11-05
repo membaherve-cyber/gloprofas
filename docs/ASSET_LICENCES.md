@@ -21,6 +21,21 @@ Site photographs from the organisation’s Zite site (`public/images/site-1.jpg`
 
 Aerial hero video: Douala, Cameroon, filmed by Adera Abdoulaye Dolo, Pexels https://www.pexels.com/video/aerial-cityscape-view-of-douala-cameroon-37821787/ . A 12-second muted 1280×720 clip is stored at `public/videos/hero-douala.mp4`. The poster frame is `public/images/hero-poster.jpg`.
 
+City aerials behind non-homepage hero sections (all Pexels, free licence, no attribution required — credited here):
+
+| File | City | Creator | Source |
+| --- | --- | --- | --- |
+| city-lagos.jpg | Lagos, Nigeria | Ben Iwara | https://www.pexels.com/photo/22681398/ |
+| city-kigali.jpg | Kigali, Rwanda | shutter Rwanda | https://www.pexels.com/photo/40419117/ |
+| city-kigali-2.jpg | Kigali, Rwanda | Faustin NKURUNZIZA | https://www.pexels.com/photo/31466706/ |
+| city-nairobi.jpg | Nairobi, Kenya | Justin Brian | https://www.pexels.com/photo/9833515/ |
+| city-nairobi-2.jpg | Nairobi, Kenya | K | https://www.pexels.com/photo/3794803/ |
+| city-daresalaam.jpg | Dar es Salaam, Tanzania | Alex Levis | https://www.pexels.com/photo/17732553/ |
+| city-yaounde.jpg | Yaoundé, Cameroon | K | https://www.pexels.com/photo/17290982/ |
+| city-yaounde-2.jpg | Yaoundé, Cameroon | K | https://www.pexels.com/photo/17290956/ |
+| city-nouakchott.jpg | Nouakchott, Mauritania | laye Photographe | https://www.pexels.com/photo/33952949/ |
+| city-banjul.jpg | Banjul, The Gambia | K | https://www.pexels.com/photo/16562852/ |
+
 AI-generated photographs, created for this site and stored on this origin:
 
 | File | Subject |

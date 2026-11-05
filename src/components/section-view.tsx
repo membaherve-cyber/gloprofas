@@ -54,9 +54,45 @@ export async function SectionView({
   notFound();
 }
 
-function Hero({ locale, eyebrow, title, lead }: { locale: Locale; eyebrow: string; title: string; lead?: string }) {
+// One distinct African city aerial per section (the homepage keeps its Douala video).
+const CITY: Partial<Record<SectionKey, string>> = {
+  about: "/images/city-kigali.jpg",
+  awareness: "/images/city-lagos.jpg",
+  resources: "/images/city-nairobi.jpg",
+  services: "/images/city-daresalaam.jpg",
+  news: "/images/city-yaounde.jpg",
+  alerts: "/images/city-nouakchott.jpg",
+  involved: "/images/city-yaounde-2.jpg",
+  contact: "/images/city-banjul.jpg",
+  report: "/images/city-nairobi-2.jpg",
+  legal: "/images/city-kigali-2.jpg",
+};
+
+// Related photography for the most prominent scam-category pages (each photo used once).
+const CATEGORY_IMAGES: Record<string, string> = {
+  "mobile-money": "/images/vendor.jpg",
+  investment: "/images/conversation.jpg",
+  employment: "/images/school-seminar.jpg",
+  phishing: "/images/phone.jpg",
+  romance: "/images/portrait.jpg",
+  shopping: "/images/market.jpg",
+  charity: "/images/outreach.jpg",
+  "digital-payment": "/images/taxi.jpg",
+  "tech-support": "/images/trader.jpg",
+  bec: "/images/company-seminar.jpg",
+  social: "/images/youth-center.jpg",
+  "advance-fee": "/images/church-forum.jpg",
+};
+
+function Hero({ locale, eyebrow, title, lead, city }: { locale: Locale; eyebrow: string; title: string; lead?: string; city?: string }) {
   return (
     <header className="page-hero">
+      {city ? (
+        <>
+          <img className="page-hero-img" src={city} alt="" aria-hidden="true" loading="eager" />
+          <div className="page-hero-shade" />
+        </>
+      ) : null}
       <div className="container">
         <div className="crumbs"><Link href={`/${locale}`}>{m(locale).home}</Link><span>/</span><span>{title}</span></div>
         <p className="eyebrow">{eyebrow}</p>
@@ -73,7 +109,7 @@ async function pageView(locale: Locale, section: SectionKey, slug: string | unde
   if (!slug) {
     return (
       <>
-        <Hero locale={locale} eyebrow={t.nav[section === "legal" ? "about" : section === "involved" ? "involved" : "about"]} title={section === "about" ? t.nav.about : section === "legal" ? t.footerLegal : t.involvedTitle} />
+        <Hero locale={locale} eyebrow={t.nav[section === "legal" ? "about" : section === "involved" ? "involved" : "about"]} title={section === "about" ? t.nav.about : section === "legal" ? t.footerLegal : t.involvedTitle} city={CITY[section]} />
         <section className="section"><div className="container" style={{ display: "grid", gap: 20 }}>
           {section === "involved" ? <figure className="page-figure"><Photo src="/images/site-5.jpg" alt="" width={1376} height={768} /></figure> : null}
           <div className="grid-cards">
@@ -92,7 +128,7 @@ async function pageView(locale: Locale, section: SectionKey, slug: string | unde
   const copy = pickLocale(row.translations, locale)!;
   return (
     <>
-      <Hero locale={locale} eyebrow={t.nav.about} title={copy.value.title} lead={copy.value.summary} />
+      <Hero locale={locale} eyebrow={t.nav.about} title={copy.value.title} lead={copy.value.summary} city={CITY[section]} />
       <section className="section"><div className="container" style={{ display: "grid", gap: 22, maxWidth: 860 }}>
         {copy.fallback ? <p className="notice">{t.fallback}</p> : null}
         <div className="prose">{copy.value.body.map((paragraph, index) => paragraph.startsWith("## ") ? <h2 key={index} style={{ fontSize: "1.35rem" }}>{paragraph.slice(3)}</h2> : <p key={index}>{paragraph}</p>)}</div>
@@ -114,7 +150,7 @@ async function awareness(locale: Locale, slug?: string) {
   if (!slug) {
     return (
       <>
-        <Hero locale={locale} eyebrow={t.eyebrow} title={t.awarenessCentreTitle} lead={t.scamsLead} />
+        <Hero locale={locale} eyebrow={t.eyebrow} title={t.awarenessCentreTitle} lead={t.scamsLead} city={CITY.awareness} />
         <section className="section"><div className="container grid-cards">
           {rows.map((row) => {
             const copy = pickLocale(row.translations, locale);
@@ -138,8 +174,9 @@ async function awareness(locale: Locale, slug?: string) {
   const resources = (await listResources()).filter((item) => item.status === "published").slice(0, 3);
   return (
     <>
-      <Hero locale={locale} eyebrow={t.nav.awareness} title={copy.value.title} lead={copy.value.summary} />
+      <Hero locale={locale} eyebrow={t.nav.awareness} title={copy.value.title} lead={copy.value.summary} city={CITY.awareness} />
       <section className="section"><div className="container prose" style={{ maxWidth: 860 }}>
+        {CATEGORY_IMAGES[row.id] ? <figure className="page-figure"><Photo src={CATEGORY_IMAGES[row.id]} alt="" width={1200} height={800} /></figure> : null}
         {copy.fallback ? <p className="notice">{t.fallback}</p> : null}
         {row.isDemo ? <p className="badge">{t.demoBadge}</p> : null}
         <h2>{t.sections.definition}</h2>
@@ -196,7 +233,7 @@ async function alerts(locale: Locale, slug: string | undefined, query: Record<st
     const pinned = filtered.find((row) => row.pinned || row.risk === "critical");
     return (
       <>
-        <Hero locale={locale} eyebrow={t.alertsTitle} title={t.alertsTitle} lead={t.newsH2} />
+        <Hero locale={locale} eyebrow={t.alertsTitle} title={t.alertsTitle} lead={t.newsH2} city={CITY.alerts} />
         <section className="section"><div className="container" style={{ display: "grid", gap: 18 }}>
           <form className="card" style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
             <input name="q" defaultValue={query.q} placeholder={t.search} aria-label={t.search} />
@@ -218,7 +255,7 @@ async function alerts(locale: Locale, slug: string | undefined, query: Record<st
   const copy = pickLocale(row.translations, locale)!;
   return (
     <>
-      <Hero locale={locale} eyebrow={t.alertsTitle} title={copy.value.title} lead={copy.value.summary} />
+      <Hero locale={locale} eyebrow={t.alertsTitle} title={copy.value.title} lead={copy.value.summary} city={CITY.alerts} />
       <section className="section"><div className="container prose" style={{ maxWidth: 860 }}>
         <RiskBadge level={row.risk as "low"} label={t.risk[row.risk as "low"]} />
         <p>{row.country} · {formatDate(row.publishedAt, locale)}</p>
@@ -253,7 +290,7 @@ async function resources(locale: Locale, slug: string | undefined, query: Record
     const filtered = rows.filter((row) => !query.category || row.categoryId === query.category);
     return (
       <>
-        <Hero locale={locale} eyebrow={t.resourcesEyebrow} title={t.nav.resources} lead={t.resourcesLead} />
+        <Hero locale={locale} eyebrow={t.resourcesEyebrow} title={t.nav.resources} lead={t.resourcesLead} city={CITY.resources} />
         <section className="section"><div className="container" style={{ display: "grid", gap: 16 }}>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <Link className="badge" href={pathFor(locale, "resources")}>{t.filters.all}</Link>
@@ -281,7 +318,7 @@ async function resources(locale: Locale, slug: string | undefined, query: Record
   const copy = pickLocale(row.translations, locale)!;
   return (
     <>
-      <Hero locale={locale} eyebrow={row.format} title={copy.value.title} lead={copy.value.summary} />
+      <Hero locale={locale} eyebrow={row.format} title={copy.value.title} lead={copy.value.summary} city={CITY.resources} />
       <section className="section"><div className="container prose" style={{ maxWidth: 860 }}>
         {row.image ? <Photo src={row.image} alt="" width={1200} height={800} /> : null}
         <ul>{copy.value.body.map((item) => <li key={item}>{item}</li>)}</ul>
@@ -297,7 +334,7 @@ async function news(locale: Locale, slug: string | undefined, query: Record<stri
     const filtered = rows.filter((row) => !query.kind || row.kind === query.kind);
     return (
       <>
-        <Hero locale={locale} eyebrow={t.nav.news} title={t.nav.news} />
+        <Hero locale={locale} eyebrow={t.nav.news} title={t.nav.news} city={CITY.news} />
         <section className="section"><div className="container">
           <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
             {["article", "campaign", "press"].map((kind) => <Link key={kind} className="badge" href={`${pathFor(locale, "news")}?kind=${kind}`}>{kind}</Link>)}
@@ -319,7 +356,7 @@ async function news(locale: Locale, slug: string | undefined, query: Record<stri
   const share = pathFor(locale, "news", copy.value.slug);
   return (
     <>
-      <Hero locale={locale} eyebrow={row.kind} title={copy.value.title} lead={copy.value.summary} />
+      <Hero locale={locale} eyebrow={row.kind} title={copy.value.title} lead={copy.value.summary} city={CITY.news} />
       <section className="section"><div className="container prose" style={{ maxWidth: 820 }}>
         <p className="help">{row.author} · {formatDate(row.publishedAt, locale)}</p>
         {row.image ? <Photo src={row.image} alt="" width={1200} height={800} /> : null}
@@ -337,7 +374,7 @@ async function servicesView(locale: Locale, slug: string[]) {
   if (!group) {
     return (
       <>
-        <Hero locale={locale} eyebrow={t.servicesEyebrow} title={t.nav.services} lead={t.servicesH2} />
+        <Hero locale={locale} eyebrow={t.servicesEyebrow} title={t.nav.services} lead={t.servicesH2} city={CITY.services} />
         <section className="section"><div className="container grid-cards">
           {(["individuals", "businesses", "institutions", "training"] as const).map((key) => (
             <Link key={key} className="card" href={pathFor(locale, "services", key)}><h3>{t.groups[key]}</h3><p className="muted">{rows.filter((row) => row.groupKey === key).length}</p></Link>
@@ -350,7 +387,7 @@ async function servicesView(locale: Locale, slug: string[]) {
   if (!serviceSlug) {
     return (
       <>
-        <Hero locale={locale} eyebrow={t.nav.services} title={t.groups[group as "individuals"] || group} />
+        <Hero locale={locale} eyebrow={t.nav.services} title={t.groups[group as "individuals"] || group} city={CITY.services} />
         <section className="section"><div className="container grid-cards">
           {groupRows.map((row) => {
             const copy = pickLocale(row.translations, locale);
@@ -366,7 +403,7 @@ async function servicesView(locale: Locale, slug: string[]) {
   const copy = pickLocale(row.translations, locale)!;
   return (
     <>
-      <Hero locale={locale} eyebrow={t.pricing[row.pricingMode as "free"]} title={copy.value.title} lead={copy.value.summary} />
+      <Hero locale={locale} eyebrow={t.pricing[row.pricingMode as "free"]} title={copy.value.title} lead={copy.value.summary} city={CITY.services} />
       <section className="section"><div className="container" style={{ display: "grid", gap: 18, maxWidth: 860 }}>
         <p>{copy.value.audience}</p>
         <div className="prose">{copy.value.body.map((paragraph, index) => paragraph.startsWith("## ") ? <h2 key={index} style={{ fontSize: "1.35rem" }}>{paragraph.slice(3)}</h2> : <p key={index}>{paragraph}</p>)}</div>
@@ -381,7 +418,7 @@ async function contact(locale: Locale, settings: WebsiteSettings | null) {
   const t = m(locale);
   return (
     <>
-      <Hero locale={locale} eyebrow={t.nav.contact} title={t.contactTitle} lead={t.contactLead} />
+      <Hero locale={locale} eyebrow={t.nav.contact} title={t.contactTitle} lead={t.contactLead} city={CITY.contact} />
       <section className="section"><div className="container split">
         <div className="card">
           {settings?.emailPublic && settings.email ? <p><a href={`mailto:${settings.email}`}>{settings.email}</a></p> : null}
@@ -416,7 +453,7 @@ async function report(locale: Locale, slug: string | undefined, token?: string, 
   if (slug === "confirmation") {
     return (
       <>
-        <Hero locale={locale} eyebrow={t.report.eyebrow} title={t.report.confirmTitle} lead={t.report.confirmLead} />
+        <Hero locale={locale} eyebrow={t.report.eyebrow} title={t.report.confirmTitle} lead={t.report.confirmLead} city={CITY.report} />
         <section className="section"><div className="container card" style={{ display: "grid", gap: 12, maxWidth: 720 }}>
           {confirmRef ? <><p className="stat-num">{confirmRef}</p><CopyButton value={confirmRef} label={t.report.copy} copied={t.report.copied} /></> : <p>{t.report.noConfirm}</p>}
           <h2 style={{ fontSize: "1.4rem" }}>{t.report.nextSteps}</h2>
@@ -431,7 +468,7 @@ async function report(locale: Locale, slug: string | undefined, token?: string, 
   const draft = await loadDraft(token);
   return (
     <>
-      <Hero locale={locale} eyebrow={t.report.eyebrow} title={t.report.title} lead={t.report.reassurance} />
+      <Hero locale={locale} eyebrow={t.report.eyebrow} title={t.report.title} lead={t.report.reassurance} city={CITY.report} />
       <section className="section"><div className="container" style={{ maxWidth: 920 }}>
         <ReportWizard locale={locale} categories={categories} initial={draft?.data || { language: locale }} />
       </div></section>
