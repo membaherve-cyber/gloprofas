@@ -1,17 +1,22 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   AlertCircle,
   ArrowUpRight,
+  BarChart3,
   Check,
   CheckCircle2,
   ChevronDown,
+  Database,
   Download,
   FileText,
   Info,
   LoaderCircle,
+  ShieldAlert,
+  type LucideIcon,
 } from "lucide-react";
 import { Monogram } from "@/components/ui/logo";
 import {
@@ -27,7 +32,15 @@ import {
   ZiteRiskBadge,
 } from "@/components/zite/shared";
 import { ZITE_CONTENT, type ZiteAlert, type ZiteArticle, type ZiteCategory, type ZiteResource } from "@/lib/zite-data";
+import enMessages from "@/messages/en.json";
+import frMessages from "@/messages/fr.json";
 import type { Locale } from "@/lib/i18n";
+
+const PILLAR_ICONS: Record<string, LucideIcon> = {
+  "database-check": Database,
+  "community-reporting": ShieldAlert,
+  "secure-analytics": BarChart3,
+};
 
 const HOW_STEP_IMAGES = [
   "/images/zite/img_Sr6t0DpFam9Pwbqs.jpg",
@@ -118,7 +131,10 @@ export function ZiteHomeView({
   stats?: { categories: number; resources: number; languages: number };
 }) {
   const l = (path = "") => `/${lang}${path}`;
-  const h1Words = R(L.hero.h1, lang).split(" ");
+  const msg = lang === "fr" ? frMessages : enMessages;
+  const heroC11 = msg.home.heroC11;
+  const pillarsC12 = msg.home.pillarsC12;
+  const h1Words = heroC11.title.split(" ");
   const featuredCats = categories.filter((c) => c.featured);
   const otherCats = categories.filter((c) => !c.featured);
   const [featuredRes, ...otherRes] = resources;
@@ -189,9 +205,26 @@ export function ZiteHomeView({
         <div className="container-g grid items-center gap-12 pb-20 lg:grid-cols-12 lg:pb-32">
           <div className="lg:col-span-7">
             <Reveal>
+              <div className="mb-5 inline-flex flex-wrap items-center gap-3 rounded-xl border border-white/15 bg-navy-950/75 p-2 pr-4 backdrop-blur-sm">
+                <span className="inline-flex items-center rounded-lg bg-white px-2.5 py-1 shadow-xs">
+                  <Image
+                    src="/images/gloprofas-logo.png"
+                    alt={heroC11.logoAlt}
+                    width={1132}
+                    height={350}
+                    priority
+                    className="h-9 w-auto object-contain"
+                  />
+                </span>
+                <span className="text-xs font-semibold tracking-wide text-slatex-300">
+                  {heroC11.badge}
+                </span>
+              </div>
+            </Reveal>
+            <Reveal>
               <p className="eyebrow flex items-center gap-3 text-cyanx">
                 <span className="h-px w-8 bg-cyanx" />
-                {R(L.hero.eyebrow, lang)}
+                {heroC11.eyebrow}
               </p>
             </Reveal>
             <h1 className="h1 mt-6 text-white">
@@ -205,15 +238,23 @@ export function ZiteHomeView({
                 </Reveal>
               ))}
             </h1>
+            <Reveal delay={240}>
+              <p className="mt-5 max-w-2xl text-base font-semibold text-cyanx sm:text-lg">
+                {heroC11.valueProposition}
+              </p>
+            </Reveal>
             <Reveal delay={300}>
-              <p className="lead mt-6 text-slatex-300">{R(L.hero.lead, lang)}</p>
+              <p className="lead mt-4 text-slatex-300">{heroC11.lead}</p>
             </Reveal>
             <Reveal delay={400} className="mt-10 flex flex-wrap gap-3">
               <Btn href={l("/report")} variant="signal">
-                {R(L.report, lang)}
+                {heroC11.reportCta}
+              </Btn>
+              <Btn href={l("/check")} variant="primary">
+                {heroC11.verifyCta}
               </Btn>
               <Btn href={l("/scams")} variant="outlineDark">
-                {R(L.hero.secondary, lang)}
+                {heroC11.secondaryCta}
               </Btn>
             </Reveal>
           </div>
@@ -248,6 +289,70 @@ export function ZiteHomeView({
           <Btn href={l("/check")} variant="outlineDark">
             {R(L.strip.cta, lang)}
           </Btn>
+        </div>
+      </section>
+
+      {/* 2B. Features & Verification Grid (C12 — 3-Column Platform Pillars) */}
+      <section
+        id="verification-pillars"
+        aria-label={pillarsC12.eyebrow}
+        className="section-y scroll-mt-28 bg-mist"
+      >
+        <div className="container-g">
+          <SectionHeading
+            eyebrow={pillarsC12.eyebrow}
+            title={pillarsC12.h2}
+            lead={pillarsC12.lead}
+          />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {pillarsC12.items.map((pillar, idx) => {
+              const PillarIcon = PILLAR_ICONS[pillar.id] ?? ShieldAlert;
+              const isReport = pillar.id === "community-reporting";
+              return (
+                <Reveal key={pillar.id} delay={idx * 80}>
+                  <article className="flex h-full flex-col justify-between rounded-[22px] border border-line bg-white p-7 shadow-e1 transition-all duration-150 hover:-translate-y-1 hover:border-brand-600/40 hover:shadow-e2">
+                    <div>
+                      <div className="flex items-center justify-between gap-3">
+                        <IconTile>
+                          <PillarIcon className="h-6 w-6" strokeWidth={1.6} />
+                        </IconTile>
+                        <span className="rounded-full bg-mist px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-600">
+                          {pillar.badge}
+                        </span>
+                      </div>
+                      <h3 className="h4 mt-5 text-ink">{pillar.title}</h3>
+                      <p className="mt-3 text-sm leading-relaxed text-slatex-600">
+                        {pillar.description}
+                      </p>
+                      <ul className="mt-5 space-y-2.5 border-t border-line pt-4">
+                        {pillar.highlights.map((item) => (
+                          <li
+                            key={item}
+                            className="flex items-start gap-2.5 text-sm font-medium text-ink"
+                          >
+                            <CheckCircle2
+                              className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
+                              strokeWidth={2}
+                            />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="mt-7 pt-2">
+                      <Btn
+                        href={l(pillar.href)}
+                        variant={isReport ? "signal" : "primary"}
+                        className="w-full"
+                      >
+                        {pillar.cta}
+                      </Btn>
+                    </div>
+                  </article>
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
       </section>
 
