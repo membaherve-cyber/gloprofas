@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT } from "@/lib/zite-data";
 import { formatZiteDate, L, PageHero, R, Reveal } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({
   params,
@@ -46,7 +47,8 @@ export default async function NewsPage({
             ? "Conseils, analyses et annonces de GLOPROFAS."
             : "Guidance, analysis and announcements from GLOPROFAS."
         }
-        image={featured?.imageUrl}
+        image={PAGE_AERIAL_HEROES.newsIndex.image}
+        cityBadge={formatAerialBadge(PAGE_AERIAL_HEROES.newsIndex.city, locale)}
         crumbs={[
           { label: fr ? "Accueil" : "Home", to: l() },
           { label: R(L.nav.news, locale) },

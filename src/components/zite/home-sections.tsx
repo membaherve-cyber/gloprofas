@@ -42,6 +42,12 @@ const PILLAR_ICONS: Record<string, LucideIcon> = {
   "secure-analytics": BarChart3,
 };
 
+const PILLAR_IMAGES: Record<string, string> = {
+  "database-check": "/images/context/person-phone-desk.jpg",
+  "community-reporting": "/images/article-reporting.jpg",
+  "secure-analytics": "/images/context/person-finance-phone.jpg",
+};
+
 const HOW_STEP_IMAGES = [
   "/images/zite/img_Sr6t0DpFam9Pwbqs.jpg",
   "/images/zite/img_oA0HSqR_wTZ4p6wO.jpg",
@@ -307,39 +313,53 @@ export function ZiteHomeView({
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {pillarsC12.items.map((pillar, idx) => {
               const PillarIcon = PILLAR_ICONS[pillar.id] ?? ShieldAlert;
+              const pillarImg = PILLAR_IMAGES[pillar.id] ?? "/images/context/person-phone-desk.jpg";
               const isReport = pillar.id === "community-reporting";
               return (
                 <Reveal key={pillar.id} delay={idx * 80}>
-                  <article className="flex h-full flex-col justify-between rounded-[22px] border border-line bg-white p-7 shadow-e1 transition-all duration-150 hover:-translate-y-1 hover:border-brand-600/40 hover:shadow-e2">
+                  <article className="group flex h-full flex-col justify-between overflow-hidden rounded-[22px] border border-line bg-white shadow-e1 transition-all duration-150 hover:-translate-y-1 hover:border-brand-600/40 hover:shadow-e2">
                     <div>
-                      <div className="flex items-center justify-between gap-3">
-                        <IconTile>
-                          <PillarIcon className="h-6 w-6" strokeWidth={1.6} />
-                        </IconTile>
-                        <span className="rounded-full bg-mist px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-600">
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-900">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={pillarImg}
+                          alt={pillar.title}
+                          loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/75 via-transparent to-transparent" />
+                        <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-navy-950/80 px-3 py-1 text-xs font-bold uppercase tracking-wider text-cyanx backdrop-blur-sm">
+                          <span className="animate-dot h-1.5 w-1.5 rounded-full bg-cyanx" />
                           {pillar.badge}
                         </span>
                       </div>
-                      <h3 className="h4 mt-5 text-ink">{pillar.title}</h3>
-                      <p className="mt-3 text-sm leading-relaxed text-slatex-600">
-                        {pillar.description}
-                      </p>
-                      <ul className="mt-5 space-y-2.5 border-t border-line pt-4">
-                        {pillar.highlights.map((item) => (
-                          <li
-                            key={item}
-                            className="flex items-start gap-2.5 text-sm font-medium text-ink"
-                          >
-                            <CheckCircle2
-                              className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
-                              strokeWidth={2}
-                            />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <div className="p-7 pb-0">
+                        <div className="flex items-center gap-3">
+                          <IconTile>
+                            <PillarIcon className="h-6 w-6" strokeWidth={1.6} />
+                          </IconTile>
+                          <h3 className="h4 text-ink">{pillar.title}</h3>
+                        </div>
+                        <p className="mt-3 text-sm leading-relaxed text-slatex-600">
+                          {pillar.description}
+                        </p>
+                        <ul className="mt-5 space-y-2.5 border-t border-line pt-4">
+                          {pillar.highlights.map((item) => (
+                            <li
+                              key={item}
+                              className="flex items-start gap-2.5 text-sm font-medium text-ink"
+                            >
+                              <CheckCircle2
+                                className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
+                                strokeWidth={2}
+                              />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                    <div className="mt-7 pt-2">
+                    <div className="p-7 pt-6">
                       <Btn
                         href={l(pillar.href)}
                         variant={isReport ? "signal" : "primary"}
@@ -600,6 +620,15 @@ export function ZiteHomeView({
               <Info className="h-5 w-5 shrink-0 text-ink" strokeWidth={1.75} />
               <p>{R(L.reportSec.note, lang)}</p>
             </Reveal>
+            <Reveal className="mt-6 overflow-hidden rounded-[18px] border border-line shadow-e1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/market-cash.jpg"
+                alt=""
+                loading="lazy"
+                className="aspect-[16/9] w-full object-cover"
+              />
+            </Reveal>
             <div className="mt-8">
               <Btn href={l("/report")} variant="signal">
                 {R(L.report, lang)}
@@ -711,43 +740,65 @@ export function ZiteHomeView({
             title={R(L.services.h2, lang)}
           />
           <div className="mt-14 grid gap-6 lg:grid-cols-2">
-            <Reveal className="flex h-full flex-col rounded-[22px] border border-line bg-mist p-8 md:p-10">
-              <span className="self-start rounded-full bg-risk-low px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
-                {R(L.services.freeTag, lang)}
-              </span>
-              <h3 className="h3 mt-5 text-ink">{R(L.services.freeTitle, lang)}</h3>
-              <ul className="mt-6 flex-1 space-y-3">
-                {L.services.free.map((item, idx) => (
-                  <li key={idx} className="flex gap-3 text-slatex-600">
-                    <Check className="mt-1 h-5 w-5 shrink-0 text-brand-600" />
-                    {R(item, lang)}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8">
-                <Btn href={l("/resources")} variant="primary">
-                  {R(L.services.freeCta, lang)}
-                </Btn>
+            <Reveal className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-line bg-mist">
+              <div className="relative aspect-[16/9] w-full overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/campaign-community.jpg"
+                  alt={R(L.services.freeTitle, lang)}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <span className="absolute top-4 left-4 rounded-full bg-risk-low px-3 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-sm">
+                  {R(L.services.freeTag, lang)}
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col p-8 md:p-10">
+                <h3 className="h3 text-ink">{R(L.services.freeTitle, lang)}</h3>
+                <ul className="mt-6 flex-1 space-y-3">
+                  {L.services.free.map((item, idx) => (
+                    <li key={idx} className="flex gap-3 text-slatex-600">
+                      <Check className="mt-1 h-5 w-5 shrink-0 text-brand-600" />
+                      {R(item, lang)}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8">
+                  <Btn href={l("/resources")} variant="primary">
+                    {R(L.services.freeCta, lang)}
+                  </Btn>
+                </div>
               </div>
             </Reveal>
 
-            <Reveal className="on-dark flex h-full flex-col rounded-[22px] bg-navy-900 p-8 text-white md:p-10">
-              <span className="self-start rounded-full bg-signal px-3 py-1 text-xs font-bold uppercase tracking-wider text-navy-950">
-                {R(L.services.paidTag, lang)}
-              </span>
-              <h3 className="h3 mt-5 text-white">{R(L.services.paidTitle, lang)}</h3>
-              <ul className="mt-6 flex-1 space-y-3">
-                {L.services.paid.map((item, idx) => (
-                  <li key={idx} className="flex gap-3 text-slatex-300">
-                    <Check className="mt-1 h-5 w-5 shrink-0 text-cyanx" />
-                    {R(item, lang)}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8">
-                <Btn href={l("/services")} variant="outlineDark">
-                  {R(L.services.paidCta, lang)}
-                </Btn>
+            <Reveal className="on-dark group flex h-full flex-col overflow-hidden rounded-[22px] bg-navy-900 text-white">
+              <div className="relative aspect-[16/9] w-full overflow-hidden">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/services-assessment.jpg"
+                  alt={R(L.services.paidTitle, lang)}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <span className="absolute top-4 left-4 rounded-full bg-signal px-3 py-1 text-xs font-bold uppercase tracking-wider text-navy-950 shadow-sm">
+                  {R(L.services.paidTag, lang)}
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col p-8 md:p-10">
+                <h3 className="h3 text-white">{R(L.services.paidTitle, lang)}</h3>
+                <ul className="mt-6 flex-1 space-y-3">
+                  {L.services.paid.map((item, idx) => (
+                    <li key={idx} className="flex gap-3 text-slatex-300">
+                      <Check className="mt-1 h-5 w-5 shrink-0 text-cyanx" />
+                      {R(item, lang)}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8">
+                  <Btn href={l("/services")} variant="outlineDark">
+                    {R(L.services.paidCta, lang)}
+                  </Btn>
+                </div>
               </div>
             </Reveal>
           </div>
@@ -769,17 +820,39 @@ export function ZiteHomeView({
               <Reveal key={alert.id} delay={idx * 60}>
                 <Link
                   href={l(`/alerts/${alert.id}`)}
-                  className="flex h-full flex-col rounded-[22px] border border-line bg-white p-7 shadow-e1 transition-all duration-150 hover:-translate-y-1 hover:shadow-e2"
+                  className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-line bg-white shadow-e1 transition-all duration-150 hover:-translate-y-1 hover:shadow-e2"
                 >
-                  <ZiteRiskBadge level={alert.risk} lang={lang} />
-                  <h3 className="h4 mt-5 text-ink">{R(alert.title, lang)}</h3>
-                  <p className="mt-3 flex-1 text-sm text-slatex-600">
-                    {R(alert.summary, lang)}
-                  </p>
-                  <p className="mt-5 border-t border-line pt-4 text-sm font-medium text-slatex-600">
-                    {R(alert.category, lang)} · {alert.country} ·{" "}
-                    {formatZiteDate(alert.date, lang)}
-                  </p>
+                  {alert.imageUrl ? (
+                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={alert.imageUrl}
+                        alt=""
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute top-3 left-3">
+                        <ZiteRiskBadge level={alert.risk} lang={lang} />
+                      </div>
+                    </div>
+                  ) : null}
+                  <div className="flex flex-1 flex-col p-7">
+                    {!alert.imageUrl ? (
+                      <div className="mb-4">
+                        <ZiteRiskBadge level={alert.risk} lang={lang} />
+                      </div>
+                    ) : null}
+                    <h3 className="h4 text-ink group-hover:text-brand-600">
+                      {R(alert.title, lang)}
+                    </h3>
+                    <p className="mt-3 flex-1 text-sm text-slatex-600">
+                      {R(alert.summary, lang)}
+                    </p>
+                    <p className="mt-5 border-t border-line pt-4 text-sm font-medium text-slatex-600">
+                      {R(alert.category, lang)} · {alert.country} ·{" "}
+                      {formatZiteDate(alert.date, lang)}
+                    </p>
+                  </div>
                 </Link>
               </Reveal>
             ))}

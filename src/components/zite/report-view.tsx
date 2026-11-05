@@ -12,6 +12,7 @@ import {
   X,
 } from "lucide-react";
 import { Btn, getCategoryIcon, L, PageHero, R } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 import { ZITE_CONTENT, type ZiteCategory } from "@/lib/zite-data";
 import type { Locale } from "@/lib/i18n";
 
@@ -196,6 +197,8 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
           title={
             fr ? "Merci pour votre signalement." : "Thank you for your report."
           }
+          image={PAGE_AERIAL_HEROES.report.image}
+          cityBadge={formatAerialBadge(PAGE_AERIAL_HEROES.report.city, locale)}
           crumbs={[
             { label: fr ? "Accueil" : "Home", to: l() },
             { label: R(L.report, locale) },
@@ -264,6 +267,8 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
             ? "Cela prend environ cinq minutes. Vous n’êtes pas en faute, et ce que vous partagez aide d’autres personnes à se protéger."
             : "This takes about five minutes. You are not to blame, and what you share helps others stay safe."
         }
+        image={PAGE_AERIAL_HEROES.report.image}
+        cityBadge={formatAerialBadge(PAGE_AERIAL_HEROES.report.city, locale)}
         crumbs={[
           { label: fr ? "Accueil" : "Home", to: l() },
           { label: R(L.report, locale) },

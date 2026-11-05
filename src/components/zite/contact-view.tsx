@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AlertCircle, CheckCircle2, LoaderCircle } from "lucide-react";
 import { Btn, L, PageHero, R } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 import type { Locale } from "@/lib/i18n";
 
 const CATEGORIES: Record<string, [string, string]> = {
@@ -85,7 +86,8 @@ export function ZiteContactView({
             ? "Questions, partenariats, médias ou services : écrivez-nous. Pour signaler une arnaque, utilisez le formulaire dédié."
             : "Questions, partnerships, media or services: write to us. To report a scam, please use the dedicated form."
         }
-        image="/images/zite/img_wFZrRplDj0fdHgRB.jpg"
+        image={PAGE_AERIAL_HEROES.contact.image}
+        cityBadge={formatAerialBadge(PAGE_AERIAL_HEROES.contact.city, locale)}
         crumbs={[
           { label: fr ? "Accueil" : "Home", to: l() },
           { label: R(L.nav.contact, locale) },
@@ -258,8 +260,17 @@ export function ZiteContactView({
                 </Btn>
               </div>
             </div>
-            <div className="rounded-[22px] border border-line bg-white p-7 text-sm text-slatex-600">
-              {R(L.footer.contactPending, locale)}
+            <div className="overflow-hidden rounded-[22px] border border-line bg-white shadow-e1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/context/support-call-center.jpg"
+                alt=""
+                loading="lazy"
+                className="aspect-[16/10] w-full object-cover"
+              />
+              <p className="p-6 text-sm text-slatex-600">
+                {R(L.footer.contactPending, locale)}
+              </p>
             </div>
           </aside>
         </div>

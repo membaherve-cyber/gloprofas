@@ -11,6 +11,7 @@ import {
   Reveal,
   ZiteRiskBadge,
 } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 import { ZITE_CONTENT, type ZiteAlert, type ZiteCategory } from "@/lib/zite-data";
 import type { Locale } from "@/lib/i18n";
 
@@ -54,7 +55,8 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
             ? "Activités suspectes signalées, classées par niveau de risque. Les alertes décrivent des signalements et ne constituent pas des accusations."
             : "Reported suspicious activity, classified by risk. Alerts describe reports and are not accusations against any person or business."
         }
-        image={featuredCritical?.imageUrl}
+        image={PAGE_AERIAL_HEROES.alertsIndex.image}
+        cityBadge={formatAerialBadge(PAGE_AERIAL_HEROES.alertsIndex.city, locale)}
         crumbs={[
           { label: fr ? "Accueil" : "Home", to: l() },
           { label: fr ? "Alertes" : "Alerts" },
@@ -146,17 +148,35 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
               <Reveal key={a.id} delay={(idx % 3) * 60}>
                 <Link
                   href={l(`/alerts/${a.id}`)}
-                  className="flex h-full flex-col rounded-[22px] border border-line bg-white p-7 shadow-e1 transition-all hover:-translate-y-1 hover:shadow-e2"
+                  className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-line bg-white shadow-e1 transition-all hover:-translate-y-1 hover:shadow-e2"
                 >
-                  <ZiteRiskBadge level={a.risk} lang={locale} />
-                  <h2 className="h4 mt-5 text-ink">{R(a.title, locale)}</h2>
-                  <p className="mt-3 flex-1 text-sm text-slatex-600">
-                    {R(a.summary, locale)}
-                  </p>
-                  <p className="mt-5 border-t border-line pt-4 text-sm text-slatex-600">
-                    {R(a.category, locale)} · {a.country} ·{" "}
-                    {formatZiteDate(a.date, locale)}
-                  </p>
+                  {a.imageUrl ? (
+                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={a.imageUrl}
+                        alt=""
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute top-3 left-3">
+                        <ZiteRiskBadge level={a.risk} lang={locale} />
+                      </div>
+                    </div>
+                  ) : null}
+                  <div className="flex flex-1 flex-col p-7">
+                    {!a.imageUrl ? <ZiteRiskBadge level={a.risk} lang={locale} /> : null}
+                    <h2 className="h4 mt-3 text-ink group-hover:text-brand-600">
+                      {R(a.title, locale)}
+                    </h2>
+                    <p className="mt-3 flex-1 text-sm text-slatex-600">
+                      {R(a.summary, locale)}
+                    </p>
+                    <p className="mt-5 border-t border-line pt-4 text-sm text-slatex-600">
+                      {R(a.category, locale)} · {a.country} ·{" "}
+                      {formatZiteDate(a.date, locale)}
+                    </p>
+                  </div>
                 </Link>
               </Reveal>
             ))}

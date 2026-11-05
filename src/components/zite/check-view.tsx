@@ -10,6 +10,7 @@ import {
   ShieldQuestion,
 } from "lucide-react";
 import { Btn, PageHero } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 import type { Locale } from "@/lib/i18n";
 
 type CheckResult = {
@@ -96,6 +97,8 @@ export function ZiteCheckView({ locale }: { locale: Locale }) {
             ? "Collez ce que vous avez reçu. Nous le comparons à nos alertes et aux signalements reçus, puis Jarvis analyse les signaux d’alerte."
             : "Paste what you received. We compare it with our alerts and the reports we’ve received, then Jarvis looks for warning signs."
         }
+        image={PAGE_AERIAL_HEROES.check.image}
+        cityBadge={formatAerialBadge(PAGE_AERIAL_HEROES.check.city, locale)}
         crumbs={[
           { label: fr ? "Accueil" : "Home", to: l() },
           { label: fr ? "Vérifier" : "Check" },

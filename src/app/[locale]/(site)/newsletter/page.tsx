@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
 import { NewsletterForm } from "@/components/site/newsletter-form";
-import { Breadcrumbs, Eyebrow } from "@/components/ui";
+import { PageHero } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -27,19 +28,23 @@ export default async function NewsletterPage({
   if (!isLocale(raw)) notFound();
   const locale: Locale = raw;
   const dict = getDictionary(locale);
+  const hero = PAGE_AERIAL_HEROES.newsletter;
   const notice =
     status === "confirmed" ? dict.newsletter.confirmed : status === "unsubscribed" ? dict.newsletter.unsubscribed : status === "invalid" ? dict.newsletter.invalidToken : null;
 
   return (
     <>
-      <section className="on-dark bg-navy-900 py-14">
-        <div className="container-page max-w-2xl">
-          <Breadcrumbs items={[{ href: `/${locale}`, label: "GLOPROFAS" }, { label: dict.newsletter.h1 }]} />
-          <Eyebrow dark>{dict.home.newsletter.eyebrow}</Eyebrow>
-          <h1 className="mt-4 text-white">{dict.newsletter.h1}</h1>
-          <p className="lead mt-4 text-slate-300">{dict.newsletter.lead}</p>
-        </div>
-      </section>
+      <PageHero
+        title={dict.newsletter.h1}
+        eyebrow={dict.home.newsletter.eyebrow}
+        lead={dict.newsletter.lead}
+        image={hero.image}
+        cityBadge={formatAerialBadge(hero.city, locale)}
+        crumbs={[
+          { label: locale === "fr" ? "Accueil" : "Home", to: `/${locale}` },
+          { label: dict.newsletter.h1 },
+        ]}
+      />
       <section className="section bg-mist-50">
         <div className="container-page max-w-2xl">
           <div className="on-dark rounded-[var(--radius-lg)] bg-navy-900 p-5 sm:p-7">

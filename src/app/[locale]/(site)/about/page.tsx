@@ -21,6 +21,7 @@ import {
   Reveal,
   SectionHeading,
 } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({
   params,
@@ -100,7 +101,8 @@ export default async function AboutPage({
         title={fr ? "À propos de GLOPROFAS" : "About GLOPROFAS"}
         eyebrow={fr ? "Qui sommes-nous" : "Who we are"}
         lead={R(L.intro.body, locale)}
-        image="/images/zite/img_n8pQYP_Z0n2kP4mD.jpg"
+        image={PAGE_AERIAL_HEROES.about.image}
+        cityBadge={formatAerialBadge(PAGE_AERIAL_HEROES.about.city, locale)}
         crumbs={[
           { label: fr ? "Accueil" : "Home", to: l() },
           { label: R(L.nav.about, locale) },

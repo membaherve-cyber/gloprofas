@@ -16,6 +16,7 @@ import {
   R,
   Reveal,
 } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({
   params,
@@ -44,6 +45,13 @@ export default async function ServicesPage({
   const locale: Locale = raw;
   const fr = locale === "fr";
   const l = (path = "") => `/${locale}${path}`;
+
+  const groupImages = [
+    "/images/context/person-phone-desk.jpg",
+    "/images/article-business-controls.jpg",
+    "/images/campaign-corporate.jpg",
+    "/images/campaign-youth.jpg",
+  ] as const;
 
   const groups = [
     {
@@ -140,7 +148,8 @@ export default async function ServicesPage({
         title={fr ? "Services professionnels" : "Professional services"}
         eyebrow={R(L.nav.services, locale)}
         lead={R(L.services.h2, locale)}
-        image="/images/zite/img_rV5DNdwu0nwwIUqR.jpg"
+        image={PAGE_AERIAL_HEROES.servicesIndex.image}
+        cityBadge={formatAerialBadge(PAGE_AERIAL_HEROES.servicesIndex.city, locale)}
         crumbs={[
           { label: fr ? "Accueil" : "Home", to: l() },
           { label: R(L.nav.services, locale) },
@@ -169,24 +178,36 @@ export default async function ServicesPage({
             <Reveal
               key={g.t}
               delay={(idx % 2) * 60}
-              className="flex h-full flex-col rounded-[22px] border border-line bg-mist p-8"
+              className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-line bg-mist"
             >
-              <IconTile>
-                <g.Icon className="h-6 w-6" strokeWidth={1.5} />
-              </IconTile>
-              <h2 className="h3 mt-5 text-ink">{g.t}</h2>
-              <ul className="mt-5 flex-1 space-y-2">
-                {g.items.map((item) => (
-                  <li key={item} className="flex gap-3 text-slatex-600">
-                    <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-brand-600" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-7">
-                <Btn href={`${l("/contact")}?topic=services`} variant="primary">
-                  {fr ? "Demander un devis" : "Request a quotation"}
-                </Btn>
+              <div className="relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={groupImages[idx]}
+                  alt={g.t}
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent" />
+              </div>
+              <div className="flex flex-1 flex-col p-8">
+                <IconTile>
+                  <g.Icon className="h-6 w-6" strokeWidth={1.5} />
+                </IconTile>
+                <h2 className="h3 mt-5 text-ink">{g.t}</h2>
+                <ul className="mt-5 flex-1 space-y-2">
+                  {g.items.map((item) => (
+                    <li key={item} className="flex gap-3 text-slatex-600">
+                      <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-brand-600" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-7">
+                  <Btn href={`${l("/contact")}?topic=services`} variant="primary">
+                    {fr ? "Demander un devis" : "Request a quotation"}
+                  </Btn>
+                </div>
               </div>
             </Reveal>
           ))}

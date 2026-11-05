@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { PageHero } from "@/components/zite/shared";
+import { formatAerialBadge, getLegalAerialHero } from "@/lib/african-cities";
 
 const UPDATED = {
   en: "Last updated: 1 November 2026",
@@ -220,12 +221,15 @@ export default async function LegalPage({
   const l = (path = "") => `/${locale}${path}`;
   const doc = LEGAL_DOCS[slug]?.[locale];
   if (!doc) notFound();
+  const aerialHero = getLegalAerialHero(slug);
 
   return (
     <>
       <PageHero
         title={doc.title}
         lead={doc.lead}
+        image={aerialHero.image}
+        cityBadge={formatAerialBadge(aerialHero.city, locale)}
         crumbs={[
           { label: fr ? "Accueil" : "Home", to: l("/") },
           { label: doc.title },

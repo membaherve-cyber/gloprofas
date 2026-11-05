@@ -12,6 +12,7 @@ import {
   R,
   Reveal,
 } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({
   params,
@@ -53,7 +54,8 @@ export default async function ScamsPage({
         }
         lead={R(L.scams.lead, locale)}
         eyebrow={R(L.nav.awareness, locale)}
-        image={categories[0]?.imageUrl}
+        image={PAGE_AERIAL_HEROES.scamsIndex.image}
+        cityBadge={formatAerialBadge(PAGE_AERIAL_HEROES.scamsIndex.city, locale)}
         crumbs={[
           { label: fr ? "Accueil" : "Home", to: l() },
           { label: R(L.nav.awareness, locale) },

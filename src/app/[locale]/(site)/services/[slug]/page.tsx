@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale, pick, routes, type Locale } from "@/lib/i18n";
 import { getService } from "@/lib/queries";
-import { Breadcrumbs, ButtonLink, CheckList, Eyebrow } from "@/components/ui";
+import { ButtonLink, CheckList } from "@/components/ui";
 import { ServiceEnquiryForm } from "@/components/site/forms";
+import { PageHero } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({
   params,
@@ -37,33 +39,41 @@ export default async function ServiceDetailPage({
   if (!service) notFound();
   const name = pick(locale, service.nameEn, service.nameFr);
   const pricing = dict.services.pricing[service.pricingMode as keyof typeof dict.services.pricing] ?? service.pricingMode;
+  const hero = PAGE_AERIAL_HEROES.serviceDetail;
 
   return (
     <>
-      <section className="on-dark bg-navy-900 py-12">
-        <div className="container-page">
-          <Breadcrumbs
-            items={[
-              { href: routes.home(locale), label: "GLOPROFAS" },
-              { href: routes.services(locale), label: dict.services.h1 },
-              { label: name },
-            ]}
-          />
-          <Eyebrow dark>{dict.services.groups[service.groupKey as keyof typeof dict.services.groups] ?? dict.services.h1}</Eyebrow>
-          <h1 className="mt-5 max-w-[24ch] text-white">{name}</h1>
-          <p className="lead mt-4 max-w-2xl text-slate-300">{pick(locale, service.descriptionEn, service.descriptionFr)}</p>
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <span className="chip border-white/20 text-white">{pricing}</span>
-            <ButtonLink href="#enquiry" variant="signal" size="sm">
-              {dict.services.enquire}
-            </ButtonLink>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title={name}
+        eyebrow={dict.services.groups[service.groupKey as keyof typeof dict.services.groups] ?? dict.services.h1}
+        lead={pick(locale, service.descriptionEn, service.descriptionFr)}
+        image={hero.image}
+        cityBadge={formatAerialBadge(hero.city, locale)}
+        crumbs={[
+          { label: locale === "fr" ? "Accueil" : "Home", to: routes.home(locale) },
+          { label: dict.services.h1, to: routes.services(locale) },
+          { label: name },
+        ]}
+      />
 
       <section className="section bg-white">
         <div className="container-page grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
+            <div className="mb-6 overflow-hidden rounded-[var(--radius-md)] border border-line-200 shadow-e1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/services-assessment.jpg"
+                alt={name}
+                loading="lazy"
+                className="aspect-[16/10] w-full object-cover"
+              />
+            </div>
+            <div className="mb-4 flex flex-wrap items-center gap-3">
+              <span className="chip">{pricing}</span>
+              <ButtonLink href="#enquiry" variant="signal" size="sm">
+                {dict.services.enquire}
+              </ButtonLink>
+            </div>
             <h2>{locale === "fr" ? "Ce que couvre ce service" : "What this service covers"}</h2>
             <div className="mt-4">
               <CheckList items={pick(locale, service.bulletsEn, service.bulletsFr)} />

@@ -564,12 +564,14 @@ export function PageHero({
   lead,
   eyebrow,
   image,
+  cityBadge,
   crumbs,
 }: {
   title: string;
   lead?: string;
   eyebrow?: string;
   image?: string | null;
+  cityBadge?: string;
   crumbs: { label: string; to?: string }[];
 }) {
   return (
@@ -579,35 +581,43 @@ export function PageHero({
         <img
           src={image}
           alt=""
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
+          className="hero-aerial-zoom absolute inset-0 -z-20 h-full w-full object-cover"
         />
       ) : null}
       <div
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(90deg, rgba(5, 11, 26, 0.92), rgba(10, 22, 49, 0.6))",
+            "linear-gradient(90deg, rgba(5, 11, 26, 0.90), rgba(10, 22, 49, 0.56))",
         }}
       />
       <div className="container-g">
-        <nav aria-label="Breadcrumb">
-          <ol className="flex flex-wrap items-center gap-1.5 text-sm text-slatex-300">
-            {crumbs.map((c, idx) => (
-              <li key={`${c.label}-${idx}`} className="flex items-center gap-1.5">
-                {idx > 0 ? <ChevronRight className="h-3.5 w-3.5" /> : null}
-                {c.to ? (
-                  <Link href={c.to} className="hover:text-white">
-                    {c.label}
-                  </Link>
-                ) : (
-                  <span aria-current="page" className="text-white">
-                    {c.label}
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </nav>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <nav aria-label="Breadcrumb">
+            <ol className="flex flex-wrap items-center gap-1.5 text-sm text-slatex-300">
+              {crumbs.map((c, idx) => (
+                <li key={`${c.label}-${idx}`} className="flex items-center gap-1.5">
+                  {idx > 0 ? <ChevronRight className="h-3.5 w-3.5" /> : null}
+                  {c.to ? (
+                    <Link href={c.to} className="hover:text-white">
+                      {c.label}
+                    </Link>
+                  ) : (
+                    <span aria-current="page" className="text-white">
+                      {c.label}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+          {cityBadge ? (
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-navy-950/75 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-slatex-300 backdrop-blur-sm">
+              <span className="animate-dot h-2 w-2 rounded-full bg-cyanx" />
+              {cityBadge}
+            </span>
+          ) : null}
+        </div>
         {eyebrow ? (
           <p className="eyebrow mt-8 flex items-center gap-3 text-cyanx">
             <span className="h-px w-8 bg-cyanx" />

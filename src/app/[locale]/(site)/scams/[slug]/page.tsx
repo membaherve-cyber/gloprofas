@@ -22,6 +22,11 @@ import {
   SectionHeading,
   ZiteRiskBadge,
 } from "@/components/zite/shared";
+import {
+  formatAerialBadge,
+  PAGE_AERIAL_HEROES,
+  SCAM_CATEGORY_AERIAL_HEROES,
+} from "@/lib/african-cities";
 
 function findCategory(slug: string): ZiteCategory | undefined {
   const list = ZITE_CONTENT.categories as unknown as ZiteCategory[];
@@ -108,31 +113,57 @@ export default async function ScamDetailPage({
 
   return (
     <>
-      <PageHero
-        title={R(category.title, locale)}
-        lead={R(category.summary, locale)}
-        eyebrow={R(L.nav.awareness, locale)}
-        image={category.imageUrl}
-        crumbs={[
-          { label: fr ? "Accueil" : "Home", to: l() },
-          { label: R(L.nav.awareness, locale), to: l("/scams") },
-          { label: R(category.title, locale) },
-        ]}
-      />
+      {(() => {
+        const aerialHero =
+          SCAM_CATEGORY_AERIAL_HEROES[category.slug] ??
+          PAGE_AERIAL_HEROES.scamsIndex;
+        return (
+          <PageHero
+            title={R(category.title, locale)}
+            lead={R(category.summary, locale)}
+            eyebrow={R(L.nav.awareness, locale)}
+            image={aerialHero.image}
+            cityBadge={formatAerialBadge(aerialHero.city, locale)}
+            crumbs={[
+              { label: fr ? "Accueil" : "Home", to: l() },
+              { label: R(L.nav.awareness, locale), to: l("/scams") },
+              { label: R(category.title, locale) },
+            ]}
+          />
+        );
+      })()}
 
       <section className="section-y bg-mist">
         <div className="container-g grid gap-10 lg:grid-cols-12">
           <div className="space-y-6 lg:col-span-8">
-            <Reveal className="rounded-[22px] bg-white p-8 shadow-e1">
-              <p className="eyebrow text-brand-600">
-                {fr ? "Définition" : "Definition"}
-              </p>
-              <p className="lead mt-3 text-ink">{content.definition}</p>
-              <h2 className="h3 mt-8 flex items-center gap-3 text-ink">
-                <Workflow className="h-7 w-7 text-brand-600" strokeWidth={1.5} />
-                {fr ? "Comment ça fonctionne" : "How it works"}
-              </h2>
-              <p className="mt-3 text-slatex-600">{content.how}</p>
+            <Reveal className="overflow-hidden rounded-[22px] bg-white shadow-e1">
+              {category.imageUrl ? (
+                <div className="group relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={category.imageUrl}
+                    alt={R(category.title, locale)}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
+                  <span className="float-chip absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-navy-950/80 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
+                    <span className="animate-dot h-2 w-2 rounded-full bg-signal" />
+                    {R(category.title, locale)} —{" "}
+                    {fr ? "Scénario de terrain" : "Real-world context"}
+                  </span>
+                </div>
+              ) : null}
+              <div className="p-8">
+                <p className="eyebrow text-brand-600">
+                  {fr ? "Définition" : "Definition"}
+                </p>
+                <p className="lead mt-3 text-ink">{content.definition}</p>
+                <h2 className="h3 mt-8 flex items-center gap-3 text-ink">
+                  <Workflow className="h-7 w-7 text-brand-600" strokeWidth={1.5} />
+                  {fr ? "Comment ça fonctionne" : "How it works"}
+                </h2>
+                <p className="mt-3 text-slatex-600">{content.how}</p>
+              </div>
             </Reveal>
 
             <div className="grid gap-6 md:grid-cols-2">

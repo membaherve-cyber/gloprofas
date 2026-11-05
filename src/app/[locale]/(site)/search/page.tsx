@@ -4,7 +4,9 @@ import Link from "next/link";
 import { Search } from "lucide-react";
 import { getDictionary, isLocale, pick, routes, type Locale } from "@/lib/i18n";
 import { searchContent } from "@/lib/queries";
-import { Breadcrumbs, EmptyState, Eyebrow } from "@/components/ui";
+import { EmptyState } from "@/components/ui";
+import { PageHero } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -40,6 +42,7 @@ export default async function SearchPage({
   const dict = getDictionary(locale);
   const term = (q ?? "").trim();
   const results = term ? await searchContent(term, type ?? "all") : [];
+  const hero = PAGE_AERIAL_HEROES.search;
   const filters = [
     { value: "all", label: dict.search.allTypes },
     { value: "category", label: dict.search.types.category },
@@ -50,13 +53,21 @@ export default async function SearchPage({
 
   return (
     <>
-      <section className="on-dark bg-navy-900 py-12">
+      <PageHero
+        title={dict.search.h1}
+        eyebrow={dict.search.h1}
+        lead={dict.search.lead}
+        image={hero.image}
+        cityBadge={formatAerialBadge(hero.city, locale)}
+        crumbs={[
+          { label: locale === "fr" ? "Accueil" : "Home", to: routes.home(locale) },
+          { label: dict.search.h1 },
+        ]}
+      />
+
+      <section className="section bg-mist-50">
         <div className="container-page max-w-3xl">
-          <Breadcrumbs items={[{ href: routes.home(locale), label: "GLOPROFAS" }, { label: dict.search.h1 }]} />
-          <Eyebrow dark>{dict.search.h1}</Eyebrow>
-          <h1 className="mt-4 text-white">{dict.search.h1}</h1>
-          <p className="lead mt-3 text-slate-300">{dict.search.lead}</p>
-          <form action={routes.search(locale)} role="search" className="mt-6 flex flex-col gap-2 sm:flex-row">
+          <form action={routes.search(locale)} role="search" className="mb-6 flex flex-col gap-2 sm:flex-row">
             <label htmlFor="q" className="sr-only">
               {dict.search.h1}
             </label>
@@ -66,17 +77,13 @@ export default async function SearchPage({
               type="search"
               defaultValue={term}
               placeholder={dict.search.placeholder}
-              className="field border-white/15 bg-white/10 text-white placeholder:text-slate-300"
+              className="field bg-white"
             />
             <button type="submit" className="btn btn-signal shrink-0">
               <Search size={17} aria-hidden="true" /> {dict.nav.search}
             </button>
           </form>
-        </div>
-      </section>
 
-      <section className="section bg-mist-50">
-        <div className="container-page max-w-3xl">
           <div className="flex flex-wrap gap-2" role="navigation" aria-label={dict.common.filters}>
             {filters.map((filter) => (
               <Link

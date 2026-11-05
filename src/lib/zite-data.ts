@@ -714,7 +714,7 @@ export const ZITE_CONTENT = {
       "slug": "business-email-compromise",
       "icon": "building-2",
       "featured": false,
-      "imageUrl": "/images/zite/img_n8pQYP_Z0n2kP4mD.jpg",
+      "imageUrl": "/images/article-business-controls.jpg",
       "title": {
         "en": "Business email compromise",
         "fr": "Compromission de messagerie d’entreprise"
@@ -779,7 +779,7 @@ export const ZITE_CONTENT = {
       "slug": "fake-websites",
       "icon": "globe",
       "featured": false,
-      "imageUrl": "/images/zite/img_BPedTDWHGQzb-FZp.jpg",
+      "imageUrl": "/images/context/home-online-shopping.jpg",
       "title": {
         "en": "Fake websites and platforms",
         "fr": "Faux sites et plateformes"
@@ -863,7 +863,7 @@ export const ZITE_CONTENT = {
       "country": "Cameroon",
       "risk": "Critical",
       "date": "2026-10-28",
-      "imageUrl": "/images/zite/img_XRXUCAiJJ46mAuVh.jpg"
+      "imageUrl": "/images/article-payment-pause.jpg"
     },
     {
       "id": "470da78a-4787-4979-9f71-057fe61d5e50",
@@ -887,7 +887,7 @@ export const ZITE_CONTENT = {
       "country": "West Africa",
       "risk": "High",
       "date": "2026-10-24",
-      "imageUrl": "/images/zite/img_RNp07pYUDwb_i1sA.jpg"
+      "imageUrl": "/images/context/person-phone-desk.jpg"
     },
     {
       "id": "881dce1a-df7b-4d32-963b-4f2ecd1e1b8b",
@@ -911,7 +911,7 @@ export const ZITE_CONTENT = {
       "country": "Central Africa",
       "risk": "Medium",
       "date": "2026-10-20",
-      "imageUrl": "/images/zite/img_2jsmyLqQWbvqkX0_.jpg"
+      "imageUrl": "/images/context/person-finance-phone.jpg"
     }
   ],
   "articles": [
@@ -957,7 +957,7 @@ export const ZITE_CONTENT = {
       },
       "author": "GLOPROFAS Editorial",
       "date": "2026-10-22",
-      "imageUrl": "/images/zite/img_RNp07pYUDwb_i1sA.jpg"
+      "imageUrl": "/images/context/urban-professional.jpg"
     },
     {
       "id": "5f261c0b-297a-4451-8118-9cbe77cf40a5",
@@ -1006,14 +1006,14 @@ export const ZITE_CONTENT = {
         "fr": "Liste de vérification avant de payer"
       },
       "description": {
-        "en": "",
-        "fr": ""
+        "en": "A practical 60-second verification checklist before sending any transfer or mobile payment.",
+        "fr": "Une liste pratique de vérification en 60 secondes avant tout virement ou paiement mobile."
       },
       "type": "Checklist",
       "language": "EN/FR",
       "fileSize": "240 KB",
       "featured": false,
-      "imageUrl": ""
+      "imageUrl": "/images/payment-counter.jpg"
     },
     {
       "id": "98ee53e8-7202-4b64-8fc0-ce4d4a465793",
@@ -1022,14 +1022,14 @@ export const ZITE_CONTENT = {
         "fr": "Signes d’hameçonnage"
       },
       "description": {
-        "en": "",
-        "fr": ""
+        "en": "Visual guide to spotting spoofed sender addresses, urgent threats and copycat login links.",
+        "fr": "Guide visuel pour repérer les expéditeurs falsifiés, les menaces urgentes et les faux liens."
       },
       "type": "Infographic",
       "language": "EN",
       "fileSize": "680 KB",
       "featured": false,
-      "imageUrl": ""
+      "imageUrl": "/images/intro-phone.jpg"
     },
     {
       "id": "a4093103-7fcf-40a8-8d48-e0c516deb8f9",
@@ -1038,14 +1038,14 @@ export const ZITE_CONTENT = {
         "fr": "Prévention de la fraude pour les PME"
       },
       "description": {
-        "en": "",
-        "fr": ""
+        "en": "Dual-approval payment controls, supplier call-back rules and mailbox protection for SMEs.",
+        "fr": "Contrôles de double validation, rappel des fournisseurs et sécurité des messageries pour PME."
       },
       "type": "PDF",
       "language": "FR",
       "fileSize": "2.1 MB",
       "featured": false,
-      "imageUrl": ""
+      "imageUrl": "/images/context/executive-phone-laptop.jpg"
     },
     {
       "id": "1f3022dd-40c0-4335-a3df-b05f89c8b52c",
@@ -1054,14 +1054,14 @@ export const ZITE_CONTENT = {
         "fr": "Sécuriser vos comptes de réseaux sociaux"
       },
       "description": {
-        "en": "",
-        "fr": ""
+        "en": "Step-by-step walkthrough on two-factor authentication, session locks and cloned profile alerts.",
+        "fr": "Tutoriel pas à pas sur la double authentification, le verrouillage de session et les profils clonés."
       },
       "type": "Video",
       "language": "EN/FR",
       "fileSize": "",
       "featured": false,
-      "imageUrl": ""
+      "imageUrl": "/images/context/remote-work-call.jpg"
     }
   ],
   "siteText": [

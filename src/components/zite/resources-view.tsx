@@ -11,6 +11,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { IconTile, L, PageHero, R, Reveal } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 import { ZITE_CONTENT, type ZiteResource } from "@/lib/zite-data";
 import type { Locale } from "@/lib/i18n";
 
@@ -38,7 +39,8 @@ export function ZiteResourcesView({ locale }: { locale: Locale }) {
         title={fr ? "Centre de ressources" : "Resource centre"}
         eyebrow={R(L.nav.resources, locale)}
         lead={R(L.res.h2, locale)}
-        image="/images/zite/img_k_g-Bue4ibKanRTu.jpg"
+        image={PAGE_AERIAL_HEROES.resourcesIndex.image}
+        cityBadge={formatAerialBadge(PAGE_AERIAL_HEROES.resourcesIndex.city, locale)}
         crumbs={[
           { label: fr ? "Accueil" : "Home", to: l() },
           { label: R(L.nav.resources, locale) },

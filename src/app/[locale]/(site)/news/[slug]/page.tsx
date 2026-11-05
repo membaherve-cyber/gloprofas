@@ -3,9 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT, type ZiteArticle } from "@/lib/zite-data";
-import { formatZiteDate, L, PageHero, R } from "@/components/zite/shared";
+import { formatZiteDate, L, PageHero, R, Reveal } from "@/components/zite/shared";
 import { CopyButton } from "@/components/ui/motion";
-
+import {
+  ARTICLE_AERIAL_HEROES,
+  ARTICLE_CONTEXT_VISUALS,
+  formatAerialBadge,
+  PAGE_AERIAL_HEROES,
+} from "@/lib/african-cities";
 import { getArticle } from "@/lib/queries";
 
 async function findArticle(locale: Locale, slugOrId: string): Promise<ZiteArticle | undefined> {
@@ -72,13 +77,19 @@ export default async function ArticlePage({
   const related = (ZITE_CONTENT.articles as unknown as ZiteArticle[])
     .filter((a) => a.id !== article.id)
     .slice(0, 2);
+  const aerialHero =
+    ARTICLE_AERIAL_HEROES[article.id] ?? PAGE_AERIAL_HEROES.newsIndex;
+  const visuals =
+    ARTICLE_CONTEXT_VISUALS[article.id] ??
+    ARTICLE_CONTEXT_VISUALS["84b3aae8-32a2-40eb-9c90-c414846fbc8a"];
 
   return (
     <>
       <PageHero
         title={title}
         eyebrow={R(article.tag, locale)}
-        image={article.imageUrl}
+        image={aerialHero.image}
+        cityBadge={formatAerialBadge(aerialHero.city, locale)}
         crumbs={[
           { label: fr ? "Accueil" : "Home", to: l() },
           { label: R(L.nav.news, locale), to: l("/news") },
@@ -95,6 +106,28 @@ export default async function ArticlePage({
             <p className="lead mt-6 font-semibold text-ink">
               {R(article.summary, locale)}
             </p>
+
+            {article.imageUrl ? (
+              <Reveal className="mt-8 overflow-hidden rounded-[22px] border border-line bg-mist shadow-e2">
+                <div className="group relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={article.imageUrl}
+                    alt={title}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent" />
+                  <span className="float-chip absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-navy-950/85 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
+                    <span className="animate-dot h-2 w-2 rounded-full bg-cyanx" />
+                    {R(article.tag, locale)}
+                  </span>
+                </div>
+                <p className="px-6 py-4 text-sm font-medium text-slatex-600">
+                  {R(visuals.leadCaption, locale)}
+                </p>
+              </Reveal>
+            ) : null}
+
             <div
               className="mt-8 space-y-5 text-[1.0625rem] text-slatex-600"
               style={{ maxWidth: "68ch" }}
@@ -105,6 +138,34 @@ export default async function ArticlePage({
                   <p key={idx}>{para}</p>
                 ))}
             </div>
+
+            {visuals.gallery.length > 0 ? (
+              <div className="mt-10 grid gap-6 sm:grid-cols-2">
+                {visuals.gallery.map((item, idx) => (
+                  <Reveal
+                    key={item.image}
+                    delay={idx * 90}
+                    className="group overflow-hidden rounded-[18px] border border-line bg-mist shadow-e1"
+                  >
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-navy-900">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={item.image}
+                        alt={R(item.tag, locale)}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <span className="absolute top-3 left-3 rounded-full bg-navy-950/80 px-3 py-1 text-xs font-bold uppercase tracking-wider text-cyanx backdrop-blur-sm">
+                        {R(item.tag, locale)}
+                      </span>
+                    </div>
+                    <p className="p-4 text-sm leading-relaxed text-slatex-600">
+                      {R(item.caption, locale)}
+                    </p>
+                  </Reveal>
+                ))}
+              </div>
+            ) : null}
           </div>
 
           <aside className="space-y-6 lg:col-span-4">

@@ -12,6 +12,11 @@ import {
   ZiteRiskBadge,
 } from "@/components/zite/shared";
 
+import {
+  ALERT_AERIAL_HEROES,
+  formatAerialBadge,
+  PAGE_AERIAL_HEROES,
+} from "@/lib/african-cities";
 import { getAlert } from "@/lib/queries";
 
 async function findAlert(locale: Locale, slugOrId: string): Promise<ZiteAlert | undefined> {
@@ -81,12 +86,15 @@ export default async function AlertDetailPage({
   const actions = R(alert.actions, locale)
     .split("\n")
     .filter(Boolean);
+  const aerialHero =
+    ALERT_AERIAL_HEROES[alert.id] ?? PAGE_AERIAL_HEROES.alertsIndex;
 
   return (
     <>
       <PageHero
         title={R(alert.title, locale)}
-        image={alert.imageUrl}
+        image={aerialHero.image}
+        cityBadge={formatAerialBadge(aerialHero.city, locale)}
         crumbs={[
           { label: fr ? "Accueil" : "Home", to: l() },
           { label: fr ? "Alertes" : "Alerts", to: l("/alerts") },
@@ -96,16 +104,31 @@ export default async function AlertDetailPage({
 
       <section className="section-y bg-mist">
         <div className="container-g grid gap-10 lg:grid-cols-12">
-          <article className="rounded-[22px] bg-white p-8 shadow-e1 lg:col-span-8">
-            <div className="flex flex-wrap items-center gap-3">
-              <ZiteRiskBadge level={alert.risk} lang={locale} />
-              <span className="text-sm text-slatex-600">
-                {R(alert.category, locale)} · {alert.country} ·{" "}
-                {formatZiteDate(alert.date, locale)}
-              </span>
-            </div>
+          <article className="overflow-hidden rounded-[22px] bg-white shadow-e1 lg:col-span-8">
+            {alert.imageUrl ? (
+              <div className="group relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={alert.imageUrl}
+                  alt={R(alert.title, locale)}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/75 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <ZiteRiskBadge level={alert.risk} lang={locale} />
+                </div>
+              </div>
+            ) : null}
+            <div className="p-8">
+              <div className="flex flex-wrap items-center gap-3">
+                <ZiteRiskBadge level={alert.risk} lang={locale} />
+                <span className="text-sm text-slatex-600">
+                  {R(alert.category, locale)} · {alert.country} ·{" "}
+                  {formatZiteDate(alert.date, locale)}
+                </span>
+              </div>
 
-            <p className="lead mt-6 text-ink">{R(alert.summary, locale)}</p>
+              <p className="lead mt-6 text-ink">{R(alert.summary, locale)}</p>
 
             <p className="mt-8 rounded-[14px] bg-mist p-4 text-sm text-slatex-600">
               {fr
@@ -113,15 +136,16 @@ export default async function AlertDetailPage({
                 : "This alert describes reported suspicious activity. It does not accuse any identified person or business."}
             </p>
 
-            {alert.categorySlug ? (
-              <div className="mt-8">
-                <Btn href={l(`/scams/${alert.categorySlug}`)} variant="outline">
-                  {fr
-                    ? "Comprendre ce type d’arnaque"
-                    : "Understand this scam type"}
-                </Btn>
-              </div>
-            ) : null}
+              {alert.categorySlug ? (
+                <div className="mt-8">
+                  <Btn href={l(`/scams/${alert.categorySlug}`)} variant="outline">
+                    {fr
+                      ? "Comprendre ce type d’arnaque"
+                      : "Understand this scam type"}
+                  </Btn>
+                </div>
+              ) : null}
+            </div>
           </article>
 
           <aside className="lg:col-span-4">

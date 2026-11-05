@@ -641,6 +641,20 @@
   }
 }
 
+@keyframes hero-zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.07);
+  }
+}
+
+.hero-aerial-zoom {
+  animation: hero-zoom 22s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
 @keyframes pulse-dot {
   0%,
   100% {

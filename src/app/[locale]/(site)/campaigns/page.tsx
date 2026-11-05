@@ -3,10 +3,11 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowRight, CalendarClock, CheckCircle2, GraduationCap, Handshake } from "lucide-react";
 import { getDictionary, isLocale, routes, type Locale } from "@/lib/i18n";
-import { Breadcrumbs, ButtonLink, CheckList, Eyebrow, SectionHeading } from "@/components/ui";
+import { ButtonLink, CheckList, SectionHeading } from "@/components/ui";
 import { Media } from "@/components/ui/media";
 import { Reveal } from "@/components/ui/motion";
-import { ASSETS } from "@/lib/assets";
+import { PageHero } from "@/components/zite/shared";
+import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -26,55 +27,34 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+const AUDIENCE_IMAGES = [
+  "/images/campaign-school.jpg",
+  "/images/campaign-community.jpg",
+  "/images/campaign-youth.jpg",
+  "/images/campaign-corporate.jpg",
+] as const;
+
 export default async function CampaignsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params;
   if (!isLocale(raw)) notFound();
   const locale: Locale = raw;
   const dict = getDictionary(locale);
-
+  const hero = PAGE_AERIAL_HEROES.campaigns;
 
   return (
     <>
-      <section className="on-dark bg-navy-900 py-14 sm:py-16">
-        <div className="container-page grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div>
-            <Breadcrumbs
-              items={[
-                { href: routes.home(locale), label: "GLOPROFAS" },
-                { href: routes.about(locale), label: dict.nav.about },
-                { label: dict.campaigns.eyebrow },
-              ]}
-            />
-            <Eyebrow dark>{dict.campaigns.eyebrow}</Eyebrow>
-            <h1 className="mt-5 max-w-[24ch] text-white">{dict.campaigns.h1}</h1>
-            <p className="lead mt-5 max-w-2xl text-slate-300">{dict.campaigns.lead}</p>
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <ButtonLink href={`${routes.contact(locale)}`} variant="signal" size="sm" arrow>
-                {dict.campaigns.cta}
-              </ButtonLink>
-              <ButtonLink href={routes.scams(locale)} variant="outline" size="sm">
-                {dict.campaigns.ctaSecondary}
-              </ButtonLink>
-            </div>
-            <ul className="mt-8 flex flex-wrap gap-2">
-              {dict.home.campaigns.audiences.map((audience) => (
-                <li key={audience} className="chip on-dark">
-                  {audience}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <Media
-            src={ASSETS.campaignsHero}
-            alt={dict.campaigns.imageAlts.school}
-            width={1200}
-            height={850}
-            priority
-            sizes="(max-width: 1024px) 100vw, 45vw"
-            className="aspect-[4/3] w-full"
-          />
-        </div>
-      </section>
+      <PageHero
+        title={dict.campaigns.h1}
+        eyebrow={dict.campaigns.eyebrow}
+        lead={dict.campaigns.lead}
+        image={hero.image}
+        cityBadge={formatAerialBadge(hero.city, locale)}
+        crumbs={[
+          { label: locale === "fr" ? "Accueil" : "Home", to: routes.home(locale) },
+          { label: dict.nav.about, to: routes.about(locale) },
+          { label: dict.campaigns.eyebrow },
+        ]}
+      />
 
       <section className="section bg-white">
         <div className="container-page grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
@@ -119,30 +99,30 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
 
       <section className="section bg-mist-50">
         <div className="container-page">
-          <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-center">
-            <Reveal>
-              <SectionHeading
-                eyebrow={dict.home.campaigns.audiencesLabel}
-                title={dict.campaigns.audiencesTitle}
-                lead={dict.campaigns.inviteBody}
-              />
-            </Reveal>
-            <Reveal delay={80}>
-              <Media
-                src={ASSETS.campaignsAudience}
-                alt={dict.campaigns.imageAlts.youth}
-                width={900}
-                height={675}
-                sizes="(max-width: 1024px) 100vw, 35vw"
-                className="aspect-[4/3] w-full"
-              />
-            </Reveal>
-          </div>
+          <Reveal>
+            <SectionHeading
+              eyebrow={dict.home.campaigns.audiencesLabel}
+              title={dict.campaigns.audiencesTitle}
+              lead={dict.campaigns.inviteBody}
+            />
+          </Reveal>
+
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {dict.campaigns.audiences.map((audience, index) => (
               <Reveal key={audience.title} delay={(index % 2) * 70}>
-                <article className="card flex h-full flex-col overflow-hidden">
-                  <div className="flex flex-1 flex-col gap-2 p-5">
+                <article className="card group flex h-full flex-col overflow-hidden">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-900">
+                    <Media
+                      src={AUDIENCE_IMAGES[index] ?? "/images/campaign-school.jpg"}
+                      alt={audience.title}
+                      width={900}
+                      height={600}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      rounded="0"
+                      className="h-full w-full transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col gap-2 p-6">
                     <div className="flex items-center gap-2">
                       <span className="inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-blue-600/10 text-blue-600">
                         <GraduationCap size={17} aria-hidden="true" />
