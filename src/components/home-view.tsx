@@ -69,9 +69,7 @@ export function HomeView({
           <p className="lead measure" style={{ color: "#d5deee" }}>{t.lead}</p>
           <div className="hero-actions">
             <Button href={pathFor(locale, "report")} variant="signal">{t.reportIncidentCta}</Button>
-            <Button variant="outline" onClick={() => window.dispatchEvent(new Event("glp-open-assistant"))}>
-              {t.verifyCta}
-            </Button>
+            <OpenAssistant label={t.verifyCta} />
           </div>
         </div>
         <div className="chips" aria-label={t.marqueeLabel}>

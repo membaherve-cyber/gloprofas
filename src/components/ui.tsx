@@ -37,16 +37,12 @@ export function Button({
   href,
   children,
   variant = "primary",
-  type = "button",
   className,
-  onClick,
 }: {
-  href?: string;
+  href: string;
   children: ReactNode;
   variant?: "primary" | "signal" | "outline" | "outline-dark" | "ghost" | "text";
-  type?: "button" | "submit";
   className?: string;
-  onClick?: () => void;
 }) {
   const classNames = cn("btn", variant === "primary" ? "" : `btn-${variant}`, className);
   const inner = (
@@ -58,8 +54,7 @@ export function Button({
       {variant !== "text" ? <ArrowRight className="arrow" size={16} aria-hidden="true" /> : null}
     </>
   );
-  if (href) return <Link className={classNames} href={href}>{inner}</Link>;
-  return <button className={classNames} type={type} onClick={onClick}>{inner}</button>;
+  return <Link className={classNames} href={href}>{inner}</Link>;
 }
 
 export function SectionHeading({
