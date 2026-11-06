@@ -8,16 +8,8 @@ import {
   User,
 } from "lucide-react";
 import { isLocale, type Locale } from "@/lib/i18n";
-import {
-  Btn,
-  IconTile,
-  PageHero,
-  Reveal,
-} from "@/components/zite/shared";
-import { L } from "@/lib/zite-copy";
-
-import { R } from "@/lib/zite-copy";
-
+import { Btn, IconTile, PageHero, Reveal } from "@/components/zite/shared";
+import { L, R } from "@/components/zite/copy";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({
@@ -160,7 +152,7 @@ export default async function ServicesPage({
 
       <section className="bg-white pt-16">
         <div className="container-g">
-          <div className="flex flex-col gap-4 rounded-[22px] border border-risk-low/40 bg-risk-low/5 p-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-4 rounded-none border border-risk-low/40 bg-risk-low/5 p-6 md:flex-row md:items-center md:justify-between">
             <p className="text-ink">
               <strong>{R(L.services.freeTag, locale)} :</strong>{" "}
               {fr
@@ -175,28 +167,28 @@ export default async function ServicesPage({
       </section>
 
       <section className="section-y bg-white">
-        <div className="container-g grid gap-6 md:grid-cols-2">
+        <div className="container-g grid gap-px border border-line bg-line md:grid-cols-2">
           {groups.map((g, idx) => (
             <Reveal
               key={g.t}
               delay={(idx % 2) * 60}
-              className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-line bg-mist"
+              className="group flex h-full flex-col bg-white"
             >
-              <div className="relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
+              <div className="ed-media ed-media-hover aspect-[2/1]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={groupImages[idx]}
                   alt={g.t}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent" />
+                
               </div>
-              <div className="flex flex-1 flex-col p-8">
+              <div className="flex flex-1 flex-col p-7 sm:p-8">
                 <IconTile>
                   <g.Icon className="h-6 w-6" strokeWidth={1.5} />
                 </IconTile>
-                <h2 className="h3 mt-5 text-ink">{g.t}</h2>
+                <h2 className="h3 mt-4 max-w-[24ch] text-ink">{g.t}</h2>
                 <ul className="mt-5 flex-1 space-y-2">
                   {g.items.map((item) => (
                     <li key={item} className="flex gap-3 text-slatex-600">

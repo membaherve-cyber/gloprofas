@@ -123,13 +123,13 @@ export function ReportWizard({
   if (confirmation) {
     return (
       <div className="mx-auto max-w-2xl">
-        <div className="rounded-[var(--radius-lg)] border border-risk-low/40 bg-risk-low/5 p-6 sm:p-8">
+        <div className="rounded-none border border-risk-low/40 bg-risk-low/5 p-6 sm:p-8">
           <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-risk-low/15 text-risk-low">
             <Check size={24} aria-hidden="true" />
           </span>
           <h2 className="mt-5 text-[1.75rem]">{dict.report.confirm.title}</h2>
           <p className="mt-2 text-[0.95rem] text-slate-600">{dict.report.confirm.body}</p>
-          <div className="mt-5 flex flex-wrap items-center gap-3 rounded-[var(--radius-md)] border border-line-200 bg-white p-4">
+          <div className="mt-5 flex flex-wrap items-center gap-3 rounded-sm border border-line-200 bg-white p-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">
                 {dict.report.confirm.reference}
@@ -143,11 +143,11 @@ export function ReportWizard({
         </div>
 
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-[var(--radius-md)] border border-line-200 bg-white p-5">
+          <div className="rounded-sm border border-line-200 bg-white p-5">
             <h3 className="text-[1.05rem]">{dict.report.confirm.nextTitle}</h3>
             <p className="mt-2 text-[0.88rem] leading-relaxed text-slate-600">{dict.report.confirm.nextBody}</p>
           </div>
-          <div className="rounded-[var(--radius-md)] border border-signal-400/50 bg-signal-400/10 p-5">
+          <div className="rounded-sm border border-signal-400/50 bg-signal-400/10 p-5">
             <h3 className="flex items-center gap-2 text-[1.05rem]">
               <ShieldAlert size={18} className="text-risk-high" aria-hidden="true" />
               {dict.report.confirm.safetyTitle}
@@ -197,7 +197,7 @@ export function ReportWizard({
         </ol>
       </div>
 
-      <form ref={formRef} onSubmit={submit} className="rounded-[var(--radius-lg)] border border-line-200 bg-white p-5 sm:p-7">
+      <form ref={formRef} onSubmit={submit} className="rounded-none border border-line-200 bg-white p-5 sm:p-7">
         <section hidden={step !== 0} aria-label={stepNames[0]}>
           <fieldset>
             <legend className="label">
@@ -211,7 +211,7 @@ export function ReportWizard({
                 return (
                   <label
                     key={slug}
-                    className={`flex cursor-pointer items-center gap-3 rounded-[var(--radius-md)] border p-3 text-[0.88rem] font-medium transition-colors ${
+                    className={`flex cursor-pointer items-center gap-3 rounded-sm border p-3 text-[0.88rem] font-medium transition-colors ${
                       active ? "border-blue-600 bg-blue-600/5 text-ink-900" : "border-line-200 text-slate-600 hover:border-blue-600/50"
                     }`}
                   >
@@ -231,7 +231,7 @@ export function ReportWizard({
                 );
               })}
               <label
-                className={`flex cursor-pointer items-center gap-3 rounded-[var(--radius-md)] border p-3 text-[0.88rem] font-medium transition-colors ${
+                className={`flex cursor-pointer items-center gap-3 rounded-sm border p-3 text-[0.88rem] font-medium transition-colors ${
                   selectedCategory === "not-sure" ? "border-blue-600 bg-blue-600/5" : "border-line-200 text-slate-600"
                 }`}
               >
@@ -357,7 +357,7 @@ export function ReportWizard({
           <label htmlFor="evidence" className="label">
             {dict.report.labels.evidence}
           </label>
-          <div className="rounded-[var(--radius-md)] border-2 border-dashed border-line-200 bg-mist-50 p-6 text-center">
+          <div className="rounded-sm border-2 border-dashed border-line-200 bg-mist-50 p-6 text-center">
             <Paperclip size={22} className="mx-auto text-blue-600" aria-hidden="true" />
             <input
               id="evidence"
@@ -372,7 +372,7 @@ export function ReportWizard({
               {dict.report.labels.evidenceHelp}
             </p>
           </div>
-          <p className="mt-4 rounded-[var(--radius-md)] border border-line-200 p-4 text-[0.82rem] leading-relaxed text-slate-600">
+          <p className="mt-4 rounded-sm border border-line-200 p-4 text-[0.82rem] leading-relaxed text-slate-600">
             {locale === "fr"
               ? "Vos pièces sont stockées dans un espace privé, hors du site public. Elles ne sont accessibles qu’au personnel autorisé et chaque accès est journalisé."
               : "Evidence is stored in a private area outside the public website. It is accessible only to authorised staff and every access is logged."}
@@ -415,7 +415,7 @@ export function ReportWizard({
               ? "Vérifiez les informations saisies. Vous pouvez revenir en arrière pour modifier n’importe quelle étape avant l’envoi."
               : "Check the information you entered. You can go back and edit any step before submitting."}
           </p>
-          <ul className="mt-4 space-y-2 rounded-[var(--radius-md)] border border-line-200 bg-mist-50 p-4 text-[0.85rem] text-slate-600">
+          <ul className="mt-4 space-y-2 rounded-sm border border-line-200 bg-mist-50 p-4 text-[0.85rem] text-slate-600">
             <li className="flex justify-between gap-4">
               <span>{dict.report.labels.category}</span>
               <span className="font-semibold text-ink-900">
@@ -439,7 +439,7 @@ export function ReportWizard({
             <input id="consent" name="consent" type="checkbox" required className="mt-1 h-5 w-5" />
             <span>{dict.report.labels.consent}</span>
           </label>
-          <p className="mt-3 rounded-[var(--radius-md)] border border-signal-400/50 bg-signal-400/10 p-3 text-[0.8rem] font-medium text-ink-900">
+          <p className="mt-3 rounded-sm border border-signal-400/50 bg-signal-400/10 p-3 text-[0.8rem] font-medium text-ink-900">
             {dict.common.notPolice}
           </p>
         </section>

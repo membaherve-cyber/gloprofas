@@ -37,7 +37,7 @@ export default async function StyleguidePage({ params }: { params: Promise<{ loc
               ["mist-50", "#F4F7FB"],
               ["risk-critical", "#D92D2D"],
             ].map(([name, hex]) => (
-              <div key={name} className="rounded-[var(--radius-md)] border border-line-200 p-3">
+              <div key={name} className="rounded-sm border border-line-200 p-3">
                 <div className="h-14 w-full rounded-[8px]" style={{ background: hex }} />
                 <p className="mt-2 text-[0.78rem] font-semibold">{name}</p>
                 <p className="text-xs text-slate-600">{hex}</p>
@@ -70,7 +70,7 @@ export default async function StyleguidePage({ params }: { params: Promise<{ loc
           </div>
         </section>
 
-        <section className="rounded-[var(--radius-lg)] bg-navy-900 p-6">
+        <section className="rounded-none bg-navy-900 p-6">
           <SectionHeading eyebrow="Eyebrow" title="Section heading on dark" lead={dict.home.scams.lead} dark />
           <div className="mt-5 flex gap-2">
             <RiskBadge level="low" dict={dict} />
@@ -101,7 +101,7 @@ export default async function StyleguidePage({ params }: { params: Promise<{ loc
         <section>
           <h2>{locale === "fr" ? "Listes et états" : "Lists and states"}</h2>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-[var(--radius-md)] border border-line-200 p-5">
+            <div className="rounded-sm border border-line-200 p-5">
               <CheckList items={["Consistent icon family", "Sentence case headings", "44 px touch targets"]} />
             </div>
             <EmptyState message={dict.common.noResults} />

@@ -140,7 +140,7 @@ export default async function AdminDashboardPage({
   return (
     <div className="space-y-8">
       {/* Top Banner with Return to Website Frontpage button */}
-      <section className="rounded-[var(--radius-lg)] border border-navy-900/15 bg-navy-900 p-6 text-white shadow-[var(--shadow-e2)]">
+      <section className="rounded-none border border-navy-900/15 bg-navy-900 p-6 text-white shadow-[var(--shadow-none)]">
         <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
           <div>
             <p className="text-[0.75rem] font-bold uppercase tracking-[0.14em] text-cyan-400">
@@ -187,7 +187,7 @@ export default async function AdminDashboardPage({
             <Link
               key={card.label}
               href={card.href}
-              className="group rounded-[var(--radius-md)] border border-line-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-blue-600/50 hover:shadow-[var(--shadow-e1)]"
+              className="group rounded-sm border border-line-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-blue-600/50 hover:shadow-[var(--shadow-e1)]"
             >
               <div className="flex items-start justify-between gap-2">
                 <dt className="text-xs font-bold uppercase tracking-[0.08em] text-slate-600">
@@ -209,7 +209,7 @@ export default async function AdminDashboardPage({
       </section>
 
       {/* Scam Reports Table with Inline Status Control */}
-      <section className="overflow-hidden rounded-[var(--radius-md)] border border-line-200 bg-white">
+      <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line-200 px-5 py-4">
           <div>
             <h2 className="flex items-center gap-2 text-[1.1rem] font-semibold text-ink-900">
@@ -304,7 +304,7 @@ export default async function AdminDashboardPage({
 
       {/* Published Alerts & Published Articles Overview */}
       <div className="grid gap-6 lg:grid-cols-2">
-        <section className="overflow-hidden rounded-[var(--radius-md)] border border-line-200 bg-white">
+        <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
           <div className="flex items-center justify-between border-b border-line-200 px-5 py-3.5">
             <h2 className="flex items-center gap-2 text-[1rem] font-semibold text-ink-900">
               <Bell size={16} className="text-risk-high" aria-hidden="true" />
@@ -336,7 +336,7 @@ export default async function AdminDashboardPage({
           </div>
         </section>
 
-        <section className="overflow-hidden rounded-[var(--radius-md)] border border-line-200 bg-white">
+        <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
           <div className="flex items-center justify-between border-b border-line-200 px-5 py-3.5">
             <h2 className="flex items-center gap-2 text-[1rem] font-semibold text-ink-900">
               <FileText size={16} className="text-blue-600" aria-hidden="true" />
@@ -369,7 +369,7 @@ export default async function AdminDashboardPage({
 
       {/* Contact Messages & Service Enquiries */}
       <div className="grid gap-6 lg:grid-cols-2">
-        <section className="overflow-hidden rounded-[var(--radius-md)] border border-line-200 bg-white">
+        <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
           <div className="flex items-center justify-between border-b border-line-200 px-5 py-3.5">
             <h2 className="flex items-center gap-2 text-[1rem] font-semibold text-ink-900">
               <Inbox size={16} className="text-blue-600" aria-hidden="true" />
@@ -399,7 +399,7 @@ export default async function AdminDashboardPage({
           </div>
         </section>
 
-        <section className="overflow-hidden rounded-[var(--radius-md)] border border-line-200 bg-white">
+        <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
           <div className="flex items-center justify-between border-b border-line-200 px-5 py-3.5">
             <h2 className="flex items-center gap-2 text-[1rem] font-semibold text-ink-900">
               <Briefcase size={16} className="text-blue-600" aria-hidden="true" />
@@ -448,7 +448,7 @@ export default async function AdminDashboardPage({
 
           <GitHubPushPanel locale={locale} />
 
-          <div className="overflow-hidden rounded-[var(--radius-md)] border border-line-200 bg-white">
+          <div className="overflow-hidden rounded-sm border border-line-200 bg-white">
             <div className="border-b border-line-200 px-5 py-3.5">
               <h2 className="flex items-center gap-2 text-[1rem] font-semibold text-ink-900">
                 <Users size={16} className="text-blue-600" aria-hidden="true" />
@@ -487,7 +487,7 @@ export default async function AdminDashboardPage({
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-[var(--radius-md)] border border-line-200 bg-white">
+        <div className="overflow-hidden rounded-sm border border-line-200 bg-white">
           <div className="border-b border-line-200 px-5 py-3.5">
             <h2 className="flex items-center gap-2 text-[1rem] font-semibold text-ink-900">
               <Activity size={16} className="text-blue-600" aria-hidden="true" />
@@ -518,7 +518,7 @@ export default async function AdminDashboardPage({
       </section>
 
       {/* Bottom Return to Frontpage bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-md)] border border-line-200 bg-white p-5">
+      <div className="flex flex-wrap items-center justify-between gap-4 rounded-sm border border-line-200 bg-white p-5">
         <div className="flex items-center gap-3 text-[0.88rem] text-slate-600">
           <Globe size={18} className="text-blue-600" aria-hidden="true" />
           <span>

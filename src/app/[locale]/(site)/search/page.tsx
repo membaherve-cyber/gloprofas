@@ -5,11 +5,7 @@ import { Search } from "lucide-react";
 import { getDictionary, isLocale, pick, routes, type Locale } from "@/lib/i18n";
 import { searchContent } from "@/lib/queries";
 import { EmptyState } from "@/components/ui";
-import {
-  PageHero,
-} from "@/components/zite/shared";
-
-
+import { PageHero } from "@/components/zite/shared";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {

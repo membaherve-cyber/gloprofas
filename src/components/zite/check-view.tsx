@@ -9,12 +9,7 @@ import {
   ShieldAlert,
   ShieldQuestion,
 } from "lucide-react";
-import {
-  Btn,
-  PageHero,
-} from "@/components/zite/shared";
-
-
+import { Btn, PageHero } from "@/components/zite/shared";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 import type { Locale } from "@/lib/i18n";
 
@@ -132,13 +127,13 @@ export function ZiteCheckView({ locale }: { locale: Locale }) {
                   ? "Ex. +237 6XX XX XX XX, www.exemple-site.com ou le texte du message"
                   : "e.g. +237 6XX XX XX XX, www.example-site.com or the text of the message"
               }
-              className="w-full rounded-[14px] border border-line bg-white p-4 text-ink focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20"
+              className="w-full rounded-sm border border-line bg-white p-4 text-ink focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20"
             />
             {error ? <p className="mt-2 text-sm text-red-600">{error}</p> : null}
             <button
               type="submit"
               disabled={loading}
-              className="mt-4 inline-flex h-[52px] items-center gap-2 rounded-full bg-brand-600 px-7 font-semibold text-white disabled:opacity-60"
+              className="mt-4 inline-flex h-[52px] items-center gap-2 rounded-[2px] bg-brand-600 px-7 font-semibold text-white disabled:opacity-60"
             >
               {loading ? (
                 <LoaderCircle className="h-4 w-4 animate-spin" />
@@ -161,7 +156,7 @@ export function ZiteCheckView({ locale }: { locale: Locale }) {
           {result ? (
             <div
               role="status"
-              className={`mt-8 rounded-[22px] border-2 p-6 sm:p-8 ${
+              className={`mt-8 rounded-none border-2 p-6 sm:p-8 ${
                 TONES[result.risk]
               }`}
             >

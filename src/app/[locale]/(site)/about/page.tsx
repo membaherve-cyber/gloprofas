@@ -13,16 +13,8 @@ import {
   Target,
 } from "lucide-react";
 import { isLocale, type Locale } from "@/lib/i18n";
-import {
-  IconTile,
-  PageHero,
-  Reveal,
-  SectionHeading,
-} from "@/components/zite/shared";
-import { L } from "@/lib/zite-copy";
-
-import { R } from "@/lib/zite-copy";
-
+import { IconTile, PageHero, Reveal, SectionHeading } from "@/components/zite/shared";
+import { L, R } from "@/components/zite/copy";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({
@@ -118,7 +110,7 @@ export default async function AboutPage({
             src="/images/zite/img_rV5DNdwu0nwwIUqR.jpg"
             alt=""
             loading="lazy"
-            className="aspect-square w-full rounded-[22px] object-cover shadow-e3"
+            className="aspect-square w-full rounded-none object-cover shadow-none"
           />
           <div className="space-y-10">
             <Reveal>
@@ -165,18 +157,18 @@ export default async function AboutPage({
                 : "GLOPROFAS leads anti-scam campaigns, seminars and forums in various organisations — including schools, churches, youth centres and companies — to sensitise the public on the threats, risks and consequences associated with all manners of fraud, with a particular focus on modern-day scamming schemes."}
             </p>
           </Reveal>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {campaigns.map(([src, label], idx) => (
               <Reveal key={label} delay={idx * 60}>
-                <figure className="overflow-hidden rounded-[18px] bg-white shadow-e2">
+                <figure className="bg-white">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={src}
                     alt={label}
                     loading="lazy"
-                    className="aspect-[4/3] w-full object-cover"
+                    className="aspect-[4/5] w-full object-cover"
                   />
-                  <figcaption className="p-4 font-[family-name:var(--font-heading)] font-semibold text-ink">
+                  <figcaption className="ed-caption font-[family-name:var(--font-heading)] font-medium text-ink">
                     {label}
                   </figcaption>
                 </figure>
@@ -200,7 +192,7 @@ export default async function AboutPage({
           <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {objectives.map((item, idx) => (
               <Reveal key={idx} delay={(idx % 3) * 60}>
-                <li className="dark-surface flex h-full gap-3 rounded-[14px] bg-navy-800 p-5 text-white">
+                <li className="dark-surface flex h-full gap-3 rounded-sm bg-navy-800 p-5 text-white">
                   <CheckCircle2 className="h-5 w-5 shrink-0 text-cyanx" />
                   {item}
                 </li>
@@ -223,7 +215,7 @@ export default async function AboutPage({
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {approach.map(([Icon, label], idx) => (
               <Reveal key={label} delay={(idx % 4) * 60}>
-                <div className="flex h-full items-center gap-4 rounded-[14px] border border-line bg-white p-5">
+                <div className="flex h-full items-center gap-4 rounded-sm border border-line bg-white p-5">
                   <IconTile>
                     <Icon className="h-6 w-6" strokeWidth={1.5} />
                   </IconTile>
@@ -239,7 +231,7 @@ export default async function AboutPage({
 
       <section className="section-y bg-white">
         <div className="container-g grid gap-10 lg:grid-cols-2">
-          <Reveal className="rounded-[22px] bg-mist p-8">
+          <Reveal className="rounded-none bg-mist p-8">
             <Compass className="h-8 w-8 text-brand-600" strokeWidth={1.5} />
             <h2 className="h3 mt-4 text-ink">
               {fr ? "Zone géographique" : "Geographic focus"}
@@ -251,7 +243,7 @@ export default async function AboutPage({
             </p>
           </Reveal>
 
-          <Reveal className="rounded-[22px] bg-mist p-8">
+          <Reveal className="rounded-none bg-mist p-8">
             <Scale className="h-8 w-8 text-brand-600" strokeWidth={1.5} />
             <h2 className="h3 mt-4 text-ink">
               {fr ? "Gouvernance et transparence" : "Governance and transparency"}

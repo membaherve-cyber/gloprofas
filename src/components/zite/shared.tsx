@@ -11,10 +11,10 @@ import {
   OctagonAlert,
   Pause,
   Play,
+  ShieldQuestion,
   TriangleAlert,
   type LucideIcon,
 } from "lucide-react";
-import { L, R } from "@/lib/zite-copy";
 import {
   ALERT_AERIAL_HEROES,
   ARTICLE_AERIAL_HEROES,
@@ -22,6 +22,7 @@ import {
   SCAM_CATEGORY_AERIAL_HEROES,
 } from "@/lib/african-cities";
 import type { Locale } from "@/lib/i18n";
+import { L, R, getCategoryIcon } from "@/components/zite/copy";
 
 const IMAGE_TO_VIDEO_MAP: Record<string, { video: string; coords?: string }> = {};
 for (const group of [
@@ -100,6 +101,7 @@ export function Btn({
   href,
   children,
   variant = "primary",
+  size = "md",
   className = "",
   arrow = true,
   onClick,
@@ -108,12 +110,17 @@ export function Btn({
   href?: string;
   children: ReactNode;
   variant?: keyof typeof btnVariants;
+  size?: "md" | "sm";
   className?: string;
   arrow?: boolean;
   onClick?: () => void;
   type?: "button" | "submit";
 }) {
-  const cls = `group inline-flex h-[52px] items-center justify-center gap-2 rounded-full px-7 text-[0.9375rem] font-semibold leading-[1.2] transition-colors duration-150 whitespace-nowrap disabled:opacity-60 ${btnVariants[variant]} ${className}`;
+  const dims =
+    size === "sm"
+      ? "h-10 px-5 text-[0.8125rem]"
+      : "h-[50px] px-7 text-[0.9375rem]";
+  const cls = `group inline-flex items-center justify-center gap-2 rounded-[2px] font-semibold tracking-[-0.005em] transition-colors duration-200 whitespace-nowrap disabled:opacity-60 ${dims} ${btnVariants[variant]} ${className}`;
   const inner = (
     <>
       <span className="text-roll">
@@ -122,8 +129,8 @@ export function Btn({
       </span>
       {arrow ? (
         <ArrowRight
-          className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
-          strokeWidth={1.75}
+          className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+          strokeWidth={1.5}
         />
       ) : null}
     </>
@@ -164,24 +171,21 @@ export function SectionHeading({
   center?: boolean;
 }) {
   return (
-    <Reveal className={`max-w-3xl ${center ? "mx-auto text-center" : ""}`}>
-      <p
-        className={`eyebrow flex items-center gap-3 ${center ? "justify-center" : ""} ${
-          dark ? "text-cyanx" : "text-brand-600"
-        }`}
+    <Reveal className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
+      <div
+        className={`mb-5 flex items-center gap-3 border-b pb-2.5 ${
+          dark ? "border-white/15" : "border-line"
+        } ${center ? "justify-center" : ""}`}
       >
-        <span className={`h-px w-8 ${dark ? "bg-cyanx" : "bg-brand-600"}`} />
-        {eyebrow}
-      </p>
-      <h2 className={`h2 mt-4 ${dark ? "text-white" : "text-ink"}`}>{title}</h2>
+        <span
+          aria-hidden="true"
+          className={`h-2.5 w-2.5 ${dark ? "bg-cyanx" : "bg-brand-600"}`}
+        />
+        <span className="ed-label">{eyebrow}</span>
+      </div>
+      <h2 className={`h2 ${dark ? "text-white" : "text-ink"}`}>{title}</h2>
       {lead ? (
-        <p
-          className={`lead mt-5 ${dark ? "text-slatex-300" : "text-slatex-600"} ${
-            center ? "mx-auto" : ""
-          }`}
-        >
-          {lead}
-        </p>
+        <p className={`ed-deck mt-5 ${center ? "mx-auto" : ""}`}>{lead}</p>
       ) : null}
     </Reveal>
   );
@@ -238,15 +242,12 @@ export function PageHero({
   }, [isPlaying, reducedMotion, videoFailed, videoSrc]);
 
   return (
-    <section className="on-dark relative isolate flex min-h-[540px] items-center overflow-hidden border-b border-white/10 bg-navy-950 pt-[148px] pb-16 sm:min-h-[580px] lg:min-h-[640px] lg:pt-[188px] lg:pb-24">
-      {/* High-resolution poster is also the LCP and reduced-motion fallback */}
+    <section className="on-dark relative isolate overflow-hidden border-b border-white/10 bg-navy-950 pt-[136px] pb-14 lg:pt-[176px] lg:pb-20">
+      {/* Fallback / Poster image always rendered beneath video */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={posterSrc}
         alt=""
-        loading="eager"
-        fetchPriority="high"
-        decoding="async"
         className="hero-aerial-zoom absolute inset-0 -z-30 h-full w-full object-cover object-center"
       />
 
@@ -270,39 +271,31 @@ export function PageHero({
         </video>
       ) : null}
 
-      {/* Editorial Multi-Stop Gradient + Architectural Grid Overlay */}
+      {/* Cinematic grade: single directional scrim for legibility */}
       <div
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(102deg, rgba(5, 11, 26, 0.93) 0%, rgba(10, 22, 49, 0.78) 54%, rgba(5, 11, 26, 0.52) 100%), linear-gradient(180deg, rgba(5, 11, 26, 0.55) 0%, transparent 35%, rgba(5, 11, 26, 0.85) 100%)",
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 opacity-25"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-          maskImage: "linear-gradient(90deg, #000 15%, transparent 80%)",
+            "linear-gradient(96deg, rgba(4,9,20,0.94) 0%, rgba(6,14,32,0.82) 46%, rgba(6,14,32,0.44) 100%), linear-gradient(180deg, rgba(4,9,20,0.62) 0%, transparent 30%, rgba(4,9,20,0.72) 100%)",
         }}
       />
 
       <div className="container-g relative">
-        {/* Top Editorial Telemetry & Breadcrumb Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/12 pb-4">
+        {/* Editorial masthead: breadcrumb rule + provenance */}
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-white/15 pb-3.5">
           <nav aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-slatex-300">
+            <ol className="flex flex-wrap items-center gap-2 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-white/55">
               {crumbs.map((c, idx) => (
-                <li key={`${c.label}-${idx}`} className="flex items-center gap-1.5">
-                  {idx > 0 ? <ChevronRight className="h-3.5 w-3.5 text-white/40" /> : null}
+                <li key={`${c.label}-${idx}`} className="flex items-center gap-2">
+                  {idx > 0 ? (
+                    <span aria-hidden="true" className="text-white/25">/</span>
+                  ) : null}
                   {c.to ? (
-                    <Link href={c.to} className="transition-colors hover:text-white">
+                    <Link href={c.to} className="ed-link transition-colors hover:text-white">
                       {c.label}
                     </Link>
                   ) : (
-                    <span aria-current="page" className="text-cyanx">
+                    <span aria-current="page" className="text-white">
                       {c.label}
                     </span>
                   )}
@@ -311,14 +304,10 @@ export function PageHero({
             </ol>
           </nav>
 
-          <div className="flex flex-wrap items-center gap-2.5">
+          <div className="flex items-center gap-4">
             {cityBadge ? (
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-navy-950/85 px-3.5 py-1 text-xs font-semibold tracking-wide text-slatex-300">
-                <span className="animate-dot h-1.5 w-1.5 rounded-full bg-cyanx" />
-                <span>{cityBadge}</span>
-                <span className="hidden border-l border-white/15 pl-2 font-mono text-xs text-white/60 sm:inline">
-                  {resolvedCoords}
-                </span>
+              <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/50">
+                {cityBadge}
               </span>
             ) : null}
             {!reducedMotion && !videoFailed ? (
@@ -326,13 +315,13 @@ export function PageHero({
                 type="button"
                 onClick={() => setIsPlaying((p) => !p)}
                 aria-pressed={!isPlaying}
-                aria-label={isPlaying ? "Pause aerial video" : "Play aerial video"}
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-navy-950/85 text-white/85 transition hover:border-cyanx hover:text-cyanx"
+                aria-label={isPlaying ? "Pause background footage" : "Play background footage"}
+                className="inline-flex h-7 w-7 items-center justify-center border border-white/25 text-white/70 transition-colors hover:border-white hover:text-white"
               >
                 {isPlaying ? (
-                  <Pause className="h-3 w-3" aria-hidden="true" />
+                  <Pause className="h-3 w-3" strokeWidth={1.5} aria-hidden="true" />
                 ) : (
-                  <Play className="h-3 w-3" aria-hidden="true" />
+                  <Play className="h-3 w-3" strokeWidth={1.5} aria-hidden="true" />
                 )}
               </button>
             ) : null}
@@ -340,22 +329,19 @@ export function PageHero({
         </div>
 
         {eyebrow ? (
-          <p className="eyebrow mt-8 flex items-center gap-3 text-cyanx">
-            <span className="h-px w-8 bg-cyanx" />
-            {eyebrow}
-          </p>
+          <p className="ed-label mt-9 text-cyanx">{eyebrow}</p>
         ) : null}
         <Reveal>
           <h1
-            className="h1 mt-4 max-w-4xl text-white"
-            style={{ fontSize: "clamp(2.125rem, 1.35rem + 2.8vw, 3.85rem)" }}
+            className="h1 mt-3.5 max-w-[20ch] text-white"
+            style={{ fontSize: "clamp(2.25rem, 1.5rem + 2.6vw, 3.6rem)" }}
           >
             {title}
           </h1>
         </Reveal>
         {lead ? (
           <Reveal delay={120}>
-            <p className="lead mt-5 max-w-2xl text-slatex-300">{lead}</p>
+            <p className="ed-deck mt-6 max-w-[58ch]">{lead}</p>
           </Reveal>
         ) : null}
       </div>
@@ -398,9 +384,11 @@ export function IconTile({
 }) {
   return (
     <div
-      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-[14px] ${
-        dark ? "bg-white/10 text-brand-500" : "bg-brand-600/10 text-brand-600"
-      }`}
+      className={`flex h-11 w-11 shrink-0 items-center justify-center border ${
+        dark
+          ? "border-white/20 text-cyanx"
+          : "border-line text-brand-600"
+      } [&_svg]:h-5 [&_svg]:w-5 [&_svg]:stroke-[1.5]`}
     >
       {children}
     </div>
@@ -442,12 +430,12 @@ const riskMap: Record<
     key: "High",
   },
   Critical: {
-    cls: "bg-risk-critical border-risk-critical text-white",
+    cls: "bg-risk-critical/10 border-risk-critical text-risk-critical",
     Icon: OctagonAlert,
     key: "Critical",
   },
   critical: {
-    cls: "bg-risk-critical border-risk-critical text-white",
+    cls: "bg-risk-critical/10 border-risk-critical text-risk-critical",
     Icon: OctagonAlert,
     key: "Critical",
   },
@@ -464,9 +452,9 @@ export function ZiteRiskBadge({
   const Icon = entry.Icon;
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-bold uppercase tracking-wider ${entry.cls}`}
+      className={`inline-flex items-center gap-1.5 border-l-2 px-2.5 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.14em] ${entry.cls}`}
     >
-      <Icon className="h-3.5 w-3.5" strokeWidth={2} />
+      <Icon className="h-3.5 w-3.5" strokeWidth={1.5} />
       {R(L.risk[entry.key], lang)}
     </span>
   );

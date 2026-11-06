@@ -101,7 +101,7 @@ export function AssistantLauncher({
         <div
           role="dialog"
           aria-label={t.title}
-          className="fixed inset-x-3 bottom-20 z-50 flex h-[min(600px,75vh)] flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-2xl sm:inset-x-auto sm:right-5 sm:w-[390px]"
+          className="fixed inset-x-3 bottom-20 z-50 flex h-[min(600px,75vh)] flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-none sm:inset-x-auto sm:right-5 sm:w-[390px]"
         >
           <div className="flex items-center gap-3 bg-brand-600 px-4 py-3 text-white">
             <span className="rounded-md bg-white p-1">
@@ -217,7 +217,7 @@ export function AssistantLauncher({
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-label={t.open}
-        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-brand-600 text-white shadow-xl transition hover:scale-105"
+        className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-brand-600 text-white shadow-none transition hover:scale-105"
       >
         {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
       </button>

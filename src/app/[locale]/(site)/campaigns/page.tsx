@@ -6,11 +6,7 @@ import { getDictionary, isLocale, routes, type Locale } from "@/lib/i18n";
 import { ButtonLink, CheckList, SectionHeading } from "@/components/ui";
 import { Media } from "@/components/ui/media";
 import { Reveal } from "@/components/ui/motion";
-import {
-  PageHero,
-} from "@/components/zite/shared";
-
-
+import { PageHero } from "@/components/zite/shared";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -65,7 +61,7 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
           <Reveal>
             <h2 className="max-w-[24ch]">{dict.campaigns.introTitle}</h2>
             <p className="lead mt-4">{dict.campaigns.introBody}</p>
-            <div className="mt-6 rounded-[var(--radius-md)] border border-line-200 bg-mist-50 p-5">
+            <div className="mt-6 rounded-sm border border-line-200 bg-mist-50 p-5">
               <h3 className="flex items-center gap-2 text-[1.05rem]">
                 <CalendarClock size={18} className="text-blue-600" aria-hidden="true" />
                 {dict.campaigns.topicsTitle}
@@ -78,7 +74,7 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
           <Reveal delay={90}>
             <div className="grid gap-3 sm:grid-cols-2">
               {dict.campaigns.formats.map((format) => (
-                <div key={format.title} className="rounded-[var(--radius-md)] border border-line-200 bg-white p-4">
+                <div key={format.title} className="rounded-sm border border-line-200 bg-white p-4">
                   <p className="flex items-center gap-2 text-[0.95rem] font-semibold text-ink-900">
                     <CheckCircle2 size={16} className="text-risk-low" aria-hidden="true" />
                     {format.title}
@@ -87,7 +83,7 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
                 </div>
               ))}
             </div>
-            <div className="mt-4 rounded-[var(--radius-md)] bg-navy-900 p-5 text-white">
+            <div className="mt-4 rounded-sm bg-navy-900 p-5 text-white">
               <h3 className="flex items-center gap-2 text-[1.05rem] text-white">
                 <Handshake size={18} className="text-cyan-400" aria-hidden="true" />
                 {dict.campaigns.inviteTitle}
@@ -114,7 +110,7 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
           <div className="mt-10 grid gap-5 md:grid-cols-2">
             {dict.campaigns.audiences.map((audience, index) => (
               <Reveal key={audience.title} delay={(index % 2) * 70}>
-                <article className="card group flex h-full flex-col overflow-hidden">
+                <article className="group flex h-full flex-col border-t border-line pt-5">
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-900">
                     <Media
                       src={AUDIENCE_IMAGES[index] ?? "/images/campaign-school.jpg"}
@@ -123,7 +119,7 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
                       height={600}
                       sizes="(max-width: 768px) 100vw, 50vw"
                       rounded="0"
-                      className="h-full w-full transition-transform duration-500 group-hover:scale-105"
+                      className="h-full w-full transition-transform duration-700 group-hover:scale-[1.02]"
                     />
                   </div>
                   <div className="flex flex-1 flex-col gap-2 p-6">
@@ -139,7 +135,7 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
               </Reveal>
             ))}
           </div>
-          <p className="mt-6 max-w-3xl rounded-[var(--radius-md)] border border-signal-400/50 bg-signal-400/10 p-4 text-[0.82rem] leading-relaxed text-ink-900">
+          <p className="mt-6 max-w-3xl rounded-sm border border-signal-400/50 bg-signal-400/10 p-4 text-[0.82rem] leading-relaxed text-ink-900">
             {dict.campaigns.note}
           </p>
         </div>

@@ -3,14 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT } from "@/lib/zite-data";
-import {
-  PageHero,
-  Reveal,
-} from "@/components/zite/shared";
-import { L } from "@/lib/zite-copy";
-
-import { formatZiteDate, R } from "@/lib/zite-copy";
-
+import { PageHero, Reveal } from "@/components/zite/shared";
+import { formatZiteDate, L, R } from "@/components/zite/copy";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({
@@ -73,10 +67,10 @@ export default async function NewsPage({
               <img
                 src={featured.imageUrl}
                 alt=""
-                className="aspect-[4/3] w-full rounded-[22px] object-cover shadow-e2"
+                className="aspect-[4/3] w-full rounded-none object-cover shadow-none"
               />
               <div>
-                <p className="eyebrow text-brand-600">
+                <p className="ed-label text-brand-600">
                   {R(featured.tag, locale)}
                 </p>
                 <h2 className="h2 mt-3 text-ink group-hover:text-brand-600">
@@ -92,32 +86,35 @@ export default async function NewsPage({
             </Link>
           ) : null}
 
-          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-14 ed-list">
             {rest.map((art, idx) => (
-              <Reveal key={art.id} delay={idx * 60}>
-                <Link href={l(`/news/${art.id}`)} className="group block">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={art.imageUrl}
-                    alt=""
-                    loading="lazy"
-                    className="aspect-[4/3] w-full rounded-[22px] object-cover"
-                  />
-                  <p className="mt-5 text-xs font-bold uppercase tracking-wider text-brand-600">
-                    {R(art.tag, locale)}
-                  </p>
-                  <h3 className="h4 mt-2 line-clamp-2 text-ink group-hover:text-brand-600">
-                    {R(art.title, locale)}
-                  </h3>
-                  <p className="mt-3 text-sm text-slatex-600">
-                    {art.author} · {formatZiteDate(art.date, locale)}
-                  </p>
+              <Reveal key={art.id} delay={idx * 50}>
+                <Link href={l(`/news/${art.id}`)} className="ed-item group">
+                  <div className="grid gap-5 sm:grid-cols-12 sm:items-start">
+                    <div className="sm:col-span-3">
+                      <div className="ed-media ed-media-hover aspect-[3/2]">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={art.imageUrl} alt="" loading="lazy" />
+                      </div>
+                    </div>
+                    <div className="sm:col-span-9">
+                      <span className="border-l-2 border-brand-600 pl-2 text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                        {R(art.tag, locale)}
+                      </span>
+                      <h2 className="h3 mt-2 max-w-[36ch] text-ink">
+                        <span className="ed-link">{R(art.title, locale)}</span>
+                      </h2>
+                      <p className="mt-2 max-w-[64ch] text-sm text-slatex-600">
+                        {art.author} · {formatZiteDate(art.date, locale)}
+                      </p>
+                    </div>
+                  </div>
                 </Link>
               </Reveal>
             ))}
           </div>
 
-          <div className="mt-16 rounded-[22px] bg-mist p-8">
+          <div className="mt-14 border-t border-line pt-6">
             <Link
               href={l("/alerts")}
               className="font-[family-name:var(--font-heading)] text-xl font-semibold text-ink hover:text-brand-600"

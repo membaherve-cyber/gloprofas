@@ -3,15 +3,8 @@ import { notFound } from "next/navigation";
 import { CheckCircle2 } from "lucide-react";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT, type ZiteAlert } from "@/lib/zite-data";
-import {
-  Btn,
-  PageHero,
-  ZiteRiskBadge,
-} from "@/components/zite/shared";
-import { L } from "@/lib/zite-copy";
-
-import { formatZiteDate, R } from "@/lib/zite-copy";
-
+import { Btn, PageHero, ZiteRiskBadge } from "@/components/zite/shared";
+import { formatZiteDate, L, R } from "@/components/zite/copy";
 
 import {
   ALERT_AERIAL_HEROES,
@@ -105,14 +98,14 @@ export default async function AlertDetailPage({
 
       <section className="section-y bg-mist">
         <div className="container-g grid gap-10 lg:grid-cols-12">
-          <article className="overflow-hidden rounded-[22px] bg-white shadow-e1 lg:col-span-8">
+          <article className="overflow-hidden rounded-none bg-white shadow-e1 lg:col-span-8">
             {alert.imageUrl ? (
               <div className="group relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={alert.imageUrl}
                   alt={R(alert.title, locale)}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950/75 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4">
@@ -131,7 +124,7 @@ export default async function AlertDetailPage({
 
               <p className="lead mt-6 text-ink">{R(alert.summary, locale)}</p>
 
-            <p className="mt-8 rounded-[14px] bg-mist p-4 text-sm text-slatex-600">
+            <p className="mt-8 rounded-sm bg-mist p-4 text-sm text-slatex-600">
               {fr
                 ? "Cette alerte décrit une activité suspecte signalée. Elle n’accuse aucune personne ni entreprise identifiée."
                 : "This alert describes reported suspicious activity. It does not accuse any identified person or business."}
@@ -150,7 +143,7 @@ export default async function AlertDetailPage({
           </article>
 
           <aside className="lg:col-span-4">
-            <div className="on-dark rounded-[22px] bg-navy-900 p-7">
+            <div className="on-dark rounded-none bg-navy-900 p-7">
               <h2 className="h4 text-white">
                 {fr ? "Actions recommandées" : "Recommended actions"}
               </h2>

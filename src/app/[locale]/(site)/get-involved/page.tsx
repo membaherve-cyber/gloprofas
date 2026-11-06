@@ -2,16 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Handshake, HeartHandshake, Users } from "lucide-react";
 import { isLocale, type Locale } from "@/lib/i18n";
-import {
-  Btn,
-  IconTile,
-  PageHero,
-  Reveal,
-} from "@/components/zite/shared";
-import { L } from "@/lib/zite-copy";
-
-import { R } from "@/lib/zite-copy";
-
+import { Btn, IconTile, PageHero, Reveal } from "@/components/zite/shared";
+import { L, R } from "@/components/zite/copy";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({
@@ -87,34 +79,36 @@ export default async function GetInvolvedPage({
       />
 
       <section className="section-y bg-white">
-        <div className="container-g grid gap-6 md:grid-cols-3">
+        <div className="container-g ed-list">
           {cards.map((c, idx) => (
             <Reveal
               key={c.t}
               delay={idx * 60}
-              className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-line bg-mist"
+              className="ed-item group"
             >
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-900">
+              <div className="grid gap-6 sm:grid-cols-12 sm:items-start">
+              <div className="ed-media ed-media-hover aspect-[3/2] sm:col-span-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={c.image}
                   alt={c.t}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/65 via-transparent to-transparent" />
               </div>
-              <div className="flex flex-1 flex-col p-8">
+              <div className="sm:col-span-8">
+                <span className="ed-num text-xs">{String(idx + 1).padStart(2, "0")}</span>
                 <IconTile>
                   <c.Icon className="h-6 w-6" strokeWidth={1.5} />
                 </IconTile>
-                <h2 className="h3 mt-5 text-ink">{c.t}</h2>
-                <p className="mt-3 flex-1 text-slatex-600">{c.d}</p>
+                <h2 className="h3 mt-2 max-w-[30ch] text-ink">{c.t}</h2>
+                <p className="mt-3 max-w-[62ch] text-[0.9375rem] leading-relaxed text-slatex-600">{c.d}</p>
                 <div className="mt-7">
                   <Btn href={`${l("/contact")}?topic=${c.topic}`} variant="primary">
                     {R(L.nav.contact, locale)}
                   </Btn>
                 </div>
+              </div>
               </div>
             </Reveal>
           ))}

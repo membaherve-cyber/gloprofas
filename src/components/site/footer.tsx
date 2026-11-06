@@ -1,9 +1,6 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
-import { L, NAV_ITEMS } from "@/lib/zite-copy";
-
-import { R } from "@/lib/zite-copy";
-
+import { L, NAV_ITEMS, R } from "@/components/zite/copy";
 import { FooterLogin } from "./footer-login";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/messages/en";
@@ -34,11 +31,11 @@ export function SiteFooter({
         </div>
 
         <nav aria-label={R(L.footer.quick, locale)} className="md:col-span-3">
-          <h2 className="eyebrow text-white">{R(L.footer.quick, locale)}</h2>
-          <ul className="mt-5 space-y-2">
+          <h2 className="ed-label text-white">{R(L.footer.quick, locale)}</h2>
+          <ul className="mt-5 space-y-2.5 text-[0.875rem]">
             {NAV_ITEMS.slice(0, 6).map((item) => (
               <li key={item.key}>
-                <Link href={l(item.href)} className="hover:text-white">
+                <Link href={l(item.href)} className="ed-link hover:text-white">
                   {R(L.nav[item.key], locale)}
                 </Link>
               </li>
@@ -47,26 +44,26 @@ export function SiteFooter({
         </nav>
 
         <div className="md:col-span-4">
-          <h2 className="eyebrow text-white">{R(L.footer.contactTitle, locale)}</h2>
+          <h2 className="ed-label text-white">{R(L.footer.contactTitle, locale)}</h2>
           <p className="mt-5">{R(L.footer.contactPending, locale)}</p>
-          <ul className="mt-5 space-y-2">
+          <ul className="mt-5 space-y-2.5 text-[0.875rem]">
             <li>
               <Link href={l("/contact")} className="font-semibold text-white hover:text-cyanx">
                 {R(L.nav.contact, locale)} →
               </Link>
             </li>
             <li>
-              <Link href={l("/report")} className="hover:text-white">
+              <Link href={l("/report")} className="ed-link hover:text-white">
                 {R(L.report, locale)}
               </Link>
             </li>
             <li>
-              <Link href={l("/check")} className="hover:text-white">
+              <Link href={l("/check")} className="ed-link hover:text-white">
                 {locale === "fr" ? "Vérifier un numéro ou un lien" : "Check a number or link"}
               </Link>
             </li>
             <li>
-              <Link href={l("/alerts")} className="hover:text-white">
+              <Link href={l("/alerts")} className="ed-link hover:text-white">
                 {locale === "fr" ? "Alertes" : "Scam alerts"}
               </Link>
             </li>
@@ -87,7 +84,7 @@ export function SiteFooter({
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {LEGAL_LINKS.map((item) => (
               <li key={item.slug}>
-                <Link href={l(`/legal/${item.slug}`)} className="hover:text-white">
+                <Link href={l(`/legal/${item.slug}`)} className="ed-link hover:text-white">
                   {item[locale]}
                 </Link>
               </li>

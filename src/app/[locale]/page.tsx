@@ -4,10 +4,7 @@ import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
 import { AssistantLauncher } from "@/components/site/assistant-launcher";
 import { ZiteHomeView } from "@/components/zite/home-sections";
-import { L } from "@/lib/zite-copy";
-
-import { R } from "@/lib/zite-copy";
-
+import { L, R } from "@/components/zite/copy";
 import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT } from "@/lib/zite-data";
 import enMessages from "@/messages/en.json";

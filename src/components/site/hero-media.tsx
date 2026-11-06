@@ -89,7 +89,7 @@ export function HeroMedia({
           onClick={() => setPlaying((value) => !value)}
           aria-pressed={!playing}
           aria-label={playing ? labels.pause : labels.play}
-          className="absolute bottom-4 right-4 z-10 inline-flex h-10 items-center gap-1.5 rounded-full border border-white/25 bg-navy-950/60 px-3 text-xs font-semibold text-white backdrop-blur transition-colors hover:border-cyan-400 hover:text-cyan-400"
+          className="absolute bottom-4 right-4 z-10 inline-flex h-10 items-center gap-1.5 rounded-full border border-white/25 bg-navy-950/60 px-3 text-[0.72rem] font-semibold text-white transition-colors hover:border-cyan-400 hover:text-cyan-400"
         >
           {playing ? <Pause size={13} aria-hidden="true" /> : <Play size={13} aria-hidden="true" />}
           <span className="hidden sm:inline">{playing ? labels.pause : labels.play}</span>

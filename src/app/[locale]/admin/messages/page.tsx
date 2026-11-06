@@ -21,7 +21,7 @@ export default async function AdminMessagesPage({ params }: { params: Promise<{ 
   const user = await getCurrentUser();
   if (!user) redirect(`${routes.admin(locale)}/login`);
   if (!can(user, "messages:read")) {
-    return <p className="rounded-[var(--radius-md)] border border-risk-critical/40 bg-white p-5 text-[0.9rem]">{dict.admin.accessDenied}</p>;
+    return <p className="rounded-sm border border-risk-critical/40 bg-white p-5 text-[0.9rem]">{dict.admin.accessDenied}</p>;
   }
 
   const [messages, enquiries, volunteers, partnerships, subscribers] = hasDatabase
@@ -72,7 +72,7 @@ export default async function AdminMessagesPage({ params }: { params: Promise<{ 
         </div>
       </div>
       {sections.map((section) => (
-        <section key={section.title} className="overflow-hidden rounded-[var(--radius-md)] border border-line-200 bg-white">
+        <section key={section.title} className="overflow-hidden rounded-sm border border-line-200 bg-white">
           <h2 className="border-b border-line-200 px-4 py-3 text-[1rem] font-semibold">
             {section.title} <span className="ml-1 text-[0.8rem] font-normal text-slate-600">({section.rows.length})</span>
           </h2>

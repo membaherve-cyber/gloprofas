@@ -36,7 +36,7 @@ export function FooterLogin({ locale, dict }: { locale: Locale; dict: Dictionary
           </div>
         </div>
 
-        <form action={action} className="on-dark grid gap-3 rounded-[var(--radius-md)] border border-white/10 bg-navy-900/70 p-4">
+        <form action={action} className="on-dark grid gap-3 rounded-sm border border-white/10 bg-navy-900/70 p-4">
           <div>
             <label htmlFor="footer-login-email" className="mb-1 block text-sm font-semibold text-white">
               {dict.admin.email}
@@ -87,8 +87,8 @@ export function FooterLogin({ locale, dict }: { locale: Locale; dict: Dictionary
           </div>
         </form>
 
-        <aside className="rounded-[var(--radius-md)] border border-signal-400/40 bg-signal-400/10 p-4">
-          <h3 className="flex items-center gap-2 text-[0.8125rem] font-bold uppercase tracking-[0.1em] text-signal-400">
+        <aside className="rounded-sm border border-signal-400/40 bg-signal-400/10 p-4">
+          <h3 className="flex items-center gap-2 text-[0.82rem] font-bold uppercase tracking-[0.1em] text-signal-400">
             <KeyRound size={14} aria-hidden="true" />
             {locale === "fr" ? "Identifiants administrateur (back-office)" : "Administrator login credentials"}
           </h3>

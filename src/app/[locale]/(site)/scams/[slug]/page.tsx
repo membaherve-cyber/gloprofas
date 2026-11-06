@@ -10,18 +10,8 @@ import {
 } from "lucide-react";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT, type ZiteCategory } from "@/lib/zite-data";
-import {
-  Btn,
-  IconTile,
-  PageHero,
-  Reveal,
-  SectionHeading,
-  ZiteRiskBadge,
-} from "@/components/zite/shared";
-import { L } from "@/lib/zite-copy";
-
-import { formatZiteDate, getCategoryIcon, R } from "@/lib/zite-copy";
-
+import { Btn, IconTile, PageHero, Reveal, SectionHeading, ZiteRiskBadge } from "@/components/zite/shared";
+import { formatZiteDate, getCategoryIcon, L, R } from "@/components/zite/copy";
 import {
   formatAerialBadge,
   PAGE_AERIAL_HEROES,
@@ -45,7 +35,7 @@ function ListBlock({
   tone: string;
 }) {
   return (
-    <Reveal className="rounded-[22px] border border-line bg-white p-7 shadow-e1">
+    <Reveal className="rounded-none border-t border-line bg-white pt-6 shadow-e1">
       <h2 className="h3 flex items-center gap-3 text-ink">
         <Icon className={`h-7 w-7 ${tone}`} strokeWidth={1.5} />
         {title}
@@ -136,25 +126,25 @@ export default async function ScamDetailPage({
       <section className="section-y bg-mist">
         <div className="container-g grid gap-10 lg:grid-cols-12">
           <div className="space-y-6 lg:col-span-8">
-            <Reveal className="overflow-hidden rounded-[22px] bg-white shadow-e1">
+            <Reveal className="overflow-hidden rounded-none bg-white shadow-e1">
               {category.imageUrl ? (
                 <div className="group relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={category.imageUrl}
                     alt={R(category.title, locale)}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
-                  <span className="float-chip absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-navy-950/80 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
-                    <span className="animate-dot h-2 w-2 rounded-full bg-signal" />
+                  <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 border-l-2 border-cyanx bg-navy-950/85 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-white">
+                    <span aria-hidden="true" className="h-1.5 w-1.5 bg-signal" />
                     {R(category.title, locale)} —{" "}
                     {fr ? "Scénario de terrain" : "Real-world context"}
                   </span>
                 </div>
               ) : null}
               <div className="p-8">
-                <p className="eyebrow text-brand-600">
+                <p className="ed-label text-brand-600">
                   {fr ? "Définition" : "Definition"}
                 </p>
                 <p className="lead mt-3 text-ink">{content.definition}</p>
@@ -181,8 +171,8 @@ export default async function ScamDetailPage({
               />
             </div>
 
-            <Reveal className="rounded-[22px] border-l-4 border-brand-600 bg-white p-7 shadow-e1">
-              <p className="eyebrow text-brand-600">
+            <Reveal className="rounded-none border-l-4 border-brand-600 bg-white p-7 shadow-e1">
+              <p className="ed-label text-brand-600">
                 {fr ? "Exemple illustratif" : "Illustrative example"}
               </p>
               <p className="mt-3 italic text-ink">
@@ -200,7 +190,7 @@ export default async function ScamDetailPage({
           </div>
 
           <aside className="space-y-6 lg:col-span-4">
-            <div className="on-dark rounded-[22px] bg-navy-900 p-7 lg:sticky lg:top-28">
+            <div className="on-dark rounded-none bg-navy-900 p-7 lg:sticky lg:top-28">
               <h2 className="h4 flex items-center gap-3 text-white">
                 <LifeBuoy className="h-6 w-6 text-signal" strokeWidth={1.5} />
                 {fr ? "Si cela vous arrive" : "If this happens to you"}
@@ -236,7 +226,7 @@ export default async function ScamDetailPage({
                 <Link
                   key={alert.id}
                   href={l(`/alerts/${alert.id}`)}
-                  className="rounded-[14px] border border-line p-5 hover:shadow-e2"
+                  className="rounded-sm border border-line p-5 hover:shadow-none"
                 >
                   <ZiteRiskBadge level={alert.risk} lang={locale} />
                   <p className="mt-3 font-[family-name:var(--font-heading)] font-semibold text-ink">
@@ -265,7 +255,7 @@ export default async function ScamDetailPage({
                 <Link
                   key={scam.id}
                   href={l(`/scams/${scam.slug}`)}
-                  className="flex items-center gap-4 rounded-[14px] border border-line p-5 transition-all hover:-translate-y-1 hover:shadow-e2"
+                  className="flex items-center gap-4 rounded-sm border border-line p-5 transition-all hover:shadow-none"
                 >
                   <IconTile>
                     <Icon className="h-6 w-6" strokeWidth={1.5} />

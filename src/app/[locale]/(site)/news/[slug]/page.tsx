@@ -3,14 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT, type ZiteArticle } from "@/lib/zite-data";
-import {
-  PageHero,
-  Reveal,
-} from "@/components/zite/shared";
-import { L } from "@/lib/zite-copy";
-
-import { formatZiteDate, R } from "@/lib/zite-copy";
-
+import { PageHero, Reveal } from "@/components/zite/shared";
+import { formatZiteDate, L, R } from "@/components/zite/copy";
 import { CopyButton } from "@/components/ui/motion";
 import {
   ARTICLE_AERIAL_HEROES,
@@ -115,17 +109,17 @@ export default async function ArticlePage({
             </p>
 
             {article.imageUrl ? (
-              <Reveal className="mt-8 overflow-hidden rounded-[22px] border border-line bg-mist shadow-e2">
+              <Reveal className="mt-8 overflow-hidden rounded-none border border-line bg-mist shadow-none">
                 <div className="group relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={article.imageUrl}
                     alt={title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent" />
-                  <span className="float-chip absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-navy-950/85 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
-                    <span className="animate-dot h-2 w-2 rounded-full bg-cyanx" />
+                  <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 border-l-2 border-cyanx bg-navy-950/85 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-white">
+                    <span aria-hidden="true" className="h-1.5 w-1.5 bg-cyanx" />
                     {R(article.tag, locale)}
                   </span>
                 </div>
@@ -152,7 +146,7 @@ export default async function ArticlePage({
                   <Reveal
                     key={item.image}
                     delay={idx * 90}
-                    className="group overflow-hidden rounded-[18px] border border-line bg-mist shadow-e1"
+                    className="group overflow-hidden rounded-none border border-line bg-mist shadow-e1"
                   >
                     <div className="relative aspect-[4/3] w-full overflow-hidden bg-navy-900">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -160,9 +154,9 @@ export default async function ArticlePage({
                         src={item.image}
                         alt={R(item.tag, locale)}
                         loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                       />
-                      <span className="absolute top-3 left-3 rounded-full bg-navy-950/80 px-3 py-1 text-xs font-bold uppercase tracking-wider text-cyanx backdrop-blur-sm">
+                      <span className="absolute top-3 left-3 bg-navy-950/85 px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-cyanx">
                         {R(item.tag, locale)}
                       </span>
                     </div>
@@ -176,8 +170,8 @@ export default async function ArticlePage({
           </div>
 
           <aside className="space-y-6 lg:col-span-4">
-            <div className="rounded-[22px] border border-line p-6">
-              <p className="eyebrow text-brand-600">
+            <div className="rounded-none border border-line p-6">
+              <p className="ed-label text-brand-600">
                 {fr ? "Partager" : "Share"}
               </p>
               <div className="mt-4 flex flex-wrap gap-2 text-sm font-semibold">
@@ -225,7 +219,7 @@ export default async function ArticlePage({
               <Link
                 key={rel.id}
                 href={l(`/news/${rel.id}`)}
-                className="flex gap-4 rounded-[14px] p-2 hover:bg-mist"
+                className="flex gap-4 rounded-sm p-2 hover:bg-mist"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img

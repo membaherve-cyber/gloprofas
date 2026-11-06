@@ -106,7 +106,7 @@ export function AssistantPanel({
       role="dialog"
       aria-modal="true"
       aria-label={dict.assistant.name}
-      className="fixed inset-0 z-[70] flex flex-col overflow-hidden border border-white/10 bg-navy-900 shadow-[var(--shadow-e3)] sm:inset-auto sm:bottom-5 sm:right-5 sm:h-[600px] sm:w-[380px] sm:rounded-[var(--radius-lg)]"
+      className="fixed inset-0 z-[70] flex flex-col overflow-hidden border border-white/10 bg-navy-900 shadow-[var(--shadow-none)] sm:inset-auto sm:bottom-5 sm:right-5 sm:h-[600px] sm:w-[380px] sm:rounded-none"
     >
       <div className="flex shrink-0 items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
         <div className="flex items-center gap-2.5">
@@ -145,7 +145,7 @@ export function AssistantPanel({
         {messages.map((message, index) => (
           <div key={index} className={message.role === "user" ? "flex justify-end" : "flex justify-start"}>
             <div
-              className={`max-w-[88%] rounded-[14px] px-3.5 py-2.5 text-[0.85rem] leading-relaxed ${
+              className={`max-w-[88%] rounded-sm px-3.5 py-2.5 text-[0.85rem] leading-relaxed ${
                 message.role === "user"
                   ? "bg-blue-600 text-white"
                   : "border border-white/10 bg-navy-800 text-slate-100"

@@ -45,7 +45,7 @@ export function ButtonLink({
         <span className="absolute left-0 top-full">{children}</span>
       </span>
       <span className="sr-only">{children}</span>
-      {arrow ? <ArrowRight size={17} strokeWidth={2} aria-hidden="true" /> : null}
+      {arrow ? <ArrowRight size={17} strokeWidth={1.5} aria-hidden="true" /> : null}
     </Link>
   );
 }
@@ -66,7 +66,7 @@ export function Button({
   return (
     <button className={`${buttonClass(variant, size)} ${className}`} {...rest}>
       {children}
-      {arrow ? <ArrowRight size={17} strokeWidth={2} aria-hidden="true" /> : null}
+      {arrow ? <ArrowRight size={17} strokeWidth={1.5} aria-hidden="true" /> : null}
     </button>
   );
 }
@@ -115,10 +115,10 @@ export function SectionHeading({
 }
 
 const riskStyles: Record<string, { bg: string; border: string; icon: ReactNode }> = {
-  low: { bg: "bg-[color-mix(in_srgb,var(--color-risk-low)_14%,white)]", border: "border-[var(--color-risk-low)]", icon: <CheckCircle2 size={14} strokeWidth={2} aria-hidden="true" /> },
-  medium: { bg: "bg-[color-mix(in_srgb,var(--color-risk-medium)_16%,white)]", border: "border-[var(--color-risk-medium)]", icon: <AlertTriangle size={14} strokeWidth={2} aria-hidden="true" /> },
-  high: { bg: "bg-[color-mix(in_srgb,var(--color-risk-high)_14%,white)]", border: "border-[var(--color-risk-high)]", icon: <AlertTriangle size={14} strokeWidth={2} aria-hidden="true" /> },
-  critical: { bg: "bg-[color-mix(in_srgb,var(--color-risk-critical)_14%,white)]", border: "border-[var(--color-risk-critical)]", icon: <AlertTriangle size={14} strokeWidth={2} aria-hidden="true" /> },
+  low: { bg: "bg-[color-mix(in_srgb,var(--color-risk-low)_14%,white)]", border: "border-[var(--color-risk-low)]", icon: <CheckCircle2 size={14} strokeWidth={1.5} aria-hidden="true" /> },
+  medium: { bg: "bg-[color-mix(in_srgb,var(--color-risk-medium)_16%,white)]", border: "border-[var(--color-risk-medium)]", icon: <AlertTriangle size={14} strokeWidth={1.5} aria-hidden="true" /> },
+  high: { bg: "bg-[color-mix(in_srgb,var(--color-risk-high)_14%,white)]", border: "border-[var(--color-risk-high)]", icon: <AlertTriangle size={14} strokeWidth={1.5} aria-hidden="true" /> },
+  critical: { bg: "bg-[color-mix(in_srgb,var(--color-risk-critical)_14%,white)]", border: "border-[var(--color-risk-critical)]", icon: <AlertTriangle size={14} strokeWidth={1.5} aria-hidden="true" /> },
 };
 
 export function RiskBadge({
@@ -165,7 +165,7 @@ export function CategoryTile({
       } ${size === "large" ? "min-h-[248px]" : size === "medium" ? "min-h-[210px]" : "min-h-[172px]"}`}
     >
       <div className="flex items-start justify-between gap-4">
-        <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-[color-mix(in_srgb,var(--color-blue-600)_10%,white)] text-blue-600">
+        <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-sm bg-[color-mix(in_srgb,var(--color-blue-600)_10%,white)] text-blue-600">
           <CategoryIcon name={icon} />
         </span>
         <ArrowUpRight
@@ -227,7 +227,7 @@ export function AlertCard({
         <p className="line-clamp-3 text-[0.9rem] text-slate-600">{summary}</p>
         <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-[0.8125rem] font-semibold text-blue-600">
           {dict.common.readMore}
-          <ChevronRight size={15} strokeWidth={2} aria-hidden="true" />
+          <ChevronRight size={15} strokeWidth={1.5} aria-hidden="true" />
         </span>
       </div>
     </Link>
@@ -292,7 +292,7 @@ export function ResourceRow({
   const label = dict.resources.formats[type as keyof typeof dict.resources.formats] ?? type;
   return (
     <div className="group flex items-start gap-4 border-b border-line-200 py-4 last:border-0">
-      <span className="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-mist-50 text-blue-600">
+      <span className="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-sm bg-mist-50 text-blue-600">
         <FileText size={20} strokeWidth={1.5} aria-hidden="true" />
       </span>
       <div className="min-w-0 flex-1">
@@ -326,9 +326,9 @@ export function NumberedStep({
   icon?: string;
 }) {
   return (
-    <article className="on-dark relative flex h-full flex-col overflow-hidden rounded-[var(--radius-md)] border border-white/10 bg-navy-800/50 p-5 transition-colors hover:border-white/25">
+    <article className="on-dark relative flex h-full flex-col overflow-hidden rounded-sm border border-white/10 bg-navy-800/50 p-5 transition-colors hover:border-white/25">
       <div className="flex items-start justify-between gap-3">
-        <span className="inline-flex h-11 w-11 items-center justify-center rounded-[var(--radius-md)] bg-white/10 text-cyan-400">
+        <span className="inline-flex h-11 w-11 items-center justify-center rounded-sm bg-white/10 text-cyan-400">
           <CategoryIcon name={icon} size={19} />
         </span>
         <span
@@ -397,7 +397,7 @@ export function Breadcrumbs({
 
 export function EmptyState({ message }: { message: string }) {
   return (
-    <div className="rounded-[var(--radius-md)] border border-dashed border-line-200 bg-mist-50 px-6 py-12 text-center">
+    <div className="rounded-sm border border-dashed border-line-200 bg-mist-50 px-6 py-12 text-center">
       <p className="text-slate-600">{message}</p>
     </div>
   );
@@ -409,7 +409,7 @@ export function CheckList({ items, dark = false }: { items: string[]; dark?: boo
       {items.map((item) => (
         <li key={item} className="flex items-start gap-3">
           <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--color-blue-600)_12%,white)] text-blue-600">
-            <CheckCircle2 size={14} strokeWidth={2} aria-hidden="true" />
+            <CheckCircle2 size={14} strokeWidth={1.5} aria-hidden="true" />
           </span>
           <span className={`text-[0.9375rem] ${dark ? "text-slate-300" : "text-slate-600"}`}>{item}</span>
         </li>

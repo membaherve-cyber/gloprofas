@@ -3,23 +3,15 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
-import {
-  PageHero,
-  Reveal,
-  ZiteRiskBadge,
-} from "@/components/zite/shared";
-import { L } from "@/lib/zite-copy";
-
-import { formatZiteDate, R } from "@/lib/zite-copy";
-
-import { EditorialSectionIndex } from "@/components/zite/editorial-graphics";
+import { PageHero, Reveal, ZiteRiskBadge } from "@/components/zite/shared";
+import { formatZiteDate, L, R } from "@/components/zite/copy";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 import { ZITE_CONTENT, type ZiteAlert, type ZiteCategory } from "@/lib/zite-data";
 import type { Locale } from "@/lib/i18n";
 
 const RISKS = ["Critical", "High", "Medium", "Low"] as const;
 const fieldCls =
-  "h-12 w-full rounded-[14px] border border-line bg-white px-4 text-ink placeholder:text-slatex-600/60 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20";
+  "h-11 w-full rounded-[2px] border border-line bg-white px-3.5 text-[0.875rem] text-ink placeholder:text-slatex-600/60 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20";
 
 export function ZiteAlertsView({ locale }: { locale: Locale }) {
   const fr = locale === "fr";
@@ -67,14 +59,10 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
 
       <section className="section-y bg-mist">
         <div className="container-g">
-          <EditorialSectionIndex
-            index="ALT"
-            code={fr ? "VEILLE DES RISQUES & AVERTISSEMENTS PUBLICS" : "RISK MONITOR & PUBLIC WARNINGS"}
-          />
           {featuredCritical ? (
             <Link
               href={l(`/alerts/${featuredCritical.id}`)}
-              className="mb-10 grid overflow-hidden rounded-[22px] bg-white shadow-e2 md:grid-cols-2"
+              className="mb-10 grid overflow-hidden rounded-none bg-white shadow-none md:grid-cols-2"
             >
               {featuredCritical.imageUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
@@ -96,7 +84,7 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
             </Link>
           ) : null}
 
-          <div className="grid gap-3 rounded-[22px] bg-white p-4 shadow-e1 md:grid-cols-[1fr_200px_240px]">
+          <div className="grid gap-3 rounded-none bg-white p-4 shadow-e1 md:grid-cols-[1fr_200px_240px]">
             <label className="relative">
               <span className="sr-only">Search</span>
               <Search className="absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-slatex-600" />
@@ -149,43 +137,50 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
             </p>
           ) : null}
 
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((a, idx) => (
-              <Reveal key={a.id} delay={(idx % 3) * 60}>
-                <Link
-                  href={l(`/alerts/${a.id}`)}
-                  className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-line bg-white shadow-e1 transition-all hover:-translate-y-1 hover:shadow-e2"
-                >
-                  {a.imageUrl ? (
-                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={a.imageUrl}
-                        alt=""
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute top-3 left-3">
-                        <ZiteRiskBadge level={a.risk} lang={locale} />
-                      </div>
-                    </div>
-                  ) : null}
-                  <div className="flex flex-1 flex-col p-7">
-                    {!a.imageUrl ? <ZiteRiskBadge level={a.risk} lang={locale} /> : null}
-                    <h2 className="h4 mt-3 text-ink group-hover:text-brand-600">
-                      {R(a.title, locale)}
-                    </h2>
-                    <p className="mt-3 flex-1 text-sm text-slatex-600">
-                      {R(a.summary, locale)}
-                    </p>
-                    <p className="mt-5 border-t border-line pt-4 text-sm text-slatex-600">
-                      {R(a.category, locale)} · {a.country} ·{" "}
-                      {formatZiteDate(a.date, locale)}
-                    </p>
+          <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-14">
+            {filtered[0] ? (
+              <Reveal className="lg:col-span-6">
+                <Link href={l(`/alerts/${filtered[0].id}`)} className="group block">
+                  <div className="ed-media ed-media-hover aspect-[16/10]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={filtered[0].imageUrl} alt="" loading="lazy" />
                   </div>
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    <ZiteRiskBadge level={filtered[0].risk} lang={locale} />
+                    <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                      {filtered[0].country} · {formatZiteDate(filtered[0].date, locale)}
+                    </span>
+                  </div>
+                  <h2 className="h3 mt-3 max-w-[28ch] text-ink">
+                    <span className="ed-link">{R(filtered[0].title, locale)}</span>
+                  </h2>
+                  <p className="mt-3 max-w-[54ch] text-[0.9375rem] leading-relaxed text-slatex-600">
+                    {R(filtered[0].summary, locale)}
+                  </p>
                 </Link>
               </Reveal>
-            ))}
+            ) : null}
+
+            <div className="lg:col-span-6">
+              <div className="ed-list">
+                {filtered.slice(1).map((a) => (
+                  <Link key={a.id} href={l(`/alerts/${a.id}`)} className="ed-item group">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <ZiteRiskBadge level={a.risk} lang={locale} />
+                      <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                        {R(a.category, locale)} · {a.country} · {formatZiteDate(a.date, locale)}
+                      </span>
+                    </div>
+                    <h2 className="h4 mt-2.5 text-ink">
+                      <span className="ed-link">{R(a.title, locale)}</span>
+                    </h2>
+                    <p className="mt-2 text-sm leading-relaxed text-slatex-600">
+                      {R(a.summary, locale)}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

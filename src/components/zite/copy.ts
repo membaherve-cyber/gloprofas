@@ -1,61 +1,15 @@
 import {
-  Bitcoin,
-  Briefcase,
-  Building2,
-  Globe,
-  HandCoins,
-  HeartCrack,
-  Landmark,
-  MailWarning,
-  ShieldQuestion,
-  ShoppingBag,
-  Smartphone,
-  TrendingUp,
-  UserX,
-  type LucideIcon,
+  Bitcoin, Briefcase, Building2, Globe, HandCoins, HeartCrack,
+  Landmark, MailWarning, ShieldQuestion, ShoppingBag, Smartphone,
+  TrendingUp, UserX, type LucideIcon,
 } from "lucide-react";
 import type { Locale } from "@/lib/i18n";
 import type { BiText } from "@/lib/zite-data";
 
 /**
- * Server-safe bilingual and formatting helpers shared by server components,
- * metadata generators and client components. Interactive UI stays in
- * `src/components/zite/shared.tsx`.
+ * Server-safe copy + helpers.
+ * No "use client" — these are pure functions callable from Server Components.
  */
-export function R(value: BiText | undefined, lang: Locale): string {
-  if (!value) return "";
-  return value[lang] || value.en;
-}
-
-export function formatZiteDate(dateStr: string | Date, lang: Locale): string {
-  if (!dateStr) return "";
-  const date = typeof dateStr === "string" ? new Date(dateStr) : dateStr;
-  if (Number.isNaN(date.getTime())) return String(dateStr);
-  return new Intl.DateTimeFormat(lang === "fr" ? "fr-FR" : "en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  }).format(date);
-}
-
-const iconMap: Record<string, LucideIcon> = {
-  "mail-warning": MailWarning,
-  smartphone: Smartphone,
-  "trending-up": TrendingUp,
-  briefcase: Briefcase,
-  "heart-crack": HeartCrack,
-  "shopping-bag": ShoppingBag,
-  bitcoin: Bitcoin,
-  "user-x": UserX,
-  "hand-coins": HandCoins,
-  landmark: Landmark,
-  "building-2": Building2,
-  globe: Globe,
-};
-
-export function getCategoryIcon(iconName: string): LucideIcon {
-  return iconMap[iconName] ?? ShieldQuestion;
-}
 
 const nbsp = "\u00A0";
 
@@ -424,6 +378,42 @@ export const L = {
   },
   imgPending: { en: "Image pending", fr: "Image à venir" },
 } as const;
+
+
+export function R(value: BiText | undefined, lang: Locale): string {
+  if (!value) return "";
+  return value[lang] || value.en;
+}
+
+export function formatZiteDate(dateStr: string | Date, lang: Locale): string {
+  if (!dateStr) return "";
+  const d = typeof dateStr === "string" ? new Date(dateStr) : dateStr;
+  if (Number.isNaN(d.getTime())) return String(dateStr);
+  return new Intl.DateTimeFormat(lang === "fr" ? "fr-FR" : "en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(d);
+}
+
+const iconMap: Record<string, LucideIcon> = {
+  "mail-warning": MailWarning,
+  smartphone: Smartphone,
+  "trending-up": TrendingUp,
+  briefcase: Briefcase,
+  "heart-crack": HeartCrack,
+  "shopping-bag": ShoppingBag,
+  bitcoin: Bitcoin,
+  "user-x": UserX,
+  "hand-coins": HandCoins,
+  landmark: Landmark,
+  "building-2": Building2,
+  globe: Globe,
+};
+
+export function getCategoryIcon(iconName: string): LucideIcon {
+  return iconMap[iconName] ?? ShieldQuestion;
+}
 
 export const NAV_ITEMS = [
   { key: "about" as const, href: "/about" },

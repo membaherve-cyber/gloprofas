@@ -80,7 +80,7 @@ function Select({
 function Status({ state }: { state: FormState }) {
   if (state.status === "success") {
     return (
-      <div className="flex items-start gap-3 rounded-[var(--radius-md)] border border-risk-low/40 bg-risk-low/10 p-4" role="status">
+      <div className="flex items-start gap-3 rounded-sm border border-risk-low/40 bg-risk-low/10 p-4" role="status">
         <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-risk-low" aria-hidden="true" />
         <p className="text-[0.9rem] text-ink-900">{state.message}</p>
       </div>
@@ -88,7 +88,7 @@ function Status({ state }: { state: FormState }) {
   }
   if (state.status === "error") {
     return (
-      <div className="flex items-start gap-3 rounded-[var(--radius-md)] border border-risk-critical/40 bg-risk-critical/10 p-4" role="alert">
+      <div className="flex items-start gap-3 rounded-sm border border-risk-critical/40 bg-risk-critical/10 p-4" role="alert">
         <AlertCircle size={18} className="mt-0.5 shrink-0 text-risk-critical" aria-hidden="true" />
         <p className="text-[0.9rem] text-ink-900">{state.message}</p>
       </div>
