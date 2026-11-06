@@ -13,7 +13,7 @@ export function EditorialSectionIndex({
 }) {
   return (
     <div
-      className={`mb-8 flex items-center justify-between border-b pb-3 text-[11px] font-bold uppercase tracking-[0.16em] ${
+      className={`mb-8 flex items-center justify-between border-b pb-3 text-xs font-bold uppercase tracking-[0.16em] ${
         dark
           ? "border-white/12 text-slatex-300"
           : "border-line text-slatex-600"
@@ -29,7 +29,7 @@ export function EditorialSectionIndex({
         </span>
         <span>{code}</span>
       </span>
-      <span className="font-mono text-[10px] opacity-60">GLOPROFAS · INTL</span>
+      <span className="font-mono text-xs opacity-60">GLOPROFAS · INTL</span>
     </div>
   );
 }
@@ -57,12 +57,12 @@ export function ScamInterceptionDiagram({ lang }: { lang: Locale }) {
   return (
     <div className="on-dark relative overflow-hidden rounded-[20px] border border-white/12 bg-navy-950/90 p-6 sm:p-8">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4">
-        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-cyanx">
+        <span className="font-mono text-xs font-bold uppercase tracking-[0.16em] text-cyanx">
           {fr
             ? "SCHÉMA D’INTERCEPTION DE LA FRAUDE · PROTOCOLE GLOPROFAS"
             : "FRAUD INTERCEPTION ARCHITECTURE · GLOPROFAS PROTOCOL"}
         </span>
-        <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-slatex-300">
+        <span className="inline-flex items-center gap-1.5 font-mono text-xs text-slatex-300">
           <span className="animate-dot h-2 w-2 rounded-full bg-signal" />
           {fr ? "POINT D’ARRÊT : ÉTAPE 03" : "CRITICAL INTERCEPT: STAGE 03"}
         </span>
@@ -135,7 +135,7 @@ export function ScamInterceptionDiagram({ lang }: { lang: Locale }) {
                   STAGE {node.code}
                 </span>
                 {isGate ? (
-                  <span className="rounded-full bg-signal px-2 py-0.5 font-mono text-[10px] font-bold text-navy-950">
+                  <span className="rounded-full bg-signal px-2 py-0.5 font-mono text-xs font-bold text-navy-950">
                     STOP
                   </span>
                 ) : null}

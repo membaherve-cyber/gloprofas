@@ -115,7 +115,7 @@ export function AssistantPanel({
           </span>
           <div>
             <p className="text-[0.85rem] font-semibold leading-tight text-white">{dict.assistant.name}</p>
-            <p className="text-[0.7rem] text-slate-300">{dict.assistant.languageNote}</p>
+            <p className="text-xs text-slate-300">{dict.assistant.languageNote}</p>
           </div>
         </div>
         <div className="flex items-center gap-1">
@@ -158,7 +158,7 @@ export function AssistantPanel({
                     <Link
                       key={source.href}
                       href={source.href}
-                      className="inline-flex items-center gap-1 rounded-full border border-cyan-400/40 px-2 py-0.5 text-[0.7rem] font-semibold text-cyan-400 hover:bg-cyan-400/10"
+                      className="inline-flex items-center gap-1 rounded-full border border-cyan-400/40 px-2 py-0.5 text-xs font-semibold text-cyan-400 hover:bg-cyan-400/10"
                     >
                       {source.title} <ArrowRight size={10} aria-hidden="true" />
                     </Link>
@@ -166,7 +166,7 @@ export function AssistantPanel({
                 </div>
               ) : null}
               {message.grounded === false && message.role === "assistant" && index > 0 ? (
-                <p className="mt-2 text-[0.7rem] text-signal-400">{dict.common.notPolice}</p>
+                <p className="mt-2 text-xs text-signal-400">{dict.common.notPolice}</p>
               ) : null}
             </div>
           </div>
@@ -234,7 +234,7 @@ export function AssistantPanel({
             <Send size={16} aria-hidden="true" />
           </button>
         </div>
-        <p className="mt-2 text-[0.68rem] leading-snug text-slate-300">{dict.assistant.disclaimer}</p>
+        <p className="mt-2 text-xs leading-snug text-slate-300">{dict.assistant.disclaimer}</p>
       </form>
     </div>
   );

@@ -133,7 +133,7 @@ export function RiskBadge({
     level === "critical" ? dict.common.critical : level === "high" ? dict.common.high : level === "low" ? dict.common.low : dict.common.medium;
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[0.7rem] font-bold uppercase tracking-[0.08em] text-ink-900 ${style.bg} ${style.border}`}
+      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-bold uppercase tracking-[0.08em] text-ink-900 ${style.bg} ${style.border}`}
     >
       {style.icon}
       <span>
@@ -212,7 +212,7 @@ export function AlertCard({
     <Link href={href} className="card card-hover group flex h-full flex-col overflow-hidden">
       <div className="flex items-center justify-between gap-2 border-b border-line-200 bg-mist-50 px-4 py-3">
         <RiskBadge level={riskLevel} dict={dict} />
-        <span className="inline-flex items-center gap-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-slate-600">
+        <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.08em] text-slate-600">
           <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" aria-hidden="true" />
           {dict.alerts.alertType}
         </span>
@@ -298,11 +298,11 @@ export function ResourceRow({
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
           <span className="chip border-blue-600/25 text-blue-600">{label}</span>
-          <span className="inline-flex items-center gap-1 text-[0.72rem] font-medium text-slate-600">
+          <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-600">
             <Languages size={12} strokeWidth={1.8} aria-hidden="true" /> {language}
           </span>
           {fileSizeKb ? (
-            <span className="inline-flex items-center gap-1 text-[0.72rem] font-medium text-slate-600">
+            <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-600">
               <Download size={12} strokeWidth={1.8} aria-hidden="true" /> {formatSize(fileSizeKb)}
             </span>
           ) : null}

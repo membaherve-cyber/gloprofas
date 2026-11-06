@@ -208,7 +208,7 @@ export function AssistantLauncher({
                 )}
               </button>
             </div>
-            <p className="mt-1.5 text-[11px] text-slatex-600">{t.note}</p>
+            <p className="mt-1.5 text-xs text-slatex-600">{t.note}</p>
           </form>
         </div>
       ) : null}

@@ -113,7 +113,7 @@ export function Btn({
   onClick?: () => void;
   type?: "button" | "submit";
 }) {
-  const cls = `group inline-flex h-[52px] items-center justify-center gap-2 rounded-full px-7 text-[0.95rem] font-semibold transition-colors duration-150 whitespace-nowrap disabled:opacity-60 ${btnVariants[variant]} ${className}`;
+  const cls = `group inline-flex h-[52px] items-center justify-center gap-2 rounded-full px-7 text-[0.9375rem] font-semibold leading-[1.2] transition-colors duration-150 whitespace-nowrap disabled:opacity-60 ${btnVariants[variant]} ${className}`;
   const inner = (
     <>
       <span className="text-roll">
@@ -123,7 +123,7 @@ export function Btn({
       {arrow ? (
         <ArrowRight
           className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
-          strokeWidth={2}
+          strokeWidth={1.75}
         />
       ) : null}
     </>
@@ -313,10 +313,10 @@ export function PageHero({
 
           <div className="flex flex-wrap items-center gap-2.5">
             {cityBadge ? (
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-navy-950/85 px-3.5 py-1 text-[11px] font-semibold tracking-wide text-slatex-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-navy-950/85 px-3.5 py-1 text-xs font-semibold tracking-wide text-slatex-300">
                 <span className="animate-dot h-1.5 w-1.5 rounded-full bg-cyanx" />
                 <span>{cityBadge}</span>
-                <span className="hidden border-l border-white/15 pl-2 font-mono text-[10px] text-white/60 sm:inline">
+                <span className="hidden border-l border-white/15 pl-2 font-mono text-xs text-white/60 sm:inline">
                   {resolvedCoords}
                 </span>
               </span>
@@ -348,7 +348,7 @@ export function PageHero({
         <Reveal>
           <h1
             className="h1 mt-4 max-w-4xl text-white"
-            style={{ fontSize: "clamp(2.35rem, 1.55rem + 2.8vw, 3.85rem)" }}
+            style={{ fontSize: "clamp(2.125rem, 1.35rem + 2.8vw, 3.85rem)" }}
           >
             {title}
           </h1>

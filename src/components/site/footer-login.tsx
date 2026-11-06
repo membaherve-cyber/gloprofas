@@ -21,7 +21,7 @@ export function FooterLogin({ locale, dict }: { locale: Locale; dict: Dictionary
           <h2 id="footer-login-title" className="flex items-center gap-2 text-[1rem] font-semibold text-white">
             <Lock size={16} className="text-cyan-400" aria-hidden="true" /> {dict.footer.login.title}
           </h2>
-          <p className="mt-2 max-w-sm text-[0.84rem] leading-relaxed text-slate-300">{dict.footer.login.body}</p>
+          <p className="mt-2 max-w-sm text-sm leading-relaxed text-slate-300">{dict.footer.login.body}</p>
           <p className="mt-3 inline-flex items-start gap-2 text-[0.75rem] leading-relaxed text-slate-300">
             <ShieldCheck size={14} className="mt-0.5 shrink-0 text-cyan-400" aria-hidden="true" />
             {dict.footer.login.secureNote}
@@ -38,7 +38,7 @@ export function FooterLogin({ locale, dict }: { locale: Locale; dict: Dictionary
 
         <form action={action} className="on-dark grid gap-3 rounded-[var(--radius-md)] border border-white/10 bg-navy-900/70 p-4">
           <div>
-            <label htmlFor="footer-login-email" className="mb-1 block text-[0.78rem] font-semibold text-white">
+            <label htmlFor="footer-login-email" className="mb-1 block text-sm font-semibold text-white">
               {dict.admin.email}
             </label>
             <input
@@ -54,7 +54,7 @@ export function FooterLogin({ locale, dict }: { locale: Locale; dict: Dictionary
             />
           </div>
           <div>
-            <label htmlFor="footer-login-password" className="mb-1 block text-[0.78rem] font-semibold text-white">
+            <label htmlFor="footer-login-password" className="mb-1 block text-sm font-semibold text-white">
               {dict.admin.password}
             </label>
             <input
@@ -70,7 +70,7 @@ export function FooterLogin({ locale, dict }: { locale: Locale; dict: Dictionary
             />
           </div>
           {state.status === "error" ? (
-            <p className="inline-flex items-center gap-1.5 text-[0.78rem] font-semibold text-signal-400" role="alert">
+            <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-signal-400" role="alert">
               <AlertCircle size={14} aria-hidden="true" /> {state.message}
             </p>
           ) : null}
@@ -80,7 +80,7 @@ export function FooterLogin({ locale, dict }: { locale: Locale; dict: Dictionary
             </button>
             <Link
               href={`/${locale}/admin/login`}
-              className="text-[0.78rem] font-medium text-slate-300 underline underline-offset-4 hover:text-white"
+              className="text-sm font-medium text-slate-300 underline underline-offset-4 hover:text-white"
             >
               {dict.admin.loginTitle}
             </Link>
@@ -88,11 +88,11 @@ export function FooterLogin({ locale, dict }: { locale: Locale; dict: Dictionary
         </form>
 
         <aside className="rounded-[var(--radius-md)] border border-signal-400/40 bg-signal-400/10 p-4">
-          <h3 className="flex items-center gap-2 text-[0.82rem] font-bold uppercase tracking-[0.1em] text-signal-400">
+          <h3 className="flex items-center gap-2 text-[0.8125rem] font-bold uppercase tracking-[0.1em] text-signal-400">
             <KeyRound size={14} aria-hidden="true" />
             {locale === "fr" ? "Identifiants administrateur (back-office)" : "Administrator login credentials"}
           </h3>
-          <p className="mt-1.5 text-[0.76rem] leading-relaxed text-slate-200">
+          <p className="mt-1.5 text-[0.8125rem] leading-relaxed text-slate-200">
             {locale === "fr"
               ? "Cliquez sur un compte pour pré-remplir le formulaire de connexion :"
               : "Click an account below to pre-fill the sign-in form:"}
@@ -101,7 +101,7 @@ export function FooterLogin({ locale, dict }: { locale: Locale; dict: Dictionary
             {STAFF_CREDENTIALS.map((cred) => (
               <div
                 key={cred.email}
-                className="rounded-[var(--radius-sm)] border border-white/15 bg-navy-950/70 p-2.5 text-[0.78rem]"
+                className="rounded-[var(--radius-sm)] border border-white/15 bg-navy-950/70 p-3 text-sm"
               >
                 <div className="flex items-center justify-between gap-2">
                   <span className="font-semibold text-white">{cred.name}</span>
@@ -111,19 +111,23 @@ export function FooterLogin({ locale, dict }: { locale: Locale; dict: Dictionary
                       setEmail(cred.email);
                       setPassword(cred.password);
                     }}
-                    className="rounded-full bg-signal-400 px-2.5 py-0.5 text-[0.7rem] font-bold text-navy-950 hover:bg-white"
+                    className="inline-flex min-h-11 items-center rounded-full bg-signal-400 px-3 py-1.5 text-xs font-bold text-navy-950 transition-colors hover:bg-white"
                   >
                     {locale === "fr" ? "Utiliser" : "Use account"}
                   </button>
                 </div>
-                <dl className="mt-1.5 space-y-1 text-[0.75rem]">
-                  <div className="flex items-center justify-between gap-2">
-                    <dt className="text-slate-300">{dict.footer.login.demoEmailLabel}:</dt>
-                    <dd className="font-mono font-semibold text-cyan-400 select-all">{cred.email}</dd>
+                <dl className="mt-3 space-y-2 border-t border-white/10 pt-3 text-[0.8125rem]">
+                  <div className="grid gap-0.5">
+                    <dt className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-300">
+                      {dict.footer.login.demoEmailLabel}
+                    </dt>
+                    <dd className="break-all font-mono font-semibold text-cyan-400 select-all">{cred.email}</dd>
                   </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <dt className="text-slate-300">{dict.footer.login.demoPasswordLabel}:</dt>
-                    <dd className="font-mono font-semibold text-white select-all">{cred.password}</dd>
+                  <div className="grid gap-0.5">
+                    <dt className="text-xs font-semibold uppercase tracking-[0.08em] text-slate-300">
+                      {dict.footer.login.demoPasswordLabel}
+                    </dt>
+                    <dd className="break-all font-mono font-semibold text-white select-all">{cred.password}</dd>
                   </div>
                 </dl>
               </div>

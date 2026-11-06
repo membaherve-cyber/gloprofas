@@ -131,7 +131,7 @@ export function ReportWizard({
           <p className="mt-2 text-[0.95rem] text-slate-600">{dict.report.confirm.body}</p>
           <div className="mt-5 flex flex-wrap items-center gap-3 rounded-[var(--radius-md)] border border-line-200 bg-white p-4">
             <div>
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-slate-600">
+              <p className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-600">
                 {dict.report.confirm.reference}
               </p>
               <p className="font-[family-name:var(--font-heading)] text-[1.4rem] font-bold tracking-wide text-ink-900">

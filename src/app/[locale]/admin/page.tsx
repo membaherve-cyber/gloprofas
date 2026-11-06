@@ -190,7 +190,7 @@ export default async function AdminDashboardPage({
               className="group rounded-[var(--radius-md)] border border-line-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-blue-600/50 hover:shadow-[var(--shadow-e1)]"
             >
               <div className="flex items-start justify-between gap-2">
-                <dt className="text-[0.73rem] font-bold uppercase tracking-[0.08em] text-slate-600">
+                <dt className="text-xs font-bold uppercase tracking-[0.08em] text-slate-600">
                   {card.label}
                 </dt>
                 <ArrowUpRight

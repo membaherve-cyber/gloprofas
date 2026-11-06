@@ -40,7 +40,7 @@ export default async function StyleguidePage({ params }: { params: Promise<{ loc
               <div key={name} className="rounded-[var(--radius-md)] border border-line-200 p-3">
                 <div className="h-14 w-full rounded-[8px]" style={{ background: hex }} />
                 <p className="mt-2 text-[0.78rem] font-semibold">{name}</p>
-                <p className="text-[0.72rem] text-slate-600">{hex}</p>
+                <p className="text-xs text-slate-600">{hex}</p>
               </div>
             ))}
           </div>

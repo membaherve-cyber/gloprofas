@@ -58,12 +58,12 @@ export function InlineReportStatusForm({
       <button
         type="submit"
         disabled={pending}
-        className="rounded-[8px] bg-blue-600 px-2.5 py-1 text-[0.72rem] font-semibold text-white hover:bg-blue-500 disabled:opacity-50"
+        className="rounded-[8px] bg-blue-600 px-2.5 py-1 text-xs font-semibold text-white hover:bg-blue-500 disabled:opacity-50"
       >
         {pending ? "…" : locale === "fr" ? "OK" : "Save"}
       </button>
       {state.status === "success" ? (
-        <span className="text-[0.7rem] font-semibold text-risk-low">✓</span>
+        <span className="text-xs font-semibold text-risk-low">✓</span>
       ) : null}
     </form>
   );

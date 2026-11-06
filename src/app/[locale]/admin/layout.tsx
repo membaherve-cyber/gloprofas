@@ -51,7 +51,7 @@ export default async function AdminLayout({
             <Link href={routes.admin(locale)} aria-label="GLOPROFAS Backoffice">
               <Logo variant="light" />
             </Link>
-            <span className="hidden rounded-full border border-cyan-400/40 bg-cyan-400/10 px-3 py-1 text-[0.7rem] font-bold uppercase tracking-[0.12em] text-cyan-400 md:inline-block">
+            <span className="hidden rounded-full border border-cyan-400/40 bg-cyan-400/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-cyan-400 md:inline-block">
               {locale === "fr" ? "Back-office" : "Backoffice"}
             </span>
           </div>

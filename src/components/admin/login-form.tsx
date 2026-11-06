@@ -89,7 +89,7 @@ export function AdminLoginForm({ locale, dict }: { locale: Locale; dict: Diction
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
                     <p className="text-[0.95rem] font-semibold text-white">{cred.name}</p>
-                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.1em] text-cyan-400">
+                    <p className="text-xs font-semibold uppercase tracking-[0.1em] text-cyan-400">
                       {locale === "fr" ? cred.roleLabelFr : cred.roleLabelEn}
                     </p>
                   </div>
