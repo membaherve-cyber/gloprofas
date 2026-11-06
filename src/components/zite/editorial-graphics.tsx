@@ -24,7 +24,7 @@ export function EditorialSectionIndex({
       </span>
       <span
         aria-hidden="true"
-        className={`hidden font-mono text-[0.625rem] uppercase tracking-[0.2em] sm:block ${
+        className={`hidden font-mono text-xs uppercase tracking-[0.2em] sm:block ${
           dark ? "text-white/30" : "text-slate-600/50"
         }`}
       >
@@ -61,7 +61,7 @@ export function ScamInterceptionDiagram({ lang }: { lang: Locale }) {
         <span className="ed-label text-cyanx">
           {fr ? "Séquence d’interception" : "Interception sequence"}
         </span>
-        <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-signal">
+        <span className="text-xs font-semibold uppercase tracking-[0.14em] text-signal">
           {fr ? "Point d’arrêt · étape 03" : "Interrupt point · stage 03"}
         </span>
       </figcaption>
@@ -107,7 +107,7 @@ export function ScamInterceptionDiagram({ lang }: { lang: Locale }) {
                   {node.code}
                 </span>
                 {gate ? (
-                  <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-signal">
+                  <span className="text-xs font-bold uppercase tracking-[0.16em] text-signal">
                     {fr ? "Arrêt" : "Stop"}
                   </span>
                 ) : null}

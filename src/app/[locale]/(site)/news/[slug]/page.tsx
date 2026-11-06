@@ -118,7 +118,7 @@ export default async function ArticlePage({
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent" />
-                  <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 border-l-2 border-cyanx bg-navy-950/85 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-white">
+                  <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 border-l-2 border-cyanx bg-navy-950/85 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white">
                     <span aria-hidden="true" className="h-1.5 w-1.5 bg-cyanx" />
                     {R(article.tag, locale)}
                   </span>

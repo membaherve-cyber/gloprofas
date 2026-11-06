@@ -118,9 +118,9 @@ export function Btn({
 }) {
   const dims =
     size === "sm"
-      ? "h-10 px-5 text-[0.8125rem]"
-      : "h-[50px] px-7 text-[0.9375rem]";
-  const cls = `group inline-flex items-center justify-center gap-2 rounded-[2px] font-semibold tracking-[-0.005em] transition-colors duration-200 whitespace-nowrap disabled:opacity-60 ${dims} ${btnVariants[variant]} ${className}`;
+      ? "h-11 px-5 text-[0.8125rem]"
+      : "h-[52px] px-7 text-[0.9375rem]";
+  const cls = `group inline-flex items-center justify-center gap-2 rounded-[2px] font-semibold leading-[1.2] tracking-[-0.005em] transition-colors duration-200 whitespace-nowrap disabled:opacity-60 ${dims} ${btnVariants[variant]} ${className}`;
   const inner = (
     <>
       <span className="text-roll">
@@ -242,12 +242,15 @@ export function PageHero({
   }, [isPlaying, reducedMotion, videoFailed, videoSrc]);
 
   return (
-    <section className="on-dark relative isolate overflow-hidden border-b border-white/10 bg-navy-950 pt-[136px] pb-14 lg:pt-[176px] lg:pb-20">
-      {/* Fallback / Poster image always rendered beneath video */}
+    <section className="on-dark relative isolate flex min-h-[540px] items-center overflow-hidden border-b border-white/10 bg-navy-950 pt-[136px] pb-14 sm:min-h-[580px] lg:min-h-[640px] lg:pt-[176px] lg:pb-20">
+      {/* High-resolution poster is the LCP and reduced-motion fallback */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={posterSrc}
         alt=""
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
         className="hero-aerial-zoom absolute inset-0 -z-30 h-full w-full object-cover object-center"
       />
 
@@ -284,7 +287,7 @@ export function PageHero({
         {/* Editorial masthead: breadcrumb rule + provenance */}
         <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-white/15 pb-3.5">
           <nav aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-2 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-white/55">
+            <ol className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-white/55">
               {crumbs.map((c, idx) => (
                 <li key={`${c.label}-${idx}`} className="flex items-center gap-2">
                   {idx > 0 ? (
@@ -306,7 +309,7 @@ export function PageHero({
 
           <div className="flex items-center gap-4">
             {cityBadge ? (
-              <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white/50">
+              <span className="text-xs font-semibold uppercase tracking-[0.14em] text-white/50">
                 {cityBadge}
               </span>
             ) : null}
@@ -316,12 +319,12 @@ export function PageHero({
                 onClick={() => setIsPlaying((p) => !p)}
                 aria-pressed={!isPlaying}
                 aria-label={isPlaying ? "Pause background footage" : "Play background footage"}
-                className="inline-flex h-7 w-7 items-center justify-center border border-white/25 text-white/70 transition-colors hover:border-white hover:text-white"
+                className="inline-flex h-11 w-11 items-center justify-center border border-white/25 text-white/70 transition-colors hover:border-white hover:text-white"
               >
                 {isPlaying ? (
-                  <Pause className="h-3 w-3" strokeWidth={1.5} aria-hidden="true" />
+                  <Pause className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
                 ) : (
-                  <Play className="h-3 w-3" strokeWidth={1.5} aria-hidden="true" />
+                  <Play className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
                 )}
               </button>
             ) : null}
@@ -452,7 +455,7 @@ export function ZiteRiskBadge({
   const Icon = entry.Icon;
   return (
     <span
-      className={`inline-flex items-center gap-1.5 border-l-2 px-2.5 py-1 text-[0.6875rem] font-bold uppercase tracking-[0.14em] ${entry.cls}`}
+      className={`inline-flex items-center gap-1.5 border-l-2 px-2.5 py-1 text-xs font-bold uppercase tracking-[0.14em] ${entry.cls}`}
     >
       <Icon className="h-3.5 w-3.5" strokeWidth={1.5} />
       {R(L.risk[entry.key], lang)}

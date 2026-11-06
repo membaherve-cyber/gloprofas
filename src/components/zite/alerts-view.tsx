@@ -147,7 +147,7 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
                   </div>
                   <div className="mt-5 flex flex-wrap items-center gap-3">
                     <ZiteRiskBadge level={filtered[0].risk} lang={locale} />
-                    <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                    <span className="text-xs uppercase tracking-[0.14em] text-slatex-600">
                       {filtered[0].country} · {formatZiteDate(filtered[0].date, locale)}
                     </span>
                   </div>
@@ -167,7 +167,7 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
                   <Link key={a.id} href={l(`/alerts/${a.id}`)} className="ed-item group">
                     <div className="flex flex-wrap items-center gap-3">
                       <ZiteRiskBadge level={a.risk} lang={locale} />
-                      <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                      <span className="text-xs uppercase tracking-[0.14em] text-slatex-600">
                         {R(a.category, locale)} · {a.country} · {formatZiteDate(a.date, locale)}
                       </span>
                     </div>

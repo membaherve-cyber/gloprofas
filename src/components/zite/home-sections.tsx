@@ -71,7 +71,7 @@ function Masthead({
       </span>
       <span
         aria-hidden="true"
-        className={`hidden font-mono text-[0.625rem] uppercase tracking-[0.2em] sm:block ${
+        className={`hidden font-mono text-xs uppercase tracking-[0.2em] sm:block ${
           dark ? "text-white/30" : "text-slate-600/50"
         }`}
       >
@@ -525,7 +525,7 @@ export function ZiteHomeView({
                       href={l(`/scams/${cat.slug}`)}
                       className="group flex items-start gap-3 border-b border-line py-3.5 transition-colors hover:border-brand-600"
                     >
-                      <span className="ed-num pt-0.5 text-[0.6875rem]">
+                      <span className="ed-num pt-0.5 text-xs">
                         {String(idx + 2).padStart(2, "0")}
                       </span>
                       <Icon
@@ -703,10 +703,10 @@ export function ZiteHomeView({
                     <img src={featuredRes.imageUrl} alt="" loading="lazy" />
                   </div>
                   <div className="mt-5 flex flex-wrap items-center gap-3">
-                    <span className="border-l-2 border-brand-600 pl-2 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-brand-600">
+                    <span className="border-l-2 border-brand-600 pl-2 text-xs font-bold uppercase tracking-[0.14em] text-brand-600">
                       {R(L.res.featured, lang)}
                     </span>
-                    <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                    <span className="text-xs uppercase tracking-[0.14em] text-slatex-600">
                       {featuredRes.type} · {featuredRes.language}
                     </span>
                   </div>
@@ -727,7 +727,7 @@ export function ZiteHomeView({
                       href={l("/resources")}
                       className="ed-item group"
                     >
-                      <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                      <span className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
                         {res.type} · {res.language}
                       </span>
                       <h4 className="mt-1.5 font-[family-name:var(--font-heading)] text-[0.9375rem] font-medium leading-snug text-ink">
@@ -765,7 +765,7 @@ export function ZiteHomeView({
                 />
               </div>
               <div className="p-7 sm:p-9">
-                <span className="border-l-2 border-risk-low pl-2 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-risk-low">
+                <span className="border-l-2 border-risk-low pl-2 text-xs font-bold uppercase tracking-[0.14em] text-risk-low">
                   {R(L.services.freeTag, lang)}
                 </span>
                 <h3 className="h3 mt-3 text-ink">{R(L.services.freeTitle, lang)}</h3>
@@ -801,7 +801,7 @@ export function ZiteHomeView({
                 />
               </div>
               <div className="p-7 sm:p-9">
-                <span className="border-l-2 border-signal pl-2 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-signal">
+                <span className="border-l-2 border-signal pl-2 text-xs font-bold uppercase tracking-[0.14em] text-signal">
                   {R(L.services.paidTag, lang)}
                 </span>
                 <h3 className="h3 mt-3 text-white">{R(L.services.paidTitle, lang)}</h3>
@@ -858,7 +858,7 @@ export function ZiteHomeView({
                     </div>
                     <div className="mt-5 flex flex-wrap items-center gap-3">
                       <ZiteRiskBadge level={leadAlert.risk} lang={lang} />
-                      <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                      <span className="text-xs uppercase tracking-[0.14em] text-slatex-600">
                         {leadAlert.country} · {formatZiteDate(leadAlert.date, lang)}
                       </span>
                     </div>
@@ -878,7 +878,7 @@ export function ZiteHomeView({
                     <Link key={a.id} href={l(`/alerts/${a.id}`)} className="ed-item group">
                       <div className="flex flex-wrap items-center gap-3">
                         <ZiteRiskBadge level={a.risk} lang={lang} />
-                        <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                        <span className="text-xs uppercase tracking-[0.14em] text-slatex-600">
                           {a.country} · {formatZiteDate(a.date, lang)}
                         </span>
                       </div>
@@ -907,7 +907,7 @@ export function ZiteHomeView({
                             <img src={art.imageUrl} alt="" loading="lazy" />
                           </div>
                           <div className="min-w-0">
-                            <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                            <span className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
                               {R(art.tag, lang)}
                             </span>
                             <h4 className="mt-1 font-[family-name:var(--font-heading)] text-[0.875rem] font-medium leading-snug text-ink">
@@ -954,10 +954,10 @@ export function ZiteHomeView({
                   <img src={cases[0].image} alt={cases[0].title} loading="lazy" />
                 </div>
                 <div className="mt-5 flex flex-wrap items-center gap-3">
-                  <span className="border-l-2 border-brand-600 pl-2 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-brand-600">
+                  <span className="border-l-2 border-brand-600 pl-2 text-xs font-bold uppercase tracking-[0.14em] text-brand-600">
                     {cases[0].scope}
                   </span>
-                  <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                  <span className="text-xs uppercase tracking-[0.14em] text-slatex-600">
                     {cases[0].category}
                   </span>
                 </div>
@@ -985,7 +985,7 @@ export function ZiteHomeView({
               <div className="ed-list">
                 {cases.slice(1).map((cs) => (
                   <article key={cs.title} className="ed-item">
-                    <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                    <span className="text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
                       {cs.scope} · {cs.category}
                     </span>
                     <h4 className="h4 mt-2 text-ink">{cs.title}</h4>

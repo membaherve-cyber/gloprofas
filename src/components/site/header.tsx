@@ -80,7 +80,7 @@ export function SiteHeader({
               className="flex min-w-0 items-center gap-2 text-slatex-300 hover:text-white"
             >
               <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 bg-cyanx" />
-              <span className="shrink-0 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-white">
+              <span className="shrink-0 text-xs font-bold uppercase tracking-[0.16em] text-white">
                 {R(L.latestAlert, locale)}
               </span>
               <span className="ed-link truncate text-[0.8125rem]">{latestAlert.title}</span>

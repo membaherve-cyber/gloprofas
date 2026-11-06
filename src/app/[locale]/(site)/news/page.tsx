@@ -98,7 +98,7 @@ export default async function NewsPage({
                       </div>
                     </div>
                     <div className="sm:col-span-9">
-                      <span className="border-l-2 border-brand-600 pl-2 text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                      <span className="border-l-2 border-brand-600 pl-2 text-xs font-bold uppercase tracking-[0.16em] text-brand-600">
                         {R(art.tag, locale)}
                       </span>
                       <h2 className="h3 mt-2 max-w-[36ch] text-ink">
