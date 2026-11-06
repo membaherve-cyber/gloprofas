@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { AlertCircle, AppWindow, Fingerprint, FileText, KeyRound, Link2, Megaphone, Share2, ShieldAlert, ShieldQuestion, Smartphone, TrendingUp } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { notFound } from "next/navigation";
 import { ContactForm, EnquiryForm, PartnershipForm, VolunteerForm } from "@/components/forms";
 import { ReportWizard } from "@/components/report-wizard";
@@ -57,20 +55,21 @@ export async function SectionView({
   notFound();
 }
 
-// One distinct African city aerial per section (the homepage keeps its Douala video).
-const CITY: Partial<Record<SectionKey, string>> = {
-  about: "/images/city-kigali.jpg",
-  awareness: "/images/city-lagos.jpg",
-  resources: "/images/city-nairobi.jpg",
-  services: "/images/city-daresalaam.jpg",
-  news: "/images/city-yaounde.jpg",
-  alerts: "/images/city-nouakchott.jpg",
-  involved: "/images/city-yaounde-2.jpg",
-  contact: "/images/city-banjul.jpg",
-  // The support hub keeps a Douala market aerial (the only unused aerial; the homepage keeps its Douala video).
-  support: "/images/hero.jpg",
-  report: "/images/city-nairobi-2.jpg",
-  legal: "/images/city-kigali-2.jpg",
+// One distinct aerial drone clip per section (the homepage keeps its Douala video).
+// Each clip is a real 12s H.264 720p loop; the poster is its own frame and the
+// reduced-motion fallback.
+const CITY: Partial<Record<SectionKey, { video: string; poster: string }>> = {
+  about: { video: "/videos/city-about.mp4", poster: "/images/poster-about.jpg" }, // Kigali, Rwanda
+  awareness: { video: "/videos/city-awareness.mp4", poster: "/images/poster-awareness.jpg" }, // Lagos, Nigeria
+  resources: { video: "/videos/city-resources.mp4", poster: "/images/poster-resources.jpg" }, // Nairobi, Kenya
+  services: { video: "/videos/city-services.mp4", poster: "/images/poster-services.jpg" }, // modern business district
+  news: { video: "/videos/city-news.mp4", poster: "/images/poster-news.jpg" }, // Cameroon
+  alerts: { video: "/videos/city-alerts.mp4", poster: "/images/poster-alerts.jpg" }, // city traffic at night
+  involved: { video: "/videos/city-involved.mp4", poster: "/images/poster-involved.jpg" }, // city intersection
+  contact: { video: "/videos/city-contact.mp4", poster: "/images/poster-contact.jpg" }, // city by the sea
+  support: { video: "/videos/city-support.mp4", poster: "/images/poster-support.jpg" }, // Douala, Cameroon
+  report: { video: "/videos/city-report.mp4", poster: "/images/poster-report.jpg" }, // city street
+  legal: { video: "/videos/city-legal.mp4", poster: "/images/poster-legal.jpg" }, // coastline from the air
 };
 
 // Related photography for the most prominent scam-category pages (each photo used once).
@@ -89,12 +88,15 @@ const CATEGORY_IMAGES: Record<string, string> = {
   "advance-fee": "/images/church-forum.jpg",
 };
 
-function Hero({ locale, eyebrow, title, lead, city }: { locale: Locale; eyebrow: string; title: string; lead?: string; city?: string }) {
+function Hero({ locale, eyebrow, title, lead, city }: { locale: Locale; eyebrow: string; title: string; lead?: string; city?: { video: string; poster: string } }) {
   return (
     <header className="page-hero">
       {city ? (
         <>
-          <img className="page-hero-img" src={city} alt="" aria-hidden="true" loading="eager" />
+          <video className="page-hero-video" autoPlay muted loop playsInline poster={city.poster} preload="metadata" aria-hidden="true">
+            <source src={city.video} type="video/mp4" />
+          </video>
+          <img className="page-hero-poster" src={city.poster} alt="" aria-hidden="true" loading="eager" />
           <div className="page-hero-shade" />
         </>
       ) : null}
@@ -437,8 +439,6 @@ async function contact(locale: Locale, settings: WebsiteSettings | null) {
   );
 }
 
-const SUPPORT_ICONS: LucideIcon[] = [AlertCircle, Smartphone, KeyRound, Link2, AppWindow, Fingerprint, Megaphone, ShieldAlert, TrendingUp, Share2, FileText, ShieldQuestion];
-
 async function supportView(locale: Locale) {
   const t = m(locale);
   // Each situation links to the matching guide or the reporting channel.
@@ -458,22 +458,21 @@ async function supportView(locale: Locale) {
   ];
   return (
     <>
-      <Hero locale={locale} eyebrow={t.support.eyebrow} title={t.support.h2} lead={t.support.lead} city="/images/hero.jpg" />
+      <Hero locale={locale} eyebrow={t.support.eyebrow} title={t.support.h2} lead={t.support.lead} city={CITY.support} />
       <section className="section">
         <div className="container">
           <p className="lead measure muted">{t.support.intro}</p>
-          <div className="grid-cards three" style={{ marginTop: 24 }}>
-            {t.support.situations.map((situation, index) => {
-              const Icon = SUPPORT_ICONS[index % SUPPORT_ICONS.length];
-              return (
-                <article className="card situation-card" key={situation.t}>
-                  <span className="icon-tile"><Icon size={22} strokeWidth={1.5} aria-hidden="true" /></span>
-                  <h3 style={{ fontSize: "1.2rem", margin: 0 }}>{situation.t}</h3>
-                  <p className="muted">{situation.d}</p>
-                  <Link className="btn-text-link" href={links[index]}>{t.readMore} <span aria-hidden="true">→</span></Link>
-                </article>
-              );
-            })}
+          <div className="situation-index" style={{ marginTop: 28 }}>
+            {t.support.situations.map((situation, index) => (
+              <Link className="situation-item" key={situation.t} href={links[index]}>
+                <span className="num" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+                <span>
+                  <h3 style={{ margin: 0, fontSize: "1.05rem" }}>{situation.t}</h3>
+                  <p className="muted" style={{ margin: "6px 0 0", fontSize: "13.5px", lineHeight: 1.55 }}>{situation.d}</p>
+                </span>
+                <span className="arr" aria-hidden="true">→</span>
+              </Link>
+            ))}
           </div>
           <div style={{ marginTop: 28 }}>
             <Button href={pathFor(locale, "report")} variant="signal">{t.support.ctaReport}</Button>
