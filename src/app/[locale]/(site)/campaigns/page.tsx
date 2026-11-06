@@ -6,7 +6,11 @@ import { getDictionary, isLocale, routes, type Locale } from "@/lib/i18n";
 import { ButtonLink, CheckList, SectionHeading } from "@/components/ui";
 import { Media } from "@/components/ui/media";
 import { Reveal } from "@/components/ui/motion";
-import { PageHero } from "@/components/zite/shared";
+import {
+  PageHero,
+} from "@/components/zite/shared";
+
+
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {

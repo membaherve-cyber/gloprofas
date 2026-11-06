@@ -11,7 +11,14 @@ import {
   ShieldAlert,
   X,
 } from "lucide-react";
-import { Btn, getCategoryIcon, L, PageHero, R } from "@/components/zite/shared";
+import {
+  Btn,
+  PageHero,
+} from "@/components/zite/shared";
+import { L } from "@/lib/zite-copy";
+
+import { getCategoryIcon, R } from "@/lib/zite-copy";
+
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 import { ZITE_CONTENT, type ZiteCategory } from "@/lib/zite-data";
 import type { Locale } from "@/lib/i18n";

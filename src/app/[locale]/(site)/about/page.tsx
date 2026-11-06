@@ -15,12 +15,14 @@ import {
 import { isLocale, type Locale } from "@/lib/i18n";
 import {
   IconTile,
-  L,
   PageHero,
-  R,
   Reveal,
   SectionHeading,
 } from "@/components/zite/shared";
+import { L } from "@/lib/zite-copy";
+
+import { R } from "@/lib/zite-copy";
+
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({

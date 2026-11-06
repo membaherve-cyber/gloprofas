@@ -5,12 +5,13 @@ import { isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT, type ZiteAlert } from "@/lib/zite-data";
 import {
   Btn,
-  formatZiteDate,
-  L,
   PageHero,
-  R,
   ZiteRiskBadge,
 } from "@/components/zite/shared";
+import { L } from "@/lib/zite-copy";
+
+import { formatZiteDate, R } from "@/lib/zite-copy";
+
 
 import {
   ALERT_AERIAL_HEROES,

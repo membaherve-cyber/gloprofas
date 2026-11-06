@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
-import { PageHero } from "@/components/zite/shared";
+import {
+  PageHero,
+} from "@/components/zite/shared";
+
+
 import { formatAerialBadge, getLegalAerialHero } from "@/lib/african-cities";
 
 const UPDATED = {

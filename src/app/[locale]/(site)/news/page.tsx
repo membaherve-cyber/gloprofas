@@ -3,7 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT } from "@/lib/zite-data";
-import { formatZiteDate, L, PageHero, R, Reveal } from "@/components/zite/shared";
+import {
+  PageHero,
+  Reveal,
+} from "@/components/zite/shared";
+import { L } from "@/lib/zite-copy";
+
+import { formatZiteDate, R } from "@/lib/zite-copy";
+
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({

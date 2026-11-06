@@ -5,7 +5,10 @@ import { SiteFooter } from "@/components/site/footer";
 import { AssistantLauncher } from "@/components/site/assistant-launcher";
 import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT } from "@/lib/zite-data";
-import { L, R } from "@/components/zite/shared";
+import { L } from "@/lib/zite-copy";
+
+import { R } from "@/lib/zite-copy";
+
 
 export const dynamic = "force-dynamic";
 

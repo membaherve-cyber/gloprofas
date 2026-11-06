@@ -4,13 +4,15 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import {
-  formatZiteDate,
-  L,
   PageHero,
-  R,
   Reveal,
   ZiteRiskBadge,
 } from "@/components/zite/shared";
+import { L } from "@/lib/zite-copy";
+
+import { formatZiteDate, R } from "@/lib/zite-copy";
+
+import { EditorialSectionIndex } from "@/components/zite/editorial-graphics";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 import { ZITE_CONTENT, type ZiteAlert, type ZiteCategory } from "@/lib/zite-data";
 import type { Locale } from "@/lib/i18n";
@@ -65,6 +67,10 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
 
       <section className="section-y bg-mist">
         <div className="container-g">
+          <EditorialSectionIndex
+            index="ALT"
+            code={fr ? "VEILLE DES RISQUES & AVERTISSEMENTS PUBLICS" : "RISK MONITOR & PUBLIC WARNINGS"}
+          />
           {featuredCritical ? (
             <Link
               href={l(`/alerts/${featuredCritical.id}`)}

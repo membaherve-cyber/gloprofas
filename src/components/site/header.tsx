@@ -5,7 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LogIn, Menu, X } from "lucide-react";
-import { Btn, L, NAV_ITEMS, R } from "@/components/zite/shared";
+import {
+  Btn,
+} from "@/components/zite/shared";
+import { L, NAV_ITEMS } from "@/lib/zite-copy";
+
+import { R } from "@/lib/zite-copy";
+
 import type { Dictionary } from "@/messages/en";
 import type { Locale } from "@/lib/i18n";
 
@@ -66,7 +72,12 @@ export function SiteHeader({
       if (e.key === "Escape") setMenuOpen(false);
     };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = previousOverflow;
+    };
   }, [menuOpen]);
 
   return (
@@ -98,7 +109,7 @@ export function SiteHeader({
           <Link
             href={`/${locale}`}
             aria-label="GLOPROFAS - Global Programme for the Fight Against Scams"
-            className="inline-flex shrink-0 items-center rounded-lg bg-white px-2 py-1 shadow-sm"
+            className="inline-flex shrink-0 items-center rounded-[10px] bg-white px-2.5 py-1.5 shadow-sm ring-1 ring-white/15 transition-transform duration-200 hover:-translate-y-px"
           >
             <Image
               src="/images/gloprofas-logo.png"
@@ -119,8 +130,10 @@ export function SiteHeader({
                   <li key={item.key}>
                     <Link
                       href={to}
-                      className={`text-[0.95rem] font-medium hover:text-white ${
-                        isActive ? "text-white" : "text-slatex-300"
+                      className={`relative py-2.5 text-[0.875rem] font-semibold tracking-[0.005em] transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-left after:bg-cyanx after:transition-transform after:duration-200 hover:text-white ${
+                        isActive
+                          ? "text-white after:scale-x-100"
+                          : "text-slatex-300 after:scale-x-0 hover:after:scale-x-100"
                       }`}
                     >
                       {R(L.nav[item.key], locale)}
@@ -161,7 +174,12 @@ export function SiteHeader({
       </div>
 
       {menuOpen ? (
-        <div className="fixed inset-0 top-[72px] overflow-y-auto bg-navy-900 xl:hidden">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={R(L.menu, locale)}
+          className="fixed inset-0 top-[72px] overflow-y-auto border-t border-white/10 bg-navy-950 xl:hidden"
+        >
           <div className="container-g flex flex-col gap-1 py-6">
             {NAV_ITEMS.map((item) => (
               <Link

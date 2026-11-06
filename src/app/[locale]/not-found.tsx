@@ -2,7 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Btn } from "@/components/zite/shared";
+import {
+  Btn,
+} from "@/components/zite/shared";
+
+
 
 export default function NotFound() {
   const pathname = usePathname() || "/en";

@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { AlertCircle, CheckCircle2, LoaderCircle } from "lucide-react";
-import { Btn, L, PageHero, R } from "@/components/zite/shared";
+import {
+  Btn,
+  PageHero,
+} from "@/components/zite/shared";
+import { L } from "@/lib/zite-copy";
+
+import { R } from "@/lib/zite-copy";
+
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 import type { Locale } from "@/lib/i18n";
 

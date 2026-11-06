@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { Logo } from "@/components/ui/logo";
-import { L, NAV_ITEMS, R } from "@/components/zite/shared";
+import { L, NAV_ITEMS } from "@/lib/zite-copy";
+
+import { R } from "@/lib/zite-copy";
+
 import { FooterLogin } from "./footer-login";
 import type { Locale } from "@/lib/i18n";
 import type { Dictionary } from "@/messages/en";

@@ -12,16 +12,16 @@ import { isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT, type ZiteCategory } from "@/lib/zite-data";
 import {
   Btn,
-  formatZiteDate,
-  getCategoryIcon,
   IconTile,
-  L,
   PageHero,
-  R,
   Reveal,
   SectionHeading,
   ZiteRiskBadge,
 } from "@/components/zite/shared";
+import { L } from "@/lib/zite-copy";
+
+import { formatZiteDate, getCategoryIcon, R } from "@/lib/zite-copy";
+
 import {
   formatAerialBadge,
   PAGE_AERIAL_HEROES,

@@ -25,16 +25,16 @@ import {
 import { Monogram } from "@/components/ui/logo";
 import {
   Btn,
-  formatZiteDate,
-  getCategoryIcon,
   IconTile,
   ImageSlot,
-  L,
-  R,
   Reveal,
   SectionHeading,
   ZiteRiskBadge,
 } from "@/components/zite/shared";
+import { L } from "@/lib/zite-copy";
+
+import { formatZiteDate, getCategoryIcon, R } from "@/lib/zite-copy";
+
 import {
   EditorialSectionIndex,
   ScamInterceptionDiagram,
@@ -484,6 +484,10 @@ export function ZiteHomeView({
       {/* 5. Common Scams Bento (HomeMiddle.tsx) */}
       <section id="scams" className="section-y scroll-mt-28 bg-mist">
         <div className="container-g">
+          <EditorialSectionIndex
+            index="02"
+            code={lang === "fr" ? "BIBLIOTHÈQUE DES SCHÉMAS DE FRAUDE" : "FRAUD PATTERN LIBRARY"}
+          />
           <SectionHeading
             eyebrow={R(L.scams.eyebrow, lang)}
             title={R(L.scams.h2, lang)}
@@ -667,11 +671,10 @@ export function ZiteHomeView({
 
           {/* Redesigned Interactive Scam-Reporting Box */}
           <Reveal delay={100} className="lg:col-span-6">
-            <div className="on-dark relative overflow-hidden rounded-[26px] border border-white/15 bg-navy-900 p-7 text-white shadow-e3 sm:p-9">
+            <div className="on-dark relative overflow-hidden rounded-[20px] border border-white/12 border-l-2 border-l-cyanx bg-navy-900 p-7 text-white shadow-e2 sm:p-9">
               <div
-                className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full opacity-20 blur-3xl"
-                style={{ background: "radial-gradient(circle, #2bd4e8, transparent 70%)" }}
                 aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 top-0 h-px bg-white/10"
               />
               <div className="relative flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
                 <div className="flex items-center gap-3">
@@ -745,6 +748,10 @@ export function ZiteHomeView({
       {featuredRes ? (
         <section id="resources" className="section-y scroll-mt-28 bg-mist">
           <div className="container-g">
+            <EditorialSectionIndex
+              index="03"
+              code={lang === "fr" ? "OUTILS PRATIQUES DE PROTECTION" : "PRACTICAL PROTECTION TOOLKIT"}
+            />
             <SectionHeading
               eyebrow={R(L.res.eyebrow, lang)}
               title={R(L.res.h2, lang)}
@@ -896,6 +903,10 @@ export function ZiteHomeView({
       {/* 11. Alerts and News (HomeLower.tsx) */}
       <section id="news" className="section-y scroll-mt-28 bg-mist">
         <div className="container-g">
+          <EditorialSectionIndex
+            index="04"
+            code={lang === "fr" ? "OBSERVATOIRE DES ALERTES ET ANALYSES" : "ALERT & ANALYSIS OBSERVATORY"}
+          />
           <SectionHeading
             eyebrow={R(L.newsSec.eyebrow, lang)}
             title={R(L.newsSec.h2, lang)}
@@ -996,6 +1007,10 @@ export function ZiteHomeView({
       {/* 11B. Documented Case Studies & Victim-Support Guidance (Master Prompt Parts 6, 9 & 10) */}
       <section id="case-studies" className="section-y scroll-mt-28 bg-white">
         <div className="container-g">
+          <EditorialSectionIndex
+            index="05"
+            code={lang === "fr" ? "PREUVES DE TERRAIN & RECOMMANDATIONS" : "FIELD EVIDENCE & RESPONSE GUIDANCE"}
+          />
           <SectionHeading
             eyebrow={
               lang === "fr"
@@ -1139,11 +1154,10 @@ export function ZiteHomeView({
             </div>
 
             {/* Redesigned Premium Scam-Reporting Box */}
-            <div className="group relative overflow-hidden rounded-[24px] border border-signal/45 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 p-7 shadow-e3 transition-all duration-300 hover:border-signal">
+            <div className="group relative overflow-hidden rounded-[20px] border border-signal/35 border-l-2 border-l-signal bg-navy-950/90 p-7 shadow-e2 transition-colors duration-300 hover:border-signal/70">
               <div
-                className="pointer-events-none absolute -top-16 -right-16 h-44 w-44 rounded-full opacity-25 blur-3xl transition-opacity duration-300 group-hover:opacity-40"
-                style={{ background: "radial-gradient(circle, #ffb02e, transparent 70%)" }}
                 aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 left-0 w-px bg-signal/60"
               />
               <div className="relative">
                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -1203,7 +1217,7 @@ export function ZiteHomeView({
 
           {/* Right Column: Redesigned Alert Subscription Card */}
           <Reveal delay={90} className="lg:col-span-7">
-            <div className="dark-surface flex h-full flex-col justify-between rounded-[26px] bg-navy-950/80 p-7 shadow-e3 backdrop-blur-md sm:p-9">
+            <div className="dark-surface flex h-full flex-col justify-between rounded-[20px] bg-navy-950/90 p-7 shadow-e2 sm:p-9">
               <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
                 <div className="flex items-center gap-3">
                   <span className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-brand-600/25 text-cyanx">

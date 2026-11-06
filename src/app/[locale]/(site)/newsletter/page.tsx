@@ -3,7 +3,12 @@ import { notFound } from "next/navigation";
 import { Globe, Lock, Mail, ShieldAlert } from "lucide-react";
 import { getDictionary, isLocale, routes, type Locale } from "@/lib/i18n";
 import { NewsletterForm } from "@/components/site/newsletter-form";
-import { Btn, PageHero } from "@/components/zite/shared";
+import {
+  Btn,
+  PageHero,
+} from "@/components/zite/shared";
+
+
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
