@@ -43,7 +43,7 @@ export default async function GetInvolvedPage({
   const cards = [
     {
       Icon: Users,
-      image: "/images/campaign-youth.jpg",
+      image: "/images/context/accra-outdoor-phone.jpg",
       t: fr ? "Devenir bénévole" : "Volunteer",
       d: fr
         ? "Partagez vos compétences en communication, technologie, droit ou éducation pour aider à prévenir les arnaques."
@@ -61,7 +61,7 @@ export default async function GetInvolvedPage({
     },
     {
       Icon: HeartHandshake,
-      image: "/images/campaign-community.jpg",
+      image: "/images/context/lagos-lecture-hall.jpg",
       t: fr ? "Soutenir notre mission" : "Support our mission",
       d: fr
         ? "Les modalités de soutien seront publiées ici une fois confirmées. Contactez-nous pour en discuter."

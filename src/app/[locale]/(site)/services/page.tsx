@@ -48,9 +48,9 @@ export default async function ServicesPage({
 
   const groupImages = [
     "/images/context/person-phone-desk.jpg",
-    "/images/article-business-controls.jpg",
-    "/images/campaign-corporate.jpg",
-    "/images/campaign-youth.jpg",
+    "/images/context/executive-phone-laptop.jpg",
+    "/images/context/team-laptops-office.jpg",
+    "/images/context/university-seminar-hall.jpg",
   ] as const;
 
   const groups = [

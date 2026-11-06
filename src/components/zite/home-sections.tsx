@@ -35,6 +35,10 @@ import {
   SectionHeading,
   ZiteRiskBadge,
 } from "@/components/zite/shared";
+import {
+  EditorialSectionIndex,
+  ScamInterceptionDiagram,
+} from "@/components/zite/editorial-graphics";
 import { ZITE_CONTENT, type ZiteAlert, type ZiteArticle, type ZiteCategory, type ZiteResource } from "@/lib/zite-data";
 import enMessages from "@/messages/en.json";
 import frMessages from "@/messages/fr.json";
@@ -48,7 +52,7 @@ const PILLAR_ICONS: Record<string, LucideIcon> = {
 
 const PILLAR_IMAGES: Record<string, string> = {
   "database-check": "/images/context/person-phone-desk.jpg",
-  "community-reporting": "/images/article-reporting.jpg",
+  "community-reporting": "/images/context/notebook-smartphone-notes.jpg",
   "secure-analytics": "/images/context/person-finance-phone.jpg",
 };
 
@@ -309,6 +313,14 @@ export function ZiteHomeView({
         className="section-y scroll-mt-28 bg-mist"
       >
         <div className="container-g">
+          <EditorialSectionIndex
+            index="01"
+            code={
+              lang === "fr"
+                ? "ARCHITECTURE DE VÉRIFICATION ET DE PROTECTION"
+                : "VERIFICATION & PROTECTION ARCHITECTURE"
+            }
+          />
           <SectionHeading
             eyebrow={pillarsC12.eyebrow}
             title={pillarsC12.h2}
@@ -581,6 +593,10 @@ export function ZiteHomeView({
             ))}
           </div>
 
+          <div className="mt-14">
+            <ScamInterceptionDiagram lang={lang} />
+          </div>
+
           <div className="mt-16 grid gap-x-12 lg:grid-cols-12">
             <h3 className="h3 text-white lg:col-span-4">{R(L.how.techTitle, lang)}</h3>
             <div className="mt-6 grid gap-x-10 md:grid-cols-2 lg:col-span-8 lg:mt-0">
@@ -816,7 +832,7 @@ export function ZiteHomeView({
               <div className="relative aspect-[16/9] w-full overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/campaign-community.jpg"
+                  src="/images/context/lagos-lecture-hall.jpg"
                   alt={R(L.services.freeTitle, lang)}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -847,7 +863,7 @@ export function ZiteHomeView({
               <div className="relative aspect-[16/9] w-full overflow-hidden">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/services-assessment.jpg"
+                  src="/images/context/team-laptops-office.jpg"
                   alt={R(L.services.paidTitle, lang)}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -1003,7 +1019,7 @@ export function ZiteHomeView({
               {
                 scope: lang === "fr" ? "Cameroun · Afrique centrale" : "Cameroon · Central Africa",
                 category: lang === "fr" ? "Fraude au mobile money" : "Mobile money fraud",
-                image: "/images/article-payment-pause.jpg",
+                image: "/images/context/contactless-card-terminal.jpg",
                 title:
                   lang === "fr"
                     ? "Faux SMS de dépôt et appel pressant de « remboursement »"
@@ -1039,7 +1055,7 @@ export function ZiteHomeView({
               {
                 scope: lang === "fr" ? "Afrique du Sud · International" : "South Africa · International",
                 category: lang === "fr" ? "Compromission de facture (BEC)" : "Invoice & payment redirection",
-                image: "/images/article-business-controls.jpg",
+                image: "/images/context/executive-phone-laptop.jpg",
                 title:
                   lang === "fr"
                     ? "Changement de coordonnées bancaires d’un fournisseur par courriel"

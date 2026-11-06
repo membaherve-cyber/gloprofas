@@ -86,13 +86,13 @@ export default async function AboutPage({
   ] as const;
 
   const campaigns = [
-    ["/images/zite/img_88g8h8XzmRU4NhBm.jpg", fr ? "Écoles" : "Schools"],
-    ["/images/zite/img_Ieo6ZTOQg-cTQf5Z.jpg", fr ? "Églises" : "Churches"],
+    ["/images/context/lagos-lecture-hall.jpg", fr ? "Écoles & universités" : "Schools & universities"],
+    ["/images/context/university-seminar-hall.jpg", fr ? "Églises & communautés" : "Churches & faith communities"],
     [
-      "/images/zite/img_zL8YMspJMTt_oGqQ.jpg",
+      "/images/context/accra-outdoor-phone.jpg",
       fr ? "Centres de jeunesse" : "Youth centres",
     ],
-    ["/images/zite/img_Z_dSPNd4_zQljGZ2.jpg", fr ? "Entreprises" : "Companies"],
+    ["/images/context/team-laptops-office.jpg", fr ? "Entreprises & PME" : "Companies & SMEs"],
   ] as const;
 
   return (

@@ -28,10 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 const AUDIENCE_IMAGES = [
-  "/images/campaign-school.jpg",
-  "/images/campaign-community.jpg",
-  "/images/campaign-youth.jpg",
-  "/images/campaign-corporate.jpg",
+  "/images/context/lagos-lecture-hall.jpg",
+  "/images/context/university-seminar-hall.jpg",
+  "/images/context/accra-outdoor-phone.jpg",
+  "/images/context/team-laptops-office.jpg",
 ] as const;
 
 export default async function CampaignsPage({ params }: { params: Promise<{ locale: string }> }) {

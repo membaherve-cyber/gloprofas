@@ -17,6 +17,8 @@ import {
   Landmark,
   MailWarning,
   OctagonAlert,
+  Pause,
+  Play,
   ShieldQuestion,
   ShoppingBag,
   Smartphone,
@@ -25,8 +27,31 @@ import {
   UserX,
   type LucideIcon,
 } from "lucide-react";
+import {
+  ALERT_AERIAL_HEROES,
+  ARTICLE_AERIAL_HEROES,
+  PAGE_AERIAL_HEROES,
+  SCAM_CATEGORY_AERIAL_HEROES,
+} from "@/lib/african-cities";
 import type { Locale } from "@/lib/i18n";
 import type { BiText } from "@/lib/zite-data";
+
+const IMAGE_TO_VIDEO_MAP: Record<string, { video: string; coords?: string }> = {};
+for (const group of [
+  PAGE_AERIAL_HEROES,
+  SCAM_CATEGORY_AERIAL_HEROES,
+  ALERT_AERIAL_HEROES,
+  ARTICLE_AERIAL_HEROES,
+]) {
+  for (const entry of Object.values(group)) {
+    if (entry.image && entry.video) {
+      IMAGE_TO_VIDEO_MAP[entry.image] = {
+        video: entry.video,
+        coords: entry.coords,
+      };
+    }
+  }
+}
 
 const nbsp = "\u00A0";
 
@@ -564,6 +589,8 @@ export function PageHero({
   lead,
   eyebrow,
   image,
+  video,
+  coords,
   cityBadge,
   crumbs,
 }: {
@@ -571,39 +598,105 @@ export function PageHero({
   lead?: string;
   eyebrow?: string;
   image?: string | null;
+  video?: string | null;
+  coords?: string;
   cityBadge?: string;
   crumbs: { label: string; to?: string }[];
 }) {
+  const posterSrc = image || "/images/cities/yaounde-cameroon.jpg";
+  const mapped = IMAGE_TO_VIDEO_MAP[posterSrc];
+  const videoSrc = video || mapped?.video || "/video/cities/douala-cameroon.mp4";
+  const resolvedCoords = coords || mapped?.coords || "04°03′N · 09°42′E";
+
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || reducedMotion || videoFailed) return;
+    if (isPlaying) {
+      void el.play().catch(() => {
+        // Autoplay prevented by browser power saver; poster remains visible.
+      });
+    } else {
+      el.pause();
+    }
+  }, [isPlaying, reducedMotion, videoFailed, videoSrc]);
+
   return (
-    <section className="on-dark relative isolate overflow-hidden bg-navy-900 pt-[150px] pb-16 lg:pt-[190px] lg:pb-24">
-      {image ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={image}
-          alt=""
-          className="hero-aerial-zoom absolute inset-0 -z-20 h-full w-full object-cover"
-        />
+    <section className="on-dark relative isolate overflow-hidden border-b border-white/10 bg-navy-950 pt-[148px] pb-16 lg:pt-[188px] lg:pb-24">
+      {/* Fallback / Poster image always rendered beneath video */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={posterSrc}
+        alt=""
+        className="hero-aerial-zoom absolute inset-0 -z-30 h-full w-full object-cover object-center"
+      />
+
+      {/* Ultrarealistic Full-Bleed Aerial Drone Video */}
+      {!reducedMotion && !videoFailed ? (
+        <video
+          key={videoSrc}
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster={posterSrc}
+          onError={() => setVideoFailed(true)}
+          aria-hidden="true"
+          tabIndex={-1}
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        >
+          <source src={videoSrc} type="video/mp4" />
+        </video>
       ) : null}
+
+      {/* Editorial Multi-Stop Gradient + Architectural Grid Overlay */}
       <div
         className="absolute inset-0 -z-10"
         style={{
           background:
-            "linear-gradient(90deg, rgba(5, 11, 26, 0.90), rgba(10, 22, 49, 0.56))",
+            "linear-gradient(102deg, rgba(5, 11, 26, 0.93) 0%, rgba(10, 22, 49, 0.78) 54%, rgba(5, 11, 26, 0.52) 100%), linear-gradient(180deg, rgba(5, 11, 26, 0.55) 0%, transparent 35%, rgba(5, 11, 26, 0.85) 100%)",
         }}
       />
-      <div className="container-g">
-        <div className="flex flex-wrap items-center justify-between gap-4">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-25"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+          maskImage: "linear-gradient(90deg, #000 15%, transparent 80%)",
+        }}
+      />
+
+      <div className="container-g relative">
+        {/* Top Editorial Telemetry & Breadcrumb Bar */}
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/12 pb-4">
           <nav aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-1.5 text-sm text-slatex-300">
+            <ol className="flex flex-wrap items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-slatex-300">
               {crumbs.map((c, idx) => (
                 <li key={`${c.label}-${idx}`} className="flex items-center gap-1.5">
-                  {idx > 0 ? <ChevronRight className="h-3.5 w-3.5" /> : null}
+                  {idx > 0 ? <ChevronRight className="h-3.5 w-3.5 text-white/40" /> : null}
                   {c.to ? (
-                    <Link href={c.to} className="hover:text-white">
+                    <Link href={c.to} className="transition-colors hover:text-white">
                       {c.label}
                     </Link>
                   ) : (
-                    <span aria-current="page" className="text-white">
+                    <span aria-current="page" className="text-cyanx">
                       {c.label}
                     </span>
                   )}
@@ -611,13 +704,35 @@ export function PageHero({
               ))}
             </ol>
           </nav>
-          {cityBadge ? (
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-navy-950/75 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-slatex-300 backdrop-blur-sm">
-              <span className="animate-dot h-2 w-2 rounded-full bg-cyanx" />
-              {cityBadge}
-            </span>
-          ) : null}
+
+          <div className="flex flex-wrap items-center gap-2.5">
+            {cityBadge ? (
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-navy-950/75 px-3.5 py-1 text-[11px] font-semibold tracking-wide text-slatex-300 backdrop-blur-md">
+                <span className="animate-dot h-1.5 w-1.5 rounded-full bg-cyanx" />
+                <span>{cityBadge}</span>
+                <span className="hidden border-l border-white/15 pl-2 font-mono text-[10px] text-white/60 sm:inline">
+                  {resolvedCoords}
+                </span>
+              </span>
+            ) : null}
+            {!reducedMotion && !videoFailed ? (
+              <button
+                type="button"
+                onClick={() => setIsPlaying((p) => !p)}
+                aria-pressed={!isPlaying}
+                aria-label={isPlaying ? "Pause aerial video" : "Play aerial video"}
+                className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/20 bg-navy-950/75 text-white/80 backdrop-blur-md transition hover:border-cyanx hover:text-cyanx"
+              >
+                {isPlaying ? (
+                  <Pause className="h-3 w-3" aria-hidden="true" />
+                ) : (
+                  <Play className="h-3 w-3" aria-hidden="true" />
+                )}
+              </button>
+            ) : null}
+          </div>
         </div>
+
         {eyebrow ? (
           <p className="eyebrow mt-8 flex items-center gap-3 text-cyanx">
             <span className="h-px w-8 bg-cyanx" />
@@ -627,14 +742,14 @@ export function PageHero({
         <Reveal>
           <h1
             className="h1 mt-4 max-w-4xl text-white"
-            style={{ fontSize: "clamp(2.25rem, 1.5rem + 2.8vw, 3.75rem)" }}
+            style={{ fontSize: "clamp(2.35rem, 1.55rem + 2.8vw, 3.85rem)" }}
           >
             {title}
           </h1>
         </Reveal>
         {lead ? (
           <Reveal delay={120}>
-            <p className="lead mt-5 text-slatex-300">{lead}</p>
+            <p className="lead mt-5 max-w-2xl text-slatex-300">{lead}</p>
           </Reveal>
         ) : null}
       </div>

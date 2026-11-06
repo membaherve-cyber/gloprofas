@@ -62,7 +62,7 @@ export default async function ServiceDetailPage({
             <div className="mb-6 overflow-hidden rounded-[var(--radius-md)] border border-line-200 shadow-e1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/services-assessment.jpg"
+                src="/images/context/team-laptops-office.jpg"
                 alt={name}
                 loading="lazy"
                 className="aspect-[16/10] w-full object-cover"
