@@ -5,7 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { LogIn, Menu, X } from "lucide-react";
-import { Btn, L, NAV_ITEMS, R } from "@/components/zite/shared";
+import { Btn } from "@/components/zite/shared";
+import { L, NAV_ITEMS, R } from "@/components/zite/copy";
 import type { Dictionary } from "@/messages/en";
 import type { Locale } from "@/lib/i18n";
 
@@ -78,9 +79,11 @@ export function SiteHeader({
               href={`/${locale}/alerts`}
               className="flex min-w-0 items-center gap-2 text-slatex-300 hover:text-white"
             >
-              <span className="h-2 w-2 shrink-0 rounded-full bg-cyanx" />
-              <span className="font-semibold text-white">{R(L.latestAlert, locale)}:</span>
-              <span className="truncate">{latestAlert.title}</span>
+              <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 bg-cyanx" />
+              <span className="shrink-0 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-white">
+                {R(L.latestAlert, locale)}
+              </span>
+              <span className="ed-link truncate text-[0.8125rem]">{latestAlert.title}</span>
             </Link>
           ) : (
             <span />
@@ -90,15 +93,15 @@ export function SiteHeader({
       </div>
 
       <div
-        className={`h-[72px] transition-colors duration-250 ${
-          scrolled || menuOpen ? "border-b border-white/10 bg-navy-900" : "bg-transparent"
+        className={`h-[68px] transition-colors duration-300 ${
+          scrolled || menuOpen ? "border-b border-white/12 bg-navy-950/97" : "bg-transparent"
         }`}
       >
         <div className="container-g flex h-full items-center justify-between gap-4">
           <Link
             href={`/${locale}`}
             aria-label="GLOPROFAS - Global Programme for the Fight Against Scams"
-            className="inline-flex shrink-0 items-center rounded-lg bg-white px-2 py-1 shadow-sm"
+            className="inline-flex shrink-0 items-center bg-white px-2 py-1"
           >
             <Image
               src="/images/gloprofas-logo.png"
@@ -111,7 +114,7 @@ export function SiteHeader({
           </Link>
 
           <nav aria-label="Main" className="hidden xl:block">
-            <ul className="flex items-center gap-6">
+            <ul className="flex items-center gap-7">
               {NAV_ITEMS.map((item) => {
                 const to = `/${locale}${item.href}`;
                 const isActive = pathname === to || pathname.startsWith(`${to}/`);
@@ -119,11 +122,18 @@ export function SiteHeader({
                   <li key={item.key}>
                     <Link
                       href={to}
-                      className={`text-[0.95rem] font-medium hover:text-white ${
+                      aria-current={isActive ? "page" : undefined}
+                      className={`relative py-1 text-[0.875rem] font-medium transition-colors hover:text-white ${
                         isActive ? "text-white" : "text-slatex-300"
                       }`}
                     >
                       {R(L.nav[item.key], locale)}
+                      <span
+                        aria-hidden="true"
+                        className={`absolute -bottom-0.5 left-0 h-px bg-cyanx transition-all duration-300 ${
+                          isActive ? "w-full" : "w-0"
+                        }`}
+                      />
                     </Link>
                   </li>
                 );
@@ -136,14 +146,14 @@ export function SiteHeader({
               href={`/${locale}/admin`}
               className="hidden items-center gap-1.5 px-2 text-sm font-semibold text-slatex-300 hover:text-white sm:flex"
             >
-              <LogIn className="h-4 w-4" />
+              <LogIn className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
               {locale === "fr" ? "Connexion" : "Log in"}
             </Link>
             <Btn
               href={`/${locale}/report`}
               variant="signal"
               arrow={false}
-              className="h-11 px-5 text-sm"
+              className="h-10 px-5 text-[0.8125rem]"
             >
               {R(L.report, locale)}
             </Btn>
@@ -152,25 +162,30 @@ export function SiteHeader({
               onClick={() => setMenuOpen(!menuOpen)}
               aria-expanded={menuOpen}
               aria-label={R(L.menu, locale)}
-              className="flex h-11 w-11 items-center justify-center rounded-full text-white xl:hidden"
+              className="flex h-10 w-10 items-center justify-center border border-white/25 text-white transition-colors hover:border-white xl:hidden"
             >
-              {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {menuOpen ? <X className="h-5 w-5" strokeWidth={1.5} /> : <Menu className="h-5 w-5" strokeWidth={1.5} />}
             </button>
           </div>
         </div>
       </div>
 
       {menuOpen ? (
-        <div className="fixed inset-0 top-[72px] overflow-y-auto bg-navy-900 xl:hidden">
+        <div className="fixed inset-0 top-[68px] overflow-y-auto bg-navy-950 xl:hidden">
           <div className="container-g flex flex-col gap-1 py-6">
-            {NAV_ITEMS.map((item) => (
+            {NAV_ITEMS.map((item, idx) => (
               <Link
                 key={item.key}
                 href={`/${locale}${item.href}`}
                 onClick={() => setMenuOpen(false)}
-                className="border-b border-white/10 py-4 font-[family-name:var(--font-heading)] text-xl font-semibold text-white"
+                className="flex items-baseline gap-4 border-b border-white/12 py-4"
               >
-                {R(L.nav[item.key], locale)}
+                <span className="ed-num text-xs text-cyanx">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <span className="font-[family-name:var(--font-heading)] text-lg font-medium text-white">
+                  {R(L.nav[item.key], locale)}
+                </span>
               </Link>
             ))}
             <LangSwitch locale={locale} className="mt-6 text-base" />

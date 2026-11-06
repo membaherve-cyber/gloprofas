@@ -59,7 +59,7 @@ export default async function ServiceDetailPage({
       <section className="section bg-white">
         <div className="container-page grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
-            <div className="mb-6 overflow-hidden rounded-[var(--radius-md)] border border-line-200 shadow-e1">
+            <div className="mb-6 overflow-hidden rounded-sm border border-line-200 shadow-e1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/context/team-laptops-office.jpg"
@@ -78,14 +78,14 @@ export default async function ServiceDetailPage({
             <div className="mt-4">
               <CheckList items={pick(locale, service.bulletsEn, service.bulletsFr)} />
             </div>
-            <p className="mt-6 rounded-[var(--radius-md)] border border-line-200 bg-mist-50 p-4 text-[0.82rem] leading-relaxed text-slate-600">
+            <p className="mt-6 rounded-sm border border-line-200 bg-mist-50 p-4 text-[0.82rem] leading-relaxed text-slate-600">
               {dict.home.services.pricingNote}
             </p>
-            <p className="mt-3 rounded-[var(--radius-md)] border border-signal-400/50 bg-signal-400/10 p-4 text-[0.82rem] leading-relaxed text-ink-900">
+            <p className="mt-3 rounded-sm border border-signal-400/50 bg-signal-400/10 p-4 text-[0.82rem] leading-relaxed text-ink-900">
               {dict.common.notPolice}
             </p>
           </div>
-          <div id="enquiry" className="rounded-[var(--radius-lg)] border border-line-200 bg-mist-50 p-5 sm:p-7">
+          <div id="enquiry" className="rounded-none border border-line-200 bg-mist-50 p-5 sm:p-7">
             <h2 className="text-[1.4rem]">{dict.services.enquiryTitle}</h2>
             <p className="mt-2 text-[0.88rem] leading-relaxed text-slate-600">{dict.services.enquiryBody}</p>
             <div className="mt-5">

@@ -11,7 +11,8 @@ import {
   ShieldAlert,
   X,
 } from "lucide-react";
-import { Btn, getCategoryIcon, L, PageHero, R } from "@/components/zite/shared";
+import { Btn, PageHero } from "@/components/zite/shared";
+import { getCategoryIcon, L, R } from "@/components/zite/copy";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 import { ZITE_CONTENT, type ZiteCategory } from "@/lib/zite-data";
 import type { Locale } from "@/lib/i18n";
@@ -28,7 +29,7 @@ const CHANNELS = [
 ] as const;
 
 const fieldCls =
-  "h-12 w-full rounded-[14px] border border-line bg-white px-4 text-ink placeholder:text-slatex-600/60 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20";
+  "h-12 w-full rounded-sm border border-line bg-white px-4 text-ink placeholder:text-slatex-600/60 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20";
 const labelCls = "mb-1.5 block text-sm font-semibold text-ink";
 
 function YesNo({
@@ -52,7 +53,7 @@ function YesNo({
             type="button"
             onClick={() => onChange(opt)}
             aria-pressed={value === opt}
-            className={`h-12 flex-1 rounded-[14px] border font-semibold ${
+            className={`h-12 flex-1 rounded-sm border font-semibold ${
               value === opt
                 ? "border-brand-600 bg-brand-600/10 text-brand-600"
                 : "border-line text-ink"
@@ -206,8 +207,8 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
         />
         <section className="section-y bg-mist">
           <div className="container-g grid max-w-4xl gap-6">
-            <div className="rounded-[22px] bg-white p-8 text-center shadow-e2">
-              <p className="eyebrow text-brand-600">
+            <div className="rounded-none bg-white p-8 text-center shadow-none">
+              <p className="ed-label text-brand-600">
                 {fr ? "Votre numéro de référence" : "Your reference number"}
               </p>
               <p className="mt-3 font-[family-name:var(--font-heading)] text-4xl font-bold tracking-wider text-ink">
@@ -220,7 +221,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                   setCopied(true);
                   setTimeout(() => setCopied(false), 2000);
                 }}
-                className="mt-4 inline-flex h-11 items-center gap-2 rounded-full border border-line px-5 text-sm font-semibold hover:border-brand-600"
+                className="mt-4 inline-flex h-11 items-center gap-2 rounded-[2px] border border-line px-5 text-sm font-semibold hover:border-brand-600"
               >
                 <Copy className="h-4 w-4" />
                 {copied
@@ -238,7 +239,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
               </p>
             </div>
 
-            <div className="flex gap-4 rounded-[22px] border border-signal bg-signal/10 p-6 text-ink">
+            <div className="flex gap-4 rounded-none border border-signal bg-signal/10 p-6 text-ink">
               <ShieldAlert className="h-6 w-6 shrink-0" />
               <p>{R(L.reportSec.note, locale)}</p>
             </div>
@@ -300,7 +301,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
             ))}
           </ol>
 
-          <div className="mt-8 rounded-[22px] bg-white p-6 shadow-e1 md:p-10">
+          <div className="mt-8 rounded-none bg-white p-6 shadow-e1 md:p-10">
             <h2 className="h3 text-ink">{steps[step]}</h2>
             <div className="mt-8 grid gap-6">
               {step === 0 ? (
@@ -329,7 +330,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                             type="button"
                             onClick={() => setField("category", item.slug)}
                             aria-pressed={form.category === item.slug}
-                            className={`flex min-h-[64px] items-center gap-3 rounded-[14px] border p-3 text-left text-sm font-semibold transition-colors ${
+                            className={`flex min-h-[64px] items-center gap-3 rounded-sm border p-3 text-left text-sm font-semibold transition-colors ${
                               form.category === item.slug
                                 ? "border-brand-600 bg-brand-600/10 text-brand-600"
                                 : "border-line text-ink hover:border-brand-600/50"
@@ -497,7 +498,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                         {files.map((f, idx) => (
                           <li
                             key={`${f.name}-${idx}`}
-                            className="flex items-center gap-3 rounded-xl border border-line bg-white px-3 py-2 text-sm"
+                            className="flex items-center gap-3 border border-line bg-white px-3 py-2 text-sm"
                           >
                             <FileText className="h-4 w-4 shrink-0 text-brand-600" />
                             <span className="min-w-0 flex-1 truncate text-ink">
@@ -518,7 +519,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                       </ul>
                     ) : null}
                     {files.length < 5 ? (
-                      <label className="flex cursor-pointer items-center justify-center gap-2 rounded-xl border-2 border-dashed border-line px-4 py-6 text-sm font-semibold text-ink hover:border-brand-600">
+                      <label className="flex cursor-pointer items-center justify-center gap-2 border border-dashed border-line px-4 py-6 text-sm font-semibold text-ink hover:border-brand-600">
                         <Paperclip className="h-4 w-4" />
                         {fr ? "Ajouter des fichiers" : "Add files"}
                         <input
@@ -585,7 +586,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
 
               {step === 3 ? (
                 <>
-                  <dl className="divide-y divide-line rounded-[14px] border border-line">
+                  <dl className="divide-y divide-line rounded-sm border border-line">
                     {[
                       [steps[0], `${categoryLabel} — ${form.description}`, 0],
                       [
@@ -615,7 +616,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                     ))}
                   </dl>
 
-                  <p className="rounded-[14px] bg-signal/10 p-4 text-sm text-ink">
+                  <p className="rounded-sm bg-signal/10 p-4 text-sm text-ink">
                     {R(L.reportSec.note, locale)}
                   </p>
 
@@ -647,7 +648,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                 <button
                   type="button"
                   onClick={() => setStep(step - 1)}
-                  className="h-[52px] rounded-full border border-line bg-white px-6 font-semibold text-ink"
+                  className="h-[52px] rounded-[2px] border border-line bg-white px-6 font-semibold text-ink"
                 >
                   {fr ? "Retour" : "Back"}
                 </button>
@@ -656,7 +657,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="h-[52px] flex-1 rounded-full bg-brand-600 px-7 font-semibold text-white hover:bg-brand-500 md:flex-none"
+                  className="h-[52px] flex-1 rounded-[2px] bg-brand-600 px-7 font-semibold text-white hover:bg-brand-500 md:flex-none"
                 >
                   {fr ? "Suivant" : "Next"}
                 </button>
@@ -665,7 +666,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                   type="button"
                   onClick={() => void handleSubmit()}
                   disabled={submitting}
-                  className="inline-flex h-[52px] flex-1 items-center justify-center gap-2 rounded-full bg-signal px-7 font-semibold text-navy-950 disabled:opacity-60 md:flex-none"
+                  className="inline-flex h-[52px] flex-1 items-center justify-center gap-2 rounded-[2px] bg-signal px-7 font-semibold text-navy-950 disabled:opacity-60 md:flex-none"
                 >
                   {submitting ? (
                     <LoaderCircle className="h-4 w-4 animate-spin" />

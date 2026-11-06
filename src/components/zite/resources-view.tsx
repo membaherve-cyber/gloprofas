@@ -10,7 +10,8 @@ import {
   ListChecks,
   type LucideIcon,
 } from "lucide-react";
-import { IconTile, L, PageHero, R, Reveal } from "@/components/zite/shared";
+import { IconTile, PageHero, Reveal } from "@/components/zite/shared";
+import { L, R } from "@/components/zite/copy";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
 import { ZITE_CONTENT, type ZiteResource } from "@/lib/zite-data";
 import type { Locale } from "@/lib/i18n";
@@ -49,7 +50,7 @@ export function ZiteResourcesView({ locale }: { locale: Locale }) {
 
       <section className="section-y bg-mist">
         <div className="container-g">
-          <div className="flex flex-wrap gap-2" role="tablist">
+          <div className="flex flex-wrap gap-1 border-b border-line" role="tablist">
             {["", ...types].map((t) => (
               <button
                 key={t || "all"}
@@ -57,10 +58,10 @@ export function ZiteResourcesView({ locale }: { locale: Locale }) {
                 role="tab"
                 aria-selected={selectedType === t}
                 onClick={() => setSelectedType(t)}
-                className={`h-11 rounded-full px-5 text-sm font-semibold transition-colors ${
+                className={`h-10 border-b-2 px-4 text-[0.8125rem] font-semibold transition-colors ${
                   selectedType === t
-                    ? "bg-navy-900 text-white"
-                    : "border border-line bg-white text-ink hover:border-brand-600"
+                    ? "border-brand-600 text-brand-600"
+                    : "border-transparent text-slatex-600 hover:text-ink"
                 }`}
               >
                 {t || (fr ? "Tout" : "All")}
@@ -68,47 +69,52 @@ export function ZiteResourcesView({ locale }: { locale: Locale }) {
             ))}
           </div>
 
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 ed-list">
             {filtered.map((res, idx) => {
               const Icon = TYPE_ICONS[res.type] ?? FileText;
               const desc = R(res.description, locale);
               return (
-                <Reveal key={res.id} delay={(idx % 3) * 60}>
-                  <article className="flex h-full flex-col overflow-hidden rounded-[22px] border border-line bg-white shadow-e1">
-                    {res.imageUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={res.imageUrl}
-                        alt=""
-                        loading="lazy"
-                        className="aspect-[16/9] w-full object-cover"
-                      />
-                    ) : null}
-                    <div className="flex flex-1 flex-col p-6">
-                      <div className="flex items-center gap-3">
-                        <IconTile>
-                          <Icon className="h-6 w-6" strokeWidth={1.5} />
-                        </IconTile>
-                        <div className="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider">
-                          <span className="rounded-full bg-mist px-3 py-1 text-ink">
+                <Reveal key={res.id} delay={Math.min(idx, 4) * 45}>
+                  <article className="ed-item">
+                    <div className="grid gap-5 sm:grid-cols-12 sm:items-start">
+                      {res.imageUrl ? (
+                        <div className="ed-media ed-media-hover aspect-[3/2] sm:col-span-3">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={res.imageUrl} alt="" loading="lazy" />
+                        </div>
+                      ) : (
+                        <div className="sm:col-span-3">
+                          <div className="flex h-full min-h-20 items-center justify-center border border-line bg-mist">
+                            <Icon className="h-6 w-6 text-brand-600" strokeWidth={1.5} aria-hidden="true" />
+                          </div>
+                        </div>
+                      )}
+                      <div className="sm:col-span-9">
+                        <div className="flex flex-wrap items-center gap-3">
+                          <span className="ed-num text-xs">
+                            {String(idx + 1).padStart(2, "0")}
+                          </span>
+                          <span className="border-l-2 border-brand-600 pl-2 text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
                             {res.type}
                           </span>
-                          <span className="rounded-full border border-line px-3 py-1 text-slatex-600">
+                          <span className="text-[0.625rem] uppercase tracking-[0.16em] text-slatex-600">
                             {res.language}
+                            {res.fileSize ? ` · ${res.fileSize}` : ""}
                           </span>
                         </div>
+                        <h2 className="h4 mt-2 max-w-[46ch] text-ink">
+                          {R(res.title, locale)}
+                        </h2>
+                        {desc ? (
+                          <p className="mt-2 max-w-[64ch] text-sm leading-relaxed text-slatex-600">
+                            {desc}
+                          </p>
+                        ) : null}
+                        <p className="mt-3 flex items-center gap-2 text-[0.8125rem] font-medium text-slatex-600">
+                          <Download className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
+                          {fr ? "Téléchargement bientôt disponible" : "Download available soon"}
+                        </p>
                       </div>
-                      <h2 className="h4 mt-5 text-ink">{R(res.title, locale)}</h2>
-                      {desc ? (
-                        <p className="mt-2 text-slatex-600">{desc}</p>
-                      ) : null}
-                      <p className="mt-auto flex items-center gap-2 pt-5 text-sm font-semibold text-slatex-600">
-                        <Download className="h-4 w-4" />
-                        {fr
-                          ? "Téléchargement bientôt disponible"
-                          : "Download available soon"}
-                        {res.fileSize ? ` · ${res.fileSize}` : ""}
-                      </p>
                     </div>
                   </article>
                 </Reveal>

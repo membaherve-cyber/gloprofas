@@ -1,45 +1,31 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import {
   AlertCircle,
+  ArrowRight,
   ArrowUpRight,
   BarChart3,
   Check,
   CheckCircle2,
   ChevronDown,
   Database,
-  Download,
-  FileText,
-  Globe,
   Info,
   LoaderCircle,
-  Lock,
-  Mail,
   ShieldAlert,
-  ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
-import { Monogram } from "@/components/ui/logo";
+import { Btn, Reveal, SectionHeading, ZiteRiskBadge } from "@/components/zite/shared";
+import { formatZiteDate, getCategoryIcon, L, R } from "@/components/zite/copy";
+import { ScamInterceptionDiagram } from "@/components/zite/editorial-graphics";
 import {
-  Btn,
-  formatZiteDate,
-  getCategoryIcon,
-  IconTile,
-  ImageSlot,
-  L,
-  R,
-  Reveal,
-  SectionHeading,
-  ZiteRiskBadge,
-} from "@/components/zite/shared";
-import {
-  EditorialSectionIndex,
-  ScamInterceptionDiagram,
-} from "@/components/zite/editorial-graphics";
-import { ZITE_CONTENT, type ZiteAlert, type ZiteArticle, type ZiteCategory, type ZiteResource } from "@/lib/zite-data";
+  ZITE_CONTENT,
+  type ZiteAlert,
+  type ZiteArticle,
+  type ZiteCategory,
+  type ZiteResource,
+} from "@/lib/zite-data";
 import enMessages from "@/messages/en.json";
 import frMessages from "@/messages/fr.json";
 import type { Locale } from "@/lib/i18n";
@@ -57,74 +43,68 @@ const PILLAR_IMAGES: Record<string, string> = {
 };
 
 const HOW_STEP_IMAGES = [
-  "/images/zite/img_Sr6t0DpFam9Pwbqs.jpg",
-  "/images/zite/img_oA0HSqR_wTZ4p6wO.jpg",
-  "/images/zite/img_w6NSryT8uOdtulEw.jpg",
-  "/images/zite/img_sXyrGNS5SrsTeXa7.jpg",
+  "/images/context/accra-outdoor-phone.jpg",
+  "/images/context/person-phone-desk.jpg",
+  "/images/context/contactless-card-terminal.jpg",
+  "/images/context/currency-exchange-desk.jpg",
 ] as const;
 
-const CHIP_POSITIONS = [
-  "top-[6%] left-[8%]",
-  "top-[30%] right-[4%]",
-  "bottom-[30%] left-[0%]",
-  "bottom-[8%] right-[14%]",
-] as const;
-
-function TechniqueItem({ title, body }: { title: string; body: string }) {
-  const [open, setOpen] = useState(false);
+/** Section masthead: index numeral + label + hairline rule. */
+function Masthead({
+  index,
+  label,
+  dark = false,
+}: {
+  index: string;
+  label: string;
+  dark?: boolean;
+}) {
   return (
-    <div className="border-b border-white/10">
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-        className="flex w-full items-center justify-between gap-4 py-5 text-left font-[family-name:var(--font-heading)] text-lg font-semibold text-white"
+    <div
+      className={`mb-10 flex items-baseline justify-between gap-4 border-b pb-3 ${
+        dark ? "border-white/15" : "border-line"
+      }`}
+    >
+      <span className="flex items-baseline gap-3">
+        <span className={`ed-num text-sm ${dark ? "text-cyanx" : ""}`}>{index}</span>
+        <span className="ed-label">{label}</span>
+      </span>
+      <span
+        aria-hidden="true"
+        className={`hidden font-mono text-[0.625rem] uppercase tracking-[0.2em] sm:block ${
+          dark ? "text-white/30" : "text-slate-600/50"
+        }`}
       >
-        {title}
-        <ChevronDown
-          className={`h-5 w-5 shrink-0 text-cyanx transition-transform duration-250 ${
-            open ? "rotate-180" : ""
-          }`}
-        />
-      </button>
-      {open ? <p className="pb-5 text-slatex-300">{body}</p> : null}
+        GLOPROFAS
+      </span>
     </div>
   );
 }
 
-function ZiteCounter({ value, label }: { value: number; label: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [val, setVal] = useState(0);
-
-  useEffect(() => {
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      setVal(value);
-      return;
-    }
-    const obs = new IntersectionObserver(([entry]) => {
-      if (!entry?.isIntersecting) return;
-      obs.disconnect();
-      const start = performance.now();
-      const tick = (now: number) => {
-        const p = Math.min(1, (now - start) / 1200);
-        setVal(Math.round(value * (1 - (1 - p) ** 3)));
-        if (p < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [value]);
-
+function Technique({ title, body }: { title: string; body: string }) {
+  const [open, setOpen] = useState(false);
   return (
-    <div ref={ref} className="border-l border-white/15 pl-6">
-      <p className="font-[family-name:var(--font-heading)] text-5xl font-bold tabular-nums text-white md:text-6xl">
-        {val}
-      </p>
-      <p className="mt-2 font-medium text-slatex-300">{label}</p>
+    <div className="border-b border-white/12">
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        className="flex w-full items-center justify-between gap-4 py-4 text-left"
+      >
+        <span className="font-[family-name:var(--font-heading)] text-[0.9375rem] font-medium text-white">
+          {title}
+        </span>
+        <ChevronDown
+          aria-hidden="true"
+          className={`h-4 w-4 shrink-0 text-cyanx transition-transform duration-300 ${
+            open ? "rotate-180" : ""
+          }`}
+          strokeWidth={1.5}
+        />
+      </button>
+      {open ? (
+        <p className="pb-4 pr-8 text-sm leading-relaxed text-slatex-300">{body}</p>
+      ) : null}
     </div>
   );
 }
@@ -144,14 +124,16 @@ export function ZiteHomeView({
   resources?: ZiteResource[];
   stats?: { categories: number; resources: number; languages: number };
 }) {
+  const fr = lang === "fr";
   const l = (path = "") => `/${lang}${path}`;
-  const msg = lang === "fr" ? frMessages : enMessages;
+  const msg = fr ? frMessages : enMessages;
   const heroC11 = msg.home.heroC11;
   const pillarsC12 = msg.home.pillarsC12;
-  const h1Words = heroC11.title.split(" ");
   const featuredCats = categories.filter((c) => c.featured);
   const otherCats = categories.filter((c) => !c.featured);
   const [featuredRes, ...otherRes] = resources;
+  const [leadAlert, ...restAlerts] = alerts;
+  const [leadPillar, ...restPillars] = pillarsC12.items;
 
   const [nlState, setNlState] = useState({
     name: "",
@@ -193,13 +175,58 @@ export function ZiteHomeView({
     }
   }
 
-  const inputCls =
-    "h-12 w-full rounded-[14px] border border-white/20 bg-white/10 px-4 text-white placeholder:text-slatex-300/60 focus:border-cyanx focus:outline-none";
+  const cases = [
+    {
+      scope: fr ? "Cameroun · Afrique centrale" : "Cameroon · Central Africa",
+      category: fr ? "Fraude au mobile money" : "Mobile money fraud",
+      image: "/images/context/contactless-card-terminal.jpg",
+      title: fr
+        ? "Faux SMS de dépôt et appel pressant de « remboursement »"
+        : "Fake deposit SMS followed by an urgent reversal call",
+      body: fr
+        ? "Une commerçante reçoit un SMS imitant une notification de dépôt de 50 000 FCFA depuis un numéro ordinaire, suivi d’un appel lui demandant de renvoyer la somme d’urgence."
+        : "A shopkeeper receives an SMS from an ordinary number mimicking a 50,000 FCFA deposit notification, followed immediately by a caller pleading for an urgent return transfer.",
+      lesson: fr
+        ? "Vérifiez toujours le solde réel dans le menu officiel de l’opérateur et ne partagez jamais votre code PIN."
+        : "Always check your actual balance in the official operator menu and never share your PIN.",
+      href: "/scams/mobile-money-scams",
+    },
+    {
+      scope: fr ? "Afrique de l’Ouest" : "West Africa",
+      category: fr ? "Fausses offres d’emploi" : "Employment scams",
+      image: "/images/context/person-phone-desk.jpg",
+      title: fr
+        ? "Recrutement par messagerie exigeant des frais de dossier"
+        : "Messaging-app recruitment demanding upfront fees",
+      body: fr
+        ? "Un candidat reçoit une promesse d’embauche après un simple échange écrit, conditionnée au paiement préalable de frais de formation par mobile money."
+        : "A job seeker is offered a role after a text-only chat, conditional on paying upfront training fees via mobile transfer.",
+      lesson: fr
+        ? "Un employeur légitime ne demande jamais d’argent avant l’embauche."
+        : "Legitimate employers never charge fees to hire you.",
+      href: "/scams/employment-scams",
+    },
+    {
+      scope: fr ? "International" : "International",
+      category: fr ? "Compromission de facture" : "Invoice redirection",
+      image: "/images/context/executive-phone-laptop.jpg",
+      title: fr
+        ? "Changement de coordonnées bancaires d’un fournisseur"
+        : "Supplier bank details changed from a lookalike domain",
+      body: fr
+        ? "Une PME reçoit une facture attendue depuis une adresse quasi identique à celle de son fournisseur, annonçant un nouveau RIB pour un règlement urgent."
+        : "An SME receives an expected invoice from a domain differing by one letter, requesting urgent payment to a new account.",
+      lesson: fr
+        ? "Confirmez tout changement de compte par un contre-appel sur un numéro déjà vérifié."
+        : "Confirm every account change by calling back on a trusted number already on file.",
+      href: "/scams/business-email-compromise",
+    },
+  ];
 
   return (
     <>
-      {/* 1. Hero (HomeTop.tsx) */}
-      <section className="on-dark relative isolate overflow-hidden bg-navy-900 pt-[112px] lg:pt-[152px]">
+      {/* ── 01 · HERO — existing identity preserved ───────────────── */}
+      <section className="on-dark relative isolate overflow-hidden bg-navy-900 pt-[112px] lg:pt-[148px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/zite/img_0jR_JgYMybEsisEl.jpg"
@@ -208,1040 +235,831 @@ export function ZiteHomeView({
           height={912}
           fetchPriority="high"
           className="absolute inset-0 -z-20 h-full w-full object-cover object-[70%_center]"
+          style={{ filter: "saturate(0.88) contrast(1.05)" }}
         />
         <div
           className="absolute inset-0 -z-10"
           style={{
             background:
-              "linear-gradient(90deg, rgba(5, 11, 26, 0.85), rgba(10, 22, 49, 0.55))",
+              "linear-gradient(96deg, rgba(4,9,20,0.93) 0%, rgba(6,14,32,0.78) 48%, rgba(6,14,32,0.42) 100%)",
           }}
         />
-        <div className="container-g grid items-center gap-12 pb-20 lg:grid-cols-12 lg:pb-32">
+        <div className="container-g grid items-end gap-12 pb-16 lg:grid-cols-12 lg:pb-24">
           <div className="lg:col-span-7">
             <Reveal>
-              <div className="mb-5 inline-flex flex-wrap items-center gap-3 rounded-xl border border-white/15 bg-navy-950/75 p-2 pr-4 backdrop-blur-sm">
-                <span className="inline-flex items-center rounded-lg bg-white px-2.5 py-1 shadow-xs">
-                  <Image
-                    src="/images/gloprofas-logo.png"
-                    alt={heroC11.logoAlt}
-                    width={1132}
-                    height={350}
-                    priority
-                    className="h-9 w-auto object-contain"
-                  />
-                </span>
-                <span className="text-xs font-semibold tracking-wide text-slatex-300">
-                  {heroC11.badge}
-                </span>
-              </div>
+              <p className="ed-label text-cyanx">{heroC11.eyebrow}</p>
             </Reveal>
-            <Reveal>
-              <p className="eyebrow flex items-center gap-3 text-cyanx">
-                <span className="h-px w-8 bg-cyanx" />
-                {heroC11.eyebrow}
-              </p>
+            <Reveal delay={80}>
+              <h1 className="h1 mt-5 max-w-[18ch] text-white">{heroC11.title}</h1>
             </Reveal>
-            <h1 className="h1 mt-6 text-white">
-              {h1Words.map((word, idx) => (
-                <Reveal
-                  key={`${word}-${idx}`}
-                  delay={idx * 60}
-                  className="mr-[0.25em] inline-block"
-                >
-                  {word}
-                </Reveal>
-              ))}
-            </h1>
-            <Reveal delay={240}>
-              <p className="mt-5 max-w-2xl text-base font-semibold text-cyanx sm:text-lg">
+            <Reveal delay={160}>
+              <p className="mt-6 max-w-[52ch] border-l-2 border-cyanx pl-4 text-base font-medium leading-relaxed text-white/90">
                 {heroC11.valueProposition}
               </p>
             </Reveal>
-            <Reveal delay={300}>
-              <p className="lead mt-4 text-slatex-300">{heroC11.lead}</p>
+            <Reveal delay={220}>
+              <p className="ed-deck mt-5">{heroC11.lead}</p>
             </Reveal>
-            <Reveal delay={400} className="mt-10 flex flex-wrap gap-3">
+            <Reveal delay={280} className="mt-9 flex flex-wrap gap-3">
               <Btn href={l("/report")} variant="signal">
                 {heroC11.reportCta}
               </Btn>
-              <Btn href={l("/check")} variant="primary">
+              <Btn href={l("/check")} variant="outlineDark">
                 {heroC11.verifyCta}
-              </Btn>
-              <Btn href={l("/scams")} variant="outlineDark">
-                {heroC11.secondaryCta}
               </Btn>
             </Reveal>
           </div>
 
-          <div
-            className="relative hidden h-[380px] lg:col-span-5 lg:block"
-            aria-hidden="true"
-          >
-            <Monogram className="absolute inset-0 m-auto h-56 w-56 text-white/10" />
-            {featuredCats.slice(0, 4).map((cat, idx) => (
-              <Link
-                key={cat.id}
-                href={l(`/scams/${cat.slug}`)}
-                tabIndex={-1}
-                style={{ animationDelay: `${idx * 1.2}s` }}
-                className={`float-chip dark-surface absolute ${CHIP_POSITIONS[idx]} rounded-full bg-navy-800/90 px-5 py-3 text-sm font-semibold text-white hover:text-cyanx`}
-              >
-                {R(cat.title, lang)}
-              </Link>
-            ))}
+          <div className="hidden lg:col-span-5 lg:block">
+            <div className="border-t border-white/20 pt-4">
+              <p className="ed-label mb-3 text-white/50">
+                {fr ? "Schémas documentés" : "Documented patterns"}
+              </p>
+              <ul>
+                {featuredCats.slice(0, 4).map((cat, idx) => (
+                  <li key={cat.id} className="border-b border-white/12">
+                    <Link
+                      href={l(`/scams/${cat.slug}`)}
+                      className="group flex items-baseline gap-3 py-2.5 text-sm text-white/85 transition-colors hover:text-white"
+                    >
+                      <span className="ed-num text-xs text-cyanx">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <span className="ed-link">{R(cat.title, lang)}</span>
+                      <ArrowUpRight
+                        aria-hidden="true"
+                        className="ml-auto h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-70"
+                        strokeWidth={1.5}
+                      />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 2. Strip (HomeTop.tsx) */}
-      <section className="on-dark relative overflow-hidden bg-navy-800">
-        <Monogram className="absolute -right-10 top-1/2 h-64 w-64 -translate-y-1/2 text-white/5" />
-        <div className="container-g relative flex flex-col items-start justify-between gap-5 py-8 md:flex-row md:items-center">
-          <p className="font-[family-name:var(--font-heading)] text-xl font-semibold text-white md:text-2xl">
+      {/* ── 02 · VERIFICATION STRIP ───────────────────────────────── */}
+      <section className="on-dark border-y border-white/12 bg-navy-950">
+        <div className="container-g flex flex-col items-start justify-between gap-4 py-6 md:flex-row md:items-center">
+          <p className="font-[family-name:var(--font-heading)] text-lg font-medium text-white md:text-xl">
             {R(L.strip.text, lang)}
           </p>
-          <Btn href={l("/check")} variant="outlineDark">
+          <Link
+            href={l("/check")}
+            className="ed-link inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-cyanx"
+          >
             {R(L.strip.cta, lang)}
-          </Btn>
+            <ArrowRight className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+          </Link>
         </div>
       </section>
 
-      {/* 2B. Features & Verification Grid (C12 — 3-Column Platform Pillars) */}
-      <section
-        id="verification-pillars"
-        aria-label={pillarsC12.eyebrow}
-        className="section-y scroll-mt-28 bg-mist"
-      >
+      {/* ── 03 · PILLARS — asymmetric lead + ruled entries ────────── */}
+      <section id="verification-pillars" className="section-y scroll-mt-28 bg-white">
         <div className="container-g">
-          <EditorialSectionIndex
+          <Masthead
             index="01"
-            code={
-              lang === "fr"
-                ? "ARCHITECTURE DE VÉRIFICATION ET DE PROTECTION"
-                : "VERIFICATION & PROTECTION ARCHITECTURE"
-            }
+            label={fr ? "Architecture de protection" : "Protection architecture"}
           />
           <SectionHeading
             eyebrow={pillarsC12.eyebrow}
             title={pillarsC12.h2}
             lead={pillarsC12.lead}
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {pillarsC12.items.map((pillar, idx) => {
-              const PillarIcon = PILLAR_ICONS[pillar.id] ?? ShieldAlert;
-              const pillarImg = PILLAR_IMAGES[pillar.id] ?? "/images/context/person-phone-desk.jpg";
-              const isReport = pillar.id === "community-reporting";
-              return (
-                <Reveal key={pillar.id} delay={idx * 80}>
-                  <article className="group flex h-full flex-col justify-between overflow-hidden rounded-[22px] border border-line bg-white shadow-e1 transition-all duration-150 hover:-translate-y-1 hover:border-brand-600/40 hover:shadow-e2">
-                    <div>
-                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-900">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={pillarImg}
-                          alt={pillar.title}
-                          loading="lazy"
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-navy-950/75 via-transparent to-transparent" />
-                        <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-navy-950/80 px-3 py-1 text-xs font-bold uppercase tracking-wider text-cyanx backdrop-blur-sm">
-                          <span className="animate-dot h-1.5 w-1.5 rounded-full bg-cyanx" />
-                          {pillar.badge}
-                        </span>
-                      </div>
-                      <div className="p-7 pb-0">
-                        <div className="flex items-center gap-3">
-                          <IconTile>
-                            <PillarIcon className="h-6 w-6" strokeWidth={1.6} />
-                          </IconTile>
-                          <h3 className="h4 text-ink">{pillar.title}</h3>
-                        </div>
-                        <p className="mt-3 text-sm leading-relaxed text-slatex-600">
-                          {pillar.description}
-                        </p>
-                        <ul className="mt-5 space-y-2.5 border-t border-line pt-4">
-                          {pillar.highlights.map((item) => (
-                            <li
-                              key={item}
-                              className="flex items-start gap-2.5 text-sm font-medium text-ink"
-                            >
-                              <CheckCircle2
-                                className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
-                                strokeWidth={2}
-                              />
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="p-7 pt-6">
-                      <Btn
-                        href={l(pillar.href)}
-                        variant={isReport ? "signal" : "primary"}
-                        className="w-full"
-                      >
-                        {pillar.cta}
-                      </Btn>
-                    </div>
-                  </article>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
 
-      {/* 3. Intro / Who We Are (HomeTop.tsx) */}
-      <section id="about" className="section-y scroll-mt-28 bg-white">
-        <div className="container-g grid items-center gap-14 lg:grid-cols-2">
-          <div>
-            <Reveal>
-              <p className="eyebrow flex items-center gap-3 text-brand-600">
-                <span className="h-px w-8 bg-brand-600" />
-                {R(L.intro.eyebrow, lang)}
-              </p>
-            </Reveal>
-            <Reveal>
-              <h2 className="h2 mt-4 text-ink">{R(L.intro.h2, lang)}</h2>
-            </Reveal>
-            <Reveal>
-              <p className="lead mt-6 text-slatex-600">{R(L.intro.body, lang)}</p>
-            </Reveal>
-            <ul className="mt-8 grid gap-4 sm:grid-cols-2">
-              {L.intro.points.map((pt, idx) => (
-                <Reveal key={idx} delay={idx * 60}>
-                  <li className="flex gap-3 font-medium text-ink">
-                    <CheckCircle2
-                      className="mt-1 h-5 w-5 shrink-0 text-brand-600"
-                      strokeWidth={1.75}
+          <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-14">
+            {/* Lead pillar: large editorial figure */}
+            {leadPillar ? (
+              <Reveal className="lg:col-span-7">
+                <article>
+                  <div className="ed-media ed-media-hover aspect-[16/10]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={PILLAR_IMAGES[leadPillar.id]}
+                      alt={leadPillar.title}
+                      loading="lazy"
                     />
-                    {R(pt, lang)}
-                  </li>
-                </Reveal>
-              ))}
-            </ul>
-            <Reveal className="mt-10 flex flex-wrap gap-3">
-              <Btn href={l("/about")} variant="primary">
-                {lang === "fr" ? "En savoir plus" : "About GLOPROFAS"}
-              </Btn>
-              <Btn href={l("/scams")} variant="outline">
-                {R(L.intro.cta, lang)}
-              </Btn>
-            </Reveal>
-          </div>
-
-          <Reveal className="relative mx-auto w-full max-w-[480px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/zite/img_rV5DNdwu0nwwIUqR.jpg"
-              alt=""
-              loading="lazy"
-              width={1024}
-              height={1024}
-              className="aspect-square w-full rounded-full object-cover shadow-e3"
-            />
-            {stats.categories > 0 ? (
-              <div className="absolute -bottom-4 left-0 rounded-[22px] bg-white p-6 shadow-e3">
-                <p className="font-[family-name:var(--font-heading)] text-5xl font-bold tabular-nums text-brand-600">
-                  {stats.categories}
-                </p>
-                <p className="mt-1 text-sm font-semibold text-slatex-600">
-                  {R(L.intro.anchor, lang)}
-                </p>
-              </div>
-            ) : null}
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 4. Marquee (HomeMiddle.tsx) */}
-      <section
-        className="marquee overflow-hidden bg-navy-950 py-8"
-        aria-label={R(L.scams.eyebrow, lang)}
-      >
-        <div className="marquee-track flex w-max">
-          {[false, true].map((hidden, trackIdx) => (
-            <ul
-              key={trackIdx}
-              aria-hidden={hidden || undefined}
-              className="flex shrink-0 items-center"
-            >
-              {categories.map((cat) => (
-                <li
-                  key={`${cat.id}-${trackIdx}`}
-                  className="flex items-center gap-8 pr-8 font-[family-name:var(--font-heading)] text-2xl font-semibold whitespace-nowrap text-white md:text-3xl"
-                >
-                  {R(cat.title, lang)}
-                  <span className="h-2 w-2 rounded-full bg-cyanx" />
-                </li>
-              ))}
-            </ul>
-          ))}
-        </div>
-      </section>
-
-      {/* 5. Common Scams Bento (HomeMiddle.tsx) */}
-      <section id="scams" className="section-y scroll-mt-28 bg-mist">
-        <div className="container-g">
-          <SectionHeading
-            eyebrow={R(L.scams.eyebrow, lang)}
-            title={R(L.scams.h2, lang)}
-            lead={R(L.scams.lead, lang)}
-          />
-
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {featuredCats.map((cat, idx) => {
-              const Icon = getCategoryIcon(cat.icon);
-              return (
-                <Reveal
-                  key={cat.id}
-                  delay={idx * 60}
-                  className={idx === 0 ? "lg:col-span-2 lg:row-span-2" : ""}
-                >
-                  <Link
-                    href={l(`/scams/${cat.slug}`)}
-                    className="group relative flex h-full min-h-[260px] flex-col justify-end overflow-hidden rounded-[22px] bg-navy-900 p-7 shadow-e1 transition-all duration-150 hover:-translate-y-1 hover:shadow-e3"
-                  >
-                    {cat.imageUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={cat.imageUrl}
-                        alt=""
-                        loading="lazy"
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[600ms] group-hover:scale-105"
-                      />
-                    ) : null}
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950/95 via-navy-950/50 to-transparent" />
-                    <div className="relative">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-[14px] bg-white/15 text-white backdrop-blur">
-                        <Icon className="h-6 w-6" strokeWidth={1.5} />
-                      </div>
-                      <h3 className={`mt-5 text-white ${idx === 0 ? "h3" : "h4"}`}>
-                        {R(cat.title, lang)}
-                      </h3>
-                      <p className="mt-2 text-sm text-slatex-300">
-                        {R(cat.summary, lang)}
+                  </div>
+                  <div className="mt-6 flex items-start gap-4">
+                    <span className="ed-num pt-1 text-2xl">01</span>
+                    <div>
+                      <h3 className="h3 text-ink">{leadPillar.title}</h3>
+                      <p className="mt-3 max-w-[54ch] text-[0.9375rem] leading-relaxed text-slatex-600">
+                        {leadPillar.description}
                       </p>
+                      <ul className="mt-5 space-y-2">
+                        {leadPillar.highlights.map((h) => (
+                          <li key={h} className="flex gap-2.5 text-sm text-ink">
+                            <Check
+                              aria-hidden="true"
+                              className="mt-1 h-3.5 w-3.5 shrink-0 text-brand-600"
+                              strokeWidth={1.5}
+                            />
+                            {h}
+                          </li>
+                        ))}
+                      </ul>
+                      <Link
+                        href={l(leadPillar.href)}
+                        className="ed-link mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-600"
+                      >
+                        {leadPillar.cta}
+                        <ArrowRight className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+                      </Link>
                     </div>
-                  </Link>
-                </Reveal>
-              );
-            })}
-          </div>
-
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {otherCats.map((cat, idx) => {
-              const Icon = getCategoryIcon(cat.icon);
-              return (
-                <Reveal key={cat.id} delay={idx * 40}>
-                  <Link
-                    href={l(`/scams/${cat.slug}`)}
-                    className="flex h-full items-center gap-4 rounded-[14px] border border-line bg-white p-4 transition-all duration-150 hover:-translate-y-1 hover:border-brand-600/40 hover:shadow-e2"
-                  >
-                    <IconTile>
-                      <Icon className="h-6 w-6" strokeWidth={1.5} />
-                    </IconTile>
-                    <h3 className="font-[family-name:var(--font-heading)] text-[0.95rem] font-semibold leading-snug text-ink">
-                      {R(cat.title, lang)}
-                    </h3>
-                  </Link>
-                </Reveal>
-              );
-            })}
-          </div>
-
-          <div className="mt-10">
-            <Btn href={l("/scams")} variant="primary">
-              {lang === "fr" ? "Toutes les arnaques" : "All scam types"}
-            </Btn>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. How Scams Work (HomeMiddle.tsx) */}
-      <section id="how" className="on-dark section-y scroll-mt-28 bg-navy-900">
-        <div className="container-g">
-          <SectionHeading
-            dark
-            eyebrow={R(L.how.eyebrow, lang)}
-            title={R(L.how.h2, lang)}
-          />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {L.how.steps.map((step, idx) => (
-              <Reveal key={idx} delay={idx * 60}>
-                <article className="dark-surface relative h-full rounded-[22px] bg-navy-800 p-5">
-                  <span
-                    className="pointer-events-none absolute top-2 right-5 font-[family-name:var(--font-heading)] text-7xl font-bold text-transparent"
-                    style={{ WebkitTextStroke: "1px rgba(255,255,255,.18)" }}
-                  >
-                    0{idx + 1}
-                  </span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={HOW_STEP_IMAGES[idx]}
-                    alt=""
-                    loading="lazy"
-                    width={1200}
-                    height={896}
-                    className="aspect-[4/3] w-full rounded-[14px] object-cover"
-                  />
-                  <h3 className="h4 mt-5 text-white">{R(step.t, lang)}</h3>
-                  <p className="mt-2 text-slatex-300">{R(step.d, lang)}</p>
+                  </div>
                 </article>
               </Reveal>
-            ))}
+            ) : null}
+
+            {/* Supporting pillars: ruled list, no cards */}
+            <div className="lg:col-span-5">
+              <div className="ed-list">
+                {restPillars.map((pillar, idx) => {
+                  const Icon = PILLAR_ICONS[pillar.id] ?? ShieldAlert;
+                  return (
+                    <Reveal key={pillar.id} delay={idx * 70}>
+                      <article className="ed-item">
+                        <div className="flex items-baseline gap-3">
+                          <span className="ed-num text-lg">
+                            {String(idx + 2).padStart(2, "0")}
+                          </span>
+                          <Icon
+                            aria-hidden="true"
+                            className="h-4 w-4 shrink-0 translate-y-0.5 text-brand-600"
+                            strokeWidth={1.5}
+                          />
+                          <h3 className="h4 text-ink">{pillar.title}</h3>
+                        </div>
+                        <p className="mt-2.5 pl-9 text-sm leading-relaxed text-slatex-600">
+                          {pillar.description}
+                        </p>
+                        <Link
+                          href={l(pillar.href)}
+                          className="ed-link ml-9 mt-3.5 inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-brand-600"
+                        >
+                          {pillar.cta}
+                          <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
+                        </Link>
+                      </article>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 04 · ABOUT — portrait crop + ruled manifesto ──────────── */}
+      <section id="about" className="section-y scroll-mt-28 bg-mist">
+        <div className="container-g">
+          <Masthead index="02" label={fr ? "Le programme" : "The programme"} />
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="lg:col-span-5">
+              <div className="ed-media ed-media-hover aspect-[4/5]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/context/lagos-lecture-hall.jpg"
+                  alt={fr ? "Séminaire de sensibilisation" : "Awareness seminar"}
+                  loading="lazy"
+                />
+              </div>
+              <p className="ed-caption">
+                {fr
+                  ? "Sensibilisation en salle — écoles, universités et communautés."
+                  : "In-person awareness — schools, universities and communities."}
+              </p>
+            </Reveal>
+
+            <div className="lg:col-span-7">
+              <Reveal>
+                <h2 className="h2 max-w-[22ch] text-ink">{R(L.intro.h2, lang)}</h2>
+                <p className="ed-deck mt-6">{R(L.intro.body, lang)}</p>
+              </Reveal>
+              <div className="ed-list mt-8">
+                {L.intro.points.map((pt, idx) => (
+                  <Reveal key={idx} delay={idx * 50}>
+                    <div className="ed-item flex items-baseline gap-4 !py-3.5">
+                      <span className="ed-num text-xs">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-[0.9375rem] font-medium text-ink">
+                        {R(pt, lang)}
+                      </span>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+              <div className="mt-8 flex flex-wrap items-center gap-6">
+                <Btn href={l("/about")} variant="primary" size="sm">
+                  {fr ? "À propos de GLOPROFAS" : "About GLOPROFAS"}
+                </Btn>
+                <span className="flex items-baseline gap-2">
+                  <span className="ed-num text-2xl">{stats.categories}</span>
+                  <span className="text-xs text-slatex-600">{R(L.intro.anchor, lang)}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 05 · SCAM INDEX — feature + numbered index ────────────── */}
+      <section id="scams" className="section-y scroll-mt-28 bg-white">
+        <div className="container-g">
+          <Masthead index="03" label={fr ? "Bibliothèque des arnaques" : "Scam library"} />
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHeading
+              eyebrow={R(L.scams.eyebrow, lang)}
+              title={R(L.scams.h2, lang)}
+              lead={R(L.scams.lead, lang)}
+            />
+            <Link
+              href={l("/scams")}
+              className="ed-link hidden shrink-0 items-center gap-2 pb-1 text-sm font-semibold text-brand-600 lg:inline-flex"
+            >
+              {fr ? "Index complet" : "Full index"}
+              <ArrowRight className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+            </Link>
           </div>
 
-          <div className="mt-14">
+          <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-14">
+            {/* Lead category — full-bleed editorial figure */}
+            {featuredCats[0] ? (
+              <Reveal className="lg:col-span-5">
+                <Link href={l(`/scams/${featuredCats[0].slug}`)} className="group block">
+                  <div className="ed-media ed-media-hover aspect-[4/5]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={featuredCats[0].imageUrl}
+                      alt={R(featuredCats[0].title, lang)}
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/92 to-transparent p-6 pt-16">
+                      <span className="ed-label text-cyanx">
+                        {fr ? "À la une" : "In focus"}
+                      </span>
+                      <h3 className="h3 mt-2 text-white">
+                        {R(featuredCats[0].title, lang)}
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="mt-4 text-sm leading-relaxed text-slatex-600">
+                    {R(featuredCats[0].summary, lang)}
+                  </p>
+                </Link>
+              </Reveal>
+            ) : null}
+
+            {/* Remaining categories — two-column ruled index */}
+            <div className="lg:col-span-7">
+              <div className="grid gap-x-10 sm:grid-cols-2">
+ {[...featuredCats.slice(1), ...otherCats].map((cat, idx) => {
+                  const Icon = getCategoryIcon(cat.icon);
+                  return (
+                    <Link
+                      key={cat.id}
+                      href={l(`/scams/${cat.slug}`)}
+                      className="group flex items-start gap-3 border-b border-line py-3.5 transition-colors hover:border-brand-600"
+                    >
+                      <span className="ed-num pt-0.5 text-[0.6875rem]">
+                        {String(idx + 2).padStart(2, "0")}
+                      </span>
+                      <Icon
+                        aria-hidden="true"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-slatex-600 transition-colors group-hover:text-brand-600"
+                        strokeWidth={1.5}
+                      />
+                      <span className="text-[0.875rem] font-medium leading-snug text-ink">
+                        {R(cat.title, lang)}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+              <Link
+                href={l("/scams")}
+                className="ed-link mt-7 inline-flex items-center gap-2 text-sm font-semibold text-brand-600 lg:hidden"
+              >
+                {fr ? "Index complet" : "Full index"}
+                <ArrowRight className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 06 · ANATOMY — process + schematic ────────────────────── */}
+      <section id="how" className="on-dark section-y scroll-mt-28 bg-navy-950">
+        <div className="container-g">
+          <Masthead
+            index="04"
+            dark
+            label={fr ? "Anatomie d’une arnaque" : "Anatomy of a scam"}
+          />
+          <SectionHeading dark eyebrow={R(L.how.eyebrow, lang)} title={R(L.how.h2, lang)} />
+
+          <ol className="mt-12 grid gap-px border border-white/12 bg-white/12 sm:grid-cols-2 lg:grid-cols-4">
+            {L.how.steps.map((step, idx) => (
+              <li key={idx} className="bg-navy-950 p-6">
+                <div className="ed-media aspect-[3/2]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={HOW_STEP_IMAGES[idx]} alt="" loading="lazy" />
+                </div>
+                <span className="ed-num mt-5 block text-3xl text-cyanx">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-2 font-[family-name:var(--font-heading)] text-base font-semibold text-white">
+                  {R(step.t, lang)}
+                </h3>
+                <p className="mt-2 text-[0.8125rem] leading-relaxed text-slatex-300">
+                  {R(step.d, lang)}
+                </p>
+              </li>
+            ))}
+          </ol>
+
+          <div className="mt-12">
             <ScamInterceptionDiagram lang={lang} />
           </div>
 
-          <div className="mt-16 grid gap-x-12 lg:grid-cols-12">
-            <h3 className="h3 text-white lg:col-span-4">{R(L.how.techTitle, lang)}</h3>
-            <div className="mt-6 grid gap-x-10 md:grid-cols-2 lg:col-span-8 lg:mt-0">
+          <div className="mt-14 grid gap-8 lg:grid-cols-12">
+            <h3 className="h4 text-white lg:col-span-4">{R(L.how.techTitle, lang)}</h3>
+            <div className="grid gap-x-10 border-t border-white/12 md:grid-cols-2 lg:col-span-8">
               {L.how.techniques.map((tech, idx) => (
-                <TechniqueItem
-                  key={idx}
-                  title={R(tech.t, lang)}
-                  body={R(tech.d, lang)}
-                />
+                <Technique key={idx} title={R(tech.t, lang)} body={R(tech.d, lang)} />
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* 7. Stats Counters (HomeMiddle.tsx) */}
-      <section className="on-dark bg-navy-800 py-16 md:py-20">
-        <div className="container-g">
-          <p className="eyebrow flex items-center gap-3 text-cyanx">
-            <span className="h-px w-8 bg-cyanx" />
-            {R(L.stats.eyebrow, lang)}
-          </p>
-          <div className="mt-10 grid gap-10 sm:grid-cols-3">
-            <ZiteCounter value={stats.categories} label={R(L.stats.categories, lang)} />
-            <ZiteCounter value={stats.resources} label={R(L.stats.resources, lang)} />
-            <ZiteCounter value={stats.languages} label={R(L.stats.languages, lang)} />
-          </div>
+      {/* ── 07 · FIGURES — ruled data band ────────────────────────── */}
+      <section className="on-dark border-y border-white/12 bg-navy-900">
+        <div className="container-g py-12">
+          <p className="ed-label mb-8 text-white/45">{R(L.stats.eyebrow, lang)}</p>
+          <dl className="grid gap-8 sm:grid-cols-3">
+            {[
+              { v: stats.categories, k: R(L.stats.categories, lang) },
+              { v: stats.resources, k: R(L.stats.resources, lang) },
+              { v: stats.languages, k: R(L.stats.languages, lang) },
+            ].map((s, i) => (
+              <div key={i} className="border-l border-white/20 pl-5">
+                <dt className="sr-only">{s.k}</dt>
+                <dd>
+                  <span className="block font-[family-name:var(--font-heading)] text-4xl font-medium tabular-nums tracking-tight text-white md:text-5xl">
+                    {s.v}
+                  </span>
+                  <span className="mt-2 block text-sm text-slatex-300">{s.k}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
-      {/* 8. Report Section (HomeLower.tsx) */}
+      {/* ── 08 · REPORT — image + ruled protocol ──────────────────── */}
       <section id="report" className="section-y scroll-mt-28 bg-white">
-        <div className="container-g grid gap-12 lg:grid-cols-12 lg:items-center">
-          <div className="lg:col-span-6">
-            <SectionHeading
-              eyebrow={R(L.reportSec.eyebrow, lang)}
-              title={R(L.reportSec.h2, lang)}
-              lead={R(L.reportSec.body, lang)}
-            />
-            <Reveal className="mt-6 overflow-hidden rounded-[22px] border border-line shadow-e2">
-              <div className="group relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/market-cash.jpg"
-                  alt=""
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/25 to-transparent" />
-                <div className="absolute inset-x-4 bottom-4 flex flex-wrap items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-navy-950/80 px-3.5 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
-                    <Lock className="h-3.5 w-3.5 text-cyanx" />
-                    {lang === "fr"
-                      ? "Signalement privé · Aucun compte requis"
-                      : "Private intake · No account required"}
-                  </span>
-                  <span className="rounded-full bg-signal px-3 py-1 text-xs font-bold text-navy-950">
-                    ~5 min
-                  </span>
-                </div>
-              </div>
-            </Reveal>
-            <Reveal className="mt-6 flex gap-3.5 rounded-[18px] border border-signal/50 bg-signal/10 p-5 text-sm leading-relaxed text-ink">
-              <Info className="mt-0.5 h-5 w-5 shrink-0 text-navy-900" strokeWidth={2} />
-              <p>{R(L.reportSec.note, lang)}</p>
-            </Reveal>
-          </div>
-
-          {/* Redesigned Interactive Scam-Reporting Box */}
-          <Reveal delay={100} className="lg:col-span-6">
-            <div className="on-dark relative overflow-hidden rounded-[26px] border border-white/15 bg-navy-900 p-7 text-white shadow-e3 sm:p-9">
-              <div
-                className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full opacity-20 blur-3xl"
-                style={{ background: "radial-gradient(circle, #2bd4e8, transparent 70%)" }}
-                aria-hidden="true"
+        <div className="container-g">
+          <Masthead index="05" label={fr ? "Signalement confidentiel" : "Confidential reporting"} />
+          <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-6">
+              <SectionHeading
+                eyebrow={R(L.reportSec.eyebrow, lang)}
+                title={R(L.reportSec.h2, lang)}
+                lead={R(L.reportSec.body, lang)}
               />
-              <div className="relative flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-signal text-navy-950 shadow-sm">
-                    <ShieldAlert className="h-5 w-5" strokeWidth={2} />
-                  </span>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-cyanx">
-                      {lang === "fr"
-                        ? "Canal de signalement confidentiel"
-                        : "Confidential Reporting Channel"}
-                    </p>
-                    <h3 className="font-[family-name:var(--font-heading)] text-lg font-bold text-white">
-                      {lang === "fr"
-                        ? "Comment fonctionne votre signalement"
-                        : "How your scam report works"}
-                    </h3>
-                  </div>
-                </div>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-cyanx/35 bg-cyanx/10 px-3 py-1 text-xs font-semibold text-cyanx">
-                  <span className="animate-dot h-2 w-2 rounded-full bg-cyanx" />
-                  {lang === "fr" ? "Chiffré & privé" : "Private & protected"}
-                </span>
+              <div className="ed-media ed-media-hover mt-8 aspect-[16/9]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/images/market-cash.jpg" alt="" loading="lazy" />
               </div>
-
-              <ol className="relative mt-6 space-y-4">
-                {L.reportSec.steps.map((step, idx) => (
-                  <li
-                    key={idx}
-                    className="group relative flex items-start gap-4 rounded-[18px] border border-white/10 bg-navy-800/80 p-5 transition-all duration-200 hover:border-cyanx/40 hover:bg-navy-800"
-                  >
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-600 to-brand-500 font-[family-name:var(--font-heading)] text-base font-bold text-white shadow-sm">
-                      0{idx + 1}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between gap-2">
-                        <h4 className="font-[family-name:var(--font-heading)] text-base font-semibold text-white">
-                          {R(step.t, lang)}
-                        </h4>
-                        <span className="text-xs font-semibold text-slatex-300">
-                          {lang === "fr" ? `Étape ${idx + 1}/3` : `Step ${idx + 1} of 3`}
-                        </span>
-                      </div>
-                      <p className="mt-1 text-sm leading-relaxed text-slatex-300">
-                        {R(step.d, lang)}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-
-              <div className="mt-7 flex flex-col gap-3 border-t border-white/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-2 text-xs text-slatex-300">
-                  <ShieldCheck className="h-4 w-4 shrink-0 text-cyanx" />
-                  <span>
-                    {lang === "fr"
-                      ? "Aucun mot de passe ou code PIN n’est jamais demandé."
-                      : "We never ask for passwords, PINs or one-time codes."}
-                  </span>
-                </div>
-                <Btn href={l("/report")} variant="signal" className="w-full sm:w-auto">
-                  {R(L.report, lang)}
-                </Btn>
+              <div className="mt-6 flex gap-3 border-l-2 border-signal bg-signal/[0.07] p-4">
+                <Info
+                  aria-hidden="true"
+                  className="mt-0.5 h-4 w-4 shrink-0 text-ink"
+                  strokeWidth={1.5}
+                />
+                <p className="text-[0.8125rem] leading-relaxed text-ink">
+                  {R(L.reportSec.note, lang)}
+                </p>
               </div>
             </div>
-          </Reveal>
+
+            <div className="lg:col-span-6">
+              <div className="ed-panel-dark p-7 sm:p-9">
+                <p className="ed-label text-cyanx">
+                  {fr ? "Protocole de signalement" : "Reporting protocol"}
+                </p>
+                <ol className="mt-6">
+                  {L.reportSec.steps.map((step, idx) => (
+                    <li
+                      key={idx}
+                      className="flex gap-4 border-b border-white/12 py-4 last:border-b-0"
+                    >
+                      <span className="ed-num text-lg text-cyanx">
+                        {String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <div>
+                        <h3 className="font-[family-name:var(--font-heading)] text-[0.9375rem] font-semibold text-white">
+                          {R(step.t, lang)}
+                        </h3>
+                        <p className="mt-1 text-[0.8125rem] leading-relaxed text-slatex-300">
+                          {R(step.d, lang)}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+                <div className="mt-7 border-t border-white/12 pt-6">
+                  <Btn href={l("/report")} variant="signal" className="w-full sm:w-auto">
+                    {R(L.report, lang)}
+                  </Btn>
+                  <p className="mt-4 text-[0.75rem] leading-relaxed text-white/45">
+                    {fr
+                      ? "Aucun mot de passe, code PIN ou code à usage unique n’est jamais demandé."
+                      : "We never ask for passwords, PINs or one-time codes."}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 9. Protection and Resources (HomeLower.tsx) */}
+      {/* ── 09 · RESOURCES — feature + ruled list ─────────────────── */}
       {featuredRes ? (
         <section id="resources" className="section-y scroll-mt-28 bg-mist">
           <div className="container-g">
-            <SectionHeading
-              eyebrow={R(L.res.eyebrow, lang)}
-              title={R(L.res.h2, lang)}
-            />
-            <div className="mt-14 grid gap-6 lg:grid-cols-12">
+            <Masthead index="06" label={fr ? "Ressources" : "Resources"} />
+            <SectionHeading eyebrow={R(L.res.eyebrow, lang)} title={R(L.res.h2, lang)} />
+            <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-14">
               <Reveal className="lg:col-span-7">
-                <article className="flex h-full flex-col overflow-hidden rounded-[22px] bg-white shadow-e1">
-                  {featuredRes.imageUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={featuredRes.imageUrl}
-                      alt=""
-                      loading="lazy"
-                      className="aspect-[16/9] w-full object-cover"
-                    />
-                  ) : (
-                    <ImageSlot id="RES" lang={lang} className="aspect-[16/9]" />
-                  )}
-                  <div className="p-8">
-                    <div className="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider">
-                      <span className="rounded-full bg-brand-600 px-3 py-1 text-white">
-                        {R(L.res.featured, lang)}
-                      </span>
-                      <span className="rounded-full bg-mist px-3 py-1 text-ink">
-                        {featuredRes.type}
-                      </span>
-                      <span className="rounded-full border border-line px-3 py-1 text-slatex-600">
-                        {featuredRes.language}
-                      </span>
-                    </div>
-                    <h3 className="h3 mt-5 text-ink">{R(featuredRes.title, lang)}</h3>
-                    <p className="mt-3 text-slatex-600">
-                      {R(featuredRes.description, lang)}
-                    </p>
-                    {featuredRes.fileSize ? (
-                      <p className="mt-5 flex items-center gap-2 text-sm font-semibold text-slatex-600">
-                        <Download className="h-4 w-4" />
-                        {featuredRes.fileSize}
-                      </p>
-                    ) : null}
+                <article>
+                  <div className="ed-media ed-media-hover aspect-[16/9]">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={featuredRes.imageUrl} alt="" loading="lazy" />
                   </div>
+                  <div className="mt-5 flex flex-wrap items-center gap-3">
+                    <span className="border-l-2 border-brand-600 pl-2 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-brand-600">
+                      {R(L.res.featured, lang)}
+                    </span>
+                    <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                      {featuredRes.type} · {featuredRes.language}
+                    </span>
+                  </div>
+                  <h3 className="h3 mt-3 max-w-[26ch] text-ink">
+                    {R(featuredRes.title, lang)}
+                  </h3>
+                  <p className="mt-3 max-w-[56ch] text-[0.9375rem] leading-relaxed text-slatex-600">
+                    {R(featuredRes.description, lang)}
+                  </p>
                 </article>
               </Reveal>
 
-              <ul className="grid gap-4 lg:col-span-5">
-                {otherRes.map((res, idx) => (
-                  <Reveal key={res.id} delay={idx * 60}>
-                    <li className="flex items-center gap-4 rounded-[14px] border border-line bg-white p-5">
-                      <IconTile>
-                        <FileText className="h-6 w-6" strokeWidth={1.5} />
-                      </IconTile>
-                      <div className="min-w-0">
-                        <p className="text-xs font-bold uppercase tracking-wider text-brand-600">
-                          {res.type} · {res.language}
-                          {res.fileSize ? ` · ${res.fileSize}` : ""}
-                        </p>
-                        <h3 className="mt-1 font-[family-name:var(--font-heading)] font-semibold leading-snug text-ink">
-                          {R(res.title, lang)}
-                        </h3>
-                      </div>
-                    </li>
-                  </Reveal>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-10">
-              <Btn href={l("/resources")} variant="primary">
-                {R(L.final.resources, lang)}
-              </Btn>
+              <div className="lg:col-span-5">
+                <div className="ed-list">
+                  {otherRes.map((res) => (
+                    <Link
+                      key={res.id}
+                      href={l("/resources")}
+                      className="ed-item group"
+                    >
+                      <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                        {res.type} · {res.language}
+                      </span>
+                      <h4 className="mt-1.5 font-[family-name:var(--font-heading)] text-[0.9375rem] font-medium leading-snug text-ink">
+                        <span className="ed-link">{R(res.title, lang)}</span>
+                      </h4>
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  href={l("/resources")}
+                  className="ed-link mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-600"
+                >
+                  {R(L.final.resources, lang)}
+                  <ArrowRight className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+                </Link>
+              </div>
             </div>
           </div>
         </section>
       ) : null}
 
-      {/* 10. Our Services (HomeLower.tsx) */}
+      {/* ── 10 · SERVICES — split, full-bleed ─────────────────────── */}
       <section id="services" className="section-y scroll-mt-28 bg-white">
         <div className="container-g">
-          <SectionHeading
-            eyebrow={R(L.services.eyebrow, lang)}
-            title={R(L.services.h2, lang)}
-          />
-          <div className="mt-14 grid gap-6 lg:grid-cols-2">
-            <Reveal className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-line bg-mist">
-              <div className="relative aspect-[16/9] w-full overflow-hidden">
+          <Masthead index="07" label={fr ? "Domaines d’intervention" : "Areas of work"} />
+          <SectionHeading eyebrow={R(L.services.eyebrow, lang)} title={R(L.services.h2, lang)} />
+          <div className="mt-12 grid gap-px border border-line bg-line lg:grid-cols-2">
+            <article className="bg-white">
+              <div className="ed-media ed-media-hover aspect-[2/1]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/context/lagos-lecture-hall.jpg"
                   alt={R(L.services.freeTitle, lang)}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <span className="absolute top-4 left-4 rounded-full bg-risk-low px-3 py-1 text-xs font-bold uppercase tracking-wider text-white shadow-sm">
+              </div>
+              <div className="p-7 sm:p-9">
+                <span className="border-l-2 border-risk-low pl-2 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-risk-low">
                   {R(L.services.freeTag, lang)}
                 </span>
-              </div>
-              <div className="flex flex-1 flex-col p-8 md:p-10">
-                <h3 className="h3 text-ink">{R(L.services.freeTitle, lang)}</h3>
-                <ul className="mt-6 flex-1 space-y-3">
+                <h3 className="h3 mt-3 text-ink">{R(L.services.freeTitle, lang)}</h3>
+                <ul className="mt-5 space-y-2.5">
                   {L.services.free.map((item, idx) => (
-                    <li key={idx} className="flex gap-3 text-slatex-600">
-                      <Check className="mt-1 h-5 w-5 shrink-0 text-brand-600" />
+                    <li key={idx} className="flex gap-2.5 text-sm text-slatex-600">
+                      <Check
+                        aria-hidden="true"
+                        className="mt-1 h-3.5 w-3.5 shrink-0 text-risk-low"
+                        strokeWidth={1.5}
+                      />
                       {R(item, lang)}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8">
-                  <Btn href={l("/resources")} variant="primary">
-                    {R(L.services.freeCta, lang)}
-                  </Btn>
-                </div>
+                <Link
+                  href={l("/resources")}
+                  className="ed-link mt-7 inline-flex items-center gap-2 text-sm font-semibold text-brand-600"
+                >
+                  {R(L.services.freeCta, lang)}
+                  <ArrowRight className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+                </Link>
               </div>
-            </Reveal>
+            </article>
 
-            <Reveal className="on-dark group flex h-full flex-col overflow-hidden rounded-[22px] bg-navy-900 text-white">
-              <div className="relative aspect-[16/9] w-full overflow-hidden">
+            <article className="on-dark bg-navy-950">
+              <div className="ed-media ed-media-hover aspect-[2/1]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/images/context/team-laptops-office.jpg"
                   alt={R(L.services.paidTitle, lang)}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <span className="absolute top-4 left-4 rounded-full bg-signal px-3 py-1 text-xs font-bold uppercase tracking-wider text-navy-950 shadow-sm">
+              </div>
+              <div className="p-7 sm:p-9">
+                <span className="border-l-2 border-signal pl-2 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-signal">
                   {R(L.services.paidTag, lang)}
                 </span>
-              </div>
-              <div className="flex flex-1 flex-col p-8 md:p-10">
-                <h3 className="h3 text-white">{R(L.services.paidTitle, lang)}</h3>
-                <ul className="mt-6 flex-1 space-y-3">
+                <h3 className="h3 mt-3 text-white">{R(L.services.paidTitle, lang)}</h3>
+                <ul className="mt-5 space-y-2.5">
                   {L.services.paid.map((item, idx) => (
-                    <li key={idx} className="flex gap-3 text-slatex-300">
-                      <Check className="mt-1 h-5 w-5 shrink-0 text-cyanx" />
+                    <li key={idx} className="flex gap-2.5 text-sm text-slatex-300">
+                      <Check
+                        aria-hidden="true"
+                        className="mt-1 h-3.5 w-3.5 shrink-0 text-cyanx"
+                        strokeWidth={1.5}
+                      />
                       {R(item, lang)}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8">
-                  <Btn href={l("/services")} variant="outlineDark">
-                    {R(L.services.paidCta, lang)}
-                  </Btn>
-                </div>
+                <Link
+                  href={l("/services")}
+                  className="ed-link mt-7 inline-flex items-center gap-2 text-sm font-semibold text-cyanx"
+                >
+                  {R(L.services.paidCta, lang)}
+                  <ArrowRight className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+                </Link>
               </div>
-            </Reveal>
+            </article>
           </div>
         </div>
       </section>
 
-      {/* 11. Alerts and News (HomeLower.tsx) */}
+      {/* ── 11 · ALERTS — lead story + ruled briefs ───────────────── */}
       <section id="news" className="section-y scroll-mt-28 bg-mist">
         <div className="container-g">
-          <SectionHeading
-            eyebrow={R(L.newsSec.eyebrow, lang)}
-            title={R(L.newsSec.h2, lang)}
-          />
+          <Masthead index="08" label={fr ? "Alertes & analyses" : "Alerts & analysis"} />
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <SectionHeading eyebrow={R(L.newsSec.eyebrow, lang)} title={R(L.newsSec.h2, lang)} />
+            <Link
+              href={l("/alerts")}
+              className="ed-link hidden shrink-0 items-center gap-2 pb-1 text-sm font-semibold text-brand-600 lg:inline-flex"
+            >
+              {fr ? "Toutes les alertes" : "All alerts"}
+              <ArrowRight className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+            </Link>
+          </div>
+
           {alerts.length === 0 ? (
             <p className="mt-10 text-slatex-600">{R(L.newsSec.empty, lang)}</p>
-          ) : null}
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {alerts.slice(0, 3).map((alert, idx) => (
-              <Reveal key={alert.id} delay={idx * 60}>
-                <Link
-                  href={l(`/alerts/${alert.id}`)}
-                  className="group flex h-full flex-col overflow-hidden rounded-[22px] border border-line bg-white shadow-e1 transition-all duration-150 hover:-translate-y-1 hover:shadow-e2"
-                >
-                  {alert.imageUrl ? (
-                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
+          ) : (
+            <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-14">
+              {leadAlert ? (
+                <Reveal className="lg:col-span-6">
+                  <Link href={l(`/alerts/${leadAlert.id}`)} className="group block">
+                    <div className="ed-media ed-media-hover aspect-[16/10]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={alert.imageUrl}
-                        alt=""
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute top-3 left-3">
-                        <ZiteRiskBadge level={alert.risk} lang={lang} />
-                      </div>
+                      <img src={leadAlert.imageUrl} alt="" loading="lazy" />
                     </div>
-                  ) : null}
-                  <div className="flex flex-1 flex-col p-7">
-                    {!alert.imageUrl ? (
-                      <div className="mb-4">
-                        <ZiteRiskBadge level={alert.risk} lang={lang} />
-                      </div>
-                    ) : null}
-                    <h3 className="h4 text-ink group-hover:text-brand-600">
-                      {R(alert.title, lang)}
+                    <div className="mt-5 flex flex-wrap items-center gap-3">
+                      <ZiteRiskBadge level={leadAlert.risk} lang={lang} />
+                      <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                        {leadAlert.country} · {formatZiteDate(leadAlert.date, lang)}
+                      </span>
+                    </div>
+                    <h3 className="h3 mt-3 max-w-[28ch] text-ink">
+                      <span className="ed-link">{R(leadAlert.title, lang)}</span>
                     </h3>
-                    <p className="mt-3 flex-1 text-sm text-slatex-600">
-                      {R(alert.summary, lang)}
+                    <p className="mt-3 max-w-[54ch] text-[0.9375rem] leading-relaxed text-slatex-600">
+                      {R(leadAlert.summary, lang)}
                     </p>
-                    <p className="mt-5 border-t border-line pt-4 text-sm font-medium text-slatex-600">
-                      {R(alert.category, lang)} · {alert.country} ·{" "}
-                      {formatZiteDate(alert.date, lang)}
-                    </p>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+                  </Link>
+                </Reveal>
+              ) : null}
 
-          <div className="mt-10">
-            <Btn href={l("/alerts")} variant="outline">
-              {lang === "fr" ? "Toutes les alertes" : "All alerts"}
-            </Btn>
-          </div>
+              <div className="lg:col-span-6">
+                <div className="ed-list">
+                  {restAlerts.map((a) => (
+                    <Link key={a.id} href={l(`/alerts/${a.id}`)} className="ed-item group">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <ZiteRiskBadge level={a.risk} lang={lang} />
+                        <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                          {a.country} · {formatZiteDate(a.date, lang)}
+                        </span>
+                      </div>
+                      <h4 className="h4 mt-2.5 text-ink">
+                        <span className="ed-link">{R(a.title, lang)}</span>
+                      </h4>
+                      <p className="mt-2 text-sm leading-relaxed text-slatex-600">
+                        {R(a.summary, lang)}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
 
-          {articles.length > 0 ? (
-            <h3 className="h3 mt-20 text-ink">{R(L.newsSec.news, lang)}</h3>
-          ) : null}
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            {articles.slice(0, 3).map((art, idx) => (
-              <Reveal key={art.id} delay={idx * 60}>
-                <Link href={l(`/news/${art.id}`)} className="group block h-full">
-                  {art.imageUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={art.imageUrl}
-                      alt=""
-                      loading="lazy"
-                      width={800}
-                      height={600}
-                      className="aspect-[4/3] w-full rounded-[22px] object-cover"
-                    />
-                  ) : (
-                    <ImageSlot
-                      id={`HOME-NEWS-${idx + 1}`}
-                      lang={lang}
-                      className="aspect-[4/3] rounded-[22px]"
-                    />
-                  )}
-                  <p className="mt-5 text-xs font-bold uppercase tracking-wider text-brand-600">
-                    {R(art.tag, lang)}
-                  </p>
-                  <h4 className="h4 mt-2 line-clamp-2 text-ink">
-                    {R(art.title, lang)}{" "}
-                    <ArrowUpRight className="inline h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
-                  </h4>
-                  <p className="mt-3 text-sm text-slatex-600">
-                    {art.author} · {formatZiteDate(art.date, lang)}
-                  </p>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+                {articles.length > 0 ? (
+                  <>
+                    <p className="ed-label mt-9 mb-3">{R(L.newsSec.news, lang)}</p>
+                    <div className="ed-list">
+                      {articles.slice(0, 3).map((art) => (
+                        <Link
+                          key={art.id}
+                          href={l(`/news/${art.id}`)}
+                          className="ed-item group flex items-start gap-4 !py-3.5"
+                        >
+                          <div className="ed-media h-16 w-24 shrink-0">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={art.imageUrl} alt="" loading="lazy" />
+                          </div>
+                          <div className="min-w-0">
+                            <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                              {R(art.tag, lang)}
+                            </span>
+                            <h4 className="mt-1 font-[family-name:var(--font-heading)] text-[0.875rem] font-medium leading-snug text-ink">
+                              <span className="ed-link">{R(art.title, lang)}</span>
+                            </h4>
+                            <span className="mt-1 block text-[0.75rem] text-slatex-600">
+                              {formatZiteDate(art.date, lang)}
+                            </span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </>
+                ) : null}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* 11B. Documented Case Studies & Victim-Support Guidance (Master Prompt Parts 6, 9 & 10) */}
+      {/* ── 12 · CASE FILES — asymmetric dossier ──────────────────── */}
       <section id="case-studies" className="section-y scroll-mt-28 bg-white">
         <div className="container-g">
+          <Masthead index="09" label={fr ? "Dossiers documentés" : "Case files"} />
           <SectionHeading
-            eyebrow={
-              lang === "fr"
-                ? "Études de cas documentées & Aide aux victimes"
-                : "Documented Case Studies & Victim Support"
-            }
+            eyebrow={fr ? "Études de cas & aide aux victimes" : "Case studies & victim support"}
             title={
-              lang === "fr"
-                ? "Scénarios réels observés en Afrique et dans le monde."
-                : "Real-world scam patterns documented across Africa and globally."
+              fr
+                ? "Schémas réels observés en Afrique et dans le monde."
+                : "Real-world patterns observed across Africa and globally."
             }
             lead={
-              lang === "fr"
-                ? "Chaque cas est présenté à titre éducatif et illustratif à partir de schémas de fraude documentés (YIMA, SAFPS, Scamwatch, alertes opérateurs), sans accusation non vérifiée."
-                : "Each case study illustrates documented fraud mechanics (informed by public consumer-protection advisories including YIMA, SAFPS, Scamwatch and telecom operator warnings) without unverified allegations."
+              fr
+                ? "Chaque dossier illustre des mécanismes de fraude documentés par les avis publics aux consommateurs, sans accusation non vérifiée."
+                : "Each file illustrates fraud mechanics documented in public consumer-protection advisories, without unverified allegations."
             }
           />
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                scope: lang === "fr" ? "Cameroun · Afrique centrale" : "Cameroon · Central Africa",
-                category: lang === "fr" ? "Fraude au mobile money" : "Mobile money fraud",
-                image: "/images/context/contactless-card-terminal.jpg",
-                title:
-                  lang === "fr"
-                    ? "Faux SMS de dépôt et appel pressant de « remboursement »"
-                    : "Fake deposit SMS followed by an urgent reversal call",
-                whatHappened:
-                  lang === "fr"
-                    ? "Une commerçante reçoit un SMS imitant une notification de dépôt de 50 000 FCFA depuis un numéro ordinaire, suivi d’un appel lui demandant de renvoyer la somme d’urgence."
-                    : "A shopkeeper receives an SMS from an ordinary number mimicking a 50,000 FCFA deposit notification, followed immediately by a caller pleading for an urgent return transfer.",
-                lesson:
-                  lang === "fr"
-                    ? "Vérifiez toujours le solde réel dans le menu officiel de l’opérateur et ne partagez jamais votre code PIN."
-                    : "Always check your actual account balance in the official operator menu and never share your PIN.",
-                href: "/scams/mobile-money-scams",
-              },
-              {
-                scope: lang === "fr" ? "Afrique de l’Ouest · International" : "West Africa · International",
-                category: lang === "fr" ? "Fausses offres d’emploi" : "Employment & task scams",
-                image: "/images/context/person-phone-desk.jpg",
-                title:
-                  lang === "fr"
-                    ? "Recrutement par messagerie exigeant des frais de dossier"
-                    : "Messaging-app recruitment demanding upfront registration fees",
-                whatHappened:
-                  lang === "fr"
-                    ? "Un candidat reçoit une promesse d’embauche après un simple échange écrit, conditionnée au paiement préalable de frais de formation et d’examen médical par mobile money."
-                    : "A job seeker is offered a high-paying role after a text-only chat, conditional on paying upfront training and medical clearance fees via mobile transfer.",
-                lesson:
-                  lang === "fr"
-                    ? "Un employeur légitime ne demande jamais d’argent avant l’embauche. Vérifiez l’entreprise par ses canaux officiels."
-                    : "Legitimate employers never charge fees to hire you. Verify the organisation independently through its official website.",
-                href: "/scams/employment-scams",
-              },
-              {
-                scope: lang === "fr" ? "Afrique du Sud · International" : "South Africa · International",
-                category: lang === "fr" ? "Compromission de facture (BEC)" : "Invoice & payment redirection",
-                image: "/images/context/executive-phone-laptop.jpg",
-                title:
-                  lang === "fr"
-                    ? "Changement de coordonnées bancaires d’un fournisseur par courriel"
-                    : "Supplier bank-account change requested from a lookalike domain",
-                whatHappened:
-                  lang === "fr"
-                    ? "Une PME reçoit une facture attendue depuis une adresse quasi identique à celle de son fournisseur habituel, annonçant un nouveau RIB pour un règlement urgent."
-                    : "An SME receives an expected invoice from a domain differing by one letter from its regular supplier, requesting urgent payment to a newly updated bank account.",
-                lesson:
-                  lang === "fr"
-                    ? "Confirmez tout changement de compte bancaire par un contre-appel sur un numéro déjà connu et vérifié."
-                    : "Confirm every bank-detail change by calling back on a trusted phone number already on file.",
-                href: "/scams/business-email-compromise",
-              },
-            ].map((cs, idx) => (
-              <Reveal key={cs.title} delay={idx * 80}>
-                <article className="group flex h-full flex-col justify-between overflow-hidden rounded-[22px] border border-line bg-mist shadow-e1 transition-all duration-150 hover:-translate-y-1 hover:shadow-e2">
-                  <div>
-                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy-900">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={cs.image}
-                        alt={cs.title}
-                        loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
-                      <span className="absolute top-3 left-3 rounded-full bg-navy-950/85 px-3 py-1 text-xs font-bold uppercase tracking-wider text-cyanx backdrop-blur-sm">
-                        {cs.scope}
-                      </span>
-                    </div>
-                    <div className="p-6">
-                      <p className="text-xs font-bold uppercase tracking-wider text-brand-600">
-                        {cs.category}
-                      </p>
-                      <h3 className="h4 mt-2 text-ink">{cs.title}</h3>
-                      <p className="mt-3 text-sm leading-relaxed text-slatex-600">
-                        {cs.whatHappened}
-                      </p>
-                      <div className="mt-4 rounded-xl border border-brand-600/20 bg-white p-3.5 text-xs leading-relaxed text-ink">
-                        <strong className="block font-bold text-brand-600">
-                          {lang === "fr" ? "Leçon clé :" : "Key takeaway:"}
-                        </strong>
-                        {cs.lesson}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="px-6 pb-6">
+          <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:gap-14">
+            <Reveal className="lg:col-span-7">
+              <article>
+                <div className="ed-media ed-media-hover aspect-[16/9]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={cases[0].image} alt={cases[0].title} loading="lazy" />
+                </div>
+                <div className="mt-5 flex flex-wrap items-center gap-3">
+                  <span className="border-l-2 border-brand-600 pl-2 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-brand-600">
+                    {cases[0].scope}
+                  </span>
+                  <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                    {cases[0].category}
+                  </span>
+                </div>
+                <h3 className="h3 mt-3 max-w-[30ch] text-ink">{cases[0].title}</h3>
+                <p className="mt-3 max-w-[58ch] text-[0.9375rem] leading-relaxed text-slatex-600">
+                  {cases[0].body}
+                </p>
+                <div className="mt-5 border-l-2 border-signal bg-signal/[0.07] p-4">
+                  <span className="ed-label block text-ink">
+                    {fr ? "Leçon clé" : "Key takeaway"}
+                  </span>
+                  <p className="mt-1.5 text-sm leading-relaxed text-ink">{cases[0].lesson}</p>
+                </div>
+                <Link
+                  href={l(cases[0].href)}
+                  className="ed-link mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-600"
+                >
+                  {fr ? "Lire le guide de prévention" : "Read prevention guide"}
+                  <ArrowRight className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
+                </Link>
+              </article>
+            </Reveal>
+
+            <div className="lg:col-span-5">
+              <div className="ed-list">
+                {cases.slice(1).map((cs) => (
+                  <article key={cs.title} className="ed-item">
+                    <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                      {cs.scope} · {cs.category}
+                    </span>
+                    <h4 className="h4 mt-2 text-ink">{cs.title}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-slatex-600">{cs.body}</p>
+                    <p className="mt-3 border-t border-line pt-3 text-[0.8125rem] leading-relaxed text-ink">
+                      <strong className="font-semibold">
+                        {fr ? "Leçon : " : "Takeaway: "}
+                      </strong>
+                      {cs.lesson}
+                    </p>
                     <Link
                       href={l(cs.href)}
-                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:underline"
+                      className="ed-link mt-3 inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-brand-600"
                     >
-                      {lang === "fr" ? "Lire le guide de prévention →" : "Read prevention guide →"}
+                      {fr ? "Guide de prévention" : "Prevention guide"}
+                      <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
                     </Link>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 12. Newsletter & Redesigned Reporting Box (HomeBottom.tsx) */}
-      <section
-        id="newsletter"
-        className="on-dark relative overflow-hidden scroll-mt-28 py-20 lg:py-24"
-        style={{ background: "linear-gradient(180deg, #0a1631 0%, #10244d 100%)" }}
-      >
-        <div className="container-g relative grid gap-10 lg:grid-cols-12 lg:items-stretch">
-          {/* Left Column: Stay Informed + Redesigned Scam-Reporting Box */}
-          <Reveal className="flex flex-col justify-between gap-8 lg:col-span-5">
-            <div>
-              <p className="eyebrow flex items-center gap-3 text-cyanx">
-                <span className="h-px w-8 bg-cyanx" />
-                {lang === "fr" ? "Restez informé" : "Stay informed"}
-              </p>
-              <h2 className="h2 mt-4 text-white">{R(L.nl.h2, lang)}</h2>
-              <p className="mt-3 text-base leading-relaxed text-slatex-300">
-                {R(L.nl.body, lang)}
-              </p>
-            </div>
+      {/* ── 13 · BRIEFING — editorial subscription ────────────────── */}
+      <section id="newsletter" className="on-dark section-y scroll-mt-28 bg-navy-950">
+        <div className="container-g">
+          <Masthead index="10" dark label={fr ? "Restez informé" : "Stay informed"} />
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-5">
+              <h2 className="h2 max-w-[20ch] text-white">{R(L.nl.h2, lang)}</h2>
+              <p className="ed-deck mt-5">{R(L.nl.body, lang)}</p>
 
-            {/* Redesigned Premium Scam-Reporting Box */}
-            <div className="group relative overflow-hidden rounded-[24px] border border-signal/45 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 p-7 shadow-e3 transition-all duration-300 hover:border-signal">
-              <div
-                className="pointer-events-none absolute -top-16 -right-16 h-44 w-44 rounded-full opacity-25 blur-3xl transition-opacity duration-300 group-hover:opacity-40"
-                style={{ background: "radial-gradient(circle, #ffb02e, transparent 70%)" }}
-                aria-hidden="true"
-              />
-              <div className="relative">
-                <div className="flex flex-wrap items-center justify-between gap-2">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-signal/40 bg-signal/15 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-signal">
-                    <ShieldAlert className="h-3.5 w-3.5" />
-                    {lang === "fr" ? "Signalement d’incident" : "Incident Reporting"}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-slatex-300">
-                    <Lock className="h-3 w-3 text-cyanx" />
-                    {lang === "fr" ? "Privé · Sans compte" : "Private · No account"}
-                  </span>
-                </div>
-
-                <h3 className="mt-4 font-[family-name:var(--font-heading)] text-xl font-bold text-white">
-                  {lang === "fr"
-                    ? "Vous avez repéré ou subi une arnaque ?"
-                    : "Spotted or experienced a scam?"}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slatex-300">
-                  {lang === "fr"
-                    ? "Signalez un numéro, un SMS, une fausse offre d’emploi ou une demande de paiement suspecte. Vous recevez un numéro de référence immédiat."
-                    : "Report a suspicious phone number, SMS, fake job offer or payment request in 5 minutes and receive an immediate reference code."}
+              <div className="mt-9 border-t border-white/15 pt-7">
+                <p className="ed-label text-signal">
+                  {fr ? "Vous avez été touché ?" : "Already affected?"}
                 </p>
-
-                <ul className="mt-4 grid grid-cols-3 gap-2 border-y border-white/10 py-3 text-center text-xs font-semibold text-white">
-                  <li className="rounded-xl bg-white/5 px-2 py-2">
-                    <span className="block font-[family-name:var(--font-heading)] text-sm font-bold text-cyanx">
-                      01
-                    </span>
-                    {lang === "fr" ? "Les faits" : "Incident"}
-                  </li>
-                  <li className="rounded-xl bg-white/5 px-2 py-2">
-                    <span className="block font-[family-name:var(--font-heading)] text-sm font-bold text-cyanx">
-                      02
-                    </span>
-                    {lang === "fr" ? "Preuves" : "Evidence"}
-                  </li>
-                  <li className="rounded-xl bg-white/5 px-2 py-2">
-                    <span className="block font-[family-name:var(--font-heading)] text-sm font-bold text-cyanx">
-                      03
-                    </span>
-                    {lang === "fr" ? "Référence" : "Reference"}
-                  </li>
-                </ul>
-
-                <div className="mt-5 flex flex-wrap items-center gap-3">
-                  <Btn href={l("/report")} variant="signal" className="h-11 flex-1 px-5 text-sm">
+                <p className="mt-3 text-[0.9375rem] leading-relaxed text-slatex-300">
+                  {fr
+                    ? "Signalez un numéro, un SMS ou une demande de paiement suspecte. Aucun compte requis, réponse de référence immédiate."
+                    : "Report a suspicious number, SMS or payment request. No account needed, immediate reference issued."}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-3">
+                  <Btn href={l("/report")} variant="signal" size="sm">
                     {R(L.report, lang)}
                   </Btn>
-                  <Btn href={l("/check")} variant="outlineDark" className="h-11 px-5 text-sm">
-                    {lang === "fr" ? "Vérifier un message" : "Verify a Scam"}
+                  <Btn href={l("/check")} variant="outlineDark" size="sm">
+                    {fr ? "Vérifier un message" : "Verify a message"}
                   </Btn>
                 </div>
               </div>
             </div>
-          </Reveal>
 
-          {/* Right Column: Redesigned Alert Subscription Card */}
-          <Reveal delay={90} className="lg:col-span-7">
-            <div className="dark-surface flex h-full flex-col justify-between rounded-[26px] bg-navy-950/80 p-7 shadow-e3 backdrop-blur-md sm:p-9">
-              <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-5">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-[14px] bg-brand-600/25 text-cyanx">
-                    <Mail className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <p className="font-[family-name:var(--font-heading)] text-lg font-bold text-white">
-                      {lang === "fr"
-                        ? "Inscription aux alertes par courriel"
-                        : "Email Alert Subscription"}
-                    </p>
-                    <p className="text-xs text-slatex-300">
-                      {lang === "fr"
-                        ? "Mises en garde vérifiées en français ou en anglais · Désinscription en 1 clic"
-                        : "Verified scam warnings in English or French · One-click unsubscribe"}
-                    </p>
-                  </div>
-                </div>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-cyanx/30 bg-cyanx/10 px-3 py-1 text-xs font-semibold text-cyanx">
-                  <Globe className="h-3.5 w-3.5" />
-                  EN / FR
-                </span>
-              </div>
-
+            <div className="lg:col-span-7">
               {nlStatus === "done" ? (
                 <div
                   role="status"
-                  className="my-auto flex flex-col items-center justify-center gap-3 rounded-[18px] border border-cyanx/35 bg-cyanx/10 p-8 text-center text-white"
+                  className="flex items-start gap-4 border-l-2 border-cyanx bg-white/[0.04] p-7"
                 >
-                  <CheckCircle2 className="h-10 w-10 text-cyanx" />
-                  <p className="text-lg font-semibold">{R(L.nl.done, lang)}</p>
+                  <CheckCircle2
+                    aria-hidden="true"
+                    className="mt-0.5 h-6 w-6 shrink-0 text-cyanx"
+                    strokeWidth={1.5}
+                  />
+                  <p className="text-base font-medium text-white">{R(L.nl.done, lang)}</p>
                 </div>
               ) : (
-                <form
-                  onSubmit={handleNewsletterSubmit}
-                  noValidate
-                  className="grid gap-5 sm:grid-cols-2"
-                >
+                <form onSubmit={handleNewsletterSubmit} noValidate>
+                  <div className="border-b border-white/15 pb-3">
+                    <span className="ed-label text-white/50">
+                      {fr ? "Inscription au bulletin" : "Briefing subscription"}
+                    </span>
+                  </div>
                   <input
                     type="text"
                     name="website"
@@ -1252,132 +1070,81 @@ export function ZiteHomeView({
                     autoComplete="off"
                     aria-hidden="true"
                   />
-                  <div>
-                    <label
-                      htmlFor="nl-name"
-                      className="mb-1.5 block text-sm font-semibold text-white"
-                    >
-                      {R(L.nl.name, lang)}
-                    </label>
-                    <input
-                      id="nl-name"
-                      autoComplete="name"
-                      placeholder={lang === "fr" ? "Votre nom" : "Your name"}
-                      className={inputCls}
-                      value={nlState.name}
-                      onChange={(e) => setNlState({ ...nlState, name: e.target.value })}
-                    />
-                    {nlErrors.name ? (
-                      <p className="mt-1.5 flex items-center gap-1.5 text-sm text-signal">
-                        <AlertCircle className="h-4 w-4" />
-                        {nlErrors.name}
-                      </p>
-                    ) : null}
+                  <div className="mt-7 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+                    {[
+                      { id: "nl-name", key: "name" as const, label: R(L.nl.name, lang), type: "text", auto: "name", ph: fr ? "Votre nom" : "Your name" },
+                      { id: "nl-email", key: "email" as const, label: R(L.nl.email, lang), type: "email", auto: "email", ph: "name@example.com" },
+                      { id: "nl-country", key: "country" as const, label: R(L.nl.country, lang), type: "text", auto: "country-name", ph: fr ? "Cameroun" : "Cameroon" },
+                    ].map((f) => (
+                      <div key={f.id}>
+                        <label htmlFor={f.id} className="ed-label block text-white/60">
+                          {f.label}
+                        </label>
+                        <input
+                          id={f.id}
+                          type={f.type}
+                          autoComplete={f.auto}
+                          placeholder={f.ph}
+                          className="ed-field mt-1.5"
+                          value={nlState[f.key]}
+                          onChange={(e) => setNlState({ ...nlState, [f.key]: e.target.value })}
+                          aria-invalid={Boolean(nlErrors[f.key])}
+                        />
+                        {nlErrors[f.key] ? (
+                          <p className="mt-1.5 flex items-center gap-1.5 text-[0.75rem] text-signal">
+                            <AlertCircle className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
+                            {nlErrors[f.key]}
+                          </p>
+                        ) : null}
+                      </div>
+                    ))}
+                    <div>
+                      <label htmlFor="nl-lang" className="ed-label block text-white/60">
+                        {R(L.nl.language, lang)}
+                      </label>
+                      <select
+                        id="nl-lang"
+                        className="ed-field mt-1.5"
+                        value={nlState.language}
+                        onChange={(e) => setNlState({ ...nlState, language: e.target.value })}
+                      >
+                        <option value="EN">English</option>
+                        <option value="FR">Français</option>
+                      </select>
+                    </div>
                   </div>
 
-                  <div>
-                    <label
-                      htmlFor="nl-email"
-                      className="mb-1.5 block text-sm font-semibold text-white"
-                    >
-                      {R(L.nl.email, lang)}
-                    </label>
-                    <input
-                      id="nl-email"
-                      type="email"
-                      autoComplete="email"
-                      placeholder="name@example.com"
-                      className={inputCls}
-                      value={nlState.email}
-                      onChange={(e) => setNlState({ ...nlState, email: e.target.value })}
-                    />
-                    {nlErrors.email ? (
-                      <p className="mt-1.5 flex items-center gap-1.5 text-sm text-signal">
-                        <AlertCircle className="h-4 w-4" />
-                        {nlErrors.email}
-                      </p>
-                    ) : null}
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="nl-country"
-                      className="mb-1.5 block text-sm font-semibold text-white"
-                    >
-                      {R(L.nl.country, lang)}
-                    </label>
-                    <input
-                      id="nl-country"
-                      autoComplete="country-name"
-                      placeholder={lang === "fr" ? "Ex. Cameroun" : "e.g. Cameroon"}
-                      className={inputCls}
-                      value={nlState.country}
-                      onChange={(e) => setNlState({ ...nlState, country: e.target.value })}
-                    />
-                    {nlErrors.country ? (
-                      <p className="mt-1.5 flex items-center gap-1.5 text-sm text-signal">
-                        <AlertCircle className="h-4 w-4" />
-                        {nlErrors.country}
-                      </p>
-                    ) : null}
-                  </div>
-
-                  <div>
-                    <label
-                      htmlFor="nl-lang"
-                      className="mb-1.5 block text-sm font-semibold text-white"
-                    >
-                      {R(L.nl.language, lang)}
-                    </label>
-                    <select
-                      id="nl-lang"
-                      className={inputCls}
-                      value={nlState.language}
-                      onChange={(e) => setNlState({ ...nlState, language: e.target.value })}
-                    >
-                      <option value="EN" className="text-ink">
-                        English
-                      </option>
-                      <option value="FR" className="text-ink">
-                        Français
-                      </option>
-                    </select>
-                  </div>
-
-                  <label className="flex min-h-[44px] items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-3.5 text-sm text-slatex-300 sm:col-span-2">
+                  <label className="mt-7 flex items-start gap-3 border-t border-white/15 pt-6 text-[0.8125rem] leading-relaxed text-slatex-300">
                     <input
                       type="checkbox"
                       checked={nlState.consent}
-                      onChange={(e) =>
-                        setNlState({ ...nlState, consent: e.target.checked })
-                      }
-                      className="mt-0.5 h-5 w-5 accent-brand-500"
+                      onChange={(e) => setNlState({ ...nlState, consent: e.target.checked })}
+                      className="mt-0.5 h-4 w-4 shrink-0 accent-brand-500"
                     />
                     <span>
                       {R(L.nl.consent, lang)}
                       {nlErrors.consent ? (
-                        <span className="mt-1.5 flex items-center gap-1.5 text-sm text-signal">
-                          <AlertCircle className="h-4 w-4" />
+                        <span className="mt-1.5 flex items-center gap-1.5 text-[0.75rem] text-signal">
+                          <AlertCircle className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
                           {nlErrors.consent}
                         </span>
                       ) : null}
                     </span>
                   </label>
 
-                  <div className="flex flex-wrap items-center justify-between gap-4 pt-1 sm:col-span-2">
+                  <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
                     <button
                       type="submit"
                       disabled={nlStatus === "loading"}
-                      className="inline-flex h-[52px] items-center gap-2 rounded-full bg-brand-600 px-8 font-semibold text-white shadow-sm transition hover:bg-brand-500 disabled:opacity-60"
+                      className="btn btn-primary"
                     >
                       {nlStatus === "loading" ? (
-                        <LoaderCircle className="h-4 w-4 animate-spin" />
+                        <LoaderCircle className="h-4 w-4 animate-spin" aria-hidden="true" />
                       ) : null}
                       {R(L.nl.submit, lang)}
                     </button>
-                    <span className="flex items-center gap-1.5 text-xs text-slatex-300">
-                      <ShieldCheck className="h-4 w-4 text-cyanx" />
-                      {lang === "fr"
+                    <span className="text-[0.75rem] text-white/40">
+                      {fr
                         ? "Vos données ne sont jamais vendues."
                         : "We never sell or share your email."}
                     </span>
@@ -1390,30 +1157,22 @@ export function ZiteHomeView({
                 </form>
               )}
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* 13. Final CTA (HomeBottom.tsx) */}
-      <section className="on-dark section-y relative overflow-hidden bg-navy-900">
-        <Monogram className="absolute top-1/2 -left-24 h-[520px] w-[520px] -translate-y-1/2 text-white/[0.04]" />
-        <div className="container-g relative text-center">
-          <Reveal>
-            <h2 className="h2 mx-auto max-w-3xl text-white">
-              {R(L.final.h2, lang)}
-            </h2>
-          </Reveal>
-          <Reveal delay={120} className="mt-10 flex flex-wrap justify-center gap-3">
+      {/* ── 14 · CLOSING ──────────────────────────────────────────── */}
+      <section className="on-dark border-t border-white/12 bg-navy-900 py-16">
+        <div className="container-g flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
+          <h2 className="h2 max-w-[24ch] text-white">{R(L.final.h2, lang)}</h2>
+          <div className="flex flex-wrap gap-3">
             <Btn href={l("/report")} variant="signal">
               {R(L.report, lang)}
-            </Btn>
-            <Btn href={l("/resources")} variant="primary">
-              {R(L.final.resources, lang)}
             </Btn>
             <Btn href={l("/contact")} variant="outlineDark">
               {R(L.final.contact, lang)}
             </Btn>
-          </Reveal>
+          </div>
         </div>
       </section>
     </>

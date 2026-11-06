@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { ZiteReportView } from "@/components/zite/report-view";
-import { L, R } from "@/components/zite/shared";
+import { L, R } from "@/components/zite/copy";
 
 export async function generateMetadata({
   params,

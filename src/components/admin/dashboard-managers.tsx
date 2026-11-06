@@ -72,7 +72,7 @@ export function InlineReportStatusForm({
 export function QuickPublishAlertForm({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [state, action, pending] = useActionState(createScamAlert.bind(null, locale), initialFormState);
   return (
-    <form action={action} className="rounded-[var(--radius-md)] border border-line-200 bg-white p-5">
+    <form action={action} className="rounded-sm border border-line-200 bg-white p-5">
       <div className="flex items-center gap-2 text-[0.78rem] font-bold uppercase tracking-[0.1em] text-risk-high">
         <ShieldAlert size={16} aria-hidden="true" />
         <span>{locale === "fr" ? "Publier une nouvelle alerte" : "Publish a new scam alert"}</span>
@@ -168,7 +168,7 @@ export function QuickPublishAlertForm({ locale, dict }: { locale: Locale; dict: 
 export function QuickPublishArticleForm({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   const [state, action, pending] = useActionState(createArticle.bind(null, locale), initialFormState);
   return (
-    <form action={action} className="rounded-[var(--radius-md)] border border-line-200 bg-white p-5">
+    <form action={action} className="rounded-sm border border-line-200 bg-white p-5">
       <div className="flex items-center gap-2 text-[0.78rem] font-bold uppercase tracking-[0.1em] text-blue-600">
         <FileText size={16} aria-hidden="true" />
         <span>
@@ -284,7 +284,7 @@ export function OrganisationSettingsForm({
     initialFormState,
   );
   return (
-    <form action={action} className="rounded-[var(--radius-md)] border border-line-200 bg-white p-5">
+    <form action={action} className="rounded-sm border border-line-200 bg-white p-5">
       <div className="flex items-center gap-2 text-[0.78rem] font-bold uppercase tracking-[0.1em] text-ink-900">
         <Settings size={16} className="text-blue-600" aria-hidden="true" />
         <span>{dict.admin.settings}</span>
@@ -396,7 +396,7 @@ export function GitHubPushPanel({ locale }: { locale: Locale }) {
   return (
     <form
       onSubmit={handlePush}
-      className="rounded-[var(--radius-md)] border border-line-200 bg-white p-5"
+      className="rounded-sm border border-line-200 bg-white p-5"
     >
       <div className="flex items-center gap-2 text-[0.78rem] font-bold uppercase tracking-[0.1em] text-ink-900">
         <GitBranch size={16} className="text-blue-600" aria-hidden="true" />

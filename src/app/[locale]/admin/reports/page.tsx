@@ -23,7 +23,7 @@ export default async function AdminReportsPage({
   const user = await getCurrentUser();
   if (!user) redirect(`${routes.admin(locale)}/login`);
   if (!can(user, "reports:read")) {
-    return <p className="rounded-[var(--radius-md)] border border-risk-critical/40 bg-white p-5 text-[0.9rem]">{dict.admin.accessDenied}</p>;
+    return <p className="rounded-sm border border-risk-critical/40 bg-white p-5 text-[0.9rem]">{dict.admin.accessDenied}</p>;
   }
 
   const reports: ScamReport[] = hasDatabase
@@ -66,7 +66,7 @@ export default async function AdminReportsPage({
       </div>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-        <div className="overflow-hidden rounded-[var(--radius-md)] border border-line-200 bg-white">
+        <div className="overflow-hidden rounded-sm border border-line-200 bg-white">
           <div className="overflow-x-auto">
             <table className="table-dense w-full min-w-[520px]">
               <thead>
@@ -105,7 +105,7 @@ export default async function AdminReportsPage({
 
         {selected ? (
           <div className="space-y-4">
-            <div className="rounded-[var(--radius-md)] border border-line-200 bg-white p-4">
+            <div className="rounded-sm border border-line-200 bg-white p-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <h2 className="font-mono text-[1rem] font-bold">{selected.reference}</h2>
                 <span className="chip">{selected.status}</span>
@@ -135,7 +135,7 @@ export default async function AdminReportsPage({
             {can(user, "reports:write") ? (
               <ReportControls locale={locale} dict={dict} reportId={selected.id} currentStatus={selected.status} />
             ) : null}
-            <div className="rounded-[var(--radius-md)] border border-line-200 bg-white p-4">
+            <div className="rounded-sm border border-line-200 bg-white p-4">
               <h3 className="text-[0.95rem] font-semibold">{dict.admin.note}</h3>
               <ul className="mt-2 space-y-2 text-[0.82rem] text-slate-600">
                 {notes.length === 0 ? <li>{dict.admin.noRecords}</li> : null}

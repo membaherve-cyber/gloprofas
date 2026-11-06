@@ -15,7 +15,7 @@ export function AdminLoginForm({ locale, dict }: { locale: Locale; dict: Diction
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-      <form action={action} className="grid gap-4 rounded-[var(--radius-lg)] border border-line-200 bg-white p-6 shadow-[var(--shadow-e1)]">
+      <form action={action} className="grid gap-4 rounded-none border border-line-200 bg-white p-6 shadow-[var(--shadow-e1)]">
         <div className="flex items-center gap-2 text-[0.8rem] font-semibold uppercase tracking-[0.12em] text-blue-600">
           <Lock size={15} aria-hidden="true" />
           <span>{dict.admin.title}</span>
@@ -64,7 +64,7 @@ export function AdminLoginForm({ locale, dict }: { locale: Locale; dict: Diction
         </button>
       </form>
 
-      <aside className="rounded-[var(--radius-lg)] border border-navy-900/15 bg-navy-900 p-6 text-white shadow-[var(--shadow-e2)]">
+      <aside className="rounded-none border border-navy-900/15 bg-navy-900 p-6 text-white shadow-[var(--shadow-none)]">
         <div className="flex items-center gap-2 text-[0.8rem] font-bold uppercase tracking-[0.12em] text-signal-400">
           <KeyRound size={16} aria-hidden="true" />
           <span>{locale === "fr" ? "Comptes administrateurs configurés" : "Configured Administrator Accounts"}</span>
@@ -80,7 +80,7 @@ export function AdminLoginForm({ locale, dict }: { locale: Locale; dict: Diction
             return (
               <div
                 key={cred.email}
-                className={`rounded-[var(--radius-md)] border p-4 transition-colors ${
+                className={`rounded-sm border p-4 transition-colors ${
                   isSelected
                     ? "border-cyan-400 bg-navy-800"
                     : "border-white/12 bg-white/5 hover:border-white/25"
