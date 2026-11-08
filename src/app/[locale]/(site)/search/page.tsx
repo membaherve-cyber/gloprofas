@@ -7,17 +7,19 @@ import { searchContent } from "@/lib/queries";
 import { EmptyState } from "@/components/ui";
 import { PageHero } from "@/components/zite/shared";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const dict = getDictionary(locale);
-  return {
+  return buildMetadata({
+    locale,
+    path: "/search",
     title: dict.search.h1,
     description: dict.search.lead,
-    alternates: { canonical: `/${locale}/search`, languages: { en: "/en/search", fr: "/fr/search" } },
-    robots: { index: false, follow: true },
-  };
+    noindex: true,
+  });
 }
 
 function hrefFor(locale: Locale, result: { type: string; slugEn: string; slugFr: string }): string {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { ZiteAlertsView } from "@/components/zite/alerts-view";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -10,13 +11,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  return {
+  return buildMetadata({
+    locale,
+    path: "/alerts",
     title: locale === "fr" ? "Alertes aux arnaques" : "Scam alerts",
-    alternates: {
-      canonical: `/${locale}/alerts`,
-      languages: { en: "/en/alerts", fr: "/fr/alerts" },
-    },
-  };
+    description: SITE_DESCRIPTION[locale],
+    ogType: "article",
+  });
 }
 
 export default async function AlertsPage({

@@ -12,6 +12,8 @@ import { isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT, type ZiteCategory } from "@/lib/zite-data";
 import { Btn, IconTile, PageHero, Reveal, SectionHeading, ZiteRiskBadge } from "@/components/zite/shared";
 import { formatZiteDate, getCategoryIcon, L, R } from "@/components/zite/copy";
+import { buildMetadata, SITE_DESCRIPTION, webPageLd, breadcrumbLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
 import {
   formatAerialBadge,
   PAGE_AERIAL_HEROES,
@@ -66,17 +68,12 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const cat = findCategory(slug);
   if (!cat) return {};
-  return {
+  return buildMetadata({
+    locale,
+    path: `/scams/${cat.slug}`,
     title: R(cat.title, locale),
     description: R(cat.summary, locale),
-    alternates: {
-      canonical: `/${locale}/scams/${cat.slug}`,
-      languages: {
-        en: `/en/scams/${cat.slug}`,
-        fr: `/fr/scams/${cat.slug}`,
-      },
-    },
-  };
+  });
 }
 
 export default async function ScamDetailPage({
@@ -103,6 +100,24 @@ export default async function ScamDetailPage({
 
   return (
     <>
+      <JsonLd
+        data={[
+          webPageLd({
+            name: R(category.title, locale),
+            description: R(category.summary, locale),
+            path: `/scams/${category.slug}`,
+            locale,
+          }),
+          breadcrumbLd(
+            [
+              { name: fr ? "Accueil" : "Home", path: "/" },
+              { name: R(L.nav.awareness, locale), path: "/scams" },
+              { name: R(category.title, locale), path: `/scams/${category.slug}` },
+            ],
+            locale,
+          ),
+        ]}
+      />
       {(() => {
         const aerialHero =
           SCAM_CATEGORY_AERIAL_HEROES[category.slug] ??

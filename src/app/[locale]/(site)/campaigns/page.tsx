@@ -8,23 +8,18 @@ import { Media } from "@/components/ui/media";
 import { Reveal } from "@/components/ui/motion";
 import { PageHero } from "@/components/zite/shared";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const dict = getDictionary(locale);
-  return {
+  return buildMetadata({
+    locale,
+    path: "/campaigns",
     title: dict.campaigns.h1,
     description: dict.campaigns.lead,
-    alternates: {
-      canonical: `/${locale}/campaigns`,
-      languages: { en: "/en/campaigns", fr: "/fr/campaigns" },
-    },
-    openGraph: {
-      title: dict.campaigns.h1,
-      description: dict.campaigns.lead,
-    },
-  };
+  });
 }
 
 const AUDIENCE_IMAGES = [

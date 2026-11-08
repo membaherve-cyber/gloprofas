@@ -5,16 +5,18 @@ import { getDictionary, isLocale, routes, type Locale } from "@/lib/i18n";
 import { NewsletterForm } from "@/components/site/newsletter-form";
 import { Btn, PageHero } from "@/components/zite/shared";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const dict = getDictionary(locale);
-  return {
+  return buildMetadata({
+    locale,
+    path: "/newsletter",
     title: dict.newsletter.h1,
     description: dict.newsletter.lead,
-    alternates: { canonical: `/${locale}/newsletter`, languages: { en: "/en/newsletter", fr: "/fr/newsletter" } },
-  };
+  });
 }
 
 export default async function NewsletterPage({

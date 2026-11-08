@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { ZiteReportView } from "@/components/zite/report-view";
 import { L, R } from "@/components/zite/copy";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -11,13 +12,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  return {
+  return buildMetadata({
+    locale,
+    path: "/report",
     title: R(L.report, locale),
-    alternates: {
-      canonical: `/${locale}/report`,
-      languages: { en: "/en/report", fr: "/fr/report" },
-    },
-  };
+    description: SITE_DESCRIPTION[locale],
+  });
 }
 
 export default async function ReportPage({

@@ -5,6 +5,7 @@ import { isLocale, type Locale } from "@/lib/i18n";
 import { Btn, IconTile, PageHero, Reveal } from "@/components/zite/shared";
 import { L, R } from "@/components/zite/copy";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -13,14 +14,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  return {
+  return buildMetadata({
+    locale,
+    path: "/get-involved",
     title: locale === "fr" ? "S’impliquer" : "Get involved",
     description: R(L.final.h2, locale),
-    alternates: {
-      canonical: `/${locale}/get-involved`,
-      languages: { en: "/en/get-involved", fr: "/fr/get-involved" },
-    },
-  };
+  });
 }
 
 export default async function GetInvolvedPage({

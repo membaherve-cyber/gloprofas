@@ -12,6 +12,8 @@ import {
   PAGE_AERIAL_HEROES,
 } from "@/lib/african-cities";
 import { getAlert } from "@/lib/queries";
+import { buildMetadata, SITE_DESCRIPTION, articleLd, breadcrumbLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
 
 async function findAlert(locale: Locale, slugOrId: string): Promise<ZiteAlert | undefined> {
   const list = ZITE_CONTENT.alerts as unknown as ZiteAlert[];
@@ -50,17 +52,13 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const alert = await findAlert(locale, slug);
   if (!alert) return {};
-  return {
+  return buildMetadata({
+    locale,
+    path: `/alerts/${alert.id}`,
     title: R(alert.title, locale),
     description: R(alert.summary, locale),
-    alternates: {
-      canonical: `/${locale}/alerts/${alert.id}`,
-      languages: {
-        en: `/en/alerts/${alert.id}`,
-        fr: `/fr/alerts/${alert.id}`,
-      },
-    },
-  };
+    ogType: "article",
+  });
 }
 
 export default async function AlertDetailPage({
@@ -85,6 +83,26 @@ export default async function AlertDetailPage({
 
   return (
     <>
+      <JsonLd
+        data={[
+          articleLd({
+            headline: R(alert.title, locale),
+            description: R(alert.summary, locale),
+            path: `/alerts/${alert.id}`,
+            locale,
+            image: alert.imageUrl,
+            datePublished: new Date(alert.date).toISOString(),
+          }),
+          breadcrumbLd(
+            [
+              { name: fr ? "Accueil" : "Home", path: "/" },
+              { name: fr ? "Alertes" : "Alerts", path: "/alerts" },
+              { name: R(alert.title, locale), path: `/alerts/${alert.id}` },
+            ],
+            locale,
+          ),
+        ]}
+      />
       <PageHero
         title={R(alert.title, locale)}
         image={aerialHero.image}

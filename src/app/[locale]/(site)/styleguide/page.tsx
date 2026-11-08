@@ -1,6 +1,11 @@
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale, routes, type Locale } from "@/lib/i18n";
 import { AlertCard, ButtonLink, CategoryTile, CheckList, Eyebrow, EmptyState, RiskBadge, SectionHeading } from "@/components/ui";
+export const metadata = {
+  title: "Style guide",
+  robots: { index: false, follow: false, nocache: true },
+};
+
 
 export default async function StyleguidePage({ params }: { params: Promise<{ locale: string }> }) {
   if (process.env.NODE_ENV === "production") notFound();

@@ -16,6 +16,7 @@ import { isLocale, type Locale } from "@/lib/i18n";
 import { IconTile, PageHero, Reveal, SectionHeading } from "@/components/zite/shared";
 import { L, R } from "@/components/zite/copy";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -24,14 +25,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  return {
+  return buildMetadata({
+    locale,
+    path: "/about",
     title: locale === "fr" ? "À propos de GLOPROFAS" : "About GLOPROFAS",
     description: R(L.intro.body, locale),
-    alternates: {
-      canonical: `/${locale}/about`,
-      languages: { en: "/en/about", fr: "/fr/about" },
-    },
-  };
+  });
 }
 
 export default async function AboutPage({

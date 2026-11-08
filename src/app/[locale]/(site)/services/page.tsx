@@ -11,6 +11,7 @@ import { isLocale, type Locale } from "@/lib/i18n";
 import { Btn, IconTile, PageHero, Reveal } from "@/components/zite/shared";
 import { L, R } from "@/components/zite/copy";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -19,14 +20,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  return {
+  return buildMetadata({
+    locale,
+    path: "/services",
     title: locale === "fr" ? "Services professionnels" : "Professional services",
     description: R(L.services.h2, locale),
-    alternates: {
-      canonical: `/${locale}/services`,
-      languages: { en: "/en/services", fr: "/fr/services" },
-    },
-  };
+  });
 }
 
 export default async function ServicesPage({

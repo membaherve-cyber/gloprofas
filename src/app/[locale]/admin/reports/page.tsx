@@ -8,6 +8,11 @@ import { can, getCurrentUser } from "@/lib/auth";
 import { getDictionary, isLocale, routes, type Locale } from "@/lib/i18n";
 import { formatDate } from "@/lib/format";
 import { ReportControls } from "@/components/admin/report-controls";
+export const metadata = {
+  title: "Scam reports",
+  robots: { index: false, follow: false, nocache: true },
+};
+
 
 export default async function AdminReportsPage({
   params,

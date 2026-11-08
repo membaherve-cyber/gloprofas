@@ -6,6 +6,7 @@ import { ButtonLink, CheckList } from "@/components/ui";
 import { ServiceEnquiryForm } from "@/components/site/forms";
 import { PageHero } from "@/components/zite/shared";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -16,14 +17,12 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const service = await getService(locale, slug);
   if (!service) return {};
-  return {
+  return buildMetadata({
+    locale,
+    path: `/services/${slug}`,
     title: pick(locale, service.nameEn, service.nameFr),
     description: pick(locale, service.descriptionEn, service.descriptionFr),
-    alternates: {
-      canonical: `/${locale}/services/${slug}`,
-      languages: { en: `/en/services/${service.slugEn}`, fr: `/fr/services/${service.slugFr}` },
-    },
-  };
+  });
 }
 
 export default async function ServiceDetailPage({

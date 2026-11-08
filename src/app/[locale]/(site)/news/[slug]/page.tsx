@@ -13,6 +13,8 @@ import {
   PAGE_AERIAL_HEROES,
 } from "@/lib/african-cities";
 import { getArticle } from "@/lib/queries";
+import { buildMetadata, SITE_DESCRIPTION, articleLd, breadcrumbLd } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/json-ld";
 
 async function findArticle(locale: Locale, slugOrId: string): Promise<ZiteArticle | undefined> {
   const list = ZITE_CONTENT.articles as unknown as ZiteArticle[];
@@ -44,17 +46,14 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const art = await findArticle(locale, slug);
   if (!art) return {};
-  return {
+  return buildMetadata({
+    locale,
+    path: `/news/${art.id}`,
     title: R(art.title, locale),
     description: R(art.summary, locale),
-    alternates: {
-      canonical: `/${locale}/news/${art.id}`,
-      languages: {
-        en: `/en/news/${art.id}`,
-        fr: `/fr/news/${art.id}`,
-      },
-    },
-  };
+    ogType: "article",
+    image: art.imageUrl ?? undefined,
+  });
 }
 
 export default async function ArticlePage({
@@ -86,6 +85,27 @@ export default async function ArticlePage({
 
   return (
     <>
+      <JsonLd
+        data={[
+          articleLd({
+            headline: title,
+            description: R(article.summary, locale),
+            path: `/news/${article.id}`,
+            locale,
+            image: article.imageUrl,
+            datePublished: new Date(article.date).toISOString(),
+            author: article.author,
+          }),
+          breadcrumbLd(
+            [
+              { name: fr ? "Accueil" : "Home", path: "/" },
+              { name: R(L.nav.news, locale), path: "/news" },
+              { name: title, path: `/news/${article.id}` },
+            ],
+            locale,
+          ),
+        ]}
+      />
       <PageHero
         title={title}
         eyebrow={R(article.tag, locale)}

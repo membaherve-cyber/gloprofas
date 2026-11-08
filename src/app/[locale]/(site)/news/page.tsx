@@ -6,6 +6,7 @@ import { ZITE_CONTENT } from "@/lib/zite-data";
 import { PageHero, Reveal } from "@/components/zite/shared";
 import { formatZiteDate, L, R } from "@/components/zite/copy";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -14,16 +15,15 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  return {
-    title:
-      locale === "fr"
+  return buildMetadata({
+    locale,
+    path: "/news",
+    title: locale === "fr"
         ? "Actualités et publications"
         : "News and publications",
-    alternates: {
-      canonical: `/${locale}/news`,
-      languages: { en: "/en/news", fr: "/fr/news" },
-    },
-  };
+    description: SITE_DESCRIPTION[locale],
+    ogType: "article",
+  });
 }
 
 export default async function NewsPage({

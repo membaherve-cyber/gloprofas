@@ -26,6 +26,11 @@ import {
   QuickPublishAlertForm,
   QuickPublishArticleForm,
 } from "@/components/admin/dashboard-managers";
+export const metadata = {
+  title: "Dashboard",
+  robots: { index: false, follow: false, nocache: true },
+};
+
 
 export default async function AdminDashboardPage({
   params,

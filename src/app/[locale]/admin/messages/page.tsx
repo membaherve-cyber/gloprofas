@@ -13,6 +13,11 @@ import {
 import { can, getCurrentUser } from "@/lib/auth";
 import { getDictionary, isLocale, routes, type Locale } from "@/lib/i18n";
 import { formatDate } from "@/lib/format";
+export const metadata = {
+  title: "Messages",
+  robots: { index: false, follow: false, nocache: true },
+};
+
 
 export default async function AdminMessagesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale: raw } = await params;

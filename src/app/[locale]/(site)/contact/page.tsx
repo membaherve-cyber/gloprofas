@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { ZiteContactView } from "@/components/zite/contact-view";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -10,13 +11,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  return {
+  return buildMetadata({
+    locale,
+    path: "/contact",
     title: locale === "fr" ? "Contacter GLOPROFAS" : "Contact GLOPROFAS",
-    alternates: {
-      canonical: `/${locale}/contact`,
-      languages: { en: "/en/contact", fr: "/fr/contact" },
-    },
-  };
+    description: SITE_DESCRIPTION[locale],
+  });
 }
 
 export default async function ContactPage({

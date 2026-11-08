@@ -7,6 +7,7 @@ import { ZITE_CONTENT } from "@/lib/zite-data";
 import { PageHero, Reveal } from "@/components/zite/shared";
 import { getCategoryIcon, L, R } from "@/components/zite/copy";
 import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -15,17 +16,14 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  return {
-    title:
-      locale === "fr"
+  return buildMetadata({
+    locale,
+    path: "/scams",
+    title: locale === "fr"
         ? "Centre de sensibilisation aux arnaques"
         : "Scam Awareness Centre",
     description: R(L.scams.lead, locale),
-    alternates: {
-      canonical: `/${locale}/scams`,
-      languages: { en: "/en/scams", fr: "/fr/scams" },
-    },
-  };
+  });
 }
 
 export default async function ScamsPage({

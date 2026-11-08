@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { PageHero } from "@/components/zite/shared";
 import { formatAerialBadge, getLegalAerialHero } from "@/lib/african-cities";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 const UPDATED = {
   en: "Last updated: 1 November 2026",
@@ -196,17 +197,12 @@ export async function generateMetadata({
   if (!isLocale(locale)) return {};
   const doc = LEGAL_DOCS[slug]?.[locale];
   if (!doc) return {};
-  return {
+  return buildMetadata({
+    locale,
+    path: `/legal/${slug}`,
     title: doc.title,
     description: doc.lead,
-    alternates: {
-      canonical: `/${locale}/legal/${slug}`,
-      languages: {
-        en: `/en/legal/${slug}`,
-        fr: `/fr/legal/${slug}`,
-      },
-    },
-  };
+  });
 }
 
 export default async function LegalPage({

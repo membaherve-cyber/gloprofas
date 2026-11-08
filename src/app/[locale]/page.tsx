@@ -9,6 +9,7 @@ import { getDictionary, isLocale, type Locale } from "@/lib/i18n";
 import { ZITE_CONTENT } from "@/lib/zite-data";
 import enMessages from "@/messages/en.json";
 import frMessages from "@/messages/fr.json";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -20,14 +21,12 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const msg = locale === "fr" ? frMessages : enMessages;
-  return {
+  return buildMetadata({
+    locale,
+    path: "",
     title: msg.meta.title,
     description: msg.home.heroC11.valueProposition,
-    alternates: {
-      canonical: `/${locale}`,
-      languages: { en: "/en", fr: "/fr", "x-default": "/en" },
-    },
-  };
+  });
 }
 
 export default async function HomePage({

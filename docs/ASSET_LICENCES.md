@@ -1,58 +1,122 @@
-# Asset licences
+# Asset licences & rights register
 
-## Image reuse rule (enforced)
+Rights status for every third-party visual asset shipped with GLOPROFAS.
+Maintained so the public site can substantiate its use of all imagery and footage.
 
-**One file, one slot.** Every photograph is used in exactly one place on the site.
-`src/lib/assets.ts` is the single registry; `node scripts/check-assets.mjs` fails if an asset is
-referenced twice, is missing, or sits unused in `public/images`. Consequences of the rule:
+Last reviewed: 2026-11-06
 
-- Article images appear only on the article's own detail page; listing cards (homepage, /news,
-  related items) are text-first with a tag chip and icon.
-- Scam alerts are deliberately image-free: the card leads with the RiskBadge and the detail page
-  uses a designed navy information panel, so no photo is reused between the two views.
-- The homepage "how scams work" stages, service group bands and campaigns audience cards are
-  icon-led rather than photographic, which removed the last repetitive image grids.
-- The image generation quota for this session was exhausted, so the final assignment uses the 13
-  existing, already-licensed or already-disclosed assets rather than adding new ones.
+---
 
-| File | Source | Creator | Licence | Retrieved |
-|------|--------|---------|---------|-----------|
-| public/images/intro-phone.jpg | Pexels photo 4971946 | Gustavo Fring | Pexels licence | 2026-11 |
-| public/images/payment-counter.jpg | Pexels photo 4199526 | Jack Sparrow | Pexels licence | 2026-11 |
-| public/images/market-cash.jpg | Pexels photo 35888335 | MUHAMMAD MUKTAR | Pexels licence | 2026-11 |
+## 1. Brand assets — owned
 
-All stock files were resized and re-compressed locally with sharp; the hero is 128 KB.
+| Asset | Rights | Notes |
+| --- | --- | --- |
+| `public/images/gloprofas-logo.png` | Supplied by the project owner | Official GLOPROFAS lockup. Used unmodified. Do not crop, recolour or redraw. |
+| `public/icon.svg` | Original to this project | Favicon derived from brand geometry. |
 
-| File | Source | Notes | Disclosure |
-|------|--------|-------|------------|
-| public/images/campaign-school.jpg | AI-generated for this project | School awareness seminar | AI-generated; approved by the client request of 2026-11-04 |
-| public/images/campaign-community.jpg | AI-generated for this project | Homepage campaigns band only | AI-generated |
-| public/images/campaign-youth.jpg | AI-generated for this project | Campaigns page audience section only | AI-generated |
-| public/images/campaign-corporate.jpg | AI-generated for this project | Corporate fraud-prevention briefing | AI-generated |
-| public/images/hero-city-aerial.jpg | AI-generated for this project | Homepage hero poster (video poster + reduced-motion still) | AI-generated |
-| public/images/article-business-controls.jpg | AI-generated for this project | Small-business payment controls article | AI-generated |
-| public/images/article-payment-pause.jpg | AI-generated for this project | Article detail: five minutes before you pay | AI-generated |
-| public/images/article-reporting.jpg | AI-generated for this project | Article detail: guided reporting | AI-generated |
-| public/images/article-standards.jpg | AI-generated for this project | About page hero only | AI-generated |
-| public/images/services-assessment.jpg | AI-generated for this project | Professional services advisory meeting | AI-generated |
+The GLOPROFAS name and logo may not be used by third parties to imply endorsement.
+This restriction is stated in the Terms of Use (`/[locale]/legal/terms`).
 
-## Video
+---
 
-| File | Source | Rendition | Licence |
-|------|--------|-----------|---------|
-| public/video/hero-city.mp4 | Pexels video 20363056 — "Road in Victoria Island, Lagos, Nigeria" by Vitalis Nwenyi | Trimmed to 14 s, scaled to 1280×720, 24 fps, audio removed, CRF 33, faststart; 972 KB | Pexels licence (free commercial use, no attribution required) |
+## 2. Aerial footage — Pexels Licence
 
-Hero motion note: the brief (§C14) bans autoplay video. The client explicitly requested an aerial
-video hero, so it is implemented as a **muted, decorative, 14-second loop** that is attached only
-after first paint (poster is the LCP element), never plays with sound, exposes a pause control,
-and is not loaded at all under `prefers-reduced-motion: reduce`.
+All hero footage in `public/video/cities/` is sourced from Pexels and re-encoded
+for web delivery (H.264, 720p, muted, faststart).
 
-**AI imagery rule change.** The brief (§C6) restricts AI imagery to abstract backgrounds.
-The client explicitly requested ultra-realistic AI imagery for the campaigns programme, so the four
-campaign images are AI-generated and are labelled here as such. They contain no legible text,
-no invented logos, no banknotes, no mobile-money or banking interfaces. They illustrate the
-campaign programme only and must not be presented as photographs of real GLOPROFAS events,
-participants or partner organisations. Replace with commissioned photography before launch if
-the organisation publishes campaign photos as documentary evidence.
+**Pexels Licence** — https://www.pexels.com/license/
+Free for commercial and non-commercial use. Attribution not required but recorded
+here as good practice. Modification (re-encoding, cropping) permitted.
 
-The logo, icon, watermark and social placeholder are original SVG assets authored for this project.
+Restrictions observed: no identifiable person is portrayed in a misleading way;
+footage is not resold as stock; no endorsement by depicted parties is implied.
+
+| File | Depicted location | Creator |
+| --- | --- | --- |
+| `douala-cameroon.mp4` | Douala, Cameroon | Adera Abdoulaye Dolo |
+| `kigali-rwanda.mp4` | Kigali, Rwanda | Rw_Creative |
+| `nairobi-westlands.mp4` | Westlands, Nairobi, Kenya | African Creator |
+| `sandton-johannesburg.mp4` | Sandton, Johannesburg | K (kelly) |
+| `sandton-skyline.mp4` | Sandton skyline | K (kelly) |
+| `sandton-dawn.mp4` | Sandton at dawn | K (kelly) |
+| `abuja-nigeria.mp4` | Abuja, Nigeria | Bashir Hussaini Ahmed |
+| `lagos-sunset.mp4` | Lagos at sunset | Vitalis Nwenyi |
+| `lagos-cityscape.mp4` | Lagos after rain | Vitalis Nwenyi |
+| `lagos-victoria-island.mp4` | Victoria Island, Lagos | Vitalis Nwenyi |
+| `lekki-lagos.mp4` | Ibeju-Lekki, Lagos | Vitalis Nwenyi |
+| `banjul-gambia.mp4` | Banjul, The Gambia | K (kelly) |
+| `cape-town-night.mp4` | Cape Town at night | K (kelly) |
+| `urban-flyover.mp4` | Urban interchange (generic) | Rafael Visentainer |
+| `coastal-metropolis.mp4` | Coastal city (generic) | Nazim Zafri |
+
+**Accuracy note.** Two clips are generic urban footage and are labelled
+"Metropolitan Corridor" and "Coastal Metropolis" rather than being attributed to a
+named city. Where a clip and its poster frame depict different cities, the on-page
+badge names the region, not a specific municipality, to avoid a false claim.
+
+---
+
+## 3. Documentary photography — Pexels Licence
+
+`public/images/cities/` (aerial stills used as video posters) and
+`public/images/context/` (editorial photography).
+
+Same Pexels Licence terms as above. Representative credits:
+
+| Group | Creators |
+| --- | --- |
+| City aerials | K (kelly), Justin Brian, Ken Mwaura, Mukula Igavinchi, shutter Rwanda, Faustin NKURUNZIZA, Alex Levis, Keegan Checks, Abenezer Muluken, Gift Habeshaw, Jean van der Meulen, Marlin Clark, Mike van Schoonderwalt, RAIHAAN Kamdar, Aymane Hanni, Ayoub Ben, Tamer Soliman, Tito Zzzz, josh_dago__, Lom Doudou, Khaya Motsa, Ademola Adeola, Ben Iwara, Fawaz Onakoya, David Iloba |
+| Contextual/editorial | Wundef Media, Alex Talker, Yan Krukau, Kampus Production, David Kwewum, Mathias Reding, David Crypto, Taryn Elliott, RDNE Stock project, August de Richelieu, Jep Gambardella, Antonius Ferret, Mikhail Nilov, Edmond Dantès, Darlene Alderson |
+
+---
+
+## 4. Legacy imagery — provenance requires review
+
+`public/images/zite/` and the older `public/images/*.jpg` set were imported during
+an earlier content migration. Some were AI-generated.
+
+**Action required before any commercial launch:** confirm the generation tool's
+output licence permits the intended use, or replace with licensed photography.
+These files are currently used for the homepage hero and a subset of category and
+article cards.
+
+Editorial policy already in force: AI-generated or illustrative images are never
+presented as documentary evidence of a real incident, and case-study pages label
+scenarios as illustrative.
+
+---
+
+## 5. Text content
+
+| Source | Status |
+| --- | --- |
+| Interface copy (`src/messages/{en,fr}.json`, `src/components/zite/copy.ts`) | Original to this project, bilingual. |
+| Scam-education content | Written for this project, informed by public consumer-protection advisories (YIMA, SAFPS, Scamwatch). Rewritten in original language; no article reproduced. |
+| Case studies | Illustrative scenarios describing documented fraud mechanics. No unverified allegation against an identifiable person or organisation. |
+
+Footer notice, rendered in both locales:
+
+- EN — `© {year} GLOPROFAS — Global Programme for the Fight Against Scams. All rights reserved.`
+- FR — `© {year} GLOPROFAS — Programme mondial de lutte contre les arnaques. Tous droits réservés.`
+
+Guides and resources may be shared for non-commercial awareness purposes with
+credit to GLOPROFAS, per the Terms of Use.
+
+---
+
+## 6. Fonts
+
+| Family | Licence | Delivery |
+| --- | --- | --- |
+| Sora | SIL Open Font License 1.1 | Self-hosted via `@fontsource-variable/sora` |
+| Manrope | SIL Open Font License 1.1 | Self-hosted via `@fontsource-variable/manrope` |
+
+Both permit embedding and redistribution. No third-party font CDN is contacted at
+runtime, so no visitor IP is disclosed to a font provider.
+
+---
+
+## 7. Icons
+
+Lucide (`lucide-react`) — ISC Licence. Permits commercial use, modification and
+distribution. Stroke weight normalised to 1.5 across the site.

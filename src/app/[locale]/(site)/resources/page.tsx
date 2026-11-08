@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/lib/i18n";
 import { ZiteResourcesView } from "@/components/zite/resources-view";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -10,13 +11,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  return {
+  return buildMetadata({
+    locale,
+    path: "/resources",
     title: locale === "fr" ? "Centre de ressources" : "Resource centre",
-    alternates: {
-      canonical: `/${locale}/resources`,
-      languages: { en: "/en/resources", fr: "/fr/resources" },
-    },
-  };
+    description: SITE_DESCRIPTION[locale],
+  });
 }
 
 export default async function ResourcesPage({
