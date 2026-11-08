@@ -77,10 +77,10 @@ export function SiteHeader({
           {latestAlert ? (
             <Link
               href={`/${locale}/alerts`}
-              className="flex min-w-0 items-center gap-2 text-slatex-300 hover:text-white"
+              className="flex min-w-0 items-center gap-2 text-slatex-300 hover:text-white transition-colors duration-fast ease-standard"
             >
               <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 bg-cyanx" />
-              <span className="shrink-0 text-micro font-bold uppercase tracking-[0.16em] text-white">
+              <span className="shrink-0 text-micro font-bold uppercase tracking-label text-white">
                 {R(L.latestAlert, locale)}
               </span>
               <span className="ed-link truncate text-small">{latestAlert.title}</span>
@@ -93,7 +93,7 @@ export function SiteHeader({
       </div>
 
       <div
-        className={`h-[68px] transition-colors duration-300 ${
+        className={`h-[68px] transition-colors duration-base ${
           scrolled || menuOpen ? "border-b border-white/12 bg-navy-950/97" : "bg-transparent"
         }`}
       >
@@ -130,7 +130,7 @@ export function SiteHeader({
                       {R(L.nav[item.key], locale)}
                       <span
                         aria-hidden="true"
-                        className={`absolute -bottom-0.5 left-0 h-px bg-cyanx transition-all duration-300 ${
+                        className={`absolute -bottom-0.5 left-0 h-px bg-cyanx transition-all duration-base ${
                           isActive ? "w-full" : "w-0"
                         }`}
                       />
@@ -144,7 +144,7 @@ export function SiteHeader({
           <div className="flex items-center gap-2">
             <Link
               href={`/${locale}/admin`}
-              className="hidden items-center gap-1.5 px-2 text-sm font-semibold text-slatex-300 hover:text-white sm:flex"
+              className="hidden items-center gap-2 px-2 text-sm font-semibold text-slatex-300 hover:text-white sm:flex transition-colors duration-fast ease-standard"
             >
               <LogIn className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
               {locale === "fr" ? "Connexion" : "Log in"}

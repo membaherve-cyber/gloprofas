@@ -23,7 +23,7 @@ export default function NotFound() {
         </div>
         <Link
           href={l("/scams")}
-          className="mt-6 block text-slatex-300 hover:text-white"
+          className="mt-6 block text-slatex-300 hover:text-white transition-colors duration-fast ease-standard"
         >
           {fr ? "Voir les arnaques courantes" : "See common scams"}
         </Link>

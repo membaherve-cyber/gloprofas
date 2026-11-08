@@ -92,7 +92,7 @@ export default async function GetInvolvedPage({
                   src={c.image}
                   alt={c.t}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                  className="h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.02]"
                 />
               </div>
               <div className="sm:col-span-8">

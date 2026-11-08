@@ -17,7 +17,7 @@ const CATEGORIES: Record<string, [string, string]> = {
 
 const fieldCls =
   "h-12 w-full rounded-sm border border-line bg-white px-4 text-ink placeholder:text-slatex-600/60 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20";
-const labelCls = "mb-1.5 block text-sm font-semibold text-ink";
+const labelCls = "mb-2 block text-sm font-semibold text-ink";
 
 export function ZiteContactView({
   locale,
@@ -97,7 +97,7 @@ export function ZiteContactView({
 
       <section className="section-y bg-mist">
         <div className="container-g grid gap-10 lg:grid-cols-12">
-          <div className="rounded-none bg-white p-8 shadow-e1 lg:col-span-8">
+          <div className="rounded-none bg-white p-8 shadow-none lg:col-span-8">
             {status === "done" ? (
               <div role="status" className="py-10 text-center">
                 <CheckCircle2 className="mx-auto h-12 w-12 text-risk-low" />
@@ -138,7 +138,7 @@ export function ZiteContactView({
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                   />
                   {errors.name ? (
-                    <p className="mt-1.5 flex items-center gap-1.5 text-sm text-risk-critical">
+                    <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
                       <AlertCircle className="h-4 w-4" />
                       {errors.name}
                     </p>
@@ -158,7 +158,7 @@ export function ZiteContactView({
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                   />
                   {errors.email ? (
-                    <p className="mt-1.5 flex items-center gap-1.5 text-sm text-risk-critical">
+                    <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
                       <AlertCircle className="h-4 w-4" />
                       {errors.email}
                     </p>
@@ -198,7 +198,7 @@ export function ZiteContactView({
                     }
                   />
                   {errors.subject ? (
-                    <p className="mt-1.5 flex items-center gap-1.5 text-sm text-risk-critical">
+                    <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
                       <AlertCircle className="h-4 w-4" />
                       {errors.subject}
                     </p>
@@ -219,7 +219,7 @@ export function ZiteContactView({
                     }
                   />
                   {errors.message ? (
-                    <p className="mt-1.5 flex items-center gap-1.5 text-sm text-risk-critical">
+                    <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
                       <AlertCircle className="h-4 w-4" />
                       {errors.message}
                     </p>
@@ -230,7 +230,7 @@ export function ZiteContactView({
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="inline-flex h-[52px] items-center gap-2 rounded-[2px] bg-brand-600 px-7 font-semibold text-white hover:bg-brand-500 disabled:opacity-60"
+                    className="inline-flex h-[52px] items-center gap-2 rounded-[2px] bg-brand-600 px-7 font-semibold text-white hover:bg-brand-500 disabled:opacity-60 transition-colors duration-fast ease-standard"
                   >
                     {status === "loading" ? (
                       <LoaderCircle className="h-4 w-4 animate-spin" />
@@ -261,7 +261,7 @@ export function ZiteContactView({
                 </Btn>
               </div>
             </div>
-            <div className="overflow-hidden rounded-none border border-line bg-white shadow-e1">
+            <div className="overflow-hidden rounded-none border border-line bg-white shadow-none">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img width={1600} height={900}
                 src="/images/context/support-call-center.jpg"

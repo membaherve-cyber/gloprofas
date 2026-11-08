@@ -131,10 +131,10 @@ export function ReportWizard({
           <p className="mt-2 text-body text-slate-600">{dict.report.confirm.body}</p>
           <div className="mt-5 flex flex-wrap items-center gap-3 rounded-sm border border-line-200 bg-white p-4">
             <div>
-              <p className="text-micro font-semibold uppercase tracking-[0.12em] text-slate-600">
+              <p className="text-micro font-semibold uppercase tracking-label text-slate-600">
                 {dict.report.confirm.reference}
               </p>
-              <p className="font-[family-name:var(--font-heading)] text-[1.375rem] font-bold tracking-wide text-ink-900">
+              <p className="font-[family-name:var(--font-heading)] text-[1.375rem] font-bold tracking-label text-ink-900">
                 {confirmation.reference}
               </p>
             </div>
@@ -179,14 +179,14 @@ export function ReportWizard({
   return (
     <div className="mx-auto max-w-3xl">
       <div className="mb-6">
-        <div className="flex items-center justify-between text-caption font-semibold uppercase tracking-[0.1em] text-slate-600">
+        <div className="flex items-center justify-between text-caption font-semibold uppercase tracking-label text-slate-600">
           <span>
             {dict.common.page} {step + 1} / {stepNames.length} — {stepNames[step]}
           </span>
           <span>{Math.round(progress)}%</span>
         </div>
         <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-line-200">
-          <div className="h-full rounded-full bg-blue-600 transition-all duration-300" style={{ width: `${progress}%` }} />
+          <div className="h-full rounded-full bg-blue-600 transition-all duration-base" style={{ width: `${progress}%` }} />
         </div>
         <ol className="mt-3 hidden flex-wrap gap-x-4 gap-y-1 text-caption text-slate-600 sm:flex">
           {stepNames.map((name, index) => (
@@ -357,7 +357,7 @@ export function ReportWizard({
           <label htmlFor="evidence" className="label">
             {dict.report.labels.evidence}
           </label>
-          <div className="rounded-sm border-2 border-dashed border-line-200 bg-mist-50 p-6 text-center">
+          <div className="rounded-sm border border-dashed border-line-200 bg-mist-50 p-6 text-center">
             <Paperclip size={22} className="mx-auto text-blue-600" aria-hidden="true" />
             <input
               id="evidence"

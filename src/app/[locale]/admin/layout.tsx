@@ -51,12 +51,12 @@ export default async function AdminLayout({
             <Link href={routes.admin(locale)} aria-label="GLOPROFAS Backoffice">
               <Logo variant="light" />
             </Link>
-            <span className="hidden rounded-full border border-cyan-400/40 bg-cyan-400/10 px-3 py-1 text-micro font-bold uppercase tracking-[0.12em] text-cyan-400 md:inline-block">
+            <span className="hidden rounded-full border border-cyan-400/40 bg-cyan-400/10 px-3 py-1 text-micro font-bold uppercase tracking-label text-cyan-400 md:inline-block">
               {locale === "fr" ? "Back-office" : "Backoffice"}
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2.5 text-small text-slate-300">
+          <div className="flex flex-wrap items-center gap-3 text-small text-slate-300">
             <Link
               href={routes.home(locale)}
               className="btn btn-signal btn-sm"
@@ -71,20 +71,20 @@ export default async function AdminLayout({
 
             <Link
               href={routes.admin(altLocale)}
-              className="inline-flex h-10 items-center rounded-full border border-white/20 px-3 text-caption font-bold uppercase text-white hover:border-cyan-400"
+              className="inline-flex h-10 items-center rounded-full border border-white/20 px-3 text-caption font-bold uppercase text-white hover:border-cyan-400 transition-colors duration-fast ease-standard"
             >
               {altLocale.toUpperCase()}
             </Link>
 
             {user ? (
               <>
-                <span className="hidden rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-caption text-white lg:inline-block">
+                <span className="hidden rounded-full border border-white/15 bg-white/5 px-3 py-2 text-caption text-white lg:inline-block">
                   {user.name} ({user.email})
                 </span>
                 <form action={adminLogout.bind(null, locale)}>
                   <button
                     type="submit"
-                    className="inline-flex h-10 items-center gap-1.5 rounded-full border border-white/20 px-3.5 text-caption font-semibold text-white hover:border-risk-critical hover:bg-risk-critical/20"
+                    className="inline-flex h-10 items-center gap-2 rounded-full border border-white/20 px-4 text-caption font-semibold text-white hover:border-risk-critical hover:bg-risk-critical/20 transition-colors duration-fast ease-standard"
                   >
                     <LogOut size={14} aria-hidden="true" />
                     {dict.admin.signOut}
@@ -97,13 +97,13 @@ export default async function AdminLayout({
       </header>
 
       {user ? (
-        <nav aria-label={dict.admin.title} className="border-b border-line-200 bg-white shadow-xs">
+        <nav aria-label={dict.admin.title} className="border-b border-line-200 bg-white shadow-none">
           <ul className="mx-auto flex max-w-7xl flex-wrap items-center gap-1 px-4 py-2 sm:px-6">
             {modules.map(({ label, href, Icon }) => (
               <li key={href}>
                 <Link
                   href={href}
-                  className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-small font-semibold text-slate-600 transition-colors hover:bg-mist-50 hover:text-blue-600"
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-small font-semibold text-slate-600 transition-colors hover:bg-mist-50 hover:text-blue-600"
                 >
                   <Icon size={15} aria-hidden="true" />
                   {label}

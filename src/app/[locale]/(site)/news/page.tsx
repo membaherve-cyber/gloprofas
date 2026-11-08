@@ -73,7 +73,7 @@ export default async function NewsPage({
                 <p className="ed-label text-brand-600">
                   {R(featured.tag, locale)}
                 </p>
-                <h2 className="h2 mt-3 text-ink group-hover:text-brand-600">
+                <h2 className="h2 mt-3 text-ink group-hover:text-brand-600 transition-colors duration-fast ease-standard">
                   {R(featured.title, locale)}
                 </h2>
                 <p className="lead mt-4 text-slatex-600">
@@ -98,7 +98,7 @@ export default async function NewsPage({
                       </div>
                     </div>
                     <div className="sm:col-span-9">
-                      <span className="border-l-2 border-brand-600 pl-2 text-micro font-bold uppercase tracking-[0.16em] text-brand-600">
+                      <span className="border-l-2 border-brand-600 pl-2 text-micro font-bold uppercase tracking-label text-brand-600">
                         {R(art.tag, locale)}
                       </span>
                       <h2 className="h3 mt-2 max-w-[36ch] text-ink">
@@ -117,7 +117,7 @@ export default async function NewsPage({
           <div className="mt-14 border-t border-line pt-6">
             <Link
               href={l("/alerts")}
-              className="font-[family-name:var(--font-heading)] text-xl font-semibold text-ink hover:text-brand-600"
+              className="font-[family-name:var(--font-heading)] text-xl font-semibold text-ink hover:text-brand-600 transition-colors duration-fast ease-standard"
             >
               {fr
                 ? "Voir toutes les alertes aux arnaques →"

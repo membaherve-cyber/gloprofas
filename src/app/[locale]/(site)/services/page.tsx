@@ -179,7 +179,7 @@ export default async function ServicesPage({
                   src={groupImages[idx]}
                   alt={g.t}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                  className="h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.02]"
                 />
                 
               </div>

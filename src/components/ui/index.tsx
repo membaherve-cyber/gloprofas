@@ -133,7 +133,7 @@ export function RiskBadge({
     level === "critical" ? dict.common.critical : level === "high" ? dict.common.high : level === "low" ? dict.common.low : dict.common.medium;
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-micro font-bold uppercase tracking-[0.08em] text-ink-900 ${style.bg} ${style.border}`}
+      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-micro font-bold uppercase tracking-label text-ink-900 ${style.bg} ${style.border}`}
     >
       {style.icon}
       <span>
@@ -172,7 +172,7 @@ export function CategoryTile({
           size={18}
           strokeWidth={1.8}
           aria-hidden="true"
-          className="text-slate-600 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-600"
+          className="text-slate-600 transition-transform duration-fast group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-blue-600"
         />
       </div>
       <div>
@@ -212,20 +212,20 @@ export function AlertCard({
     <Link href={href} className="card card-hover group flex h-full flex-col overflow-hidden">
       <div className="flex items-center justify-between gap-2 border-b border-line-200 bg-mist-50 px-4 py-3">
         <RiskBadge level={riskLevel} dict={dict} />
-        <span className="inline-flex items-center gap-1.5 text-micro font-semibold uppercase tracking-[0.08em] text-slate-600">
+        <span className="inline-flex items-center gap-2 text-micro font-semibold uppercase tracking-label text-slate-600">
           <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" aria-hidden="true" />
           {dict.alerts.alertType}
         </span>
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-caption font-semibold uppercase tracking-[0.08em] text-slate-600">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-caption font-semibold uppercase tracking-label text-slate-600">
           {categoryName ? <span className="text-blue-600">{categoryName}</span> : null}
           <span>{country}</span>
           <span className="font-medium normal-case tracking-normal">{formatDate(publishedAt, locale)}</span>
         </div>
-        <h3 className="text-lead font-semibold leading-snug text-ink-900 group-hover:text-blue-600">{title}</h3>
+        <h3 className="text-lead font-semibold leading-snug text-ink-900 group-hover:text-blue-600 transition-colors duration-fast ease-standard">{title}</h3>
         <p className="line-clamp-3 text-base text-slate-600">{summary}</p>
-        <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-small font-semibold text-blue-600">
+        <span className="mt-auto inline-flex items-center gap-2 pt-2 text-small font-semibold text-blue-600">
           {dict.common.readMore}
           <ChevronRight size={15} strokeWidth={1.5} aria-hidden="true" />
         </span>
@@ -262,7 +262,7 @@ export function ArticleCard({
           <FileText size={16} strokeWidth={1.6} />
         </span>
       </div>
-      <h3 className="line-clamp-3 text-lead font-semibold leading-snug text-ink-900 group-hover:text-blue-600">{title}</h3>
+      <h3 className="line-clamp-3 text-lead font-semibold leading-snug text-ink-900 group-hover:text-blue-600 transition-colors duration-fast ease-standard">{title}</h3>
       <p className="line-clamp-2 text-base text-slate-600">{excerpt}</p>
       <div className="mt-auto flex items-center gap-2 pt-2 text-caption text-slate-600">
         <span>GLOPROFAS</span>
@@ -307,7 +307,7 @@ export function ResourceRow({
             </span>
           ) : null}
         </div>
-        <h3 className="mt-2 text-body font-semibold leading-snug text-ink-900 group-hover:text-blue-600">{title}</h3>
+        <h3 className="mt-2 text-body font-semibold leading-snug text-ink-900 group-hover:text-blue-600 transition-colors duration-fast ease-standard">{title}</h3>
         <p className="mt-1 line-clamp-2 text-small text-slate-600">{description}</p>
       </div>
     </div>
@@ -342,7 +342,7 @@ export function NumberedStep({
       <h3 className="mt-5 text-lead font-semibold text-white">{title}</h3>
       <p className="mt-2 text-base leading-relaxed text-slate-300">{body}</p>
       <span aria-hidden="true" className="mt-auto pt-4">
-        <span className="block h-px w-full bg-gradient-to-r from-cyan-400/50 to-transparent" />
+        <span className="block h-px w-full bg-white/12" />
       </span>
     </article>
   );
@@ -375,11 +375,11 @@ export function Breadcrumbs({
 }) {
   return (
     <nav aria-label="Breadcrumb" className="mb-6">
-      <ol className="flex flex-wrap items-center gap-1.5 text-small text-slate-600">
+      <ol className="flex flex-wrap items-center gap-2 text-small text-slate-600">
         {items.map((item, index) => (
-          <li key={`${item.label}-${index}`} className="flex items-center gap-1.5">
+          <li key={`${item.label}-${index}`} className="flex items-center gap-2">
             {item.href ? (
-              <Link href={item.href} className="hover:text-blue-600">
+              <Link href={item.href} className="hover:text-blue-600 transition-colors duration-fast ease-standard">
                 {item.label}
               </Link>
             ) : (

@@ -11,7 +11,7 @@ export default function LocaleError({ error, reset }: { error: Error & { digest?
 
   return (
     <main className="mx-auto flex min-h-screen max-w-2xl flex-col justify-center px-5 py-20">
-      <p className="text-small font-semibold uppercase tracking-[0.14em] text-blue-600">GLOPROFAS</p>
+      <p className="text-small font-semibold uppercase tracking-label text-blue-600">GLOPROFAS</p>
       <h1 className="mt-4 text-ink-900">Something went wrong / Une erreur est survenue</h1>
       <p className="mt-4 text-slate-600">
         Please try again. If the problem continues, contact us. Veuillez réessayer. Si le problème persiste, contactez-nous.

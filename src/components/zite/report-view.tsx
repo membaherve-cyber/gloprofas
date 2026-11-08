@@ -30,7 +30,7 @@ const CHANNELS = [
 
 const fieldCls =
   "h-12 w-full rounded-sm border border-line bg-white px-4 text-ink placeholder:text-slatex-600/60 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20";
-const labelCls = "mb-1.5 block text-sm font-semibold text-ink";
+const labelCls = "mb-2 block text-sm font-semibold text-ink";
 
 function YesNo({
   value,
@@ -211,7 +211,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
               <p className="ed-label text-brand-600">
                 {fr ? "Votre numéro de référence" : "Your reference number"}
               </p>
-              <p className="mt-3 font-[family-name:var(--font-heading)] text-4xl font-bold tracking-wider text-ink">
+              <p className="mt-3 font-[family-name:var(--font-heading)] text-4xl font-bold tracking-label text-ink">
                 {reference}
               </p>
               <button
@@ -221,7 +221,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                   setCopied(true);
                   setTimeout(() => setCopied(false), 2000);
                 }}
-                className="mt-4 inline-flex h-11 items-center gap-2 rounded-[2px] border border-line px-5 text-sm font-semibold hover:border-brand-600"
+                className="mt-4 inline-flex h-11 items-center gap-2 rounded-[2px] border border-line px-5 text-sm font-semibold hover:border-brand-600 transition-colors duration-fast ease-standard"
               >
                 <Copy className="h-4 w-4" />
                 {copied
@@ -301,7 +301,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
             ))}
           </ol>
 
-          <div className="mt-8 rounded-none bg-white p-6 shadow-e1 md:p-10">
+          <div className="mt-8 rounded-none bg-white p-6 shadow-none md:p-10">
             <h2 className="h3 text-ink">{steps[step]}</h2>
             <div className="mt-8 grid gap-6">
               {step === 0 ? (
@@ -343,7 +343,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                       })}
                     </div>
                     {errors.category ? (
-                      <p className="mt-1.5 flex items-center gap-1.5 text-sm text-risk-critical">
+                      <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
                         <AlertCircle className="h-4 w-4" />
                         {errors.category}
                       </p>
@@ -362,7 +362,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                       onChange={(e) => setField("description", e.target.value)}
                     />
                     {errors.description ? (
-                      <p className="mt-1.5 flex items-center gap-1.5 text-sm text-risk-critical">
+                      <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
                         <AlertCircle className="h-4 w-4" />
                         {errors.description}
                       </p>
@@ -408,7 +408,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                       ))}
                     </select>
                     {errors.channel ? (
-                      <p className="mt-1.5 flex items-center gap-1.5 text-sm text-risk-critical">
+                      <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
                         <AlertCircle className="h-4 w-4" />
                         {errors.channel}
                       </p>
@@ -427,7 +427,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                       onChange={(e) => setField("country", e.target.value)}
                     />
                     {errors.country ? (
-                      <p className="mt-1.5 flex items-center gap-1.5 text-sm text-risk-critical">
+                      <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
                         <AlertCircle className="h-4 w-4" />
                         {errors.country}
                       </p>
@@ -510,7 +510,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                               onClick={() =>
                                 setFiles(files.filter((_, i) => i !== idx))
                               }
-                              className="rounded p-1 text-slatex-600 hover:text-ink"
+                              className="rounded p-1 text-slatex-600 hover:text-ink transition-colors duration-fast ease-standard"
                             >
                               <X className="h-4 w-4" />
                             </button>
@@ -519,7 +519,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                       </ul>
                     ) : null}
                     {files.length < 5 ? (
-                      <label className="flex cursor-pointer items-center justify-center gap-2 border border-dashed border-line px-4 py-6 text-sm font-semibold text-ink hover:border-brand-600">
+                      <label className="flex cursor-pointer items-center justify-center gap-2 border border-dashed border-line px-4 py-6 text-sm font-semibold text-ink hover:border-brand-600 transition-colors duration-fast ease-standard">
                         <Paperclip className="h-4 w-4" />
                         {fr ? "Ajouter des fichiers" : "Add files"}
                         <input
@@ -569,13 +569,13 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                       value={form.email}
                       onChange={(e) => setField("email", e.target.value)}
                     />
-                    <p className="mt-1.5 text-sm text-slatex-600">
+                    <p className="mt-2 text-sm text-slatex-600">
                       {fr
                         ? "Uniquement pour le suivi de votre signalement."
                         : "Only used to follow up on your report."}
                     </p>
                     {errors.email ? (
-                      <p className="mt-1.5 flex items-center gap-1.5 text-sm text-risk-critical">
+                      <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
                         <AlertCircle className="h-4 w-4" />
                         {errors.email}
                       </p>
@@ -632,7 +632,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                         ? "J’accepte que GLOPROFAS traite ces informations pour examiner mon signalement, conformément à la politique de confidentialité."
                         : "I agree that GLOPROFAS may process this information to review my report, in line with the privacy policy."}
                       {errors.consent ? (
-                        <span className="mt-1.5 flex items-center gap-1.5 text-sm text-risk-critical">
+                        <span className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
                           <AlertCircle className="h-4 w-4" />
                           {errors.consent}
                         </span>
@@ -657,7 +657,7 @@ export function ZiteReportView({ locale }: { locale: Locale }) {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="h-[52px] flex-1 rounded-[2px] bg-brand-600 px-7 font-semibold text-white hover:bg-brand-500 md:flex-none"
+                  className="h-[52px] flex-1 rounded-[2px] bg-brand-600 px-7 font-semibold text-white hover:bg-brand-500 md:flex-none transition-colors duration-fast ease-standard"
                 >
                   {fr ? "Suivant" : "Next"}
                 </button>

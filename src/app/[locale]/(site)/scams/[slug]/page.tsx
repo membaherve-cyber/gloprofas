@@ -37,7 +37,7 @@ function ListBlock({
   tone: string;
 }) {
   return (
-    <Reveal className="rounded-none border-t border-line bg-white pt-6 shadow-e1">
+    <Reveal className="rounded-none border-t border-line bg-white pt-6 shadow-none">
       <h2 className="h3 flex items-center gap-3 text-ink">
         <Icon className={`h-7 w-7 ${tone}`} strokeWidth={1.5} />
         {title}
@@ -46,7 +46,7 @@ function ListBlock({
         {items.map((item, idx) => (
           <li key={idx} className="flex gap-3 text-slatex-600">
             <span
-              className={`mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full ${tone.replace(
+              className={`mt-3 h-1.5 w-1.5 shrink-0 rounded-full ${tone.replace(
                 "text-",
                 "bg-",
               )}`}
@@ -141,17 +141,17 @@ export default async function ScamDetailPage({
       <section className="section-y bg-mist">
         <div className="container-g grid gap-10 lg:grid-cols-12">
           <div className="space-y-6 lg:col-span-8">
-            <Reveal className="overflow-hidden rounded-none bg-white shadow-e1">
+            <Reveal className="overflow-hidden rounded-none bg-white shadow-none">
               {category.imageUrl ? (
                 <div className="group relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img width={1600} height={900}
                     src={category.imageUrl}
                     alt={R(category.title, locale)}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    className="h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
-                  <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 border-l-2 border-cyanx bg-navy-950/85 px-3 py-1.5 text-micro font-bold uppercase tracking-[0.14em] text-white">
+                  <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 border-l-2 border-cyanx bg-navy-950/85 px-3 py-2 text-micro font-bold uppercase tracking-label text-white">
                     <span aria-hidden="true" className="h-1.5 w-1.5 bg-signal" />
                     {R(category.title, locale)} —{" "}
                     {fr ? "Scénario de terrain" : "Real-world context"}
@@ -186,7 +186,7 @@ export default async function ScamDetailPage({
               />
             </div>
 
-            <Reveal className="rounded-none border-l-4 border-brand-600 bg-white p-7 shadow-e1">
+            <Reveal className="rounded-none border-l-2 border-brand-600 bg-white p-7 shadow-none">
               <p className="ed-label text-brand-600">
                 {fr ? "Exemple illustratif" : "Illustrative example"}
               </p>
@@ -241,7 +241,7 @@ export default async function ScamDetailPage({
                 <Link
                   key={alert.id}
                   href={l(`/alerts/${alert.id}`)}
-                  className="rounded-sm border border-line p-5 hover:shadow-none"
+                  className="rounded-sm border border-line p-5 hover:shadow-none transition-colors duration-fast ease-standard"
                 >
                   <ZiteRiskBadge level={alert.risk} lang={locale} />
                   <p className="mt-3 font-[family-name:var(--font-heading)] font-semibold text-ink">

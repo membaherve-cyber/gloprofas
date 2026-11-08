@@ -75,14 +75,14 @@ export default async function NewsletterPage({
                     </p>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1.5 border-l-2 border-cyanx pl-2 py-0.5 text-xs font-semibold text-cyanx">
+                <span className="inline-flex items-center gap-2 border-l-2 border-cyanx pl-2 py-0.5 text-xs font-semibold text-cyanx">
                   <Globe className="h-3.5 w-3.5" />
                   EN / FR
                 </span>
               </div>
               {notice ? (
                 <p
-                  className="mb-5 rounded-sm border border-cyan-400/40 bg-cyan-400/10 p-3.5 text-base text-white"
+                  className="mb-5 rounded-sm border border-cyan-400/40 bg-cyan-400/10 p-4 text-base text-white"
                   role="status"
                 >
                   {notice}
@@ -95,11 +95,11 @@ export default async function NewsletterPage({
           <aside className="on-dark flex flex-col justify-between border-l-2 border-signal bg-navy-900 p-7 text-white sm:p-9 lg:col-span-5">
             <div>
               <div className="flex items-center justify-between gap-2">
-                <span className="inline-flex items-center gap-2 border-l-2 border-signal pl-2 py-0.5 text-xs font-bold uppercase tracking-wider text-signal">
+                <span className="inline-flex items-center gap-2 border-l-2 border-signal pl-2 py-0.5 text-xs font-bold uppercase tracking-label text-signal">
                   <ShieldAlert className="h-3.5 w-3.5" />
                   {fr ? "Signalement d’incident" : "Incident Reporting"}
                 </span>
-                <span className="inline-flex items-center gap-1.5 border-l-2 border-white/25 pl-2 py-0.5 text-xs font-semibold text-slatex-300">
+                <span className="inline-flex items-center gap-2 border-l-2 border-white/25 pl-2 py-0.5 text-xs font-semibold text-slatex-300">
                   <Lock className="h-3 w-3 text-cyanx" />
                   {fr ? "Privé" : "Private"}
                 </span>

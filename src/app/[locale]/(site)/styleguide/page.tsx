@@ -32,15 +32,15 @@ export default async function StyleguidePage({ params }: { params: Promise<{ loc
               ["navy-950", "#050B1A"],
               ["navy-900", "#0A1631"],
               ["navy-800", "#10244D"],
-              ["blue-600", "#2A62F5"],
-              ["blue-500", "#4C82FF"],
-              ["cyan-400", "#2BD4E8"],
-              ["signal-400", "#FFB02E"],
+              ["blue-600", "#3467eb"],
+              ["blue-500", "#5586f6"],
+              ["cyan-400", "#40c4d3"],
+              ["signal-400", "#f0ac3d"],
               ["ink-900", "#0B1220"],
               ["slate-600", "#4B5870"],
               ["line-200", "#DCE3EE"],
               ["mist-50", "#F4F7FB"],
-              ["risk-critical", "#D92D2D"],
+              ["risk-critical", "#d23434"],
             ].map(([name, hex]) => (
               <div key={name} className="rounded-sm border border-line-200 p-3">
                 <div className="h-14 w-full rounded-[8px]" style={{ background: hex }} />

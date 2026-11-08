@@ -26,7 +26,7 @@ export function Logo({
 
   return (
     <span
-      className={`inline-flex items-center rounded-lg bg-white px-2 py-1 shadow-sm ${className}`}
+      className={`inline-flex items-center rounded-lg bg-white px-2 py-1 shadow-none ${className}`}
     >
       <Image
         src="/images/gloprofas-logo.png"

@@ -76,11 +76,11 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={`transition-[opacity,transform] duration-[600ms] ${
+      className={`transition-[opacity,transform] duration-slow ${
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
       } ${className}`}
       style={{
-        transitionTimingFunction: "var(--ease-out-brand)",
+        transitionTimingFunction: "var(--ease-standard)",
         transitionDelay: `${delay}ms`,
       }}
     >
@@ -120,7 +120,7 @@ export function Btn({
     size === "sm"
       ? "min-h-[44px] px-5 text-small"
       : "min-h-[48px] px-7 text-body";
-  const cls = `group inline-flex items-center justify-center gap-2 rounded-[2px] font-semibold tracking-[-0.005em] transition-colors duration-200 whitespace-nowrap disabled:opacity-60 ${dims} ${btnVariants[variant]} ${className}`;
+  const cls = `group inline-flex items-center justify-center gap-2 rounded-[2px] font-semibold tracking-tight transition-colors duration-fast whitespace-nowrap disabled:opacity-60 ${dims} ${btnVariants[variant]} ${className}`;
   const inner = (
     <>
       <span className="text-roll">
@@ -129,7 +129,7 @@ export function Btn({
       </span>
       {arrow ? (
         <ArrowRight
-          className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+          className="h-4 w-4 transition-transform duration-base group-hover:translate-x-1"
           strokeWidth={1.5}
         />
       ) : null}
@@ -173,7 +173,7 @@ export function SectionHeading({
   return (
     <Reveal className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       <div
-        className={`mb-5 flex items-center gap-3 border-b pb-2.5 ${
+        className={`mb-5 flex items-center gap-3 border-b pb-3 ${
           dark ? "border-white/15" : "border-line"
         } ${center ? "justify-center" : ""}`}
       >
@@ -282,9 +282,9 @@ export function PageHero({
 
       <div className="container-g relative">
         {/* Editorial masthead: breadcrumb rule + provenance */}
-        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-white/15 pb-3.5">
+        <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 border-b border-white/15 pb-4">
           <nav aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-2 text-micro font-bold uppercase tracking-[0.16em] text-white/55">
+            <ol className="flex flex-wrap items-center gap-2 text-micro font-bold uppercase tracking-label text-white/55">
               {crumbs.map((c, idx) => (
                 <li key={`${c.label}-${idx}`} className="flex items-center gap-2">
                   {idx > 0 ? (
@@ -306,7 +306,7 @@ export function PageHero({
 
           <div className="flex items-center gap-4">
             {cityBadge ? (
-              <span className="text-micro font-semibold uppercase tracking-[0.14em] text-white/50">
+              <span className="text-micro font-semibold uppercase tracking-label text-white/50">
                 {cityBadge}
               </span>
             ) : null}
@@ -333,7 +333,7 @@ export function PageHero({
         ) : null}
         <Reveal>
           <h1
-            className="h1 mt-3.5 max-w-[20ch] text-white"
+            className="h1 mt-4 max-w-[20ch] text-white"
             style={{ fontSize: "clamp(2.25rem, 1.5rem + 2.6vw, 3.6rem)" }}
           >
             {title}
@@ -368,7 +368,7 @@ export function ImageSlot({
     >
       <div className="flex flex-col items-center gap-2 px-4 text-center text-slatex-300">
         <ImageIcon className="h-6 w-6" strokeWidth={1.5} />
-        <span className="text-xs font-semibold uppercase tracking-widest">{id}</span>
+        <span className="text-xs font-semibold uppercase tracking-label">{id}</span>
         <span className="text-xs opacity-70">{R(L.imgPending, lang)}</span>
       </div>
     </div>
@@ -452,7 +452,7 @@ export function ZiteRiskBadge({
   const Icon = entry.Icon;
   return (
     <span
-      className={`inline-flex items-center gap-1.5 border-l-2 px-2.5 py-1 text-micro font-bold uppercase tracking-[0.14em] ${entry.cls}`}
+      className={`inline-flex items-center gap-2 border-l-2 px-3 py-1 text-micro font-bold uppercase tracking-label ${entry.cls}`}
     >
       <Icon className="h-3.5 w-3.5" strokeWidth={1.5} />
       {R(L.risk[entry.key], lang)}

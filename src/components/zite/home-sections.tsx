@@ -71,7 +71,7 @@ function Masthead({
       </span>
       <span
         aria-hidden="true"
-        className={`hidden font-mono text-micro uppercase tracking-[0.2em] sm:block ${
+        className={`hidden font-mono text-micro uppercase tracking-label sm:block ${
           dark ? "text-white/30" : "text-slate-600/50"
         }`}
       >
@@ -96,7 +96,7 @@ function Technique({ title, body }: { title: string; body: string }) {
         </span>
         <ChevronDown
           aria-hidden="true"
-          className={`h-4 w-4 shrink-0 text-cyanx transition-transform duration-300 ${
+          className={`h-4 w-4 shrink-0 text-cyanx transition-transform duration-base ${
             open ? "rotate-180" : ""
           }`}
           strokeWidth={1.5}
@@ -226,7 +226,7 @@ export function ZiteHomeView({
   return (
     <>
       {/* ── 01 · HERO — existing identity preserved ───────────────── */}
-      <section className="on-dark relative isolate overflow-hidden bg-navy-900 pt-[112px] lg:pt-[148px]">
+      <section className="on-dark relative isolate overflow-hidden bg-navy-900 pt-[112px] lg:pt-[152px]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/zite/img_0jR_JgYMybEsisEl.jpg"
@@ -280,7 +280,7 @@ export function ZiteHomeView({
                   <li key={cat.id} className="border-b border-white/12">
                     <Link
                       href={l(`/scams/${cat.slug}`)}
-                      className="group flex items-baseline gap-3 py-2.5 text-sm text-white/85 transition-colors hover:text-white"
+                      className="group flex items-baseline gap-3 py-3 text-sm text-white/85 transition-colors hover:text-white"
                     >
                       <span className="ed-num text-xs text-cyanx">
                         {String(idx + 1).padStart(2, "0")}
@@ -351,7 +351,7 @@ export function ZiteHomeView({
                       </p>
                       <ul className="mt-5 space-y-2">
                         {leadPillar.highlights.map((h) => (
-                          <li key={h} className="flex gap-2.5 text-sm text-ink">
+                          <li key={h} className="flex gap-3 text-sm text-ink">
                             <Check
                               aria-hidden="true"
                               className="mt-1 h-3.5 w-3.5 shrink-0 text-brand-600"
@@ -393,12 +393,12 @@ export function ZiteHomeView({
                           />
                           <h3 className="h4 text-ink">{pillar.title}</h3>
                         </div>
-                        <p className="mt-2.5 pl-9 text-sm leading-relaxed text-slatex-600">
+                        <p className="mt-3 pl-9 text-sm leading-relaxed text-slatex-600">
                           {pillar.description}
                         </p>
                         <Link
                           href={l(pillar.href)}
-                          className="ed-link ml-9 mt-3.5 inline-flex items-center gap-1.5 text-small font-semibold text-brand-600"
+                          className="ed-link ml-9 mt-4 inline-flex items-center gap-2 text-small font-semibold text-brand-600"
                         >
                           {pillar.cta}
                           <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
@@ -442,7 +442,7 @@ export function ZiteHomeView({
               <div className="ed-list mt-8">
                 {L.intro.points.map((pt, idx) => (
                   <Reveal key={idx} delay={idx * 50}>
-                    <div className="ed-item flex items-baseline gap-4 !py-3.5">
+                    <div className="ed-item flex items-baseline gap-4 !py-4">
                       <span className="ed-num text-xs">
                         {String(idx + 1).padStart(2, "0")}
                       </span>
@@ -523,7 +523,7 @@ export function ZiteHomeView({
                     <Link
                       key={cat.id}
                       href={l(`/scams/${cat.slug}`)}
-                      className="group flex items-start gap-3 border-b border-line py-3.5 transition-colors hover:border-brand-600"
+                      className="group flex items-start gap-3 border-b border-line py-4 transition-colors hover:border-brand-600"
                     >
                       <span className="ed-num pt-0.5 text-micro">
                         {String(idx + 2).padStart(2, "0")}
@@ -703,10 +703,10 @@ export function ZiteHomeView({
                     <img width={1600} height={900} src={featuredRes.imageUrl} alt="" loading="lazy" />
                   </div>
                   <div className="mt-5 flex flex-wrap items-center gap-3">
-                    <span className="border-l-2 border-brand-600 pl-2 text-micro font-bold uppercase tracking-[0.14em] text-brand-600">
+                    <span className="border-l-2 border-brand-600 pl-2 text-micro font-bold uppercase tracking-label text-brand-600">
                       {R(L.res.featured, lang)}
                     </span>
-                    <span className="text-micro uppercase tracking-[0.14em] text-slatex-600">
+                    <span className="text-micro uppercase tracking-label text-slatex-600">
                       {featuredRes.type} · {featuredRes.language}
                     </span>
                   </div>
@@ -727,10 +727,10 @@ export function ZiteHomeView({
                       href={l("/resources")}
                       className="ed-item group"
                     >
-                      <span className="text-micro font-bold uppercase tracking-[0.16em] text-brand-600">
+                      <span className="text-micro font-bold uppercase tracking-label text-brand-600">
                         {res.type} · {res.language}
                       </span>
-                      <h4 className="mt-1.5 font-[family-name:var(--font-heading)] text-body font-medium leading-snug text-ink">
+                      <h4 className="mt-2 font-[family-name:var(--font-heading)] text-body font-medium leading-snug text-ink">
                         <span className="ed-link">{R(res.title, lang)}</span>
                       </h4>
                     </Link>
@@ -765,13 +765,13 @@ export function ZiteHomeView({
                 />
               </div>
               <div className="p-7 sm:p-9">
-                <span className="border-l-2 border-risk-low pl-2 text-micro font-bold uppercase tracking-[0.14em] text-risk-low">
+                <span className="border-l-2 border-risk-low pl-2 text-micro font-bold uppercase tracking-label text-risk-low">
                   {R(L.services.freeTag, lang)}
                 </span>
                 <h3 className="h3 mt-3 text-ink">{R(L.services.freeTitle, lang)}</h3>
-                <ul className="mt-5 space-y-2.5">
+                <ul className="mt-5 space-y-3">
                   {L.services.free.map((item, idx) => (
-                    <li key={idx} className="flex gap-2.5 text-sm text-slatex-600">
+                    <li key={idx} className="flex gap-3 text-sm text-slatex-600">
                       <Check
                         aria-hidden="true"
                         className="mt-1 h-3.5 w-3.5 shrink-0 text-risk-low"
@@ -801,13 +801,13 @@ export function ZiteHomeView({
                 />
               </div>
               <div className="p-7 sm:p-9">
-                <span className="border-l-2 border-signal pl-2 text-micro font-bold uppercase tracking-[0.14em] text-signal">
+                <span className="border-l-2 border-signal pl-2 text-micro font-bold uppercase tracking-label text-signal">
                   {R(L.services.paidTag, lang)}
                 </span>
                 <h3 className="h3 mt-3 text-white">{R(L.services.paidTitle, lang)}</h3>
-                <ul className="mt-5 space-y-2.5">
+                <ul className="mt-5 space-y-3">
                   {L.services.paid.map((item, idx) => (
-                    <li key={idx} className="flex gap-2.5 text-sm text-slatex-300">
+                    <li key={idx} className="flex gap-3 text-sm text-slatex-300">
                       <Check
                         aria-hidden="true"
                         className="mt-1 h-3.5 w-3.5 shrink-0 text-cyanx"
@@ -858,7 +858,7 @@ export function ZiteHomeView({
                     </div>
                     <div className="mt-5 flex flex-wrap items-center gap-3">
                       <ZiteRiskBadge level={leadAlert.risk} lang={lang} />
-                      <span className="text-micro uppercase tracking-[0.14em] text-slatex-600">
+                      <span className="text-micro uppercase tracking-label text-slatex-600">
                         {leadAlert.country} · {formatZiteDate(leadAlert.date, lang)}
                       </span>
                     </div>
@@ -878,11 +878,11 @@ export function ZiteHomeView({
                     <Link key={a.id} href={l(`/alerts/${a.id}`)} className="ed-item group">
                       <div className="flex flex-wrap items-center gap-3">
                         <ZiteRiskBadge level={a.risk} lang={lang} />
-                        <span className="text-micro uppercase tracking-[0.14em] text-slatex-600">
+                        <span className="text-micro uppercase tracking-label text-slatex-600">
                           {a.country} · {formatZiteDate(a.date, lang)}
                         </span>
                       </div>
-                      <h4 className="h4 mt-2.5 text-ink">
+                      <h4 className="h4 mt-3 text-ink">
                         <span className="ed-link">{R(a.title, lang)}</span>
                       </h4>
                       <p className="mt-2 text-sm leading-relaxed text-slatex-600">
@@ -900,14 +900,14 @@ export function ZiteHomeView({
                         <Link
                           key={art.id}
                           href={l(`/news/${art.id}`)}
-                          className="ed-item group flex items-start gap-4 !py-3.5"
+                          className="ed-item group flex items-start gap-4 !py-4"
                         >
                           <div className="ed-media h-16 w-24 shrink-0">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img width={1600} height={900} src={art.imageUrl} alt="" loading="lazy" />
                           </div>
                           <div className="min-w-0">
-                            <span className="text-micro font-bold uppercase tracking-[0.16em] text-brand-600">
+                            <span className="text-micro font-bold uppercase tracking-label text-brand-600">
                               {R(art.tag, lang)}
                             </span>
                             <h4 className="mt-1 font-[family-name:var(--font-heading)] text-base font-medium leading-snug text-ink">
@@ -954,10 +954,10 @@ export function ZiteHomeView({
                   <img width={1600} height={900} src={cases[0].image} alt={cases[0].title} loading="lazy" />
                 </div>
                 <div className="mt-5 flex flex-wrap items-center gap-3">
-                  <span className="border-l-2 border-brand-600 pl-2 text-micro font-bold uppercase tracking-[0.14em] text-brand-600">
+                  <span className="border-l-2 border-brand-600 pl-2 text-micro font-bold uppercase tracking-label text-brand-600">
                     {cases[0].scope}
                   </span>
-                  <span className="text-micro uppercase tracking-[0.14em] text-slatex-600">
+                  <span className="text-micro uppercase tracking-label text-slatex-600">
                     {cases[0].category}
                   </span>
                 </div>
@@ -969,7 +969,7 @@ export function ZiteHomeView({
                   <span className="ed-label block text-ink">
                     {fr ? "Leçon clé" : "Key takeaway"}
                   </span>
-                  <p className="mt-1.5 text-sm leading-relaxed text-ink">{cases[0].lesson}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink">{cases[0].lesson}</p>
                 </div>
                 <Link
                   href={l(cases[0].href)}
@@ -985,7 +985,7 @@ export function ZiteHomeView({
               <div className="ed-list">
                 {cases.slice(1).map((cs) => (
                   <article key={cs.title} className="ed-item">
-                    <span className="text-micro font-bold uppercase tracking-[0.16em] text-brand-600">
+                    <span className="text-micro font-bold uppercase tracking-label text-brand-600">
                       {cs.scope} · {cs.category}
                     </span>
                     <h4 className="h4 mt-2 text-ink">{cs.title}</h4>
@@ -998,7 +998,7 @@ export function ZiteHomeView({
                     </p>
                     <Link
                       href={l(cs.href)}
-                      className="ed-link mt-3 inline-flex items-center gap-1.5 text-small font-semibold text-brand-600"
+                      className="ed-link mt-3 inline-flex items-center gap-2 text-small font-semibold text-brand-600"
                     >
                       {fr ? "Guide de prévention" : "Prevention guide"}
                       <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
@@ -1085,13 +1085,13 @@ export function ZiteHomeView({
                           type={f.type}
                           autoComplete={f.auto}
                           placeholder={f.ph}
-                          className="ed-field mt-1.5"
+                          className="ed-field mt-2"
                           value={nlState[f.key]}
                           onChange={(e) => setNlState({ ...nlState, [f.key]: e.target.value })}
                           aria-invalid={Boolean(nlErrors[f.key])}
                         />
                         {nlErrors[f.key] ? (
-                          <p className="mt-1.5 flex items-center gap-1.5 text-caption text-signal">
+                          <p className="mt-2 flex items-center gap-2 text-caption text-signal">
                             <AlertCircle className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
                             {nlErrors[f.key]}
                           </p>
@@ -1104,7 +1104,7 @@ export function ZiteHomeView({
                       </label>
                       <select
                         id="nl-lang"
-                        className="ed-field mt-1.5"
+                        className="ed-field mt-2"
                         value={nlState.language}
                         onChange={(e) => setNlState({ ...nlState, language: e.target.value })}
                       >
@@ -1124,7 +1124,7 @@ export function ZiteHomeView({
                     <span>
                       {R(L.nl.consent, lang)}
                       {nlErrors.consent ? (
-                        <span className="mt-1.5 flex items-center gap-1.5 text-caption text-signal">
+                        <span className="mt-2 flex items-center gap-2 text-caption text-signal">
                           <AlertCircle className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
                           {nlErrors.consent}
                         </span>

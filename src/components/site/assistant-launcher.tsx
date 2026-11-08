@@ -121,24 +121,24 @@ export function AssistantLauncher({
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close"
-              className="rounded-lg p-1 hover:bg-white/15"
+              className="rounded-lg p-1 hover:bg-white/15 transition-colors duration-fast ease-standard"
             >
               <X className="h-4 w-4" />
             </button>
           </div>
 
           <div className="flex-1 space-y-3 overflow-y-auto p-4">
-            <div className="rounded-2xl rounded-bl-sm bg-mist px-3.5 py-2.5 text-sm text-ink">
+            <div className="rounded-2xl rounded-bl-sm bg-mist px-4 py-3 text-sm text-ink">
               {t.hi}
             </div>
             {messages.length === 0 ? (
-              <div className="flex flex-wrap gap-1.5 pt-1">
+              <div className="flex flex-wrap gap-2 pt-1">
                 {t.chips.map((chip) => (
                   <button
                     key={chip}
                     type="button"
                     onClick={() => void sendMessage(chip)}
-                    className="rounded-full border border-line px-3 py-1.5 text-left text-xs font-medium text-ink transition hover:bg-mist"
+                    className="rounded-full border border-line px-3 py-2 text-left text-xs font-medium text-ink transition hover:bg-mist"
                   >
                     {chip}
                   </button>
@@ -148,7 +148,7 @@ export function AssistantLauncher({
             {messages.map((m, idx) => (
               <div key={idx} className={m.role === "user" ? "flex justify-end" : "flex"}>
                 <div
-                  className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed ${
+                  className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                     m.role === "user"
                       ? "rounded-br-sm bg-brand-600 text-white"
                       : "rounded-bl-sm bg-mist text-ink"
@@ -156,7 +156,7 @@ export function AssistantLauncher({
                 >
                   <p className="whitespace-pre-line">{m.content}</p>
                   {m.sources && m.sources.length > 0 ? (
-                    <div className="mt-2 flex flex-wrap gap-1.5">
+                    <div className="mt-2 flex flex-wrap gap-2">
                       {m.sources.map((s) => (
                         <Link
                           key={s.href}
@@ -193,7 +193,7 @@ export function AssistantLauncher({
                 onChange={(e) => setInput(e.target.value)}
                 placeholder={t.ph}
                 maxLength={1200}
-                className="h-10 flex-1 rounded-xl border border-line bg-white px-3 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-600"
+                className="h-10 flex-1 rounded-xl border border-line bg-white px-3 text-sm text-ink focus:outline-none focus:ring-2 focus:ring-brand-600 transition-colors duration-fast ease-standard"
               />
               <button
                 type="submit"
@@ -208,7 +208,7 @@ export function AssistantLauncher({
                 )}
               </button>
             </div>
-            <p className="mt-1.5 text-micro text-slatex-600">{t.note}</p>
+            <p className="mt-2 text-micro text-slatex-600">{t.note}</p>
           </form>
         </div>
       ) : null}

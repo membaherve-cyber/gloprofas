@@ -109,7 +109,7 @@ export function AssistantPanel({
       className="fixed inset-0 z-[70] flex flex-col overflow-hidden border border-white/10 bg-navy-900 shadow-[var(--shadow-none)] sm:inset-auto sm:bottom-5 sm:right-5 sm:h-[600px] sm:w-[380px] sm:rounded-none"
     >
       <div className="flex shrink-0 items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3">
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-blue-600">
             <ShieldAlert size={17} strokeWidth={1.8} aria-hidden="true" className="text-white" />
           </span>
@@ -126,7 +126,7 @@ export function AssistantPanel({
               setError(null);
             }}
             aria-label={dict.assistant.clear}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-slate-300 hover:bg-white/10 hover:text-white"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-slate-300 hover:bg-white/10 hover:text-white transition-colors duration-fast ease-standard"
           >
             <Trash2 size={16} aria-hidden="true" />
           </button>
@@ -134,7 +134,7 @@ export function AssistantPanel({
             type="button"
             onClick={onClose}
             aria-label={dict.assistant.close}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-slate-300 hover:bg-white/10 hover:text-white"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-slate-300 hover:bg-white/10 hover:text-white transition-colors duration-fast ease-standard"
           >
             <X size={18} aria-hidden="true" />
           </button>
@@ -145,7 +145,7 @@ export function AssistantPanel({
         {messages.map((message, index) => (
           <div key={index} className={message.role === "user" ? "flex justify-end" : "flex justify-start"}>
             <div
-              className={`max-w-[88%] rounded-sm px-3.5 py-2.5 text-small leading-relaxed ${
+              className={`max-w-[88%] rounded-sm px-4 py-3 text-small leading-relaxed ${
                 message.role === "user"
                   ? "bg-blue-600 text-white"
                   : "border border-white/10 bg-navy-800 text-slate-100"
@@ -153,12 +153,12 @@ export function AssistantPanel({
             >
               <p className="whitespace-pre-line">{message.content}</p>
               {message.sources && message.sources.length > 0 ? (
-                <div className="mt-2 flex flex-wrap gap-1.5">
+                <div className="mt-2 flex flex-wrap gap-2">
                   {message.sources.map((source) => (
                     <Link
                       key={source.href}
                       href={source.href}
-                      className="inline-flex items-center gap-1 rounded-full border border-cyan-400/40 px-2 py-0.5 text-micro font-semibold text-cyan-400 hover:bg-cyan-400/10"
+                      className="inline-flex items-center gap-1 rounded-full border border-cyan-400/40 px-2 py-0.5 text-micro font-semibold text-cyan-400 hover:bg-cyan-400/10 transition-colors duration-fast ease-standard"
                     >
                       {source.title} <ArrowRight size={10} aria-hidden="true" />
                     </Link>
@@ -188,7 +188,7 @@ export function AssistantPanel({
                 key={suggestion}
                 type="button"
                 onClick={() => void send(suggestion)}
-                className="block w-full rounded-[10px] border border-white/10 bg-white/5 px-3 py-2 text-left text-small text-slate-200 hover:border-cyan-400/50 hover:text-white"
+                className="block w-full rounded-[10px] border border-white/10 bg-white/5 px-3 py-2 text-left text-small text-slate-200 hover:border-cyan-400/50 hover:text-white transition-colors duration-fast ease-standard"
               >
                 {suggestion}
               </button>

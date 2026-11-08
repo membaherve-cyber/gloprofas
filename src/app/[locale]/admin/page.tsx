@@ -148,13 +148,13 @@ export default async function AdminDashboardPage({
       <section className="rounded-none border border-navy-900/15 bg-navy-900 p-6 text-white shadow-[var(--shadow-none)]">
         <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
           <div>
-            <p className="text-caption font-bold uppercase tracking-[0.14em] text-cyan-400">
+            <p className="text-caption font-bold uppercase tracking-label text-cyan-400">
               {dict.admin.title}
             </p>
             <h1 className="mt-1 text-[1.75rem] text-white sm:text-[2rem]">
               {dict.admin.dashboard}
             </h1>
-            <p className="mt-1.5 max-w-2xl text-base text-slate-300">
+            <p className="mt-2 max-w-2xl text-base text-slate-300">
               {dict.admin.dashboardIntro}{" "}
               {locale === "fr"
                 ? `Connecté en tant que ${user.name} (${user.email}).`
@@ -192,10 +192,10 @@ export default async function AdminDashboardPage({
             <Link
               key={card.label}
               href={card.href}
-              className="group rounded-sm border border-line-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-blue-600/50 hover:shadow-[var(--shadow-e1)]"
+              className="group rounded-sm border border-line-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-blue-600/50 hover:shadow-[var(--shadow-none)]"
             >
               <div className="flex items-start justify-between gap-2">
-                <dt className="text-micro font-bold uppercase tracking-[0.08em] text-slate-600">
+                <dt className="text-micro font-bold uppercase tracking-label text-slate-600">
                   {card.label}
                 </dt>
                 <ArrowUpRight
@@ -207,7 +207,7 @@ export default async function AdminDashboardPage({
               <dd className={`mt-2 font-[family-name:var(--font-heading)] text-[2rem] font-bold leading-none ${card.tone}`}>
                 {card.value}
               </dd>
-              <p className="mt-1.5 text-caption text-slate-600">{card.sub}</p>
+              <p className="mt-2 text-caption text-slate-600">{card.sub}</p>
             </Link>
           ))}
         </dl>
@@ -261,7 +261,7 @@ export default async function AdminDashboardPage({
                     <td>
                       <Link
                         href={`${routes.admin(locale)}/reports?ref=${report.reference}`}
-                        className="font-mono text-small font-bold text-blue-600 hover:underline"
+                        className="font-mono text-small font-bold text-blue-600 hover:underline transition-colors duration-fast ease-standard"
                       >
                         {report.reference}
                       </Link>
@@ -310,22 +310,22 @@ export default async function AdminDashboardPage({
       {/* Published Alerts & Published Articles Overview */}
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
-          <div className="flex items-center justify-between border-b border-line-200 px-5 py-3.5">
+          <div className="flex items-center justify-between border-b border-line-200 px-5 py-4">
             <h2 className="flex items-center gap-2 text-body font-semibold text-ink-900">
               <Bell size={16} className="text-risk-high" aria-hidden="true" />
               {dict.alerts.h1} ({stats.alerts})
             </h2>
-            <Link href={routes.alerts(locale)} className="text-small font-semibold text-blue-600 hover:underline">
+            <Link href={routes.alerts(locale)} className="text-small font-semibold text-blue-600 hover:underline transition-colors duration-fast ease-standard">
               {dict.nav.viewAll} →
             </Link>
           </div>
           <div className="divide-y divide-line-200">
             {recentAlerts.map((alert) => (
-              <div key={alert.id} className="flex items-start justify-between gap-3 px-5 py-3.5">
+              <div key={alert.id} className="flex items-start justify-between gap-3 px-5 py-4">
                 <div className="min-w-0">
                   <Link
                     href={routes.alert(locale, pick(locale, alert.slugEn, alert.slugFr))}
-                    className="font-semibold text-base text-ink-900 hover:text-blue-600"
+                    className="font-semibold text-base text-ink-900 hover:text-blue-600 transition-colors duration-fast ease-standard"
                   >
                     {pick(locale, alert.titleEn, alert.titleFr)}
                   </Link>
@@ -342,22 +342,22 @@ export default async function AdminDashboardPage({
         </section>
 
         <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
-          <div className="flex items-center justify-between border-b border-line-200 px-5 py-3.5">
+          <div className="flex items-center justify-between border-b border-line-200 px-5 py-4">
             <h2 className="flex items-center gap-2 text-body font-semibold text-ink-900">
               <FileText size={16} className="text-blue-600" aria-hidden="true" />
               {dict.news.h1} ({stats.articles})
             </h2>
-            <Link href={routes.news(locale)} className="text-small font-semibold text-blue-600 hover:underline">
+            <Link href={routes.news(locale)} className="text-small font-semibold text-blue-600 hover:underline transition-colors duration-fast ease-standard">
               {dict.nav.viewAll} →
             </Link>
           </div>
           <div className="divide-y divide-line-200">
             {recentArticles.map((article) => (
-              <div key={article.id} className="flex items-start justify-between gap-3 px-5 py-3.5">
+              <div key={article.id} className="flex items-start justify-between gap-3 px-5 py-4">
                 <div className="min-w-0">
                   <Link
                     href={routes.article(locale, pick(locale, article.slugEn, article.slugFr))}
-                    className="font-semibold text-base text-ink-900 hover:text-blue-600"
+                    className="font-semibold text-base text-ink-900 hover:text-blue-600 transition-colors duration-fast ease-standard"
                   >
                     {pick(locale, article.titleEn, article.titleFr)}
                   </Link>
@@ -375,12 +375,12 @@ export default async function AdminDashboardPage({
       {/* Contact Messages & Service Enquiries */}
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
-          <div className="flex items-center justify-between border-b border-line-200 px-5 py-3.5">
+          <div className="flex items-center justify-between border-b border-line-200 px-5 py-4">
             <h2 className="flex items-center gap-2 text-body font-semibold text-ink-900">
               <Inbox size={16} className="text-blue-600" aria-hidden="true" />
               {dict.admin.messages} ({stats.messages})
             </h2>
-            <Link href={`${routes.admin(locale)}/messages`} className="text-small font-semibold text-blue-600 hover:underline">
+            <Link href={`${routes.admin(locale)}/messages`} className="text-small font-semibold text-blue-600 hover:underline transition-colors duration-fast ease-standard">
               {dict.nav.viewAll} →
             </Link>
           </div>
@@ -389,7 +389,7 @@ export default async function AdminDashboardPage({
               <p className="px-5 py-6 text-center text-small text-slate-600">{dict.admin.noRecords}</p>
             ) : (
               recentMessages.map((msg) => (
-                <div key={msg.id} className="px-5 py-3.5 text-small">
+                <div key={msg.id} className="px-5 py-4 text-small">
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-semibold text-ink-900">
                       {msg.name} ({msg.email})
@@ -405,12 +405,12 @@ export default async function AdminDashboardPage({
         </section>
 
         <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
-          <div className="flex items-center justify-between border-b border-line-200 px-5 py-3.5">
+          <div className="flex items-center justify-between border-b border-line-200 px-5 py-4">
             <h2 className="flex items-center gap-2 text-body font-semibold text-ink-900">
               <Briefcase size={16} className="text-blue-600" aria-hidden="true" />
               {dict.admin.enquiries} ({stats.enquiries})
             </h2>
-            <Link href={`${routes.admin(locale)}/messages`} className="text-small font-semibold text-blue-600 hover:underline">
+            <Link href={`${routes.admin(locale)}/messages`} className="text-small font-semibold text-blue-600 hover:underline transition-colors duration-fast ease-standard">
               {dict.nav.viewAll} →
             </Link>
           </div>
@@ -419,7 +419,7 @@ export default async function AdminDashboardPage({
               <p className="px-5 py-6 text-center text-small text-slate-600">{dict.admin.noRecords}</p>
             ) : (
               recentEnquiries.map((enq) => (
-                <div key={enq.id} className="px-5 py-3.5 text-small">
+                <div key={enq.id} className="px-5 py-4 text-small">
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-semibold text-ink-900">
                       {enq.name} {enq.organisation ? `· ${enq.organisation}` : ""}
@@ -454,7 +454,7 @@ export default async function AdminDashboardPage({
           <GitHubPushPanel locale={locale} />
 
           <div className="overflow-hidden rounded-sm border border-line-200 bg-white">
-            <div className="border-b border-line-200 px-5 py-3.5">
+            <div className="border-b border-line-200 px-5 py-4">
               <h2 className="flex items-center gap-2 text-body font-semibold text-ink-900">
                 <Users size={16} className="text-blue-600" aria-hidden="true" />
                 {locale === "fr" ? "Comptes administrateurs autorisés" : "Authorised Administrator Accounts"}
@@ -493,7 +493,7 @@ export default async function AdminDashboardPage({
         </div>
 
         <div className="overflow-hidden rounded-sm border border-line-200 bg-white">
-          <div className="border-b border-line-200 px-5 py-3.5">
+          <div className="border-b border-line-200 px-5 py-4">
             <h2 className="flex items-center gap-2 text-body font-semibold text-ink-900">
               <Activity size={16} className="text-blue-600" aria-hidden="true" />
               {locale === "fr" ? "Journal d’activité et de sécurité" : "Security & Activity Audit Log"}
@@ -532,7 +532,7 @@ export default async function AdminDashboardPage({
               : "You are viewing the GLOPROFAS administration backoffice."}
           </span>
         </div>
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-3">
           <Link href={routes.campaigns(locale)} className="btn btn-outline btn-sm">
             <BookOpen size={15} aria-hidden="true" />
             <span>{dict.nav.campaigns}</span>

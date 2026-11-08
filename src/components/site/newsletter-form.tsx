@@ -68,7 +68,7 @@ export function NewsletterForm({ locale, dict }: { locale: Locale; dict: Diction
           {pending ? dict.common.sending : dict.newsletter.submit}
         </button>
         {state.status === "error" ? (
-          <p className="inline-flex items-center gap-1.5 text-small font-semibold text-white" role="alert">
+          <p className="inline-flex items-center gap-2 text-small font-semibold text-white" role="alert">
             <AlertCircle size={15} aria-hidden="true" /> {state.message}
           </p>
         ) : null}

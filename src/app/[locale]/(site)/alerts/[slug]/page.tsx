@@ -116,14 +116,14 @@ export default async function AlertDetailPage({
 
       <section className="section-y bg-mist">
         <div className="container-g grid gap-10 lg:grid-cols-12">
-          <article className="overflow-hidden rounded-none bg-white shadow-e1 lg:col-span-8">
+          <article className="overflow-hidden rounded-none bg-white shadow-none lg:col-span-8">
             {alert.imageUrl ? (
               <div className="group relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img width={1600} height={900}
                   src={alert.imageUrl}
                   alt={R(alert.title, locale)}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                  className="h-full w-full object-cover transition-transform duration-slow group-hover:scale-[1.02]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950/75 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4">

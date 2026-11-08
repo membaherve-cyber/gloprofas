@@ -58,7 +58,7 @@ export default async function ServiceDetailPage({
       <section className="section bg-white">
         <div className="container-page grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
-            <div className="mb-6 overflow-hidden rounded-sm border border-line-200 shadow-e1">
+            <div className="mb-6 overflow-hidden rounded-sm border border-line-200 shadow-none">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img width={1600} height={900}
                 src="/images/context/team-laptops-office.jpg"

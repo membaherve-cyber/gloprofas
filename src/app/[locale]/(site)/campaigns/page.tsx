@@ -114,7 +114,7 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
                       height={600}
                       sizes="(max-width: 768px) 100vw, 50vw"
                       rounded="0"
-                      className="h-full w-full transition-transform duration-700 group-hover:scale-[1.02]"
+                      className="h-full w-full transition-transform duration-slow group-hover:scale-[1.02]"
                     />
                   </div>
                   <div className="flex flex-1 flex-col gap-2 p-6">

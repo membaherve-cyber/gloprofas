@@ -18,7 +18,7 @@ function ActionNotice({ state }: { state: FormState }) {
   return (
     <p
       role={ok ? "status" : "alert"}
-      className={`mt-3 inline-flex items-center gap-1.5 rounded-[var(--radius-sm)] border px-3 py-1.5 text-small font-semibold ${
+      className={`mt-3 inline-flex items-center gap-2 rounded-[var(--radius-sm)] border px-3 py-2 text-small font-semibold ${
         ok
           ? "border-risk-low/40 bg-risk-low/10 text-risk-low"
           : "border-risk-critical/40 bg-risk-critical/10 text-risk-critical"
@@ -41,7 +41,7 @@ export function InlineReportStatusForm({
 }) {
   const [state, action, pending] = useActionState(updateReportStatus.bind(null, locale), initialFormState);
   return (
-    <form action={action} className="inline-flex items-center gap-1.5">
+    <form action={action} className="inline-flex items-center gap-2">
       <input type="hidden" name="reportId" value={reportId} />
       <select
         name="status"
@@ -58,7 +58,7 @@ export function InlineReportStatusForm({
       <button
         type="submit"
         disabled={pending}
-        className="rounded-[8px] bg-blue-600 px-2.5 py-1 text-micro font-semibold text-white hover:bg-blue-500 disabled:opacity-50"
+        className="rounded-[8px] bg-blue-600 px-3 py-1 text-micro font-semibold text-white hover:bg-blue-500 disabled:opacity-50 transition-colors duration-fast ease-standard"
       >
         {pending ? "…" : locale === "fr" ? "OK" : "Save"}
       </button>
@@ -73,7 +73,7 @@ export function QuickPublishAlertForm({ locale, dict }: { locale: Locale; dict: 
   const [state, action, pending] = useActionState(createScamAlert.bind(null, locale), initialFormState);
   return (
     <form action={action} className="rounded-sm border border-line-200 bg-white p-5">
-      <div className="flex items-center gap-2 text-caption font-bold uppercase tracking-[0.1em] text-risk-high">
+      <div className="flex items-center gap-2 text-caption font-bold uppercase tracking-label text-risk-high">
         <ShieldAlert size={16} aria-hidden="true" />
         <span>{locale === "fr" ? "Publier une nouvelle alerte" : "Publish a new scam alert"}</span>
       </div>
@@ -169,7 +169,7 @@ export function QuickPublishArticleForm({ locale, dict }: { locale: Locale; dict
   const [state, action, pending] = useActionState(createArticle.bind(null, locale), initialFormState);
   return (
     <form action={action} className="rounded-sm border border-line-200 bg-white p-5">
-      <div className="flex items-center gap-2 text-caption font-bold uppercase tracking-[0.1em] text-blue-600">
+      <div className="flex items-center gap-2 text-caption font-bold uppercase tracking-label text-blue-600">
         <FileText size={16} aria-hidden="true" />
         <span>
           {locale === "fr"
@@ -285,7 +285,7 @@ export function OrganisationSettingsForm({
   );
   return (
     <form action={action} className="rounded-sm border border-line-200 bg-white p-5">
-      <div className="flex items-center gap-2 text-caption font-bold uppercase tracking-[0.1em] text-ink-900">
+      <div className="flex items-center gap-2 text-caption font-bold uppercase tracking-label text-ink-900">
         <Settings size={16} className="text-blue-600" aria-hidden="true" />
         <span>{dict.admin.settings}</span>
       </div>
@@ -398,7 +398,7 @@ export function GitHubPushPanel({ locale }: { locale: Locale }) {
       onSubmit={handlePush}
       className="rounded-sm border border-line-200 bg-white p-5"
     >
-      <div className="flex items-center gap-2 text-caption font-bold uppercase tracking-[0.1em] text-ink-900">
+      <div className="flex items-center gap-2 text-caption font-bold uppercase tracking-label text-ink-900">
         <GitBranch size={16} className="text-blue-600" aria-hidden="true" />
         <span>
           {locale === "fr"
@@ -406,7 +406,7 @@ export function GitHubPushPanel({ locale }: { locale: Locale }) {
             : "Push Code to GitHub (https://github.com/membaherve-cyber)"}
         </span>
       </div>
-      <p className="mt-1.5 text-small text-slate-600">
+      <p className="mt-2 text-small text-slate-600">
         {locale === "fr"
           ? "Le dépôt Git local est initialisé sur la branche main avec l’origine https://github.com/membaherve-cyber/gloprofas.git. Saisissez un jeton d’accès personnel GitHub (scope repo) pour créer le dépôt et pousser le code en un clic :"
           : "The local Git repository is initialised on branch 'main' with remote origin https://github.com/membaherve-cyber/gloprofas.git. Enter a GitHub Personal Access Token (with 'repo' scope) to create the repository and push all code in one click:"}
@@ -479,7 +479,7 @@ export function GitHubPushPanel({ locale }: { locale: Locale }) {
               : "Push to GitHub"}
         </button>
         {status === "success" ? (
-          <p className="inline-flex items-center gap-1.5 text-small font-semibold text-risk-low">
+          <p className="inline-flex items-center gap-2 text-small font-semibold text-risk-low">
             <CheckCircle2 size={14} />
             {message}{" "}
             {repoUrl ? (
@@ -495,7 +495,7 @@ export function GitHubPushPanel({ locale }: { locale: Locale }) {
           </p>
         ) : null}
         {status === "error" ? (
-          <p className="inline-flex items-center gap-1.5 text-small font-semibold text-risk-critical">
+          <p className="inline-flex items-center gap-2 text-small font-semibold text-risk-critical">
             <AlertCircle size={14} />
             {message}
           </p>

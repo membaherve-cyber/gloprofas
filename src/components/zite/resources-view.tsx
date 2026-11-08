@@ -94,10 +94,10 @@ export function ZiteResourcesView({ locale }: { locale: Locale }) {
                           <span className="ed-num text-xs">
                             {String(idx + 1).padStart(2, "0")}
                           </span>
-                          <span className="border-l-2 border-brand-600 pl-2 text-micro font-bold uppercase tracking-[0.16em] text-brand-600">
+                          <span className="border-l-2 border-brand-600 pl-2 text-micro font-bold uppercase tracking-label text-brand-600">
                             {res.type}
                           </span>
-                          <span className="text-micro uppercase tracking-[0.16em] text-slatex-600">
+                          <span className="text-micro uppercase tracking-label text-slatex-600">
                             {res.language}
                             {res.fileSize ? ` · ${res.fileSize}` : ""}
                           </span>

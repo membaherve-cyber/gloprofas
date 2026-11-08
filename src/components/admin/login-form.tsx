@@ -15,8 +15,8 @@ export function AdminLoginForm({ locale, dict }: { locale: Locale; dict: Diction
 
   return (
     <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-      <form action={action} className="grid gap-4 rounded-none border border-line-200 bg-white p-6 shadow-[var(--shadow-e1)]">
-        <div className="flex items-center gap-2 text-small font-semibold uppercase tracking-[0.12em] text-blue-600">
+      <form action={action} className="grid gap-4 rounded-none border border-line-200 bg-white p-6 shadow-[var(--shadow-none)]">
+        <div className="flex items-center gap-2 text-small font-semibold uppercase tracking-label text-blue-600">
           <Lock size={15} aria-hidden="true" />
           <span>{dict.admin.title}</span>
         </div>
@@ -65,7 +65,7 @@ export function AdminLoginForm({ locale, dict }: { locale: Locale; dict: Diction
       </form>
 
       <aside className="rounded-none border border-navy-900/15 bg-navy-900 p-6 text-white shadow-[var(--shadow-none)]">
-        <div className="flex items-center gap-2 text-small font-bold uppercase tracking-[0.12em] text-signal-400">
+        <div className="flex items-center gap-2 text-small font-bold uppercase tracking-label text-signal-400">
           <KeyRound size={16} aria-hidden="true" />
           <span>{locale === "fr" ? "Comptes administrateurs configurés" : "Configured Administrator Accounts"}</span>
         </div>
@@ -89,7 +89,7 @@ export function AdminLoginForm({ locale, dict }: { locale: Locale; dict: Diction
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div>
                     <p className="text-body font-semibold text-white">{cred.name}</p>
-                    <p className="text-micro font-semibold uppercase tracking-[0.1em] text-cyan-400">
+                    <p className="text-micro font-semibold uppercase tracking-label text-cyan-400">
                       {locale === "fr" ? cred.roleLabelFr : cred.roleLabelEn}
                     </p>
                   </div>
@@ -99,12 +99,12 @@ export function AdminLoginForm({ locale, dict }: { locale: Locale; dict: Diction
                       setEmail(cred.email);
                       setPassword(cred.password);
                     }}
-                    className="rounded-full bg-signal-400 px-3 py-1 text-caption font-bold text-navy-950 hover:bg-white"
+                    className="rounded-full bg-signal-400 px-3 py-1 text-caption font-bold text-navy-950 hover:bg-white transition-colors duration-fast ease-standard"
                   >
                     {locale === "fr" ? "Remplir" : "Use credentials"}
                   </button>
                 </div>
-                <dl className="mt-3 space-y-1.5 border-t border-white/10 pt-2.5 text-small">
+                <dl className="mt-3 space-y-2 border-t border-white/10 pt-3 text-small">
                   <div className="flex items-center justify-between gap-2">
                     <dt className="text-slate-300">{dict.admin.email}:</dt>
                     <dd className="font-mono font-semibold text-white select-all">{cred.email}</dd>

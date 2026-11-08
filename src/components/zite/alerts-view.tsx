@@ -11,7 +11,7 @@ import type { Locale } from "@/lib/i18n";
 
 const RISKS = ["Critical", "High", "Medium", "Low"] as const;
 const fieldCls =
-  "h-11 w-full rounded-[2px] border border-line bg-white px-3.5 text-base text-ink placeholder:text-slatex-600/60 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20";
+  "h-11 w-full rounded-[2px] border border-line bg-white px-4 text-base text-ink placeholder:text-slatex-600/60 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20";
 
 export function ZiteAlertsView({ locale }: { locale: Locale }) {
   const fr = locale === "fr";
@@ -84,7 +84,7 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
             </Link>
           ) : null}
 
-          <div className="grid gap-3 rounded-none bg-white p-4 shadow-e1 md:grid-cols-[1fr_200px_240px]">
+          <div className="grid gap-3 rounded-none bg-white p-4 shadow-none md:grid-cols-[1fr_200px_240px]">
             <label className="relative">
               <span className="sr-only">Search</span>
               <Search className="absolute top-1/2 left-4 h-4 w-4 -translate-y-1/2 text-slatex-600" />
@@ -147,7 +147,7 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
                   </div>
                   <div className="mt-5 flex flex-wrap items-center gap-3">
                     <ZiteRiskBadge level={filtered[0].risk} lang={locale} />
-                    <span className="text-micro uppercase tracking-[0.14em] text-slatex-600">
+                    <span className="text-micro uppercase tracking-label text-slatex-600">
                       {filtered[0].country} · {formatZiteDate(filtered[0].date, locale)}
                     </span>
                   </div>
@@ -167,11 +167,11 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
                   <Link key={a.id} href={l(`/alerts/${a.id}`)} className="ed-item group">
                     <div className="flex flex-wrap items-center gap-3">
                       <ZiteRiskBadge level={a.risk} lang={locale} />
-                      <span className="text-micro uppercase tracking-[0.14em] text-slatex-600">
+                      <span className="text-micro uppercase tracking-label text-slatex-600">
                         {R(a.category, locale)} · {a.country} · {formatZiteDate(a.date, locale)}
                       </span>
                     </div>
-                    <h2 className="h4 mt-2.5 text-ink">
+                    <h2 className="h4 mt-3 text-ink">
                       <span className="ed-link">{R(a.title, locale)}</span>
                     </h2>
                     <p className="mt-2 text-sm leading-relaxed text-slatex-600">

@@ -110,7 +110,7 @@ export function ZiteCheckView({ locale }: { locale: Locale }) {
           <form onSubmit={handleSubmit}>
             <label
               htmlFor="chk"
-              className="mb-1.5 block text-sm font-semibold text-ink"
+              className="mb-2 block text-sm font-semibold text-ink"
             >
               {fr
                 ? "Numéro, site web ou message suspect"
@@ -127,7 +127,7 @@ export function ZiteCheckView({ locale }: { locale: Locale }) {
                   ? "Ex. +237 6XX XX XX XX, www.exemple-site.com ou le texte du message"
                   : "e.g. +237 6XX XX XX XX, www.example-site.com or the text of the message"
               }
-              className="w-full rounded-sm border border-line bg-white p-4 text-ink focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20"
+              className="w-full rounded-sm border border-line bg-white p-4 text-ink focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20 transition-colors duration-fast ease-standard"
             />
             {error ? <p className="mt-2 text-sm text-red-600">{error}</p> : null}
             <button
@@ -177,7 +177,7 @@ export function ZiteCheckView({ locale }: { locale: Locale }) {
               <div className="mt-6 grid gap-6 md:grid-cols-2">
                 {result.signs.length > 0 ? (
                   <div>
-                    <p className="mb-1.5 block text-sm font-semibold text-ink">
+                    <p className="mb-2 block text-sm font-semibold text-ink">
                       {fr ? "Signaux d’alerte" : "Warning signs"}
                     </p>
                     <ul className="list-disc space-y-1 pl-5 text-slatex-600">
@@ -190,7 +190,7 @@ export function ZiteCheckView({ locale }: { locale: Locale }) {
 
                 {result.actions.length > 0 ? (
                   <div>
-                    <p className="mb-1.5 block text-sm font-semibold text-ink">
+                    <p className="mb-2 block text-sm font-semibold text-ink">
                       {fr ? "Que faire" : "What to do"}
                     </p>
                     <ul className="list-disc space-y-1 pl-5 text-slatex-600">
@@ -204,7 +204,7 @@ export function ZiteCheckView({ locale }: { locale: Locale }) {
 
               {result.alerts.length > 0 ? (
                 <div className="mt-6">
-                  <p className="mb-1.5 block text-sm font-semibold text-ink">
+                  <p className="mb-2 block text-sm font-semibold text-ink">
                     {fr ? "Alertes liées" : "Related alerts"}
                   </p>
                   <ul className="space-y-1">
@@ -212,7 +212,7 @@ export function ZiteCheckView({ locale }: { locale: Locale }) {
                       <li key={al.id}>
                         <Link
                           href={l(`/alerts/${al.id}`)}
-                          className="font-semibold text-brand-600 hover:underline"
+                          className="font-semibold text-brand-600 hover:underline transition-colors duration-fast ease-standard"
                         >
                           {al.title} →
                         </Link>

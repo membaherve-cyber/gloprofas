@@ -24,7 +24,7 @@ export function EditorialSectionIndex({
       </span>
       <span
         aria-hidden="true"
-        className={`hidden font-mono text-micro uppercase tracking-[0.2em] sm:block ${
+        className={`hidden font-mono text-micro uppercase tracking-label sm:block ${
           dark ? "text-white/30" : "text-slate-600/50"
         }`}
       >
@@ -61,7 +61,7 @@ export function ScamInterceptionDiagram({ lang }: { lang: Locale }) {
         <span className="ed-label text-cyanx">
           {fr ? "Séquence d’interception" : "Interception sequence"}
         </span>
-        <span className="text-micro font-semibold uppercase tracking-[0.14em] text-signal">
+        <span className="text-micro font-semibold uppercase tracking-label text-signal">
           {fr ? "Point d’arrêt · étape 03" : "Interrupt point · stage 03"}
         </span>
       </figcaption>
@@ -69,7 +69,7 @@ export function ScamInterceptionDiagram({ lang }: { lang: Locale }) {
       {/* Vector spine: solid up to the gate, dashed beyond */}
       <div className="hidden px-5 pt-6 lg:block" aria-hidden="true">
         <svg viewBox="0 0 960 24" className="h-6 w-full" fill="none">
-          <line x1="60" y1="12" x2="600" y2="12" stroke="#2BD4E8" strokeWidth="1.5" />
+          <line x1="60" y1="12" x2="600" y2="12" stroke="#40c4d3" strokeWidth="1.5" />
           <line
             x1="600"
             y1="12"
@@ -86,8 +86,8 @@ export function ScamInterceptionDiagram({ lang }: { lang: Locale }) {
               y={7}
               width="10"
               height="10"
-              fill={i === 2 ? "#FFB02E" : "#050b1a"}
-              stroke={i === 2 ? "#FFB02E" : "#2BD4E8"}
+              fill={i === 2 ? "#f0ac3d" : "#050b1a"}
+              stroke={i === 2 ? "#f0ac3d" : "#40c4d3"}
               strokeWidth="1.5"
             />
           ))}
@@ -107,12 +107,12 @@ export function ScamInterceptionDiagram({ lang }: { lang: Locale }) {
                   {node.code}
                 </span>
                 {gate ? (
-                  <span className="text-micro font-bold uppercase tracking-[0.16em] text-signal">
+                  <span className="text-micro font-bold uppercase tracking-label text-signal">
                     {fr ? "Arrêt" : "Stop"}
                   </span>
                 ) : null}
               </div>
-              <p className="mt-2.5 font-[family-name:var(--font-heading)] text-body font-semibold text-white">
+              <p className="mt-3 font-[family-name:var(--font-heading)] text-body font-semibold text-white">
                 {node.title}
               </p>
               <p className="mt-1 text-small leading-relaxed text-slatex-300">

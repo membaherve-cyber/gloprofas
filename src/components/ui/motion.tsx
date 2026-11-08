@@ -106,7 +106,7 @@ export function Accordion({
                 {item.title}
                 <span
                   aria-hidden="true"
-                  className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/20 transition-transform duration-200 ${
+                  className={`inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-white/20 transition-transform duration-fast ${
                     isOpen ? "rotate-45 border-cyan-400 text-cyan-400" : ""
                   }`}
                 >

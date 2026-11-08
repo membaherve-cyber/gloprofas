@@ -83,14 +83,14 @@ export default async function ScamsPage({
                         <h2 className="h3 mt-2 max-w-[34ch] text-ink">
                           <span className="ed-link">{R(cat.title, locale)}</span>
                         </h2>
-                        <p className="mt-2.5 max-w-[68ch] text-body leading-relaxed text-slatex-600">
+                        <p className="mt-3 max-w-[68ch] text-body leading-relaxed text-slatex-600">
                           {R(cat.summary, locale)}
                         </p>
                         <span className="mt-4 inline-flex items-center gap-2 text-small font-semibold text-brand-600">
                           {fr ? "Lire le guide" : "Read the guide"}
                           <ArrowRight
                             aria-hidden="true"
-                            className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1"
+                            className="h-3.5 w-3.5 transition-transform duration-base group-hover:translate-x-1"
                             strokeWidth={1.5}
                           />
                         </span>
