@@ -21,7 +21,7 @@ export default async function AdminMessagesPage({ params }: { params: Promise<{ 
   const user = await getCurrentUser();
   if (!user) redirect(`${routes.admin(locale)}/login`);
   if (!can(user, "messages:read")) {
-    return <p className="rounded-sm border border-risk-critical/40 bg-white p-5 text-[0.9rem]">{dict.admin.accessDenied}</p>;
+    return <p className="rounded-sm border border-risk-critical/40 bg-white p-5 text-base">{dict.admin.accessDenied}</p>;
   }
 
   const [messages, enquiries, volunteers, partnerships, subscribers] = hasDatabase
@@ -60,7 +60,7 @@ export default async function AdminMessagesPage({ params }: { params: Promise<{ 
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-[1.7rem]">{dict.admin.messages}</h1>
+        <h1 className="text-[1.75rem]">{dict.admin.messages}</h1>
         <div className="flex flex-wrap items-center gap-2">
           <Link href={routes.admin(locale)} className="btn btn-outline btn-sm">
             {dict.admin.dashboard}
@@ -73,8 +73,8 @@ export default async function AdminMessagesPage({ params }: { params: Promise<{ 
       </div>
       {sections.map((section) => (
         <section key={section.title} className="overflow-hidden rounded-sm border border-line-200 bg-white">
-          <h2 className="border-b border-line-200 px-4 py-3 text-[1rem] font-semibold">
-            {section.title} <span className="ml-1 text-[0.8rem] font-normal text-slate-600">({section.rows.length})</span>
+          <h2 className="border-b border-line-200 px-4 py-3 text-body font-semibold">
+            {section.title} <span className="ml-1 text-small font-normal text-slate-600">({section.rows.length})</span>
           </h2>
           <div className="overflow-x-auto">
             <table className="table-dense w-full min-w-[560px]">
@@ -97,7 +97,7 @@ export default async function AdminMessagesPage({ params }: { params: Promise<{ 
                     <tr key={`${section.title}-${row.id}`}>
                       <td>
                         <span className="block font-medium text-ink-900">{row.primary}</span>
-                        <span className="block text-[0.78rem] text-slate-600">{row.secondary}</span>
+                        <span className="block text-caption text-slate-600">{row.secondary}</span>
                       </td>
                       <td>
                         <span className="chip">{row.status}</span>

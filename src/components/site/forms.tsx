@@ -82,7 +82,7 @@ function Status({ state }: { state: FormState }) {
     return (
       <div className="flex items-start gap-3 rounded-sm border border-risk-low/40 bg-risk-low/10 p-4" role="status">
         <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-risk-low" aria-hidden="true" />
-        <p className="text-[0.9rem] text-ink-900">{state.message}</p>
+        <p className="text-base text-ink-900">{state.message}</p>
       </div>
     );
   }
@@ -90,7 +90,7 @@ function Status({ state }: { state: FormState }) {
     return (
       <div className="flex items-start gap-3 rounded-sm border border-risk-critical/40 bg-risk-critical/10 p-4" role="alert">
         <AlertCircle size={18} className="mt-0.5 shrink-0 text-risk-critical" aria-hidden="true" />
-        <p className="text-[0.9rem] text-ink-900">{state.message}</p>
+        <p className="text-base text-ink-900">{state.message}</p>
       </div>
     );
   }
@@ -132,7 +132,7 @@ export function ContactForm({ locale, dict }: { locale: Locale; dict: Dictionary
         <input type="hidden" name="language" value={locale} />
         <Status state={state} />
         <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-md text-[0.75rem] leading-relaxed text-slate-600">{consentNote[locale]}</p>
+          <p className="max-w-md text-caption leading-relaxed text-slate-600">{consentNote[locale]}</p>
           <button type="submit" disabled={pending} className="btn btn-primary shrink-0">
             {pending ? dict.common.sending : dict.common.submit}
           </button>
@@ -201,7 +201,7 @@ export function ServiceEnquiryForm({
         <input type="hidden" name="language" value={locale} />
         <Status state={state} />
         <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-md text-[0.75rem] leading-relaxed text-slate-600">{consentNote[locale]}</p>
+          <p className="max-w-md text-caption leading-relaxed text-slate-600">{consentNote[locale]}</p>
           <button type="submit" disabled={pending} className="btn btn-primary shrink-0">
             {pending ? dict.common.sending : dict.common.submit}
           </button>

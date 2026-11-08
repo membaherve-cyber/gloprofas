@@ -263,7 +263,7 @@ export function ZiteContactView({
             </div>
             <div className="overflow-hidden rounded-none border border-line bg-white shadow-e1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <img width={1600} height={900}
                 src="/images/context/support-call-center.jpg"
                 alt=""
                 loading="lazy"

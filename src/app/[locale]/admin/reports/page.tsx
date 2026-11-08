@@ -23,7 +23,7 @@ export default async function AdminReportsPage({
   const user = await getCurrentUser();
   if (!user) redirect(`${routes.admin(locale)}/login`);
   if (!can(user, "reports:read")) {
-    return <p className="rounded-sm border border-risk-critical/40 bg-white p-5 text-[0.9rem]">{dict.admin.accessDenied}</p>;
+    return <p className="rounded-sm border border-risk-critical/40 bg-white p-5 text-base">{dict.admin.accessDenied}</p>;
   }
 
   const reports: ScamReport[] = hasDatabase
@@ -49,8 +49,8 @@ export default async function AdminReportsPage({
     <div>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-[1.7rem]">{dict.admin.reports}</h1>
-          <p className="mt-1 text-[0.85rem] text-slate-600">
+          <h1 className="text-[1.75rem]">{dict.admin.reports}</h1>
+          <p className="mt-1 text-small text-slate-600">
             {reports.length} {dict.common.results}. {dict.admin.dashboardIntro}
           </p>
         </div>
@@ -87,7 +87,7 @@ export default async function AdminReportsPage({
                   reports.map((report) => (
                     <tr key={report.id}>
                       <td>
-                        <a href={`?ref=${report.reference}`} className="font-mono text-[0.8rem] font-semibold text-blue-600">
+                        <a href={`?ref=${report.reference}`} className="font-mono text-small font-semibold text-blue-600">
                           {report.reference}
                         </a>
                       </td>
@@ -107,10 +107,10 @@ export default async function AdminReportsPage({
           <div className="space-y-4">
             <div className="rounded-sm border border-line-200 bg-white p-4">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <h2 className="font-mono text-[1rem] font-bold">{selected.reference}</h2>
+                <h2 className="font-mono text-body font-bold">{selected.reference}</h2>
                 <span className="chip">{selected.status}</span>
               </div>
-              <dl className="mt-3 grid gap-2 text-[0.85rem] sm:grid-cols-2">
+              <dl className="mt-3 grid gap-2 text-small sm:grid-cols-2">
                 <div>
                   <dt className="text-slate-600">{dict.common.category}</dt>
                   <dd className="font-medium">{selected.categorySlug}</dd>
@@ -128,7 +128,7 @@ export default async function AdminReportsPage({
                   <dd className="font-medium break-all">{selected.reporterEmail}</dd>
                 </div>
               </dl>
-              <p className="mt-3 whitespace-pre-line rounded-[10px] bg-mist-50 p-3 text-[0.85rem] leading-relaxed text-slate-600">
+              <p className="mt-3 whitespace-pre-line rounded-[10px] bg-mist-50 p-3 text-small leading-relaxed text-slate-600">
                 {selected.description}
               </p>
             </div>
@@ -136,8 +136,8 @@ export default async function AdminReportsPage({
               <ReportControls locale={locale} dict={dict} reportId={selected.id} currentStatus={selected.status} />
             ) : null}
             <div className="rounded-sm border border-line-200 bg-white p-4">
-              <h3 className="text-[0.95rem] font-semibold">{dict.admin.note}</h3>
-              <ul className="mt-2 space-y-2 text-[0.82rem] text-slate-600">
+              <h3 className="text-body font-semibold">{dict.admin.note}</h3>
+              <ul className="mt-2 space-y-2 text-small text-slate-600">
                 {notes.length === 0 ? <li>{dict.admin.noRecords}</li> : null}
                 {notes.map((note) => (
                   <li key={note.id} className="rounded-[10px] bg-mist-50 p-2">

@@ -16,7 +16,7 @@ export function NewsletterForm({ locale, dict }: { locale: Locale; dict: Diction
     return (
       <div className="flex items-start gap-3 rounded-sm border border-risk-low/40 bg-risk-low/10 p-4 text-white">
         <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-risk-low" aria-hidden="true" />
-        <p className="text-[0.9rem]" role="status">
+        <p className="text-base" role="status">
           {state.message}
         </p>
       </div>
@@ -57,7 +57,7 @@ export function NewsletterForm({ locale, dict }: { locale: Locale; dict: Diction
         </select>
       </div>
       <div className="sm:col-span-2">
-        <label htmlFor="newsletter-consent" className="flex min-h-11 items-start gap-3 text-[0.82rem] text-slate-300">
+        <label htmlFor="newsletter-consent" className="flex min-h-11 items-start gap-3 text-small text-slate-300">
           <input id="newsletter-consent" name="consent" type="checkbox" required className="mt-0.5 h-4 w-4 shrink-0 accent-brand-500" />
           <span>{dict.newsletter.consent}</span>
         </label>
@@ -68,7 +68,7 @@ export function NewsletterForm({ locale, dict }: { locale: Locale; dict: Diction
           {pending ? dict.common.sending : dict.newsletter.submit}
         </button>
         {state.status === "error" ? (
-          <p className="inline-flex items-center gap-1.5 text-[0.82rem] font-semibold text-white" role="alert">
+          <p className="inline-flex items-center gap-1.5 text-small font-semibold text-white" role="alert">
             <AlertCircle size={15} aria-hidden="true" /> {state.message}
           </p>
         ) : null}

@@ -58,7 +58,7 @@ export function ZiteResourcesView({ locale }: { locale: Locale }) {
                 role="tab"
                 aria-selected={selectedType === t}
                 onClick={() => setSelectedType(t)}
-                className={`h-10 border-b-2 px-4 text-[0.8125rem] font-semibold transition-colors ${
+                className={`h-10 border-b-2 px-4 text-small font-semibold transition-colors ${
                   selectedType === t
                     ? "border-brand-600 text-brand-600"
                     : "border-transparent text-slatex-600 hover:text-ink"
@@ -80,7 +80,7 @@ export function ZiteResourcesView({ locale }: { locale: Locale }) {
                       {res.imageUrl ? (
                         <div className="ed-media ed-media-hover aspect-[3/2] sm:col-span-3">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={res.imageUrl} alt="" loading="lazy" />
+                          <img width={1500} height={1000} src={res.imageUrl} alt="" loading="lazy" />
                         </div>
                       ) : (
                         <div className="sm:col-span-3">
@@ -94,10 +94,10 @@ export function ZiteResourcesView({ locale }: { locale: Locale }) {
                           <span className="ed-num text-xs">
                             {String(idx + 1).padStart(2, "0")}
                           </span>
-                          <span className="border-l-2 border-brand-600 pl-2 text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                          <span className="border-l-2 border-brand-600 pl-2 text-micro font-bold uppercase tracking-[0.16em] text-brand-600">
                             {res.type}
                           </span>
-                          <span className="text-[0.625rem] uppercase tracking-[0.16em] text-slatex-600">
+                          <span className="text-micro uppercase tracking-[0.16em] text-slatex-600">
                             {res.language}
                             {res.fileSize ? ` · ${res.fileSize}` : ""}
                           </span>
@@ -110,7 +110,7 @@ export function ZiteResourcesView({ locale }: { locale: Locale }) {
                             {desc}
                           </p>
                         ) : null}
-                        <p className="mt-3 flex items-center gap-2 text-[0.8125rem] font-medium text-slatex-600">
+                        <p className="mt-3 flex items-center gap-2 text-small font-medium text-slatex-600">
                           <Download className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
                           {fr ? "Téléchargement bientôt disponible" : "Download available soon"}
                         </p>

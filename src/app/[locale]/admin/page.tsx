@@ -143,13 +143,13 @@ export default async function AdminDashboardPage({
       <section className="rounded-none border border-navy-900/15 bg-navy-900 p-6 text-white shadow-[var(--shadow-none)]">
         <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-center">
           <div>
-            <p className="text-[0.75rem] font-bold uppercase tracking-[0.14em] text-cyan-400">
+            <p className="text-caption font-bold uppercase tracking-[0.14em] text-cyan-400">
               {dict.admin.title}
             </p>
             <h1 className="mt-1 text-[1.75rem] text-white sm:text-[2rem]">
               {dict.admin.dashboard}
             </h1>
-            <p className="mt-1.5 max-w-2xl text-[0.9rem] text-slate-300">
+            <p className="mt-1.5 max-w-2xl text-base text-slate-300">
               {dict.admin.dashboardIntro}{" "}
               {locale === "fr"
                 ? `Connecté en tant que ${user.name} (${user.email}).`
@@ -190,7 +190,7 @@ export default async function AdminDashboardPage({
               className="group rounded-sm border border-line-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-blue-600/50 hover:shadow-[var(--shadow-e1)]"
             >
               <div className="flex items-start justify-between gap-2">
-                <dt className="text-[0.73rem] font-bold uppercase tracking-[0.08em] text-slate-600">
+                <dt className="text-micro font-bold uppercase tracking-[0.08em] text-slate-600">
                   {card.label}
                 </dt>
                 <ArrowUpRight
@@ -199,10 +199,10 @@ export default async function AdminDashboardPage({
                   aria-hidden="true"
                 />
               </div>
-              <dd className={`mt-2 font-[family-name:var(--font-heading)] text-[1.85rem] font-bold leading-none ${card.tone}`}>
+              <dd className={`mt-2 font-[family-name:var(--font-heading)] text-[2rem] font-bold leading-none ${card.tone}`}>
                 {card.value}
               </dd>
-              <p className="mt-1.5 text-[0.76rem] text-slate-600">{card.sub}</p>
+              <p className="mt-1.5 text-caption text-slate-600">{card.sub}</p>
             </Link>
           ))}
         </dl>
@@ -212,11 +212,11 @@ export default async function AdminDashboardPage({
       <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line-200 px-5 py-4">
           <div>
-            <h2 className="flex items-center gap-2 text-[1.1rem] font-semibold text-ink-900">
+            <h2 className="flex items-center gap-2 text-lead font-semibold text-ink-900">
               <ShieldAlert size={18} className="text-risk-critical" aria-hidden="true" />
               {dict.admin.reports} — {dict.admin.recent}
             </h2>
-            <p className="text-[0.8rem] text-slate-600">
+            <p className="text-small text-slate-600">
               {locale === "fr"
                 ? "Examinez les signalements reçus et mettez à jour leur statut directement."
                 : "Review incoming scam reports and update their workflow status inline."}
@@ -256,14 +256,14 @@ export default async function AdminDashboardPage({
                     <td>
                       <Link
                         href={`${routes.admin(locale)}/reports?ref=${report.reference}`}
-                        className="font-mono text-[0.82rem] font-bold text-blue-600 hover:underline"
+                        className="font-mono text-small font-bold text-blue-600 hover:underline"
                       >
                         {report.reference}
                       </Link>
                     </td>
                     <td>{report.categorySlug}</td>
                     <td>{report.country}</td>
-                    <td className="text-[0.82rem] text-slate-600">{report.reporterEmail}</td>
+                    <td className="text-small text-slate-600">{report.reporterEmail}</td>
                     <td>
                       <InlineReportStatusForm
                         locale={locale}
@@ -271,7 +271,7 @@ export default async function AdminDashboardPage({
                         currentStatus={report.status}
                       />
                     </td>
-                    <td className="whitespace-nowrap text-[0.82rem] text-slate-600">
+                    <td className="whitespace-nowrap text-small text-slate-600">
                       {formatDate(report.createdAt, locale)}
                     </td>
                   </tr>
@@ -285,12 +285,12 @@ export default async function AdminDashboardPage({
       {/* Content Publishing Center: Alerts & News/Campaigns */}
       <section id="content-publisher" className="space-y-4">
         <div>
-          <h2 className="text-[1.25rem] font-semibold text-ink-900">
+          <h2 className="text-title font-semibold text-ink-900">
             {locale === "fr"
               ? "Publication rapide : alertes, campagnes et articles"
               : "Quick publishing: scam alerts, campaigns and articles"}
           </h2>
-          <p className="text-[0.85rem] text-slate-600">
+          <p className="text-small text-slate-600">
             {locale === "fr"
               ? "Publiez immédiatement une alerte ou un compte-rendu de séminaire/campagne en anglais et en français."
               : "Immediately publish a new public scam alert or campaign/seminar article in English and French."}
@@ -306,11 +306,11 @@ export default async function AdminDashboardPage({
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
           <div className="flex items-center justify-between border-b border-line-200 px-5 py-3.5">
-            <h2 className="flex items-center gap-2 text-[1rem] font-semibold text-ink-900">
+            <h2 className="flex items-center gap-2 text-body font-semibold text-ink-900">
               <Bell size={16} className="text-risk-high" aria-hidden="true" />
               {dict.alerts.h1} ({stats.alerts})
             </h2>
-            <Link href={routes.alerts(locale)} className="text-[0.8rem] font-semibold text-blue-600 hover:underline">
+            <Link href={routes.alerts(locale)} className="text-small font-semibold text-blue-600 hover:underline">
               {dict.nav.viewAll} →
             </Link>
           </div>
@@ -320,11 +320,11 @@ export default async function AdminDashboardPage({
                 <div className="min-w-0">
                   <Link
                     href={routes.alert(locale, pick(locale, alert.slugEn, alert.slugFr))}
-                    className="font-semibold text-[0.9rem] text-ink-900 hover:text-blue-600"
+                    className="font-semibold text-base text-ink-900 hover:text-blue-600"
                   >
                     {pick(locale, alert.titleEn, alert.titleFr)}
                   </Link>
-                  <p className="mt-0.5 text-[0.76rem] text-slate-600">
+                  <p className="mt-0.5 text-caption text-slate-600">
                     {alert.country} · {formatDate(alert.publishedAt, locale)}
                   </p>
                 </div>
@@ -338,11 +338,11 @@ export default async function AdminDashboardPage({
 
         <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
           <div className="flex items-center justify-between border-b border-line-200 px-5 py-3.5">
-            <h2 className="flex items-center gap-2 text-[1rem] font-semibold text-ink-900">
+            <h2 className="flex items-center gap-2 text-body font-semibold text-ink-900">
               <FileText size={16} className="text-blue-600" aria-hidden="true" />
               {dict.news.h1} ({stats.articles})
             </h2>
-            <Link href={routes.news(locale)} className="text-[0.8rem] font-semibold text-blue-600 hover:underline">
+            <Link href={routes.news(locale)} className="text-small font-semibold text-blue-600 hover:underline">
               {dict.nav.viewAll} →
             </Link>
           </div>
@@ -352,11 +352,11 @@ export default async function AdminDashboardPage({
                 <div className="min-w-0">
                   <Link
                     href={routes.article(locale, pick(locale, article.slugEn, article.slugFr))}
-                    className="font-semibold text-[0.9rem] text-ink-900 hover:text-blue-600"
+                    className="font-semibold text-base text-ink-900 hover:text-blue-600"
                   >
                     {pick(locale, article.titleEn, article.titleFr)}
                   </Link>
-                  <p className="mt-0.5 text-[0.76rem] text-slate-600">
+                  <p className="mt-0.5 text-caption text-slate-600">
                     {article.authorName} · {formatDate(article.publishedAt, locale)}
                   </p>
                 </div>
@@ -371,20 +371,20 @@ export default async function AdminDashboardPage({
       <div className="grid gap-6 lg:grid-cols-2">
         <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
           <div className="flex items-center justify-between border-b border-line-200 px-5 py-3.5">
-            <h2 className="flex items-center gap-2 text-[1rem] font-semibold text-ink-900">
+            <h2 className="flex items-center gap-2 text-body font-semibold text-ink-900">
               <Inbox size={16} className="text-blue-600" aria-hidden="true" />
               {dict.admin.messages} ({stats.messages})
             </h2>
-            <Link href={`${routes.admin(locale)}/messages`} className="text-[0.8rem] font-semibold text-blue-600 hover:underline">
+            <Link href={`${routes.admin(locale)}/messages`} className="text-small font-semibold text-blue-600 hover:underline">
               {dict.nav.viewAll} →
             </Link>
           </div>
           <div className="divide-y divide-line-200">
             {recentMessages.length === 0 ? (
-              <p className="px-5 py-6 text-center text-[0.85rem] text-slate-600">{dict.admin.noRecords}</p>
+              <p className="px-5 py-6 text-center text-small text-slate-600">{dict.admin.noRecords}</p>
             ) : (
               recentMessages.map((msg) => (
-                <div key={msg.id} className="px-5 py-3.5 text-[0.85rem]">
+                <div key={msg.id} className="px-5 py-3.5 text-small">
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-semibold text-ink-900">
                       {msg.name} ({msg.email})
@@ -392,7 +392,7 @@ export default async function AdminDashboardPage({
                     <span className="chip">{msg.category}</span>
                   </div>
                   <p className="mt-1 font-medium text-ink-900">{msg.subject}</p>
-                  <p className="mt-0.5 line-clamp-2 text-[0.8rem] text-slate-600">{msg.message}</p>
+                  <p className="mt-0.5 line-clamp-2 text-small text-slate-600">{msg.message}</p>
                 </div>
               ))
             )}
@@ -401,30 +401,30 @@ export default async function AdminDashboardPage({
 
         <section className="overflow-hidden rounded-sm border border-line-200 bg-white">
           <div className="flex items-center justify-between border-b border-line-200 px-5 py-3.5">
-            <h2 className="flex items-center gap-2 text-[1rem] font-semibold text-ink-900">
+            <h2 className="flex items-center gap-2 text-body font-semibold text-ink-900">
               <Briefcase size={16} className="text-blue-600" aria-hidden="true" />
               {dict.admin.enquiries} ({stats.enquiries})
             </h2>
-            <Link href={`${routes.admin(locale)}/messages`} className="text-[0.8rem] font-semibold text-blue-600 hover:underline">
+            <Link href={`${routes.admin(locale)}/messages`} className="text-small font-semibold text-blue-600 hover:underline">
               {dict.nav.viewAll} →
             </Link>
           </div>
           <div className="divide-y divide-line-200">
             {recentEnquiries.length === 0 ? (
-              <p className="px-5 py-6 text-center text-[0.85rem] text-slate-600">{dict.admin.noRecords}</p>
+              <p className="px-5 py-6 text-center text-small text-slate-600">{dict.admin.noRecords}</p>
             ) : (
               recentEnquiries.map((enq) => (
-                <div key={enq.id} className="px-5 py-3.5 text-[0.85rem]">
+                <div key={enq.id} className="px-5 py-3.5 text-small">
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-semibold text-ink-900">
                       {enq.name} {enq.organisation ? `· ${enq.organisation}` : ""}
                     </span>
                     <span className="chip">{enq.status}</span>
                   </div>
-                  <p className="mt-0.5 text-[0.8rem] text-slate-600">
+                  <p className="mt-0.5 text-small text-slate-600">
                     {enq.email} · {enq.country}
                   </p>
-                  <p className="mt-1 line-clamp-2 text-[0.8rem] text-slate-600">{enq.requirements}</p>
+                  <p className="mt-1 line-clamp-2 text-small text-slate-600">{enq.requirements}</p>
                 </div>
               ))
             )}
@@ -450,7 +450,7 @@ export default async function AdminDashboardPage({
 
           <div className="overflow-hidden rounded-sm border border-line-200 bg-white">
             <div className="border-b border-line-200 px-5 py-3.5">
-              <h2 className="flex items-center gap-2 text-[1rem] font-semibold text-ink-900">
+              <h2 className="flex items-center gap-2 text-body font-semibold text-ink-900">
                 <Users size={16} className="text-blue-600" aria-hidden="true" />
                 {locale === "fr" ? "Comptes administrateurs autorisés" : "Authorised Administrator Accounts"}
               </h2>
@@ -469,12 +469,12 @@ export default async function AdminDashboardPage({
                   {staffUsers.map((staff) => (
                     <tr key={staff.id}>
                       <td className="font-semibold text-ink-900">{staff.name}</td>
-                      <td className="font-mono text-[0.82rem] text-blue-600">{staff.email}</td>
+                      <td className="font-mono text-small text-blue-600">{staff.email}</td>
                       <td>
                         <span className="chip">{staff.role}</span>
                       </td>
                       <td>
-                        <span className="inline-flex items-center gap-1 text-[0.78rem] font-semibold text-risk-low">
+                        <span className="inline-flex items-center gap-1 text-caption font-semibold text-risk-low">
                           <CheckCircle2 size={13} aria-hidden="true" />
                           {staff.isActive ? "Active" : "Disabled"}
                         </span>
@@ -489,25 +489,25 @@ export default async function AdminDashboardPage({
 
         <div className="overflow-hidden rounded-sm border border-line-200 bg-white">
           <div className="border-b border-line-200 px-5 py-3.5">
-            <h2 className="flex items-center gap-2 text-[1rem] font-semibold text-ink-900">
+            <h2 className="flex items-center gap-2 text-body font-semibold text-ink-900">
               <Activity size={16} className="text-blue-600" aria-hidden="true" />
               {locale === "fr" ? "Journal d’activité et de sécurité" : "Security & Activity Audit Log"}
             </h2>
           </div>
           <div className="divide-y divide-line-200">
             {recentLogs.length === 0 ? (
-              <p className="px-5 py-6 text-center text-[0.85rem] text-slate-600">{dict.admin.noRecords}</p>
+              <p className="px-5 py-6 text-center text-small text-slate-600">{dict.admin.noRecords}</p>
             ) : (
               recentLogs.map((log) => (
-                <div key={log.id} className="flex items-start justify-between gap-3 px-5 py-3 text-[0.82rem]">
+                <div key={log.id} className="flex items-start justify-between gap-3 px-5 py-3 text-small">
                   <div>
                     <p className="font-semibold text-ink-900">
                       <span className="font-mono text-blue-600">{log.action}</span> · {log.entity}
                       {log.entityId ? ` (#${log.entityId})` : ""}
                     </p>
-                    <p className="text-[0.76rem] text-slate-600">{log.actor}</p>
+                    <p className="text-caption text-slate-600">{log.actor}</p>
                   </div>
-                  <time className="shrink-0 text-[0.75rem] text-slate-600">
+                  <time className="shrink-0 text-caption text-slate-600">
                     {formatDate(log.createdAt, locale)}
                   </time>
                 </div>
@@ -519,7 +519,7 @@ export default async function AdminDashboardPage({
 
       {/* Bottom Return to Frontpage bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 rounded-sm border border-line-200 bg-white p-5">
-        <div className="flex items-center gap-3 text-[0.88rem] text-slate-600">
+        <div className="flex items-center gap-3 text-base text-slate-600">
           <Globe size={18} className="text-blue-600" aria-hidden="true" />
           <span>
             {locale === "fr"

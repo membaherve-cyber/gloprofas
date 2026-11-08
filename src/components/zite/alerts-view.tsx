@@ -11,7 +11,7 @@ import type { Locale } from "@/lib/i18n";
 
 const RISKS = ["Critical", "High", "Medium", "Low"] as const;
 const fieldCls =
-  "h-11 w-full rounded-[2px] border border-line bg-white px-3.5 text-[0.875rem] text-ink placeholder:text-slatex-600/60 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20";
+  "h-11 w-full rounded-[2px] border border-line bg-white px-3.5 text-base text-ink placeholder:text-slatex-600/60 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20";
 
 export function ZiteAlertsView({ locale }: { locale: Locale }) {
   const fr = locale === "fr";
@@ -66,7 +66,7 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
             >
               {featuredCritical.imageUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <img width={1600} height={900}
                   src={featuredCritical.imageUrl}
                   alt=""
                   className="h-full max-h-80 w-full object-cover"
@@ -143,18 +143,18 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
                 <Link href={l(`/alerts/${filtered[0].id}`)} className="group block">
                   <div className="ed-media ed-media-hover aspect-[16/10]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={filtered[0].imageUrl} alt="" loading="lazy" />
+                    <img width={1600} height={1000} src={filtered[0].imageUrl} alt="" loading="lazy" />
                   </div>
                   <div className="mt-5 flex flex-wrap items-center gap-3">
                     <ZiteRiskBadge level={filtered[0].risk} lang={locale} />
-                    <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                    <span className="text-micro uppercase tracking-[0.14em] text-slatex-600">
                       {filtered[0].country} · {formatZiteDate(filtered[0].date, locale)}
                     </span>
                   </div>
                   <h2 className="h3 mt-3 max-w-[28ch] text-ink">
                     <span className="ed-link">{R(filtered[0].title, locale)}</span>
                   </h2>
-                  <p className="mt-3 max-w-[54ch] text-[0.9375rem] leading-relaxed text-slatex-600">
+                  <p className="mt-3 max-w-[54ch] text-body leading-relaxed text-slatex-600">
                     {R(filtered[0].summary, locale)}
                   </p>
                 </Link>
@@ -167,7 +167,7 @@ export function ZiteAlertsView({ locale }: { locale: Locale }) {
                   <Link key={a.id} href={l(`/alerts/${a.id}`)} className="ed-item group">
                     <div className="flex flex-wrap items-center gap-3">
                       <ZiteRiskBadge level={a.risk} lang={locale} />
-                      <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                      <span className="text-micro uppercase tracking-[0.14em] text-slatex-600">
                         {R(a.category, locale)} · {a.country} · {formatZiteDate(a.date, locale)}
                       </span>
                     </div>

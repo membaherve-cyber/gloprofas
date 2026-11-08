@@ -80,7 +80,7 @@ export default async function NewsletterPage({
               </div>
               {notice ? (
                 <p
-                  className="mb-5 rounded-sm border border-cyan-400/40 bg-cyan-400/10 p-3.5 text-[0.88rem] text-white"
+                  className="mb-5 rounded-sm border border-cyan-400/40 bg-cyan-400/10 p-3.5 text-base text-white"
                   role="status"
                 >
                   {notice}

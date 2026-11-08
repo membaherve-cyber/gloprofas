@@ -112,13 +112,13 @@ export default async function ArticlePage({
               <Reveal className="mt-8 overflow-hidden rounded-none border border-line bg-mist shadow-none">
                 <div className="group relative aspect-[16/9] w-full overflow-hidden bg-navy-900">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <img width={1600} height={900}
                     src={article.imageUrl}
                     alt={title}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent" />
-                  <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 border-l-2 border-cyanx bg-navy-950/85 px-3 py-1.5 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-white">
+                  <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 border-l-2 border-cyanx bg-navy-950/85 px-3 py-1.5 text-micro font-bold uppercase tracking-[0.14em] text-white">
                     <span aria-hidden="true" className="h-1.5 w-1.5 bg-cyanx" />
                     {R(article.tag, locale)}
                   </span>
@@ -130,7 +130,7 @@ export default async function ArticlePage({
             ) : null}
 
             <div
-              className="mt-8 space-y-5 text-[1.0625rem] text-slatex-600"
+              className="mt-8 space-y-5 text-lead text-slatex-600"
               style={{ maxWidth: "68ch" }}
             >
               {R(article.body, locale)
@@ -150,7 +150,7 @@ export default async function ArticlePage({
                   >
                     <div className="relative aspect-[4/3] w-full overflow-hidden bg-navy-900">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <img width={1400} height={1050}
                         src={item.image}
                         alt={R(item.tag, locale)}
                         loading="lazy"
@@ -222,7 +222,7 @@ export default async function ArticlePage({
                 className="flex gap-4 rounded-sm p-2 hover:bg-mist"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <img width={1600} height={900}
                   src={rel.imageUrl}
                   alt=""
                   className="h-20 w-24 shrink-0 rounded-[8px] object-cover"

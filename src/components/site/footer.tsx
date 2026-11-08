@@ -32,7 +32,7 @@ export function SiteFooter({
 
         <nav aria-label={R(L.footer.quick, locale)} className="md:col-span-3">
           <h2 className="ed-label text-white">{R(L.footer.quick, locale)}</h2>
-          <ul className="mt-5 space-y-2.5 text-[0.875rem]">
+          <ul className="mt-5 space-y-2.5 text-base">
             {NAV_ITEMS.slice(0, 6).map((item) => (
               <li key={item.key}>
                 <Link href={l(item.href)} className="ed-link hover:text-white">
@@ -46,7 +46,7 @@ export function SiteFooter({
         <div className="md:col-span-4">
           <h2 className="ed-label text-white">{R(L.footer.contactTitle, locale)}</h2>
           <p className="mt-5">{R(L.footer.contactPending, locale)}</p>
-          <ul className="mt-5 space-y-2.5 text-[0.875rem]">
+          <ul className="mt-5 space-y-2.5 text-base">
             <li>
               <Link href={l("/contact")} className="font-semibold text-white hover:text-cyanx">
                 {R(L.nav.contact, locale)} →

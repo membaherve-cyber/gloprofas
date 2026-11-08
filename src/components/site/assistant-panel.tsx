@@ -114,8 +114,8 @@ export function AssistantPanel({
             <ShieldAlert size={17} strokeWidth={1.8} aria-hidden="true" className="text-white" />
           </span>
           <div>
-            <p className="text-[0.85rem] font-semibold leading-tight text-white">{dict.assistant.name}</p>
-            <p className="text-[0.7rem] text-slate-300">{dict.assistant.languageNote}</p>
+            <p className="text-small font-semibold leading-tight text-white">{dict.assistant.name}</p>
+            <p className="text-micro text-slate-300">{dict.assistant.languageNote}</p>
           </div>
         </div>
         <div className="flex items-center gap-1">
@@ -145,7 +145,7 @@ export function AssistantPanel({
         {messages.map((message, index) => (
           <div key={index} className={message.role === "user" ? "flex justify-end" : "flex justify-start"}>
             <div
-              className={`max-w-[88%] rounded-sm px-3.5 py-2.5 text-[0.85rem] leading-relaxed ${
+              className={`max-w-[88%] rounded-sm px-3.5 py-2.5 text-small leading-relaxed ${
                 message.role === "user"
                   ? "bg-blue-600 text-white"
                   : "border border-white/10 bg-navy-800 text-slate-100"
@@ -158,7 +158,7 @@ export function AssistantPanel({
                     <Link
                       key={source.href}
                       href={source.href}
-                      className="inline-flex items-center gap-1 rounded-full border border-cyan-400/40 px-2 py-0.5 text-[0.7rem] font-semibold text-cyan-400 hover:bg-cyan-400/10"
+                      className="inline-flex items-center gap-1 rounded-full border border-cyan-400/40 px-2 py-0.5 text-micro font-semibold text-cyan-400 hover:bg-cyan-400/10"
                     >
                       {source.title} <ArrowRight size={10} aria-hidden="true" />
                     </Link>
@@ -166,18 +166,18 @@ export function AssistantPanel({
                 </div>
               ) : null}
               {message.grounded === false && message.role === "assistant" && index > 0 ? (
-                <p className="mt-2 text-[0.7rem] text-signal-400">{dict.common.notPolice}</p>
+                <p className="mt-2 text-micro text-signal-400">{dict.common.notPolice}</p>
               ) : null}
             </div>
           </div>
         ))}
         {pending ? (
-          <p className="text-[0.8rem] text-slate-300" role="status">
+          <p className="text-small text-slate-300" role="status">
             {dict.assistant.thinking}
           </p>
         ) : null}
         {error ? (
-          <p className="rounded-[10px] border border-risk-critical/40 bg-risk-critical/10 px-3 py-2 text-[0.8rem] text-white" role="alert">
+          <p className="rounded-[10px] border border-risk-critical/40 bg-risk-critical/10 px-3 py-2 text-small text-white" role="alert">
             {error}
           </p>
         ) : null}
@@ -188,7 +188,7 @@ export function AssistantPanel({
                 key={suggestion}
                 type="button"
                 onClick={() => void send(suggestion)}
-                className="block w-full rounded-[10px] border border-white/10 bg-white/5 px-3 py-2 text-left text-[0.8rem] text-slate-200 hover:border-cyan-400/50 hover:text-white"
+                className="block w-full rounded-[10px] border border-white/10 bg-white/5 px-3 py-2 text-left text-small text-slate-200 hover:border-cyan-400/50 hover:text-white"
               >
                 {suggestion}
               </button>
@@ -197,7 +197,7 @@ export function AssistantPanel({
         ) : null}
         {messages.length > 2 ? (
           <div className="rounded-[12px] border border-signal-400/40 bg-signal-400/10 p-3">
-            <Link href={routes.report(locale)} className="inline-flex items-center gap-2 text-[0.82rem] font-semibold text-signal-400">
+            <Link href={routes.report(locale)} className="inline-flex items-center gap-2 text-small font-semibold text-signal-400">
               <ShieldAlert size={15} aria-hidden="true" /> {dict.assistant.reportCta}
               <ArrowRight size={13} aria-hidden="true" />
             </Link>
@@ -234,7 +234,7 @@ export function AssistantPanel({
             <Send size={16} aria-hidden="true" />
           </button>
         </div>
-        <p className="mt-2 text-[0.68rem] leading-snug text-slate-300">{dict.assistant.disclaimer}</p>
+        <p className="mt-2 text-micro leading-snug text-slate-300">{dict.assistant.disclaimer}</p>
       </form>
     </div>
   );

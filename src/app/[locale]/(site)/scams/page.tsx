@@ -68,7 +68,7 @@ export default async function ScamsPage({
                       <div className="sm:col-span-3">
                         <div className="ed-media ed-media-hover aspect-[3/2]">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={cat.imageUrl} alt="" loading="lazy" />
+                          <img width={1500} height={1000} src={cat.imageUrl} alt="" loading="lazy" />
                         </div>
                       </div>
                       <div className="sm:col-span-9">
@@ -85,10 +85,10 @@ export default async function ScamsPage({
                         <h2 className="h3 mt-2 max-w-[34ch] text-ink">
                           <span className="ed-link">{R(cat.title, locale)}</span>
                         </h2>
-                        <p className="mt-2.5 max-w-[68ch] text-[0.9375rem] leading-relaxed text-slatex-600">
+                        <p className="mt-2.5 max-w-[68ch] text-body leading-relaxed text-slatex-600">
                           {R(cat.summary, locale)}
                         </p>
-                        <span className="mt-4 inline-flex items-center gap-2 text-[0.8125rem] font-semibold text-brand-600">
+                        <span className="mt-4 inline-flex items-center gap-2 text-small font-semibold text-brand-600">
                           {fr ? "Lire le guide" : "Read the guide"}
                           <ArrowRight
                             aria-hidden="true"

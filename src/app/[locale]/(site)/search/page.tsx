@@ -96,7 +96,7 @@ export default async function SearchPage({
             ))}
           </div>
 
-          <p className="mt-5 text-[0.85rem] font-medium text-slate-600">
+          <p className="mt-5 text-small font-medium text-slate-600">
             {term
               ? `${results.length} ${dict.common.results} — “${term}”`
               : locale === "fr"
@@ -116,10 +116,10 @@ export default async function SearchPage({
                     <span className="chip w-fit border-blue-600/25 text-blue-600">
                       {locale === "fr" ? result.metaFr : result.metaEn}
                     </span>
-                    <h2 className="text-[1.05rem] font-semibold text-ink-900">
+                    <h2 className="text-lead font-semibold text-ink-900">
                       {pick(locale, result.titleEn, result.titleFr)}
                     </h2>
-                    <p className="text-[0.88rem] leading-relaxed text-slate-600">{pick(locale, result.excerptEn, result.excerptFr)}</p>
+                    <p className="text-base leading-relaxed text-slate-600">{pick(locale, result.excerptEn, result.excerptFr)}</p>
                   </Link>
                 </li>
               ))}

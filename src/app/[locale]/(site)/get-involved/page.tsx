@@ -89,7 +89,7 @@ export default async function GetInvolvedPage({
               <div className="grid gap-6 sm:grid-cols-12 sm:items-start">
               <div className="ed-media ed-media-hover aspect-[3/2] sm:col-span-4">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <img width={1500} height={1000}
                   src={c.image}
                   alt={c.t}
                   loading="lazy"
@@ -102,7 +102,7 @@ export default async function GetInvolvedPage({
                   <c.Icon className="h-6 w-6" strokeWidth={1.5} />
                 </IconTile>
                 <h2 className="h3 mt-2 max-w-[30ch] text-ink">{c.t}</h2>
-                <p className="mt-3 max-w-[62ch] text-[0.9375rem] leading-relaxed text-slatex-600">{c.d}</p>
+                <p className="mt-3 max-w-[62ch] text-body leading-relaxed text-slatex-600">{c.d}</p>
                 <div className="mt-7">
                   <Btn href={`${l("/contact")}?topic=${c.topic}`} variant="primary">
                     {R(L.nav.contact, locale)}

@@ -64,7 +64,7 @@ export default async function NewsPage({
               className="group grid items-center gap-10 lg:grid-cols-2"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <img width={1600} height={900}
                 src={featured.imageUrl}
                 alt=""
                 className="aspect-[4/3] w-full rounded-none object-cover shadow-none"
@@ -94,11 +94,11 @@ export default async function NewsPage({
                     <div className="sm:col-span-3">
                       <div className="ed-media ed-media-hover aspect-[3/2]">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={art.imageUrl} alt="" loading="lazy" />
+                        <img width={1500} height={1000} src={art.imageUrl} alt="" loading="lazy" />
                       </div>
                     </div>
                     <div className="sm:col-span-9">
-                      <span className="border-l-2 border-brand-600 pl-2 text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                      <span className="border-l-2 border-brand-600 pl-2 text-micro font-bold uppercase tracking-[0.16em] text-brand-600">
                         {R(art.tag, locale)}
                       </span>
                       <h2 className="h3 mt-2 max-w-[36ch] text-ink">

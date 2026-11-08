@@ -62,7 +62,7 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
             <h2 className="max-w-[24ch]">{dict.campaigns.introTitle}</h2>
             <p className="lead mt-4">{dict.campaigns.introBody}</p>
             <div className="mt-6 rounded-sm border border-line-200 bg-mist-50 p-5">
-              <h3 className="flex items-center gap-2 text-[1.05rem]">
+              <h3 className="flex items-center gap-2 text-lead">
                 <CalendarClock size={18} className="text-blue-600" aria-hidden="true" />
                 {dict.campaigns.topicsTitle}
               </h3>
@@ -75,20 +75,20 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
             <div className="grid gap-3 sm:grid-cols-2">
               {dict.campaigns.formats.map((format) => (
                 <div key={format.title} className="rounded-sm border border-line-200 bg-white p-4">
-                  <p className="flex items-center gap-2 text-[0.95rem] font-semibold text-ink-900">
+                  <p className="flex items-center gap-2 text-body font-semibold text-ink-900">
                     <CheckCircle2 size={16} className="text-risk-low" aria-hidden="true" />
                     {format.title}
                   </p>
-                  <p className="mt-1 text-[0.84rem] leading-relaxed text-slate-600">{format.body}</p>
+                  <p className="mt-1 text-small leading-relaxed text-slate-600">{format.body}</p>
                 </div>
               ))}
             </div>
             <div className="mt-4 rounded-sm bg-navy-900 p-5 text-white">
-              <h3 className="flex items-center gap-2 text-[1.05rem] text-white">
+              <h3 className="flex items-center gap-2 text-lead text-white">
                 <Handshake size={18} className="text-cyan-400" aria-hidden="true" />
                 {dict.campaigns.inviteTitle}
               </h3>
-              <p className="mt-2 text-[0.86rem] leading-relaxed text-slate-300">{dict.campaigns.inviteBody}</p>
+              <p className="mt-2 text-small leading-relaxed text-slate-300">{dict.campaigns.inviteBody}</p>
               <ButtonLink href={routes.contact(locale)} variant="signal" size="sm" className="mt-4">
                 {dict.campaigns.cta}
               </ButtonLink>
@@ -127,15 +127,15 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
                       <span className="inline-flex h-9 w-9 items-center justify-center rounded-[10px] bg-blue-600/10 text-blue-600">
                         <GraduationCap size={17} aria-hidden="true" />
                       </span>
-                      <h3 className="text-[1.2rem] leading-snug text-ink-900">{audience.title}</h3>
+                      <h3 className="text-title leading-snug text-ink-900">{audience.title}</h3>
                     </div>
-                    <p className="text-[0.9rem] leading-relaxed text-slate-600">{audience.body}</p>
+                    <p className="text-base leading-relaxed text-slate-600">{audience.body}</p>
                   </div>
                 </article>
               </Reveal>
             ))}
           </div>
-          <p className="mt-6 max-w-3xl rounded-sm border border-signal-400/50 bg-signal-400/10 p-4 text-[0.82rem] leading-relaxed text-ink-900">
+          <p className="mt-6 max-w-3xl rounded-sm border border-signal-400/50 bg-signal-400/10 p-4 text-small leading-relaxed text-ink-900">
             {dict.campaigns.note}
           </p>
         </div>
@@ -145,7 +145,7 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
         <div className="container-page flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
           <div>
             <h2 className="max-w-[26ch] text-white">{dict.campaigns.inviteTitle}</h2>
-            <p className="mt-3 max-w-xl text-[0.92rem] leading-relaxed text-slate-300">{dict.campaigns.note}</p>
+            <p className="mt-3 max-w-xl text-base leading-relaxed text-slate-300">{dict.campaigns.note}</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <ButtonLink href={routes.contact(locale)} variant="signal">
@@ -160,11 +160,11 @@ export default async function CampaignsPage({ params }: { params: Promise<{ loca
 
       <section className="bg-white py-10">
         <div className="container-page">
-          <p className="text-[0.8rem] text-slate-600">
+          <p className="text-small text-slate-600">
             {locale === "fr"
               ? "Vous cherchez une fiche à utiliser pendant une séance ? "
               : "Looking for a guide to use during a session? "}
-            <Link href={routes.resources(locale)} className="link-arrow text-[0.8rem]">
+            <Link href={routes.resources(locale)} className="link-arrow text-small">
               {dict.resources.h1} <ArrowRight size={13} aria-hidden="true" />
             </Link>
           </p>

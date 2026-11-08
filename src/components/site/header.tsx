@@ -80,10 +80,10 @@ export function SiteHeader({
               className="flex min-w-0 items-center gap-2 text-slatex-300 hover:text-white"
             >
               <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 bg-cyanx" />
-              <span className="shrink-0 text-[0.6875rem] font-bold uppercase tracking-[0.16em] text-white">
+              <span className="shrink-0 text-micro font-bold uppercase tracking-[0.16em] text-white">
                 {R(L.latestAlert, locale)}
               </span>
-              <span className="ed-link truncate text-[0.8125rem]">{latestAlert.title}</span>
+              <span className="ed-link truncate text-small">{latestAlert.title}</span>
             </Link>
           ) : (
             <span />
@@ -123,7 +123,7 @@ export function SiteHeader({
                     <Link
                       href={to}
                       aria-current={isActive ? "page" : undefined}
-                      className={`relative py-1 text-[0.875rem] font-medium transition-colors hover:text-white ${
+                      className={`relative py-1 text-base font-medium transition-colors hover:text-white ${
                         isActive ? "text-white" : "text-slatex-300"
                       }`}
                     >
@@ -153,7 +153,7 @@ export function SiteHeader({
               href={`/${locale}/report`}
               variant="signal"
               arrow={false}
-              className="h-10 px-5 text-[0.8125rem]"
+              className="h-10 px-5 text-small"
             >
               {R(L.report, locale)}
             </Btn>

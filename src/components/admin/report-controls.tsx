@@ -40,7 +40,7 @@ export function ReportControls({
           {statusPending ? dict.common.sending : dict.admin.updateStatus}
         </button>
         {statusState.status !== "idle" ? (
-          <p className="mt-2 text-[0.78rem] font-medium text-slate-600" role="status">
+          <p className="mt-2 text-caption font-medium text-slate-600" role="status">
             {statusState.message}
           </p>
         ) : null}
@@ -55,7 +55,7 @@ export function ReportControls({
           {notePending ? dict.common.sending : dict.admin.addNote}
         </button>
         {noteState.status !== "idle" ? (
-          <p className="mt-2 text-[0.78rem] font-medium text-slate-600" role="status">
+          <p className="mt-2 text-caption font-medium text-slate-600" role="status">
             {noteState.message}
           </p>
         ) : null}

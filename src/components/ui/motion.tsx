@@ -101,7 +101,7 @@ export function Accordion({
                 aria-expanded={isOpen}
                 aria-controls={`accordion-panel-${index}`}
                 onClick={() => setOpen(isOpen ? null : index)}
-                className="flex w-full items-center justify-between gap-4 py-4 text-left text-[1rem] font-semibold text-white transition-colors hover:text-cyan-400"
+                className="flex w-full items-center justify-between gap-4 py-4 text-left text-body font-semibold text-white transition-colors hover:text-cyan-400"
               >
                 {item.title}
                 <span
@@ -118,7 +118,7 @@ export function Accordion({
             </h3>
             <div id={`accordion-panel-${index}`} className="accordion-panel" data-open={isOpen} role="region">
               <div className="overflow-hidden">
-                <div className="pb-5 pr-10 text-[0.9375rem] leading-relaxed text-slate-300">{item.body}</div>
+                <div className="pb-5 pr-10 text-body leading-relaxed text-slate-300">{item.body}</div>
               </div>
             </div>
           </div>

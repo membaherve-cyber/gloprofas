@@ -39,8 +39,8 @@ export default async function StyleguidePage({ params }: { params: Promise<{ loc
             ].map(([name, hex]) => (
               <div key={name} className="rounded-sm border border-line-200 p-3">
                 <div className="h-14 w-full rounded-[8px]" style={{ background: hex }} />
-                <p className="mt-2 text-[0.78rem] font-semibold">{name}</p>
-                <p className="text-[0.72rem] text-slate-600">{hex}</p>
+                <p className="mt-2 text-caption font-semibold">{name}</p>
+                <p className="text-micro text-slate-600">{hex}</p>
               </div>
             ))}
           </div>
@@ -55,7 +55,7 @@ export default async function StyleguidePage({ params }: { params: Promise<{ loc
             <h4>Heading 4</h4>
             <p className="lead">Body large — une phrase de démonstration pour vérifier la mesure des lignes.</p>
             <p>Body — GLOPROFAS helps people recognise fraud and know what to do next.</p>
-            <p className="text-[0.875rem] font-medium text-slate-600">Small — 0.875rem, weight 500.</p>
+            <p className="text-base font-medium text-slate-600">Small — 0.875rem, weight 500.</p>
           </div>
         </section>
 

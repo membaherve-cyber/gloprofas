@@ -176,7 +176,7 @@ export default async function ServicesPage({
             >
               <div className="ed-media ed-media-hover aspect-[2/1]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <img width={1600} height={800}
                   src={groupImages[idx]}
                   alt={g.t}
                   loading="lazy"

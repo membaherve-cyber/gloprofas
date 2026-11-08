@@ -61,7 +61,7 @@ export default async function ServiceDetailPage({
           <div>
             <div className="mb-6 overflow-hidden rounded-sm border border-line-200 shadow-e1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <img width={1600} height={900}
                 src="/images/context/team-laptops-office.jpg"
                 alt={name}
                 loading="lazy"
@@ -78,16 +78,16 @@ export default async function ServiceDetailPage({
             <div className="mt-4">
               <CheckList items={pick(locale, service.bulletsEn, service.bulletsFr)} />
             </div>
-            <p className="mt-6 rounded-sm border border-line-200 bg-mist-50 p-4 text-[0.82rem] leading-relaxed text-slate-600">
+            <p className="mt-6 rounded-sm border border-line-200 bg-mist-50 p-4 text-small leading-relaxed text-slate-600">
               {dict.home.services.pricingNote}
             </p>
-            <p className="mt-3 rounded-sm border border-signal-400/50 bg-signal-400/10 p-4 text-[0.82rem] leading-relaxed text-ink-900">
+            <p className="mt-3 rounded-sm border border-signal-400/50 bg-signal-400/10 p-4 text-small leading-relaxed text-ink-900">
               {dict.common.notPolice}
             </p>
           </div>
           <div id="enquiry" className="rounded-none border border-line-200 bg-mist-50 p-5 sm:p-7">
-            <h2 className="text-[1.4rem]">{dict.services.enquiryTitle}</h2>
-            <p className="mt-2 text-[0.88rem] leading-relaxed text-slate-600">{dict.services.enquiryBody}</p>
+            <h2 className="text-[1.375rem]">{dict.services.enquiryTitle}</h2>
+            <p className="mt-2 text-base leading-relaxed text-slate-600">{dict.services.enquiryBody}</p>
             <div className="mt-5">
               <ServiceEnquiryForm locale={locale} dict={dict} serviceSlug={pick(locale, service.slugEn, service.slugFr)} serviceName={name} />
             </div>

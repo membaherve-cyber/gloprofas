@@ -128,13 +128,13 @@ export function ReportWizard({
             <Check size={24} aria-hidden="true" />
           </span>
           <h2 className="mt-5 text-[1.75rem]">{dict.report.confirm.title}</h2>
-          <p className="mt-2 text-[0.95rem] text-slate-600">{dict.report.confirm.body}</p>
+          <p className="mt-2 text-body text-slate-600">{dict.report.confirm.body}</p>
           <div className="mt-5 flex flex-wrap items-center gap-3 rounded-sm border border-line-200 bg-white p-4">
             <div>
-              <p className="text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-slate-600">
+              <p className="text-micro font-semibold uppercase tracking-[0.12em] text-slate-600">
                 {dict.report.confirm.reference}
               </p>
-              <p className="font-[family-name:var(--font-heading)] text-[1.4rem] font-bold tracking-wide text-ink-900">
+              <p className="font-[family-name:var(--font-heading)] text-[1.375rem] font-bold tracking-wide text-ink-900">
                 {confirmation.reference}
               </p>
             </div>
@@ -144,15 +144,15 @@ export function ReportWizard({
 
         <div className="mt-5 grid gap-4 sm:grid-cols-2">
           <div className="rounded-sm border border-line-200 bg-white p-5">
-            <h3 className="text-[1.05rem]">{dict.report.confirm.nextTitle}</h3>
-            <p className="mt-2 text-[0.88rem] leading-relaxed text-slate-600">{dict.report.confirm.nextBody}</p>
+            <h3 className="text-lead">{dict.report.confirm.nextTitle}</h3>
+            <p className="mt-2 text-base leading-relaxed text-slate-600">{dict.report.confirm.nextBody}</p>
           </div>
           <div className="rounded-sm border border-signal-400/50 bg-signal-400/10 p-5">
-            <h3 className="flex items-center gap-2 text-[1.05rem]">
+            <h3 className="flex items-center gap-2 text-lead">
               <ShieldAlert size={18} className="text-risk-high" aria-hidden="true" />
               {dict.report.confirm.safetyTitle}
             </h3>
-            <p className="mt-2 text-[0.88rem] leading-relaxed text-ink-900">{dict.report.confirm.safetyBody}</p>
+            <p className="mt-2 text-base leading-relaxed text-ink-900">{dict.report.confirm.safetyBody}</p>
           </div>
         </div>
 
@@ -179,7 +179,7 @@ export function ReportWizard({
   return (
     <div className="mx-auto max-w-3xl">
       <div className="mb-6">
-        <div className="flex items-center justify-between text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-slate-600">
+        <div className="flex items-center justify-between text-caption font-semibold uppercase tracking-[0.1em] text-slate-600">
           <span>
             {dict.common.page} {step + 1} / {stepNames.length} — {stepNames[step]}
           </span>
@@ -188,7 +188,7 @@ export function ReportWizard({
         <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-line-200">
           <div className="h-full rounded-full bg-blue-600 transition-all duration-300" style={{ width: `${progress}%` }} />
         </div>
-        <ol className="mt-3 hidden flex-wrap gap-x-4 gap-y-1 text-[0.78rem] text-slate-600 sm:flex">
+        <ol className="mt-3 hidden flex-wrap gap-x-4 gap-y-1 text-caption text-slate-600 sm:flex">
           {stepNames.map((name, index) => (
             <li key={name} className={index === step ? "font-semibold text-blue-600" : index < step ? "text-ink-900" : ""}>
               {index + 1}. {name}
@@ -211,7 +211,7 @@ export function ReportWizard({
                 return (
                   <label
                     key={slug}
-                    className={`flex cursor-pointer items-center gap-3 rounded-sm border p-3 text-[0.88rem] font-medium transition-colors ${
+                    className={`flex cursor-pointer items-center gap-3 rounded-sm border p-3 text-base font-medium transition-colors ${
                       active ? "border-blue-600 bg-blue-600/5 text-ink-900" : "border-line-200 text-slate-600 hover:border-blue-600/50"
                     }`}
                   >
@@ -231,7 +231,7 @@ export function ReportWizard({
                 );
               })}
               <label
-                className={`flex cursor-pointer items-center gap-3 rounded-sm border p-3 text-[0.88rem] font-medium transition-colors ${
+                className={`flex cursor-pointer items-center gap-3 rounded-sm border p-3 text-base font-medium transition-colors ${
                   selectedCategory === "not-sure" ? "border-blue-600 bg-blue-600/5" : "border-line-200 text-slate-600"
                 }`}
               >
@@ -318,10 +318,10 @@ export function ReportWizard({
           <fieldset className="mt-5">
             <legend className="label">{dict.report.labels.moneyLost}</legend>
             <div className="flex gap-4">
-              <label className="inline-flex min-h-11 items-center gap-2 text-[0.9rem]">
+              <label className="inline-flex min-h-11 items-center gap-2 text-base">
                 <input type="radio" name="moneyLost" value="yes" checked={moneyLost} onChange={() => setMoneyLost(true)} /> {dict.report.labels.yes}
               </label>
-              <label className="inline-flex min-h-11 items-center gap-2 text-[0.9rem]">
+              <label className="inline-flex min-h-11 items-center gap-2 text-base">
                 <input type="radio" name="moneyLost" value="no" checked={!moneyLost} onChange={() => setMoneyLost(false)} /> {dict.report.labels.no}
               </label>
             </div>
@@ -365,14 +365,14 @@ export function ReportWizard({
               type="file"
               multiple
               accept="image/jpeg,image/png,image/webp,application/pdf"
-              className="mx-auto mt-3 block w-full max-w-sm text-[0.85rem]"
+              className="mx-auto mt-3 block w-full max-w-sm text-small"
               aria-describedby="evidence-help"
             />
             <p id="evidence-help" className="hint">
               {dict.report.labels.evidenceHelp}
             </p>
           </div>
-          <p className="mt-4 rounded-sm border border-line-200 p-4 text-[0.82rem] leading-relaxed text-slate-600">
+          <p className="mt-4 rounded-sm border border-line-200 p-4 text-small leading-relaxed text-slate-600">
             {locale === "fr"
               ? "Vos pièces sont stockées dans un espace privé, hors du site public. Elles ne sont accessibles qu’au personnel autorisé et chaque accès est journalisé."
               : "Evidence is stored in a private area outside the public website. It is accessible only to authorised staff and every access is logged."}
@@ -409,13 +409,13 @@ export function ReportWizard({
         </section>
 
         <section hidden={step !== 4} aria-label={stepNames[4]}>
-          <h2 className="text-[1.3rem]">{dict.report.labels.review}</h2>
-          <p className="mt-2 text-[0.9rem] leading-relaxed text-slate-600">
+          <h2 className="text-[1.375rem]">{dict.report.labels.review}</h2>
+          <p className="mt-2 text-base leading-relaxed text-slate-600">
             {locale === "fr"
               ? "Vérifiez les informations saisies. Vous pouvez revenir en arrière pour modifier n’importe quelle étape avant l’envoi."
               : "Check the information you entered. You can go back and edit any step before submitting."}
           </p>
-          <ul className="mt-4 space-y-2 rounded-sm border border-line-200 bg-mist-50 p-4 text-[0.85rem] text-slate-600">
+          <ul className="mt-4 space-y-2 rounded-sm border border-line-200 bg-mist-50 p-4 text-small text-slate-600">
             <li className="flex justify-between gap-4">
               <span>{dict.report.labels.category}</span>
               <span className="font-semibold text-ink-900">
@@ -435,17 +435,17 @@ export function ReportWizard({
               </span>
             </li>
           </ul>
-          <label htmlFor="consent" className="mt-5 flex min-h-11 cursor-pointer items-start gap-3 text-[0.85rem] leading-relaxed text-slate-600">
+          <label htmlFor="consent" className="mt-5 flex min-h-11 cursor-pointer items-start gap-3 text-small leading-relaxed text-slate-600">
             <input id="consent" name="consent" type="checkbox" required className="mt-1 h-5 w-5" />
             <span>{dict.report.labels.consent}</span>
           </label>
-          <p className="mt-3 rounded-sm border border-signal-400/50 bg-signal-400/10 p-3 text-[0.8rem] font-medium text-ink-900">
+          <p className="mt-3 rounded-sm border border-signal-400/50 bg-signal-400/10 p-3 text-small font-medium text-ink-900">
             {dict.common.notPolice}
           </p>
         </section>
 
         {error ? (
-          <p className="mt-5 flex items-start gap-2 rounded-[10px] border border-risk-critical/40 bg-risk-critical/10 p-3 text-[0.85rem] font-medium text-ink-900" role="alert">
+          <p className="mt-5 flex items-start gap-2 rounded-[10px] border border-risk-critical/40 bg-risk-critical/10 p-3 text-small font-medium text-ink-900" role="alert">
             <AlertCircle size={16} className="mt-0.5 shrink-0 text-risk-critical" aria-hidden="true" /> {error}
           </p>
         ) : null}
@@ -471,7 +471,7 @@ export function ReportWizard({
         </div>
       </form>
 
-      <p className="mt-6 text-center text-[0.78rem] leading-relaxed text-slate-600">
+      <p className="mt-6 text-center text-caption leading-relaxed text-slate-600">
         {locale === "fr"
           ? "En cas de perte financière, contactez immédiatement votre banque ou votre opérateur de monnaie électronique."
           : "If money has been lost, contact your bank or mobile money provider immediately."}

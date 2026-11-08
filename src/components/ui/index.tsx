@@ -133,7 +133,7 @@ export function RiskBadge({
     level === "critical" ? dict.common.critical : level === "high" ? dict.common.high : level === "low" ? dict.common.low : dict.common.medium;
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[0.7rem] font-bold uppercase tracking-[0.08em] text-ink-900 ${style.bg} ${style.border}`}
+      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-micro font-bold uppercase tracking-[0.08em] text-ink-900 ${style.bg} ${style.border}`}
     >
       {style.icon}
       <span>
@@ -176,10 +176,10 @@ export function CategoryTile({
         />
       </div>
       <div>
-        <h3 className={`font-semibold text-ink-900 ${large ? "text-[1.35rem] leading-snug" : "text-[1.0625rem] leading-snug"}`}>
+        <h3 className={`font-semibold text-ink-900 ${large ? "text-[1.375rem] leading-snug" : "text-lead leading-snug"}`}>
           {name}
         </h3>
-        <p className={`mt-2 text-slate-600 ${large ? "text-[0.9375rem] line-clamp-3" : "text-[0.875rem] line-clamp-2"}`}>
+        <p className={`mt-2 text-slate-600 ${large ? "text-body line-clamp-3" : "text-base line-clamp-2"}`}>
           {summary}
         </p>
       </div>
@@ -212,20 +212,20 @@ export function AlertCard({
     <Link href={href} className="card card-hover group flex h-full flex-col overflow-hidden">
       <div className="flex items-center justify-between gap-2 border-b border-line-200 bg-mist-50 px-4 py-3">
         <RiskBadge level={riskLevel} dict={dict} />
-        <span className="inline-flex items-center gap-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-slate-600">
+        <span className="inline-flex items-center gap-1.5 text-micro font-semibold uppercase tracking-[0.08em] text-slate-600">
           <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" aria-hidden="true" />
           {dict.alerts.alertType}
         </span>
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.75rem] font-semibold uppercase tracking-[0.08em] text-slate-600">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-caption font-semibold uppercase tracking-[0.08em] text-slate-600">
           {categoryName ? <span className="text-blue-600">{categoryName}</span> : null}
           <span>{country}</span>
           <span className="font-medium normal-case tracking-normal">{formatDate(publishedAt, locale)}</span>
         </div>
-        <h3 className="text-[1.0625rem] font-semibold leading-snug text-ink-900 group-hover:text-blue-600">{title}</h3>
-        <p className="line-clamp-3 text-[0.9rem] text-slate-600">{summary}</p>
-        <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-[0.8125rem] font-semibold text-blue-600">
+        <h3 className="text-lead font-semibold leading-snug text-ink-900 group-hover:text-blue-600">{title}</h3>
+        <p className="line-clamp-3 text-base text-slate-600">{summary}</p>
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-small font-semibold text-blue-600">
           {dict.common.readMore}
           <ChevronRight size={15} strokeWidth={1.5} aria-hidden="true" />
         </span>
@@ -262,9 +262,9 @@ export function ArticleCard({
           <FileText size={16} strokeWidth={1.6} />
         </span>
       </div>
-      <h3 className="line-clamp-3 text-[1.0625rem] font-semibold leading-snug text-ink-900 group-hover:text-blue-600">{title}</h3>
-      <p className="line-clamp-2 text-[0.9rem] text-slate-600">{excerpt}</p>
-      <div className="mt-auto flex items-center gap-2 pt-2 text-[0.78rem] text-slate-600">
+      <h3 className="line-clamp-3 text-lead font-semibold leading-snug text-ink-900 group-hover:text-blue-600">{title}</h3>
+      <p className="line-clamp-2 text-base text-slate-600">{excerpt}</p>
+      <div className="mt-auto flex items-center gap-2 pt-2 text-caption text-slate-600">
         <span>GLOPROFAS</span>
         <span aria-hidden="true">·</span>
         <time dateTime={date.toISOString()}>{formatDate(date, locale)}</time>
@@ -298,17 +298,17 @@ export function ResourceRow({
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
           <span className="chip border-blue-600/25 text-blue-600">{label}</span>
-          <span className="inline-flex items-center gap-1 text-[0.72rem] font-medium text-slate-600">
+          <span className="inline-flex items-center gap-1 text-micro font-medium text-slate-600">
             <Languages size={12} strokeWidth={1.8} aria-hidden="true" /> {language}
           </span>
           {fileSizeKb ? (
-            <span className="inline-flex items-center gap-1 text-[0.72rem] font-medium text-slate-600">
+            <span className="inline-flex items-center gap-1 text-micro font-medium text-slate-600">
               <Download size={12} strokeWidth={1.8} aria-hidden="true" /> {formatSize(fileSizeKb)}
             </span>
           ) : null}
         </div>
-        <h3 className="mt-2 text-[0.98rem] font-semibold leading-snug text-ink-900 group-hover:text-blue-600">{title}</h3>
-        <p className="mt-1 line-clamp-2 text-[0.85rem] text-slate-600">{description}</p>
+        <h3 className="mt-2 text-body font-semibold leading-snug text-ink-900 group-hover:text-blue-600">{title}</h3>
+        <p className="mt-1 line-clamp-2 text-small text-slate-600">{description}</p>
       </div>
     </div>
   );
@@ -333,14 +333,14 @@ export function NumberedStep({
         </span>
         <span
           aria-hidden="true"
-          className="font-[family-name:var(--font-heading)] text-[2.75rem] font-bold leading-none text-transparent"
+          className="font-[family-name:var(--font-heading)] text-[2.5rem] font-bold leading-none text-transparent"
           style={{ WebkitTextStroke: "1px rgba(255,255,255,0.35)" }}
         >
           {number}
         </span>
       </div>
-      <h3 className="mt-5 text-[1.125rem] font-semibold text-white">{title}</h3>
-      <p className="mt-2 text-[0.9rem] leading-relaxed text-slate-300">{body}</p>
+      <h3 className="mt-5 text-lead font-semibold text-white">{title}</h3>
+      <p className="mt-2 text-base leading-relaxed text-slate-300">{body}</p>
       <span aria-hidden="true" className="mt-auto pt-4">
         <span className="block h-px w-full bg-gradient-to-r from-cyan-400/50 to-transparent" />
       </span>
@@ -356,7 +356,7 @@ export function Marquee({ items }: { items: string[] }) {
         {track.map((item, index) => (
           <span
             key={`${item}-${index}`}
-            className="inline-flex items-center gap-3 whitespace-nowrap font-[family-name:var(--font-heading)] text-[0.95rem] font-medium text-slate-300"
+            className="inline-flex items-center gap-3 whitespace-nowrap font-[family-name:var(--font-heading)] text-body font-medium text-slate-300"
             aria-hidden={index >= items.length}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-cyan-400" aria-hidden="true" />
@@ -375,7 +375,7 @@ export function Breadcrumbs({
 }) {
   return (
     <nav aria-label="Breadcrumb" className="mb-6">
-      <ol className="flex flex-wrap items-center gap-1.5 text-[0.8125rem] text-slate-600">
+      <ol className="flex flex-wrap items-center gap-1.5 text-small text-slate-600">
         {items.map((item, index) => (
           <li key={`${item.label}-${index}`} className="flex items-center gap-1.5">
             {item.href ? (
@@ -411,7 +411,7 @@ export function CheckList({ items, dark = false }: { items: string[]; dark?: boo
           <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[color-mix(in_srgb,var(--color-blue-600)_12%,white)] text-blue-600">
             <CheckCircle2 size={14} strokeWidth={1.5} aria-hidden="true" />
           </span>
-          <span className={`text-[0.9375rem] ${dark ? "text-slate-300" : "text-slate-600"}`}>{item}</span>
+          <span className={`text-body ${dark ? "text-slate-300" : "text-slate-600"}`}>{item}</span>
         </li>
       ))}
     </ul>

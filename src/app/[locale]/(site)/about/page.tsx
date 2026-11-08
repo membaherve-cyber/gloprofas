@@ -106,7 +106,7 @@ export default async function AboutPage({
       <section className="section-y bg-white">
         <div className="container-g grid items-center gap-14 lg:grid-cols-2">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <img width={1600} height={900}
             src="/images/zite/img_rV5DNdwu0nwwIUqR.jpg"
             alt=""
             loading="lazy"
@@ -162,7 +162,7 @@ export default async function AboutPage({
               <Reveal key={label} delay={idx * 60}>
                 <figure className="bg-white">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <img width={1600} height={900}
                     src={src}
                     alt={label}
                     loading="lazy"

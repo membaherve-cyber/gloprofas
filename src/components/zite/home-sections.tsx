@@ -71,7 +71,7 @@ function Masthead({
       </span>
       <span
         aria-hidden="true"
-        className={`hidden font-mono text-[0.625rem] uppercase tracking-[0.2em] sm:block ${
+        className={`hidden font-mono text-micro uppercase tracking-[0.2em] sm:block ${
           dark ? "text-white/30" : "text-slate-600/50"
         }`}
       >
@@ -91,7 +91,7 @@ function Technique({ title, body }: { title: string; body: string }) {
         aria-expanded={open}
         className="flex w-full items-center justify-between gap-4 py-4 text-left"
       >
-        <span className="font-[family-name:var(--font-heading)] text-[0.9375rem] font-medium text-white">
+        <span className="font-[family-name:var(--font-heading)] text-body font-medium text-white">
           {title}
         </span>
         <ChevronDown
@@ -336,7 +336,7 @@ export function ZiteHomeView({
                 <article>
                   <div className="ed-media ed-media-hover aspect-[16/10]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <img width={1600} height={1000}
                       src={PILLAR_IMAGES[leadPillar.id]}
                       alt={leadPillar.title}
                       loading="lazy"
@@ -346,7 +346,7 @@ export function ZiteHomeView({
                     <span className="ed-num pt-1 text-2xl">01</span>
                     <div>
                       <h3 className="h3 text-ink">{leadPillar.title}</h3>
-                      <p className="mt-3 max-w-[54ch] text-[0.9375rem] leading-relaxed text-slatex-600">
+                      <p className="mt-3 max-w-[54ch] text-body leading-relaxed text-slatex-600">
                         {leadPillar.description}
                       </p>
                       <ul className="mt-5 space-y-2">
@@ -398,7 +398,7 @@ export function ZiteHomeView({
                         </p>
                         <Link
                           href={l(pillar.href)}
-                          className="ed-link ml-9 mt-3.5 inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-brand-600"
+                          className="ed-link ml-9 mt-3.5 inline-flex items-center gap-1.5 text-small font-semibold text-brand-600"
                         >
                           {pillar.cta}
                           <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
@@ -421,7 +421,7 @@ export function ZiteHomeView({
             <Reveal className="lg:col-span-5">
               <div className="ed-media ed-media-hover aspect-[4/5]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <img width={1000} height={1250}
                   src="/images/context/lagos-lecture-hall.jpg"
                   alt={fr ? "Séminaire de sensibilisation" : "Awareness seminar"}
                   loading="lazy"
@@ -446,7 +446,7 @@ export function ZiteHomeView({
                       <span className="ed-num text-xs">
                         {String(idx + 1).padStart(2, "0")}
                       </span>
-                      <span className="text-[0.9375rem] font-medium text-ink">
+                      <span className="text-body font-medium text-ink">
                         {R(pt, lang)}
                       </span>
                     </div>
@@ -493,7 +493,7 @@ export function ZiteHomeView({
                 <Link href={l(`/scams/${featuredCats[0].slug}`)} className="group block">
                   <div className="ed-media ed-media-hover aspect-[4/5]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <img width={1000} height={1250}
                       src={featuredCats[0].imageUrl}
                       alt={R(featuredCats[0].title, lang)}
                       loading="lazy"
@@ -525,7 +525,7 @@ export function ZiteHomeView({
                       href={l(`/scams/${cat.slug}`)}
                       className="group flex items-start gap-3 border-b border-line py-3.5 transition-colors hover:border-brand-600"
                     >
-                      <span className="ed-num pt-0.5 text-[0.6875rem]">
+                      <span className="ed-num pt-0.5 text-micro">
                         {String(idx + 2).padStart(2, "0")}
                       </span>
                       <Icon
@@ -533,7 +533,7 @@ export function ZiteHomeView({
                         className="mt-0.5 h-4 w-4 shrink-0 text-slatex-600 transition-colors group-hover:text-brand-600"
                         strokeWidth={1.5}
                       />
-                      <span className="text-[0.875rem] font-medium leading-snug text-ink">
+                      <span className="text-base font-medium leading-snug text-ink">
                         {R(cat.title, lang)}
                       </span>
                     </Link>
@@ -567,7 +567,7 @@ export function ZiteHomeView({
               <li key={idx} className="bg-navy-950 p-6">
                 <div className="ed-media aspect-[3/2]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={HOW_STEP_IMAGES[idx]} alt="" loading="lazy" />
+                  <img width={1500} height={1000} src={HOW_STEP_IMAGES[idx]} alt="" loading="lazy" />
                 </div>
                 <span className="ed-num mt-5 block text-3xl text-cyanx">
                   {String(idx + 1).padStart(2, "0")}
@@ -575,7 +575,7 @@ export function ZiteHomeView({
                 <h3 className="mt-2 font-[family-name:var(--font-heading)] text-base font-semibold text-white">
                   {R(step.t, lang)}
                 </h3>
-                <p className="mt-2 text-[0.8125rem] leading-relaxed text-slatex-300">
+                <p className="mt-2 text-small leading-relaxed text-slatex-300">
                   {R(step.d, lang)}
                 </p>
               </li>
@@ -634,7 +634,7 @@ export function ZiteHomeView({
               />
               <div className="ed-media ed-media-hover mt-8 aspect-[16/9]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/images/market-cash.jpg" alt="" loading="lazy" />
+                <img width={1600} height={900} src="/images/market-cash.jpg" alt="" loading="lazy" />
               </div>
               <div className="mt-6 flex gap-3 border-l-2 border-signal bg-signal/[0.07] p-4">
                 <Info
@@ -642,7 +642,7 @@ export function ZiteHomeView({
                   className="mt-0.5 h-4 w-4 shrink-0 text-ink"
                   strokeWidth={1.5}
                 />
-                <p className="text-[0.8125rem] leading-relaxed text-ink">
+                <p className="text-small leading-relaxed text-ink">
                   {R(L.reportSec.note, lang)}
                 </p>
               </div>
@@ -663,10 +663,10 @@ export function ZiteHomeView({
                         {String(idx + 1).padStart(2, "0")}
                       </span>
                       <div>
-                        <h3 className="font-[family-name:var(--font-heading)] text-[0.9375rem] font-semibold text-white">
+                        <h3 className="font-[family-name:var(--font-heading)] text-body font-semibold text-white">
                           {R(step.t, lang)}
                         </h3>
-                        <p className="mt-1 text-[0.8125rem] leading-relaxed text-slatex-300">
+                        <p className="mt-1 text-small leading-relaxed text-slatex-300">
                           {R(step.d, lang)}
                         </p>
                       </div>
@@ -677,7 +677,7 @@ export function ZiteHomeView({
                   <Btn href={l("/report")} variant="signal" className="w-full sm:w-auto">
                     {R(L.report, lang)}
                   </Btn>
-                  <p className="mt-4 text-[0.75rem] leading-relaxed text-white/45">
+                  <p className="mt-4 text-caption leading-relaxed text-white/45">
                     {fr
                       ? "Aucun mot de passe, code PIN ou code à usage unique n’est jamais demandé."
                       : "We never ask for passwords, PINs or one-time codes."}
@@ -700,20 +700,20 @@ export function ZiteHomeView({
                 <article>
                   <div className="ed-media ed-media-hover aspect-[16/9]">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={featuredRes.imageUrl} alt="" loading="lazy" />
+                    <img width={1600} height={900} src={featuredRes.imageUrl} alt="" loading="lazy" />
                   </div>
                   <div className="mt-5 flex flex-wrap items-center gap-3">
-                    <span className="border-l-2 border-brand-600 pl-2 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-brand-600">
+                    <span className="border-l-2 border-brand-600 pl-2 text-micro font-bold uppercase tracking-[0.14em] text-brand-600">
                       {R(L.res.featured, lang)}
                     </span>
-                    <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                    <span className="text-micro uppercase tracking-[0.14em] text-slatex-600">
                       {featuredRes.type} · {featuredRes.language}
                     </span>
                   </div>
                   <h3 className="h3 mt-3 max-w-[26ch] text-ink">
                     {R(featuredRes.title, lang)}
                   </h3>
-                  <p className="mt-3 max-w-[56ch] text-[0.9375rem] leading-relaxed text-slatex-600">
+                  <p className="mt-3 max-w-[56ch] text-body leading-relaxed text-slatex-600">
                     {R(featuredRes.description, lang)}
                   </p>
                 </article>
@@ -727,10 +727,10 @@ export function ZiteHomeView({
                       href={l("/resources")}
                       className="ed-item group"
                     >
-                      <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                      <span className="text-micro font-bold uppercase tracking-[0.16em] text-brand-600">
                         {res.type} · {res.language}
                       </span>
-                      <h4 className="mt-1.5 font-[family-name:var(--font-heading)] text-[0.9375rem] font-medium leading-snug text-ink">
+                      <h4 className="mt-1.5 font-[family-name:var(--font-heading)] text-body font-medium leading-snug text-ink">
                         <span className="ed-link">{R(res.title, lang)}</span>
                       </h4>
                     </Link>
@@ -758,14 +758,14 @@ export function ZiteHomeView({
             <article className="bg-white">
               <div className="ed-media ed-media-hover aspect-[2/1]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <img width={1600} height={800}
                   src="/images/context/lagos-lecture-hall.jpg"
                   alt={R(L.services.freeTitle, lang)}
                   loading="lazy"
                 />
               </div>
               <div className="p-7 sm:p-9">
-                <span className="border-l-2 border-risk-low pl-2 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-risk-low">
+                <span className="border-l-2 border-risk-low pl-2 text-micro font-bold uppercase tracking-[0.14em] text-risk-low">
                   {R(L.services.freeTag, lang)}
                 </span>
                 <h3 className="h3 mt-3 text-ink">{R(L.services.freeTitle, lang)}</h3>
@@ -794,14 +794,14 @@ export function ZiteHomeView({
             <article className="on-dark bg-navy-950">
               <div className="ed-media ed-media-hover aspect-[2/1]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <img width={1600} height={800}
                   src="/images/context/team-laptops-office.jpg"
                   alt={R(L.services.paidTitle, lang)}
                   loading="lazy"
                 />
               </div>
               <div className="p-7 sm:p-9">
-                <span className="border-l-2 border-signal pl-2 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-signal">
+                <span className="border-l-2 border-signal pl-2 text-micro font-bold uppercase tracking-[0.14em] text-signal">
                   {R(L.services.paidTag, lang)}
                 </span>
                 <h3 className="h3 mt-3 text-white">{R(L.services.paidTitle, lang)}</h3>
@@ -854,18 +854,18 @@ export function ZiteHomeView({
                   <Link href={l(`/alerts/${leadAlert.id}`)} className="group block">
                     <div className="ed-media ed-media-hover aspect-[16/10]">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={leadAlert.imageUrl} alt="" loading="lazy" />
+                      <img width={1600} height={1000} src={leadAlert.imageUrl} alt="" loading="lazy" />
                     </div>
                     <div className="mt-5 flex flex-wrap items-center gap-3">
                       <ZiteRiskBadge level={leadAlert.risk} lang={lang} />
-                      <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                      <span className="text-micro uppercase tracking-[0.14em] text-slatex-600">
                         {leadAlert.country} · {formatZiteDate(leadAlert.date, lang)}
                       </span>
                     </div>
                     <h3 className="h3 mt-3 max-w-[28ch] text-ink">
                       <span className="ed-link">{R(leadAlert.title, lang)}</span>
                     </h3>
-                    <p className="mt-3 max-w-[54ch] text-[0.9375rem] leading-relaxed text-slatex-600">
+                    <p className="mt-3 max-w-[54ch] text-body leading-relaxed text-slatex-600">
                       {R(leadAlert.summary, lang)}
                     </p>
                   </Link>
@@ -878,7 +878,7 @@ export function ZiteHomeView({
                     <Link key={a.id} href={l(`/alerts/${a.id}`)} className="ed-item group">
                       <div className="flex flex-wrap items-center gap-3">
                         <ZiteRiskBadge level={a.risk} lang={lang} />
-                        <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                        <span className="text-micro uppercase tracking-[0.14em] text-slatex-600">
                           {a.country} · {formatZiteDate(a.date, lang)}
                         </span>
                       </div>
@@ -904,16 +904,16 @@ export function ZiteHomeView({
                         >
                           <div className="ed-media h-16 w-24 shrink-0">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={art.imageUrl} alt="" loading="lazy" />
+                            <img width={1600} height={900} src={art.imageUrl} alt="" loading="lazy" />
                           </div>
                           <div className="min-w-0">
-                            <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                            <span className="text-micro font-bold uppercase tracking-[0.16em] text-brand-600">
                               {R(art.tag, lang)}
                             </span>
-                            <h4 className="mt-1 font-[family-name:var(--font-heading)] text-[0.875rem] font-medium leading-snug text-ink">
+                            <h4 className="mt-1 font-[family-name:var(--font-heading)] text-base font-medium leading-snug text-ink">
                               <span className="ed-link">{R(art.title, lang)}</span>
                             </h4>
-                            <span className="mt-1 block text-[0.75rem] text-slatex-600">
+                            <span className="mt-1 block text-caption text-slatex-600">
                               {formatZiteDate(art.date, lang)}
                             </span>
                           </div>
@@ -951,18 +951,18 @@ export function ZiteHomeView({
               <article>
                 <div className="ed-media ed-media-hover aspect-[16/9]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={cases[0].image} alt={cases[0].title} loading="lazy" />
+                  <img width={1600} height={900} src={cases[0].image} alt={cases[0].title} loading="lazy" />
                 </div>
                 <div className="mt-5 flex flex-wrap items-center gap-3">
-                  <span className="border-l-2 border-brand-600 pl-2 text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-brand-600">
+                  <span className="border-l-2 border-brand-600 pl-2 text-micro font-bold uppercase tracking-[0.14em] text-brand-600">
                     {cases[0].scope}
                   </span>
-                  <span className="text-[0.6875rem] uppercase tracking-[0.14em] text-slatex-600">
+                  <span className="text-micro uppercase tracking-[0.14em] text-slatex-600">
                     {cases[0].category}
                   </span>
                 </div>
                 <h3 className="h3 mt-3 max-w-[30ch] text-ink">{cases[0].title}</h3>
-                <p className="mt-3 max-w-[58ch] text-[0.9375rem] leading-relaxed text-slatex-600">
+                <p className="mt-3 max-w-[58ch] text-body leading-relaxed text-slatex-600">
                   {cases[0].body}
                 </p>
                 <div className="mt-5 border-l-2 border-signal bg-signal/[0.07] p-4">
@@ -985,12 +985,12 @@ export function ZiteHomeView({
               <div className="ed-list">
                 {cases.slice(1).map((cs) => (
                   <article key={cs.title} className="ed-item">
-                    <span className="text-[0.625rem] font-bold uppercase tracking-[0.16em] text-brand-600">
+                    <span className="text-micro font-bold uppercase tracking-[0.16em] text-brand-600">
                       {cs.scope} · {cs.category}
                     </span>
                     <h4 className="h4 mt-2 text-ink">{cs.title}</h4>
                     <p className="mt-2 text-sm leading-relaxed text-slatex-600">{cs.body}</p>
-                    <p className="mt-3 border-t border-line pt-3 text-[0.8125rem] leading-relaxed text-ink">
+                    <p className="mt-3 border-t border-line pt-3 text-small leading-relaxed text-ink">
                       <strong className="font-semibold">
                         {fr ? "Leçon : " : "Takeaway: "}
                       </strong>
@@ -998,7 +998,7 @@ export function ZiteHomeView({
                     </p>
                     <Link
                       href={l(cs.href)}
-                      className="ed-link mt-3 inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-brand-600"
+                      className="ed-link mt-3 inline-flex items-center gap-1.5 text-small font-semibold text-brand-600"
                     >
                       {fr ? "Guide de prévention" : "Prevention guide"}
                       <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
@@ -1024,7 +1024,7 @@ export function ZiteHomeView({
                 <p className="ed-label text-signal">
                   {fr ? "Vous avez été touché ?" : "Already affected?"}
                 </p>
-                <p className="mt-3 text-[0.9375rem] leading-relaxed text-slatex-300">
+                <p className="mt-3 text-body leading-relaxed text-slatex-300">
                   {fr
                     ? "Signalez un numéro, un SMS ou une demande de paiement suspecte. Aucun compte requis, réponse de référence immédiate."
                     : "Report a suspicious number, SMS or payment request. No account needed, immediate reference issued."}
@@ -1091,7 +1091,7 @@ export function ZiteHomeView({
                           aria-invalid={Boolean(nlErrors[f.key])}
                         />
                         {nlErrors[f.key] ? (
-                          <p className="mt-1.5 flex items-center gap-1.5 text-[0.75rem] text-signal">
+                          <p className="mt-1.5 flex items-center gap-1.5 text-caption text-signal">
                             <AlertCircle className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
                             {nlErrors[f.key]}
                           </p>
@@ -1114,7 +1114,7 @@ export function ZiteHomeView({
                     </div>
                   </div>
 
-                  <label className="mt-7 flex items-start gap-3 border-t border-white/15 pt-6 text-[0.8125rem] leading-relaxed text-slatex-300">
+                  <label className="mt-7 flex items-start gap-3 border-t border-white/15 pt-6 text-small leading-relaxed text-slatex-300">
                     <input
                       type="checkbox"
                       checked={nlState.consent}
@@ -1124,7 +1124,7 @@ export function ZiteHomeView({
                     <span>
                       {R(L.nl.consent, lang)}
                       {nlErrors.consent ? (
-                        <span className="mt-1.5 flex items-center gap-1.5 text-[0.75rem] text-signal">
+                        <span className="mt-1.5 flex items-center gap-1.5 text-caption text-signal">
                           <AlertCircle className="h-3.5 w-3.5" strokeWidth={1.5} aria-hidden="true" />
                           {nlErrors.consent}
                         </span>
@@ -1143,7 +1143,7 @@ export function ZiteHomeView({
                       ) : null}
                       {R(L.nl.submit, lang)}
                     </button>
-                    <span className="text-[0.75rem] text-white/40">
+                    <span className="text-caption text-white/40">
                       {fr
                         ? "Vos données ne sont jamais vendues."
                         : "We never sell or share your email."}
