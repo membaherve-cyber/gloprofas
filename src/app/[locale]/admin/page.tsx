@@ -20,7 +20,6 @@ import { getDictionary, isLocale, pick, routes, type Locale } from "@/lib/i18n";
 import { formatDate } from "@/lib/format";
 import { RiskBadge } from "@/components/ui";
 import {
-  GitHubPushPanel,
   InlineReportStatusForm,
   OrganisationSettingsForm,
   QuickPublishAlertForm,
@@ -181,9 +180,6 @@ export default async function AdminDashboardPage({
           </div>
         </div>
       </section>
-
-      {/* 1-Click GitHub Push to membaherve-cyber/gloprofas */}
-      <GitHubPushPanel locale={locale} />
 
       {/* 12 Live KPI Cards */}
       <section aria-label="Key metrics">
@@ -450,8 +446,6 @@ export default async function AdminDashboardPage({
               assistantEnabled: siteSettings.assistant.enabled,
             }}
           />
-
-          <GitHubPushPanel locale={locale} />
 
           <div className="overflow-hidden rounded-sm border border-line-200 bg-white">
             <div className="border-b border-line-200 px-5 py-4">

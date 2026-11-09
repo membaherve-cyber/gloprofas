@@ -2,7 +2,6 @@
 
 Official bilingual (`EN` / `FR`) web application and administration backoffice for **GLOPROFAS** (*Global Programme for the Fight Against Scams* / *Programme mondial de lutte contre les arnaques*).
 
-- **GitHub Account**: [https://github.com/membaherve-cyber](https://github.com/membaherve-cyber)
 - **Stack**: Next.js 16 (App Router, TypeScript), Tailwind CSS, Drizzle ORM, PostgreSQL / MySQL-compatible schema, Zod, Nodemailer, and the Jarvis AI Assistant.
 
 ---
@@ -19,7 +18,7 @@ Official bilingual (`EN` / `FR`) web application and administration backoffice f
   - **Resource Centre (`/resources`)**, **Professional Services (`/services`)**, **News & Publications (`/news`)**, **Get Involved (`/get-involved`)**, and **Contact (`/contact`)**.
 - **Administration Backoffice (`/[locale]/admin`)**:
   - Database-backed sessions, rate-limited login, and audit logging.
-  - Live KPI dashboard, inline scam report status management, quick bilingual alert & article publishing, organisation settings, and **1-click GitHub Push to `membaherve-cyber`**.
+  - Live KPI dashboard, inline scam report status management, quick bilingual alert & article publishing, organisation settings,.
 
 ---
 
@@ -49,15 +48,13 @@ Official bilingual (`EN` / `FR`) web application and administration backoffice f
 
 ---
 
-## Pushing to GitHub (`https://github.com/membaherve-cyber`)
+## Source control
 
-### Option 1 — Directly from the Admin Backoffice UI
-1. Sign in at `/en/admin/login` using `hervememba2@gmail.com` or `ngwam2002@yahoo.com`.
-2. Scroll to the **GitHub Repository Sync (`membaherve-cyber`)** card on the Admin Dashboard.
-3. Paste a GitHub Personal Access Token (with `repo` scope) and click **Push to GitHub** — the application will create `membaherve-cyber/gloprofas` (if it does not yet exist) and push the `main` branch automatically.
+The project is mirrored to a private Git remote. Tokens are never stored in the
+application or shown in the backoffice; pushes are performed by an operator from
+the command line with their own credentials.
 
-### Option 2 — From the Command Line
 ```bash
-git remote set-url origin https://github.com/membaherve-cyber/gloprofas.git
-git push -u origin main
+git push origin main
 ```
+

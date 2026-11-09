@@ -4,7 +4,6 @@ import { ArrowLeft } from "lucide-react";
 import { getDictionary, isLocale, routes, type Locale } from "@/lib/i18n";
 import { getCurrentUser } from "@/lib/auth";
 import { AdminLoginForm } from "@/components/admin/login-form";
-import { GitHubPushPanel } from "@/components/admin/dashboard-managers";
 export const metadata = {
   title: "Staff login",
   robots: { index: false, follow: false, nocache: true },
@@ -32,7 +31,6 @@ export default async function AdminLoginPage({
             : "Return to website frontpage"}
         </Link>
       </div>
-      <GitHubPushPanel locale={locale} />
       <AdminLoginForm locale={locale} dict={dict} />
     </div>
   );
