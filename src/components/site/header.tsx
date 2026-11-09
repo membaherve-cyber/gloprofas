@@ -149,14 +149,6 @@ export function SiteHeader({
               <LogIn className="h-4 w-4" strokeWidth={1.5} aria-hidden="true" />
               {locale === "fr" ? "Connexion" : "Log in"}
             </Link>
-            <Btn
-              href={`/${locale}/report`}
-              variant="signal"
-              arrow={false}
-              className="h-10 px-5 text-small"
-            >
-              {R(L.report, locale)}
-            </Btn>
             <button
               type="button"
               onClick={() => setMenuOpen(!menuOpen)}

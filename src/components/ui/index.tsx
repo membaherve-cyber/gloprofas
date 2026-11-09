@@ -40,11 +40,10 @@ export function ButtonLink({
 } & Omit<React.ComponentProps<typeof Link>, "href" | "children" | "className">) {
   return (
     <Link href={href} className={`${buttonClass(variant, size)} ${className}`} {...rest}>
-      <span className="text-roll" aria-hidden="true">
+      <span className="text-roll">
         <span>{children}</span>
-        <span className="absolute left-0 top-full">{children}</span>
+        <span aria-hidden="true">{children}</span>
       </span>
-      <span className="sr-only">{children}</span>
       {arrow ? <ArrowRight size={17} strokeWidth={1.5} aria-hidden="true" /> : null}
     </Link>
   );
