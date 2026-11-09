@@ -2,9 +2,14 @@ import { NextResponse, type NextRequest } from "next/server";
 
 const locales = ["en", "fr"];
 
-function detectLocale(request: NextRequest): string {
-  const header = request.headers.get("accept-language") ?? "";
-  return header.toLowerCase().includes("fr") ? "fr" : "en";
+/**
+ * English is the primary language of the site.
+ * Unprefixed URLs always resolve to /en. French is reached explicitly
+ * via /fr or the in-page language switcher — never inferred from
+ * the browser's Accept-Language header.
+ */
+function detectLocale(_request: NextRequest): string {
+  return "en";
 }
 
 export function proxy(request: NextRequest) {
