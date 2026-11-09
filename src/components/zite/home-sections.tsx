@@ -253,14 +253,9 @@ export function ZiteHomeView({
               <h1 className="h1 mt-5 max-w-[18ch] text-white">{heroC11.title}</h1>
             </Reveal>
             <Reveal delay={160}>
-              <p className="mt-6 max-w-[52ch] border-l-2 border-cyanx pl-4 text-base font-medium leading-relaxed text-white/90">
-                {heroC11.valueProposition}
-              </p>
+              <p className="ed-deck mt-6">{heroC11.lead}</p>
             </Reveal>
-            <Reveal delay={220}>
-              <p className="ed-deck mt-5">{heroC11.lead}</p>
-            </Reveal>
-            <Reveal delay={280} className="mt-9 flex flex-wrap gap-3">
+            <Reveal delay={220} className="mt-9 flex flex-wrap gap-3">
               <Btn href={l("/report")} variant="signal">
                 {heroC11.reportCta}
               </Btn>

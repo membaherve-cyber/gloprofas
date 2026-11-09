@@ -150,7 +150,7 @@ export default async function ArticlePage({
             ) : null}
 
             <div
-              className="mt-8 space-y-5 text-lead text-slatex-600"
+              className="mt-8 space-y-6 text-body leading-[var(--text-body--line-height)] text-slatex-600"
               style={{ maxWidth: "68ch" }}
             >
               {R(article.body, locale)

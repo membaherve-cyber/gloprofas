@@ -25,7 +25,7 @@ export async function generateMetadata({
     locale,
     path: "",
     title: msg.meta.title,
-    description: msg.home.heroC11.valueProposition,
+    description: msg.home.heroC11.lead,
   });
 }
 

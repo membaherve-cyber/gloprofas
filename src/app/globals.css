@@ -265,11 +265,12 @@
   }
 
   .prose-gloprofas > * + * {
-    margin-top: 1.1rem;
+    margin-top: 1.5rem;
   }
 
   .prose-gloprofas p,
   .prose-gloprofas li {
+    line-height: var(--text-body--line-height);
     max-width: 68ch;
   }
 
@@ -580,25 +581,34 @@
     animation-play-state: paused;
   }
 
+  /* Button label roll: two spans stacked in one grid cell; the
+     duplicate is offset below the clip line so only one renders.
+     Root cause of "doubled text": this was inline-flex, which put
+     both spans side by side with nothing clipping them. */
   .text-roll {
-    display: inline-flex;
+    display: inline-grid;
     overflow: hidden;
-    position: relative;
-    height: 1.15em;
-    align-items: center;
+    height: 1.25em;
+    line-height: 1.25;
   }
 
   .text-roll span {
-    display: block;
-    transition: transform 200ms var(--ease-standard);
+    grid-area: 1 / 1;
+    transition: transform var(--duration-fast) var(--ease-standard);
   }
 
-  .btn:hover .text-roll span:first-child {
-    transform: translateY(-130%);
+  .text-roll span:last-child {
+    transform: translateY(115%);
   }
 
-  .btn:hover .text-roll span:last-child {
-    transform: translateY(-130%);
+  .btn:hover .text-roll span:first-child,
+  .btn:focus-visible .text-roll span:first-child {
+    transform: translateY(-115%);
+  }
+
+  .btn:hover .text-roll span:last-child,
+  .btn:focus-visible .text-roll span:last-child {
+    transform: translateY(0);
   }
 
   .floating-chip {
@@ -942,6 +952,10 @@ select.ed-field option { color: #0b1220; }
 .section { padding-block: clamp(4rem, 2.5rem + 5vw, 6.5rem); }
 
 @media (prefers-reduced-motion: reduce) {
+  .text-roll span { transition: none; }
+  .btn:hover .text-roll span:first-child,
+  .btn:focus-visible .text-roll span:first-child { transform: none; }
+  .text-roll span:last-child { transform: translateY(115%); }
   .ed-media > img { transition: none; }
   .ed-link { transition: none; }
   .ed-item { transition: none; }
