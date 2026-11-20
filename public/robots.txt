@@ -1,0 +1,19 @@
+# GLOPROFAS — robots.txt
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: *
+Allow: /
+
+# Admin backoffice is addressed through the hash fragment (#/admin),
+# which crawlers do not request separately; the root route is always public.
+Sitemap: https://gloprofas.org/sitemap.xml

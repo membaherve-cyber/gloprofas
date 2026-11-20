@@ -1,0 +1,686 @@
+     1→"use client";
+     2→
+     3→import { useRef, useState } from "react";
+     4→import {
+     5→  AlertCircle,
+     6→  Check,
+     7→  Copy,
+     8→  FileText,
+     9→  LoaderCircle,
+    10→  Paperclip,
+    11→  ShieldAlert,
+    12→  X,
+    13→} from "lucide-react";
+    14→import { Btn, PageHero } from "@/components/zite/shared";
+    15→import { getCategoryIcon, L, R } from "@/components/zite/copy";
+    16→import { formatAerialBadge, PAGE_AERIAL_HEROES } from "@/lib/african-cities";
+    17→import { ZITE_CONTENT, type ZiteCategory } from "@/lib/zite-data";
+    18→import type { Locale } from "@/lib/i18n";
+    19→
+    20→const CHANNELS = [
+    21→  ["SMS", "SMS"],
+    22→  ["Phone call", "Appel téléphonique"],
+    23→  ["WhatsApp / messaging", "WhatsApp / messagerie"],
+    24→  ["Social media", "Réseaux sociaux"],
+    25→  ["Email", "Courriel"],
+    26→  ["Website or app", "Site ou application"],
+    27→  ["In person", "En personne"],
+    28→  ["Other", "Autre"],
+    29→] as const;
+    30→
+    31→const fieldCls =
+    32→  "h-12 w-full rounded-sm border border-line bg-white px-4 text-ink placeholder:text-slatex-600/60 focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20";
+    33→const labelCls = "mb-2 block text-sm font-semibold text-ink";
+    34→
+    35→function YesNo({
+    36→  value,
+    37→  onChange,
+    38→  label,
+    39→  fr,
+    40→}: {
+    41→  value: boolean;
+    42→  onChange: (val: boolean) => void;
+    43→  label: string;
+    44→  fr: boolean;
+    45→}) {
+    46→  return (
+    47→    <fieldset>
+    48→      <legend className={labelCls}>{label}</legend>
+    49→      <div className="flex gap-2">
+    50→        {[true, false].map((opt) => (
+    51→          <button
+    52→            key={String(opt)}
+    53→            type="button"
+    54→            onClick={() => onChange(opt)}
+    55→            aria-pressed={value === opt}
+    56→            className={`h-12 flex-1 rounded-sm border font-semibold ${
+    57→              value === opt
+    58→                ? "border-brand-600 bg-brand-600/10 text-brand-600"
+    59→                : "border-line text-ink"
+    60→            }`}
+    61→          >
+    62→            {opt ? (fr ? "Oui" : "Yes") : fr ? "Non" : "No"}
+    63→          </button>
+    64→        ))}
+    65→      </div>
+    66→    </fieldset>
+    67→  );
+    68→}
+    69→
+    70→export function ZiteReportView({ locale }: { locale: Locale }) {
+    71→  const fr = locale === "fr";
+    72→  const l = (path = "") => `/${locale}${path}`;
+    73→  const categories = ZITE_CONTENT.categories as unknown as ZiteCategory[];
+    74→  const steps = fr
+    75→    ? ["Ce qui s’est passé", "Détails", "Vous", "Vérification"]
+    76→    : ["What happened", "Details", "About you", "Review"];
+    77→
+    78→  const [step, setStep] = useState(0);
+    79→  const [form, setForm] = useState({
+    80→    category: "",
+    81→    description: "",
+    82→    incidentDate: "",
+    83→    channel: "",
+    84→    country: "",
+    85→    suspiciousContact: "",
+    86→    moneyLost: false,
+    87→    amount: "",
+    88→    ongoing: false,
+    89→    name: "",
+    90→    email: "",
+    91→    consent: false,
+    92→    website: "",
+    93→  });
+    94→  const [files, setFiles] = useState<File[]>([]);
+    95→  const [errors, setErrors] = useState<Record<string, string>>({});
+    96→  const [submitting, setSubmitting] = useState(false);
+    97→  const [reference, setReference] = useState("");
+    98→  const [copied, setCopied] = useState(false);
+    99→  const fileInputRef = useRef<HTMLInputElement>(null);
+   100→
+   101→  const reqMsg = fr ? "Ce champ est obligatoire." : "This field is required.";
+   102→
+   103→  function setField<K extends keyof typeof form>(key: K, val: (typeof form)[K]) {
+   104→    setForm((prev) => ({ ...prev, [key]: val }));
+   105→  }
+   106→
+   107→  function validateStep(idx: number): boolean {
+   108→    const errs: Record<string, string> = {};
+   109→    if (idx === 0) {
+   110→      if (!form.category) errs.category = reqMsg;
+   111→      if (form.description.trim().length < 10) {
+   112→        errs.description = fr
+   113→          ? "Décrivez la situation en au moins 10 caractères."
+   114→          : "Please describe what happened (at least 10 characters).";
+   115→      }
+   116→    }
+   117→    if (idx === 1) {
+   118→      if (!form.channel) errs.channel = reqMsg;
+   119→      if (!form.country.trim()) errs.country = reqMsg;
+   120→    }
+   121→    if (idx === 2) {
+   122→      if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) {
+   123→        errs.email = R(L.nl.invalidEmail, locale);
+   124→      }
+   125→    }
+   126→    if (idx === 3 && !form.consent) {
+   127→      errs.consent = R(L.nl.consentReq, locale);
+   128→    }
+   129→    setErrors(errs);
+   130→    return Object.keys(errs).length === 0;
+   131→  }
+   132→
+   133→  function handleNext() {
+   134→    if (validateStep(step)) {
+   135→      setStep(step + 1);
+   136→      window.scrollTo({ top: 0, behavior: "smooth" });
+   137→    }
+   138→  }
+   139→
+   140→  async function handleSubmit() {
+   141→    if (!validateStep(3)) return;
+   142→    setSubmitting(true);
+   143→    try {
+   144→      const fd = new FormData();
+   145→      fd.set("categorySlug", form.category);
+   146→      fd.set(
+   147→        "description",
+   148→        form.description.trim().length >= 30
+   149→          ? form.description.trim()
+   150→          : `${form.description.trim()} (reported via GLOPROFAS confidential form)`,
+   151→      );
+   152→      fd.set(
+   153→        "incidentDate",
+   154→        form.incidentDate || new Date().toISOString().slice(0, 10),
+   155→      );
+   156→      fd.set("channel", form.channel);
+   157→      fd.set("country", form.country);
+   158→      if (form.suspiciousContact) fd.set("suspiciousUrl", form.suspiciousContact);
+   159→      fd.set("moneyLost", form.moneyLost ? "yes" : "no");
+   160→      if (form.amount) fd.set("amount", form.amount);
+   161→      fd.set("ongoing", form.ongoing ? "yes" : "no");
+   162→      if (form.name) fd.set("reporterName", form.name);
+   163→      fd.set("reporterEmail", form.email);
+   164→      fd.set("language", locale);
+   165→      fd.set("consent", "on");
+   166→      for (const f of files.slice(0, 5)) {
+   167→        fd.append("evidence", f);
+   168→      }
+   169→      const res = await fetch("/api/reports", { method: "POST", body: fd });
+   170→      if (!res.ok) throw new Error("submit failed");
+   171→      const data = (await res.json()) as { reference: string };
+   172→      setReference(data.reference);
+   173→      window.scrollTo({ top: 0 });
+   174→    } catch {
+   175→      setErrors({ consent: R(L.nl.err, locale) });
+   176→    } finally {
+   177→      setSubmitting(false);
+   178→    }
+   179→  }
+   180→
+   181→  const categoryLabel =
+   182→    form.category === "unsure"
+   183→      ? fr
+   184→        ? "Pas sûr"
+   185→        : "Not sure"
+   186→      : R(
+   187→          categories.find((c) => c.slug === form.category)?.title ?? {
+   188→            en: form.category,
+   189→            fr: form.category,
+   190→          },
+   191→          locale,
+   192→        );
+   193→
+   194→  if (reference) {
+   195→    return (
+   196→      <>
+   197→        <PageHero
+   198→          title={
+   199→            fr ? "Merci pour votre signalement." : "Thank you for your report."
+   200→          }
+   201→          image={PAGE_AERIAL_HEROES.report.image}
+   202→          cityBadge={formatAerialBadge(PAGE_AERIAL_HEROES.report.city, locale)}
+   203→          crumbs={[
+   204→            { label: fr ? "Accueil" : "Home", to: l() },
+   205→            { label: R(L.report, locale) },
+   206→          ]}
+   207→        />
+   208→        <section className="section-y bg-mist">
+   209→          <div className="container-g grid max-w-4xl gap-6">
+   210→            <div className="rounded-none bg-white p-8 text-center shadow-none">
+   211→              <p className="ed-label text-brand-600">
+   212→                {fr ? "Votre numéro de référence" : "Your reference number"}
+   213→              </p>
+   214→              <p className="mt-3 font-[family-name:var(--font-heading)] text-4xl font-bold tracking-label text-ink">
+   215→                {reference}
+   216→              </p>
+   217→              <button
+   218→                type="button"
+   219→                onClick={() => {
+   220→                  navigator.clipboard.writeText(reference);
+   221→                  setCopied(true);
+   222→                  setTimeout(() => setCopied(false), 2000);
+   223→                }}
+   224→                className="mt-4 inline-flex h-11 items-center gap-2 rounded-[2px] border border-line px-5 text-sm font-semibold hover:border-brand-600 transition-colors duration-fast ease-standard"
+   225→              >
+   226→                <Copy className="h-4 w-4" />
+   227→                {copied
+   228→                  ? fr
+   229→                    ? "Référence copiée"
+   230→                    : "Reference copied"
+   231→                  : fr
+   232→                    ? "Copier"
+   233→                    : "Copy"}
+   234→              </button>
+   235→              <p className="mt-6 text-slatex-600">
+   236→                {fr
+   237→                  ? "Notre équipe examinera votre signalement. Nous pourrons vous écrire si des informations complémentaires sont nécessaires. Votre signalement ne sera jamais publié sans anonymisation et approbation."
+   238→                  : "Our team will review your report and may email you if more information is needed. Your report will never be published without anonymisation and approval."}
+   239→              </p>
+   240→            </div>
+   241→
+   242→            <div className="flex gap-4 rounded-none border border-signal bg-signal/10 p-6 text-ink">
+   243→              <ShieldAlert className="h-6 w-6 shrink-0" />
+   244→              <p>{R(L.reportSec.note, locale)}</p>
+   245→            </div>
+   246→
+   247→            <div className="flex flex-wrap gap-3">
+   248→              <Btn href={l()} variant="primary">
+   249→                {fr ? "Retour à l’accueil" : "Back to home"}
+   250→              </Btn>
+   251→              <Btn href={l("/scams")} variant="outline">
+   252→                {fr ? "Découvrir les arnaques" : "Learn about scams"}
+   253→              </Btn>
+   254→            </div>
+   255→          </div>
+   256→        </section>
+   257→      </>
+   258→    );
+   259→  }
+   260→
+   261→  return (
+   262→    <>
+   263→      <PageHero
+   264→        title={R(L.report, locale)}
+   265→        eyebrow={fr ? "Signalement confidentiel" : "Confidential report"}
+   266→        lead={
+   267→          fr
+   268→            ? "Cela prend environ cinq minutes. Vous n’êtes pas en faute, et ce que vous partagez aide d’autres personnes à se protéger."
+   269→            : "This takes about five minutes. You are not to blame, and what you share helps others stay safe."
+   270→        }
+   271→        image={PAGE_AERIAL_HEROES.report.image}
+   272→        cityBadge={formatAerialBadge(PAGE_AERIAL_HEROES.report.city, locale)}
+   273→        crumbs={[
+   274→          { label: fr ? "Accueil" : "Home", to: l() },
+   275→          { label: R(L.report, locale) },
+   276→        ]}
+   277→      />
+   278→
+   279→      <section className="bg-mist pt-12 pb-28 md:pb-20">
+   280→        <div className="container-g max-w-4xl">
+   281→          <ol className="grid grid-cols-4 gap-2" aria-label="Progress">
+   282→            {steps.map((sName, idx) => (
+   283→              <li
+   284→                key={sName}
+   285→                className="text-center"
+   286→                aria-current={idx === step ? "step" : undefined}
+   287→              >
+   288→                <div
+   289→                  className={`h-1.5 rounded-full ${
+   290→                    idx <= step ? "bg-brand-600" : "bg-line"
+   291→                  }`}
+   292→                />
+   293→                <p
+   294→                  className={`mt-2 hidden text-sm font-semibold sm:block ${
+   295→                    idx === step ? "text-ink" : "text-slatex-600"
+   296→                  }`}
+   297→                >
+   298→                  {idx + 1}. {sName}
+   299→                </p>
+   300→              </li>
+   301→            ))}
+   302→          </ol>
+   303→
+   304→          <div className="mt-8 rounded-none bg-white p-6 shadow-none md:p-10">
+   305→            <h2 className="h3 text-ink">{steps[step]}</h2>
+   306→            <div className="mt-8 grid gap-6">
+   307→              {step === 0 ? (
+   308→                <>
+   309→                  <fieldset>
+   310→                    <legend className={labelCls}>
+   311→                      {fr ? "Type d’arnaque" : "Type of scam"}
+   312→                    </legend>
+   313→                    <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+   314→                      {[
+   315→                        ...categories.map((c) => ({
+   316→                          slug: c.slug,
+   317→                          label: R(c.title, locale),
+   318→                          icon: c.icon,
+   319→                        })),
+   320→                        {
+   321→                          slug: "unsure",
+   322→                          label: fr ? "Pas sûr" : "Not sure",
+   323→                          icon: "",
+   324→                        },
+   325→                      ].map((item) => {
+   326→                        const Icon = getCategoryIcon(item.icon);
+   327→                        return (
+   328→                          <button
+   329→                            key={item.slug}
+   330→                            type="button"
+   331→                            onClick={() => setField("category", item.slug)}
+   332→                            aria-pressed={form.category === item.slug}
+   333→                            className={`flex min-h-[64px] items-center gap-3 rounded-sm border p-3 text-left text-sm font-semibold transition-colors ${
+   334→                              form.category === item.slug
+   335→                                ? "border-brand-600 bg-brand-600/10 text-brand-600"
+   336→                                : "border-line text-ink hover:border-brand-600/50"
+   337→                            }`}
+   338→                          >
+   339→                            <Icon className="h-5 w-5 shrink-0" strokeWidth={1.5} />
+   340→                            {item.label}
+   341→                          </button>
+   342→                        );
+   343→                      })}
+   344→                    </div>
+   345→                    {errors.category ? (
+   346→                      <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
+   347→                        <AlertCircle className="h-4 w-4" />
+   348→                        {errors.category}
+   349→                      </p>
+   350→                    ) : null}
+   351→                  </fieldset>
+   352→
+   353→                  <div>
+   354→                    <label htmlFor="r-desc" className={labelCls}>
+   355→                      {fr ? "Que s’est-il passé ?" : "What happened?"}
+   356→                    </label>
+   357→                    <textarea
+   358→                      id="r-desc"
+   359→                      rows={5}
+   360→                      className={`${fieldCls} h-auto py-3`}
+   361→                      value={form.description}
+   362→                      onChange={(e) => setField("description", e.target.value)}
+   363→                    />
+   364→                    {errors.description ? (
+   365→                      <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
+   366→                        <AlertCircle className="h-4 w-4" />
+   367→                        {errors.description}
+   368→                      </p>
+   369→                    ) : null}
+   370→                  </div>
+   371→
+   372→                  <div>
+   373→                    <label htmlFor="r-date" className={labelCls}>
+   374→                      {fr
+   375→                        ? "Date de l’incident (facultatif)"
+   376→                        : "Date of incident (optional)"}
+   377→                    </label>
+   378→                    <input
+   379→                      id="r-date"
+   380→                      type="date"
+   381→                      className={fieldCls}
+   382→                      value={form.incidentDate}
+   383→                      onChange={(e) => setField("incidentDate", e.target.value)}
+   384→                    />
+   385→                  </div>
+   386→                </>
+   387→              ) : null}
+   388→
+   389→              {step === 1 ? (
+   390→                <div className="grid gap-6 sm:grid-cols-2">
+   391→                  <div>
+   392→                    <label htmlFor="r-chan" className={labelCls}>
+   393→                      {fr
+   394→                        ? "Canal de communication"
+   395→                        : "Communication channel"}
+   396→                    </label>
+   397→                    <select
+   398→                      id="r-chan"
+   399→                      className={fieldCls}
+   400→                      value={form.channel}
+   401→                      onChange={(e) => setField("channel", e.target.value)}
+   402→                    >
+   403→                      <option value="">{fr ? "Choisir…" : "Choose…"}</option>
+   404→                      {CHANNELS.map(([en, frLabel]) => (
+   405→                        <option key={en} value={en}>
+   406→                          {fr ? frLabel : en}
+   407→                        </option>
+   408→                      ))}
+   409→                    </select>
+   410→                    {errors.channel ? (
+   411→                      <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
+   412→                        <AlertCircle className="h-4 w-4" />
+   413→                        {errors.channel}
+   414→                      </p>
+   415→                    ) : null}
+   416→                  </div>
+   417→
+   418→                  <div>
+   419→                    <label htmlFor="r-country" className={labelCls}>
+   420→                      {R(L.nl.country, locale)}
+   421→                    </label>
+   422→                    <input
+   423→                      id="r-country"
+   424→                      autoComplete="country-name"
+   425→                      className={fieldCls}
+   426→                      value={form.country}
+   427→                      onChange={(e) => setField("country", e.target.value)}
+   428→                    />
+   429→                    {errors.country ? (
+   430→                      <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
+   431→                        <AlertCircle className="h-4 w-4" />
+   432→                        {errors.country}
+   433→                      </p>
+   434→                    ) : null}
+   435→                  </div>
+   436→
+   437→                  <div className="sm:col-span-2">
+   438→                    <label htmlFor="r-contact" className={labelCls}>
+   439→                      {fr
+   440→                        ? "Site, numéro ou courriel suspect (facultatif)"
+   441→                        : "Suspicious website, phone number or email (optional)"}
+   442→                    </label>
+   443→                    <input
+   444→                      id="r-contact"
+   445→                      className={fieldCls}
+   446→                      value={form.suspiciousContact}
+   447→                      onChange={(e) =>
+   448→                        setField("suspiciousContact", e.target.value)
+   449→                      }
+   450→                    />
+   451→                  </div>
+   452→
+   453→                  <YesNo
+   454→                    fr={fr}
+   455→                    label={
+   456→                      fr ? "Avez-vous perdu de l’argent ?" : "Did you lose money?"
+   457→                    }
+   458→                    value={form.moneyLost}
+   459→                    onChange={(v) => setField("moneyLost", v)}
+   460→                  />
+   461→                  <YesNo
+   462→                    fr={fr}
+   463→                    label={
+   464→                      fr
+   465→                        ? "La situation est-elle en cours ?"
+   466→                        : "Is it still ongoing?"
+   467→                    }
+   468→                    value={form.ongoing}
+   469→                    onChange={(v) => setField("ongoing", v)}
+   470→                  />
+   471→
+   472→                  {form.moneyLost ? (
+   473→                    <div className="sm:col-span-2">
+   474→                      <label htmlFor="r-amt" className={labelCls}>
+   475→                        {fr ? "Montant et devise" : "Amount and currency"}
+   476→                      </label>
+   477→                      <input
+   478→                        id="r-amt"
+   479→                        className={fieldCls}
+   480→                        placeholder="50 000 FCFA"
+   481→                        value={form.amount}
+   482→                        onChange={(e) => setField("amount", e.target.value)}
+   483→                      />
+   484→                    </div>
+   485→                  ) : null}
+   486→
+   487→                  <div className="sm:col-span-2">
+   488→                    <p className={labelCls}>
+   489→                      {fr ? "Preuves (facultatif)" : "Evidence (optional)"}
+   490→                    </p>
+   491→                    <p className="mb-3 text-sm text-slatex-600">
+   492→                      {fr
+   493→                        ? "Captures d’écran, reçus ou documents — jusqu’à 5 fichiers. Conservés en privé."
+   494→                        : "Screenshots, receipts or documents — up to 5 files. Kept private."}
+   495→                    </p>
+   496→                    {files.length > 0 ? (
+   497→                      <ul className="mb-3 space-y-2">
+   498→                        {files.map((f, idx) => (
+   499→                          <li
+   500→                            key={`${f.name}-${idx}`}
+   501→                            className="flex items-center gap-3 border border-line bg-white px-3 py-2 text-sm"
+   502→                          >
+   503→                            <FileText className="h-4 w-4 shrink-0 text-brand-600" />
+   504→                            <span className="min-w-0 flex-1 truncate text-ink">
+   505→                              {f.name}
+   506→                            </span>
+   507→                            <button
+   508→                              type="button"
+   509→                              aria-label={fr ? "Retirer" : "Remove"}
+   510→                              onClick={() =>
+   511→                                setFiles(files.filter((_, i) => i !== idx))
+   512→                              }
+   513→                              className="rounded p-1 text-slatex-600 hover:text-ink transition-colors duration-fast ease-standard"
+   514→                            >
+   515→                              <X className="h-4 w-4" />
+   516→                            </button>
+   517→                          </li>
+   518→                        ))}
+   519→                      </ul>
+   520→                    ) : null}
+   521→                    {files.length < 5 ? (
+   522→                      <label className="flex cursor-pointer items-center justify-center gap-2 border border-dashed border-line px-4 py-6 text-sm font-semibold text-ink hover:border-brand-600 transition-colors duration-fast ease-standard">
+   523→                        <Paperclip className="h-4 w-4" />
+   524→                        {fr ? "Ajouter des fichiers" : "Add files"}
+   525→                        <input
+   526→                          ref={fileInputRef}
+   527→                          type="file"
+   528→                          multiple
+   529→                          accept="image/*,.pdf"
+   530→                          className="sr-only"
+   531→                          onChange={(e) => {
+   532→                            if (!e.target.files) return;
+   533→                            const added = Array.from(e.target.files).slice(
+   534→                              0,
+   535→                              5 - files.length,
+   536→                            );
+   537→                            setFiles([...files, ...added]);
+   538→                          }}
+   539→                        />
+   540→                      </label>
+   541→                    ) : null}
+   542→                  </div>
+   543→                </div>
+   544→              ) : null}
+   545→
+   546→              {step === 2 ? (
+   547→                <div className="grid gap-6 sm:grid-cols-2">
+   548→                  <div>
+   549→                    <label htmlFor="r-name" className={labelCls}>
+   550→                      {fr ? "Nom (facultatif)" : "Name (optional)"}
+   551→                    </label>
+   552→                    <input
+   553→                      id="r-name"
+   554→                      autoComplete="name"
+   555→                      className={fieldCls}
+   556→                      value={form.name}
+   557→                      onChange={(e) => setField("name", e.target.value)}
+   558→                    />
+   559→                  </div>
+   560→                  <div>
+   561→                    <label htmlFor="r-email" className={labelCls}>
+   562→                      {R(L.nl.email, locale)}
+   563→                    </label>
+   564→                    <input
+   565→                      id="r-email"
+   566→                      type="email"
+   567→                      autoComplete="email"
+   568→                      className={fieldCls}
+   569→                      value={form.email}
+   570→                      onChange={(e) => setField("email", e.target.value)}
+   571→                    />
+   572→                    <p className="mt-2 text-sm text-slatex-600">
+   573→                      {fr
+   574→                        ? "Uniquement pour le suivi de votre signalement."
+   575→                        : "Only used to follow up on your report."}
+   576→                    </p>
+   577→                    {errors.email ? (
+   578→                      <p className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
+   579→                        <AlertCircle className="h-4 w-4" />
+   580→                        {errors.email}
+   581→                      </p>
+   582→                    ) : null}
+   583→                  </div>
+   584→                </div>
+   585→              ) : null}
+   586→
+   587→              {step === 3 ? (
+   588→                <>
+   589→                  <dl className="divide-y divide-line rounded-sm border border-line">
+   590→                    {[
+   591→                      [steps[0], `${categoryLabel} — ${form.description}`, 0],
+   592→                      [
+   593→                        steps[1],
+   594→                        `${form.channel} · ${form.country}${
+   595→                          form.moneyLost ? ` · ${form.amount}` : ""
+   596→                        }${files.length ? ` · ${files.length} 📎` : ""}`,
+   597→                        1,
+   598→                      ],
+   599→                      [steps[2], `${form.name || "—"} · ${form.email}`, 2],
+   600→                    ].map(([label, summary, targetStep]) => (
+   601→                      <div key={String(label)} className="flex gap-4 p-4">
+   602→                        <dt className="w-32 shrink-0 text-sm font-semibold text-ink">
+   603→                          {label}
+   604→                        </dt>
+   605→                        <dd className="flex-1 break-words text-sm text-slatex-600">
+   606→                          {summary}
+   607→                        </dd>
+   608→                        <button
+   609→                          type="button"
+   610→                          onClick={() => setStep(Number(targetStep))}
+   611→                          className="text-sm font-semibold text-brand-600"
+   612→                        >
+   613→                          {fr ? "Modifier" : "Edit"}
+   614→                        </button>
+   615→                      </div>
+   616→                    ))}
+   617→                  </dl>
+   618→
+   619→                  <p className="rounded-sm bg-signal/10 p-4 text-sm text-ink">
+   620→                    {R(L.reportSec.note, locale)}
+   621→                  </p>
+   622→
+   623→                  <label className="flex min-h-[44px] items-start gap-3 text-sm text-ink">
+   624→                    <input
+   625→                      type="checkbox"
+   626→                      checked={form.consent}
+   627→                      onChange={(e) => setField("consent", e.target.checked)}
+   628→                      className="mt-0.5 h-5 w-5 accent-brand-600"
+   629→                    />
+   630→                    <span>
+   631→                      {fr
+   632→                        ? "J’accepte que GLOPROFAS traite ces informations pour examiner mon signalement, conformément à la politique de confidentialité."
+   633→                        : "I agree that GLOPROFAS may process this information to review my report, in line with the privacy policy."}
+   634→                      {errors.consent ? (
+   635→                        <span className="mt-2 flex items-center gap-2 text-sm text-risk-critical">
+   636→                          <AlertCircle className="h-4 w-4" />
+   637→                          {errors.consent}
+   638→                        </span>
+   639→                      ) : null}
+   640→                    </span>
+   641→                  </label>
+   642→                </>
+   643→              ) : null}
+   644→            </div>
+   645→
+   646→            <div className="fixed inset-x-0 bottom-0 z-40 flex gap-3 border-t border-line bg-white p-4 md:static md:mt-6 md:border-0 md:bg-transparent md:p-0">
+   647→              {step > 0 ? (
+   648→                <button
+   649→                  type="button"
+   650→                  onClick={() => setStep(step - 1)}
+   651→                  className="h-[52px] rounded-[2px] border border-line bg-white px-6 font-semibold text-ink"
+   652→                >
+   653→                  {fr ? "Retour" : "Back"}
+   654→                </button>
+   655→              ) : null}
+   656→              {step < 3 ? (
+   657→                <button
+   658→                  type="button"
+   659→                  onClick={handleNext}
+   660→                  className="h-[52px] flex-1 rounded-[2px] bg-brand-600 px-7 font-semibold text-white hover:bg-brand-500 md:flex-none transition-colors duration-fast ease-standard"
+   661→                >
+   662→                  {fr ? "Suivant" : "Next"}
+   663→                </button>
+   664→              ) : (
+   665→                <button
+   666→                  type="button"
+   667→                  onClick={() => void handleSubmit()}
+   668→                  disabled={submitting}
+   669→                  className="inline-flex h-[52px] flex-1 items-center justify-center gap-2 rounded-[2px] bg-signal px-7 font-semibold text-navy-950 disabled:opacity-60 md:flex-none"
+   670→                >
+   671→                  {submitting ? (
+   672→                    <LoaderCircle className="h-4 w-4 animate-spin" />
+   673→                  ) : (
+   674→                    <Check className="h-4 w-4" />
+   675→                  )}
+   676→                  {fr ? "Envoyer le signalement" : "Submit report"}
+   677→                </button>
+   678→              )}
+   679→            </div>
+   680→          </div>
+   681→        </div>
+   682→      </section>
+   683→    </>
+   684→  );
+   685→}
+   686→

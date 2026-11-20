@@ -1,0 +1,85 @@
+=== GROUP: public/images/context/accra-outdoor-phone.jpg public/images/context/article-business-controls.jpg public/images/context/article-payment-pause.jpg public/images/context/article-reporting.jpg public/images/context/article-standards.jpg public/images/context/campaign-community.jpg public/images/context/campaign-corporate.jpg public/images/context/campaign-school.jpg
+IMG1 | SCORE 95 | PASS | artifacts: none — natural skin texture, correct hands, coherent background
+IMG2 | SCORE 93 | PASS | artifacts: none — realistic lighting, plausible anatomy, no fake text legible
+IMG3 | SCORE 94 | PASS | artifacts: none — detailed skin texture, correct hands, natural bokeh (screen blank but plausible)
+IMG4 | SCORE 94 | PASS | artifacts: none — correct hand grip on pen, natural fabric folds
+IMG5 | SCORE 92 | PASS | artifacts: none — clean flat-lay, correct shadows and object geometry
+IMG6 | SCORE 95 | PASS | artifacts: none — varied natural faces, consistent lighting, documentary look
+IMG7 | SCORE 91 | PASS | artifacts: none — whiteboard diagram is simple/intentional, anatomy and hands correct
+IMG8 | SCORE 93 | PASS | artifacts: none — natural classroom detail, correct anatomy, coherent whiteboard shapes
+=== GROUP: public/images/context/campaign-youth.jpg public/images/context/contactless-card-terminal.jpg public/images/context/currency-exchange-desk.jpg public/images/context/executive-phone-laptop.jpg public/images/context/hero-city-aerial.jpg public/images/context/home-online-shopping.jpg public/images/context/intro-phone.jpg public/images/context/lagos-lecture-hall.jpg
+IMG1 | SCORE 93 | PASS | artifacts: none notable; natural documentary framing, consistent lighting, realistic hands and fabric detail
+IMG2 | SCORE 62 | FAIL | artifacts: card is blank/grey with no branding or embossing (impossible object), card floats oddly above terminal, button sheet looks pasted/composited, plastic-render look on keypad
+IMG3 | SCORE 91 | PASS | artifacts: none significant; real street scene, coherent signage partially cropped, natural reflections
+IMG4 | SCORE 88 | FAIL | artifacts: screens show vague/garbled chart UI, heavy over-smoothing on hands, slight waxy skin on face, blurred stock-photo feel below photorealistic threshold
+IMG5 | SCORE 60 | FAIL | artifacts: AI-generated look — over-smooth plastic water, repetitive cloned buildings and palm trees, soft/mushy architectural detail, unnatural glow, missing fine texture typical of AI cityscapes
+IMG6 | SCORE 85 | FAIL | artifacts: phone screen is blank/reflective grey (impossible object), gibberish-free but heavily over-smoothed skin on hands, stock-photo compositing feel, soft plastic laptop edges
+IMG7 | SCORE 87 | FAIL | artifacts: slight waxy/over-smoothed skin, generic bokeh grocery background lacks readable detail, slightly stiff hand grip on phone — borderline stock render feel
+IMG8 | SCORE 94 | PASS | artifacts: none; authentic documentary scene, natural skin texture, coherent text on lanyards, believable lighting and crowd
+=== GROUP: public/images/context/market-cash.jpg public/images/context/notebook-smartphone-notes.jpg public/images/context/payment-counter.jpg public/images/context/person-finance-phone.jpg public/images/context/person-phone-desk.jpg public/images/context/remote-work-call.jpg public/images/context/services-assessment.jpg public/images/context/support-call-center.jpg
+IMG1 | SCORE 92 | PASS | artifacts: none significant; banknote text slightly blurred by motion, hands anatomically correct, natural harsh sunlight
+IMG2 | SCORE 91 | PASS | artifacts: minor smudged screen/menu text and handwriting, consistent with real shallow DOF and compression; anatomy correct
+IMG3 | SCORE 90 | PASS | artifacts: phone screen fully black (plausible), keypad glyphs slightly soft; otherwise realistic materials and skin texture
+IMG4 | SCORE 93 | PASS | artifacts: none; screen UI text illegible due to resolution but structurally coherent, natural lighting and depth
+IMG5 | SCORE 93 | PASS | artifacts: none; realistic skin, fabric pattern and laptop reflections consistent
+IMG6 | SCORE 90 | PASS | artifacts: background man slightly blurred/plastic-looking, but foreground skin texture, jewelry and fabric realistic
+IMG7 | SCORE 87 | FAIL | artifacts: overall over-smooth AI sheen, tablet screen reflections too clean, left man's gesturing hands slightly waxy/warped, lighting unnaturally uniform
+IMG8 | SCORE 86 | FAIL | artifacts: waxy skin, odd mascara-wand pose near eye, headset mic and cable routing inconsistent, background props cluttered with AI-typical incoherence
+=== GROUP: public/images/context/team-laptops-office.jpg public/images/context/university-seminar-hall.jpg public/images/context/urban-professional.jpg
+IMG1 | SCORE 93 | PASS | artifacts: none significant; natural poses, realistic skin texture, consistent lighting, correct anatomy
+IMG2 | SCORE 94 | PASS | artifacts: none; believable classroom depth, natural faces, correct hands and props
+IMG3 | SCORE 92 | PASS | artifacts: none; slight bokeh smoothing in background is photographic, anatomy and devices realistic
+=== GROUP: public/images/gen/about-workshop.jpg public/images/gen/campaign-school.jpg public/images/gen/campaign-seminar.jpg public/images/gen/check-verify.jpg public/images/gen/family-impact.jpg public/images/gen/hero-main.jpg public/images/gen/report-scene.jpg public/images/gen/scam-advance-fee.jpg
+IMG1 | SCORE 74 | FAIL | artifacts: over-smoothed plastic skin on speaker, many background faces blurry/melted with warped features, crowd density inconsistent, unnatural uniform lighting
+IMG2 | SCORE 70 | FAIL | artifacts: background students have distorted/warped faces, raising hands show odd finger anatomy, over-smooth skin, flat AI-style lighting, blended classroom geometry inconsistent
+IMG3 | SCORE 68 | FAIL | artifacts: waxen over-smooth faces across all subjects, hands partially hidden/warped, laptops with blank/gibberish screens, overly symmetrical staged composition, odd plant placement on table seam
+IMG4 | SCORE 78 | FAIL | artifacts: phone screen fake/gibberish UI, over-smooth skin on main subject, second person's face poorly blended, slight hand warp on fingers holding phone
+IMG5 | SCORE 72 | FAIL | artifacts: child's head/body position anatomically impossible (floating head against table edge), waxen over-smooth faces, dead eyes, paper with fake faint text, plastic-looking hair texture
+IMG6 | SCORE 76 | FAIL | artifacts: over-smooth/waxy skin, phone held with slightly warped fingers, blurred background patrons look melted, fake phone body with implausible camera placement
+IMG7 | SCORE 75 | FAIL | artifacts: hands/fingers warped on keyboard, laptop screen gibberish UI, over-smooth facial skin, odd desk clutter objects, lighting slightly too clean
+IMG8 | SCORE 77 | FAIL | artifacts: over-smooth skin, background monitors with fake blank/gibberish screens, blended background figures, slightly waxy ear/hand anatomy
+=== GROUP: public/images/gen/scam-business.jpg public/images/gen/scam-crypto.jpg public/images/gen/scam-impersonation.jpg public/images/gen/scam-investment.jpg public/images/gen/scam-job.jpg public/images/gen/scam-loan.jpg public/images/gen/scam-mobile-money.jpg public/images/gen/scam-phishing.jpg
+IMG1 | SCORE 84 | FAIL | artifacts: gibberish text on document, pen tip floating oddly above paper, waxy skin sheen, over-smooth fabric, tablet edge distorted
+IMG2 | SCORE 83 | FAIL | artifacts: finger anatomy odd on raised hand (index fingertip deformation), waxy skin, over-smoothed face, background screens blurry-mangled, phone reflection absent
+IMG3 | SCORE 85 | FAIL | artifacts: blurred/shapeless faces in framed family photos (typical AI smear), phone edge melted into hand, slight plastic skin sheen, over-smoothing
+IMG4 | SCORE 82 | FAIL | artifacts: distorted phone hardware (odd camera cutout), laptop hinge geometry wrong, waxy plastic skin, over-smoothed hands, calculator keys mushy, soft AI-render look
+IMG5 | SCORE 84 | FAIL | artifacts: MacBook logo rendered as gray blob, keyboard keys ill-formed, slightly waxy skin, fingers stiff/splayed unnaturally, over-smoothing
+IMG6 | SCORE 81 | FAIL | artifacts: sewing machine implausible geometry (fused wheel/tension parts, floating spool), fabric merging with table, mushy background objects, waxen skin
+IMG7 | SCORE 79 | FAIL | artifacts: background crowd faces warped/mangled, blurred anatomy on multiple bystanders, over-smoothed skin, embroidered pattern semi-gibberish, produce shapes inconsistent
+IMG8 | SCORE 83 | FAIL | artifacts: tapping hand finger geometry wrong (thumb/index fusion), waxy skin, over-smoothing, phone buttons smeared, soft AI-render lighting
+=== GROUP: public/images/gen/scam-romance.jpg public/images/gen/scam-shopping.jpg public/images/gen/victim-support.jpg
+IMG1 | SCORE 84 | FAIL | artifacts: over-smoothed skin with slight waxy sheen, overly uniform studio-style lighting, phone edge slightly soft/undefined, hair blends unnaturally into dark background
+
+IMG2 | SCORE 92 | PASS | artifacts: none significant; minor over-smoothing on cheeks, otherwise clean anatomy, correct hands, realistic box texture and phone
+
+IMG3 | SCORE 78 | FAIL | artifacts: waxy/plastic skin on both subjects, woman's hand holding pen has slightly awkward finger positioning, clipboard paper unnaturally blank/pristine, over-smoothed facial rendering, boy's ear/jaw area slightly soft, uniform artificial lighting
+=== GROUP: public/images/zite/img_0jR_JgYMybEsisEl.jpg public/images/zite/img_26twh5qIAbvzqRdl.jpg public/images/zite/img_2VpUb4pq-e8YvIr-.jpg public/images/zite/img_2jsmyLqQWbvqkX0_.jpg public/images/zite/img_88g8h8XzmRU4NhBm.jpg public/images/zite/img_9FEr6sokBRFWKAW9.jpg public/images/zite/img_9nFXPoNmoeCwAfJE.jpg public/images/zite/img_BPedTDWHGQzb-FZp.jpg
+IMG1 | SCORE 93 | PASS | artifacts: none significant; minor over-smoothing on skin, consistent documentary lighting
+IMG2 | SCORE 88 | FAIL | artifacts: wall clock has faint fake numerals, framed photo faces slightly mushy, slight over-smoothing on hands
+IMG3 | SCORE 92 | PASS | artifacts: none significant; box tape slightly clean/symmetric, otherwise photorealistic
+IMG4 | SCORE 84 | FAIL | artifacts: papers on table show gibberish sketch text, some fingers on gesturing hand slightly warped, mild waxy skin on faces
+IMG5 | SCORE 82 | FAIL | artifacts: projection screen graphics have garbled/fake text ("SCAM" duplicated, nonsense labels), background faces soft/mushy, slight waxy skin on presenter
+IMG6 | SCORE 89 | FAIL | artifacts: fingers on left hand awkwardly fused/odd pose, rings merge into fingers, gibberish pattern texture on garments
+IMG7 | SCORE 86 | FAIL | artifacts: documents contain faint gibberish text, calculator buttons indistinct, slight over-smoothing of skin and hands
+IMG8 | SCORE 87 | FAIL | artifacts: phone screen shows blurry fake UI, laptop screen content muddy/illegible, keyboard key legends gibberish, fingers slightly plasticky
+=== GROUP: public/images/zite/img_Ieo6ZTOQg-cTQf5Z.jpg public/images/zite/img_JX8TbpNwVvMe9H2u.jpg public/images/zite/img_RNp07pYUDwb_i1sA.jpg public/images/zite/img_S-KECSoRY5SCp7RJ.jpg public/images/zite/img_Sr6t0DpFam9Pwbqs.jpg public/images/zite/img_XRXUCAiJJ46mAuVh.jpg public/images/zite/img_Z_dSPNd4_zQljGZ2.jpg public/images/zite/img_k_g-Bue4ibKanRTu.jpg
+IMG1 | SCORE 84 | FAIL | artifacts: crowd faces in background slightly smeared/ambiguous, some hands indistinct, mild over-smoothing on distant faces, uniform AI-style rendering
+IMG2 | SCORE 78 | FAIL | artifacts: plastic/waxy skin, over-smoothed face, blanket/knit texture mushy, lamp glow unrealistic, overall 3D-render look
+IMG3 | SCORE 88 | FAIL | artifacts: notebook text is gibberish pseudo-writing, laptop screen blank/odd reflection, background faces smeared
+IMG4 | SCORE 86 | FAIL | artifacts: fingers on keyboard slightly warped, screen shows no real UI, mild over-smoothing of skin, some gibberish objects on desk
+IMG5 | SCORE 91 | PASS | artifacts: minor — background faces slightly soft, phone buttons marginally mushy; otherwise realistic documentary look
+IMG6 | SCORE 85 | FAIL | artifacts: background crowd faces indistinct/smeared, fabric stacks show repetitive pattern artifacts, distant figures anatomically vague
+IMG7 | SCORE 74 | FAIL | artifacts: gibberish/icon-only presentation screen with fake text-like shapes, illustrative clipart on screen, background faces in glass reflection warped, mild plastic skin
+IMG8 | SCORE 80 | FAIL | artifacts: brochure graphics are fake icons with unreadable pseudo-text, hands slightly waxy, background objects mushy, over-smoothing on faces
+=== GROUP: public/images/zite/img_n8pQYP_Z0n2kP4mD.jpg public/images/zite/img_oA0HSqR_wTZ4p6wO.jpg public/images/zite/img_rV5DNdwu0nwwIUqR.jpg public/images/zite/img_sXyrGNS5SrsTeXa7.jpg public/images/zite/img_vjmeNsjN4mRiRXTp.jpg public/images/zite/img_w6NSryT8uOdtulEw.jpg public/images/zite/img_wFZrRplDj0fdHgRB.jpg public/images/zite/img_zL8YMspJMTt_oGqQ.jpg
+IMG1 | SCORE 87 | FAIL | artifacts: gibberish/nonsensical chart graphics on documents, background man slightly warped, plastic sheen on laptop, slight over-smoothing of faces
+IMG2 | SCORE 93 | PASS | artifacts: none significant; hands and anatomy correct, natural skin texture
+IMG3 | SCORE 90 | PASS | artifacts: minor chalkboard scribble text (semi-gibberish) but consistent with distance/real classroom
+IMG4 | SCORE 93 | PASS | artifacts: none significant; correct anatomy, natural bokeh and lighting
+IMG5 | SCORE 94 | PASS | artifacts: none; clean still life, realistic materials and lighting
+IMG6 | SCORE 85 | FAIL | artifacts: banknote melted into hands/fingers warped during money exchange, background crowd faces mushy, laptop hinge and screen geometry suspect, over-smoothed faces
+IMG7 | SCORE 90 | PASS | artifacts: faint fake handwriting squiggles on notebook (not legible text); otherwise correct anatomy and lighting
+IMG8 | SCORE 84 | FAIL | artifacts: over-smoothed waxy faces on presenter and students, slightly warped fingers on multiple phone-holding hands, illustration-style whiteboard icons look AI-generated, odd soft lighting consistency across busy scene
+=== GROUP: public/images/zite/pasted-image-1793491577554-7faxvqbe.jpg
+IMG1 | SCORE 93 | PASS | artifacts: none — crisp vector-style logo with clean, legible text ("GLOPROFAS / GLOBAL PROGRAMME FOR THE FIGHT AGAINST SCAMS"), no gibberish, correct shield geometry, uniform lighting; not photographic in nature, but internally consistent and artifact-free.
+DONE

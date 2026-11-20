@@ -1,0 +1,735 @@
+     1→export type CategorySeed = {
+     2→  slugEn: string;
+     3→  slugFr: string;
+     4→  nameEn: string;
+     5→  nameFr: string;
+     6→  summaryEn: string;
+     7→  summaryFr: string;
+     8→  definitionEn: string;
+     9→  definitionFr: string;
+    10→  stepsEn: string[];
+    11→  stepsFr: string[];
+    12→  signsEn: string[];
+    13→  signsFr: string[];
+    14→  techniquesEn: string[];
+    15→  techniquesFr: string[];
+    16→  protectEn: string[];
+    17→  protectFr: string[];
+    18→  affectedEn: string[];
+    19→  affectedFr: string[];
+    20→  icon: string;
+    21→  featured?: boolean;
+    22→  tileSize?: "large" | "medium" | "compact";
+    23→};
+    24→
+    25→export const categorySeed: CategorySeed[] = [
+    26→  {
+    27→    "slugEn": "phishing",
+    28→    "slugFr": "phishing",
+    29→    "nameEn": "Phishing",
+    30→    "nameFr": "Hameçonnage",
+    31→    "summaryEn": "Fake messages that steal your logins or card details.",
+    32→    "summaryFr": "Faux messages qui volent vos identifiants ou vos données bancaires.",
+    33→    "definitionEn": "Phishing is a message, email or website that pretends to come from a trusted organisation in order to steal your passwords, codes or card details.",
+    34→    "definitionFr": "L’hameçonnage est un message, un courriel ou un site qui se fait passer pour une organisation de confiance afin de voler vos mots de passe, codes ou données bancaires.",
+    35→    "stepsEn": [
+    36→      "You receive a message saying your account is blocked or a parcel is waiting. A link takes you to a page that looks real. Whatever you type there goes straight to the scammer."
+    37→    ],
+    38→    "stepsFr": [
+    39→      "Vous recevez un message indiquant que votre compte est bloqué ou qu’un colis vous attend. Un lien mène à une page qui semble authentique. Tout ce que vous y saisissez part directement chez l’escroc."
+    40→    ],
+    41→    "signsEn": [
+    42→      "Urgent tone: “your account will be closed today”",
+    43→      "Links with misspelled or unusual addresses",
+    44→      "Requests for passwords, PINs or one-time codes",
+    45→      "Generic greetings such as “Dear customer”"
+    46→    ],
+    47→    "signsFr": [
+    48→      "Ton urgent : « votre compte sera fermé aujourd’hui »",
+    49→      "Liens aux adresses mal orthographiées ou inhabituelles",
+    50→      "Demandes de mot de passe, de code PIN ou de code à usage unique",
+    51→      "Formules génériques comme « Cher client »"
+    52→    ],
+    53→    "techniquesEn": [
+    54→      "Illustrative example: Aminata receives an SMS saying her bank card is suspended, with a link to “reactivate” it. The page asks for her card number and code. Her bank later confirms it never sent the message."
+    55→    ],
+    56→    "techniquesFr": [
+    57→      "Exemple illustratif : Aminata reçoit un SMS indiquant que sa carte est suspendue, avec un lien pour la « réactiver ». La page demande son numéro de carte et son code. Sa banque confirme ensuite n’avoir jamais envoyé ce message."
+    58→    ],
+    59→    "protectEn": [
+    60→      "Never click links in unexpected messages; open the official app or type the address yourself",
+    61→      "Never share a one-time code with anyone",
+    62→      "Turn on two-step verification for email and social accounts",
+    63→      "Check the sender’s real address before replying"
+    64→    ],
+    65→    "protectFr": [
+    66→      "Ne cliquez jamais sur un lien inattendu ; ouvrez l’application officielle ou saisissez l’adresse vous-même",
+    67→      "Ne partagez jamais un code à usage unique",
+    68→      "Activez la validation en deux étapes",
+    69→      "Vérifiez la véritable adresse de l’expéditeur avant de répondre"
+    70→    ],
+    71→    "affectedEn": [
+    72→      "If you sent money, contact your bank or mobile money provider immediately through its official number.",
+    73→      "Keep screenshots, numbers, links and receipts as evidence.",
+    74→      "Report the incident to the competent authorities and to GLOPROFAS so others can be warned."
+    75→    ],
+    76→    "affectedFr": [
+    77→      "Si vous avez envoyé de l’argent, contactez immédiatement votre banque ou votre opérateur de mobile money via son numéro officiel.",
+    78→      "Conservez captures, numéros, liens et reçus comme preuves.",
+    79→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS afin d’alerter d’autres personnes."
+    80→    ],
+    81→    "icon": "mail-warning",
+    82→    "featured": true,
+    83→    "tileSize": "large"
+    84→  },
+    85→  {
+    86→    "slugEn": "mobile-money-scams",
+    87→    "slugFr": "mobile-money-scams",
+    88→    "nameEn": "Mobile money fraud",
+    89→    "nameFr": "Fraude au mobile money",
+    90→    "summaryEn": "Fake transfers, reversal requests and agent impersonation.",
+    91→    "summaryFr": "Faux transferts, demandes d’annulation et usurpation d’agents.",
+    92→    "definitionEn": "Mobile money scams trick you into sending money or revealing your PIN through fake transfers, fake agents or reversal requests.",
+    93→    "definitionFr": "Les arnaques au mobile money vous poussent à envoyer de l’argent ou à révéler votre code via de faux transferts, de faux agents ou des demandes de renvoi.",
+    94→    "stepsEn": [
+    95→      "A message claims money was sent to you by mistake and asks you to send it back. No money ever arrived. Others pose as operator staff and ask for your PIN to “fix” your account."
+    96→    ],
+    97→    "stepsFr": [
+    98→      "Un message affirme qu’on vous a envoyé de l’argent par erreur et demande de le renvoyer. Aucun argent n’est arrivé. D’autres se font passer pour le personnel de l’opérateur et demandent votre code pour « réparer » votre compte."
+    99→    ],
+   100→    "signsEn": [
+   101→      "An SMS about a transfer that is not in your real balance",
+   102→      "A caller claiming to be operator staff asking for your PIN",
+   103→      "Pressure to send money back quickly",
+   104→      "Messages from ordinary numbers rather than the official short code"
+   105→    ],
+   106→    "signsFr": [
+   107→      "Un SMS de transfert absent de votre solde réel",
+   108→      "Un appelant se disant agent de l’opérateur et demandant votre code",
+   109→      "Une pression pour renvoyer vite l’argent",
+   110→      "Des messages venant d’un numéro ordinaire et non du numéro court officiel"
+   111→    ],
+   112→    "techniquesEn": [
+   113→      "Illustrative example: A trader gets an SMS showing a 50,000 FCFA deposit, then a call asking her to return it. Her balance shows no deposit. She hangs up and calls her operator."
+   114→    ],
+   115→    "techniquesFr": [
+   116→      "Exemple illustratif : une commerçante reçoit un SMS annonçant un dépôt de 50 000 FCFA, puis un appel demandant de le rembourser. Son solde n’affiche aucun dépôt. Elle raccroche et appelle son opérateur."
+   117→    ],
+   118→    "protectEn": [
+   119→      "Check your actual balance in the official menu before acting",
+   120→      "Never share your PIN, even with someone claiming to be staff",
+   121→      "Ask the operator to handle any genuine reversal",
+   122→      "Lock your phone and SIM with a code"
+   123→    ],
+   124→    "protectFr": [
+   125→      "Vérifiez votre solde réel dans le menu officiel avant d’agir",
+   126→      "Ne communiquez jamais votre code, même à un prétendu agent",
+   127→      "Laissez l’opérateur traiter tout renvoi réel",
+   128→      "Verrouillez téléphone et carte SIM avec un code"
+   129→    ],
+   130→    "affectedEn": [
+   131→      "If you sent money, contact your bank or mobile money provider immediately through its official number.",
+   132→      "Keep screenshots, numbers, links and receipts as evidence.",
+   133→      "Report the incident to the competent authorities and to GLOPROFAS so others can be warned."
+   134→    ],
+   135→    "affectedFr": [
+   136→      "Si vous avez envoyé de l’argent, contactez immédiatement votre banque ou votre opérateur de mobile money via son numéro officiel.",
+   137→      "Conservez captures, numéros, liens et reçus comme preuves.",
+   138→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS afin d’alerter d’autres personnes."
+   139→    ],
+   140→    "icon": "smartphone",
+   141→    "featured": true,
+   142→    "tileSize": "medium"
+   143→  },
+   144→  {
+   145→    "slugEn": "investment-scams",
+   146→    "slugFr": "investment-scams",
+   147→    "nameEn": "Investment scams",
+   148→    "nameFr": "Arnaques à l’investissement",
+   149→    "summaryEn": "Promises of high, guaranteed returns that vanish.",
+   150→    "summaryFr": "Promesses de gains élevés et garantis qui disparaissent.",
+   151→    "definitionEn": "Investment scams promise high, fast or guaranteed returns to get you to deposit money that you will not get back.",
+   152→    "definitionFr": "Les arnaques à l’investissement promettent des gains élevés, rapides ou garantis pour vous faire déposer de l’argent que vous ne récupérerez pas.",
+   153→    "stepsEn": [
+   154→      "Early “investors” are paid with newer deposits to build trust. You are encouraged to invest more and recruit friends. Withdrawals are then blocked or the platform disappears."
+   155→    ],
+   156→    "stepsFr": [
+   157→      "Les premiers « investisseurs » sont payés avec les nouveaux dépôts pour créer la confiance. On vous incite à investir plus et à recruter. Puis les retraits sont bloqués ou la plateforme disparaît."
+   158→    ],
+   159→    "signsEn": [
+   160→      "Guaranteed daily or weekly returns",
+   161→      "Pressure to recruit family and friends",
+   162→      "Fees required before you can withdraw",
+   163→      "No verifiable registration with a financial regulator"
+   164→    ],
+   165→    "signsFr": [
+   166→      "Gains quotidiens ou hebdomadaires garantis",
+   167→      "Pression pour recruter famille et amis",
+   168→      "Frais exigés avant tout retrait",
+   169→      "Aucune immatriculation vérifiable auprès d’un régulateur"
+   170→    ],
+   171→    "techniquesEn": [
+   172→      "Illustrative example: A messaging group promises 10% profit per week. The first small withdrawal works. After a larger deposit, the group admin demands a “tax” before releasing funds, then leaves."
+   173→    ],
+   174→    "techniquesFr": [
+   175→      "Exemple illustratif : un groupe de messagerie promet 10 % de profit par semaine. Le premier petit retrait fonctionne. Après un dépôt plus important, l’administrateur exige une « taxe » avant de libérer les fonds, puis disparaît."
+   176→    ],
+   177→    "protectEn": [
+   178→      "Treat any guaranteed return as a red flag",
+   179→      "Check whether the company is registered with your financial regulator",
+   180→      "Start by asking how profits are actually made",
+   181→      "Never invest money you cannot afford to lose"
+   182→    ],
+   183→    "protectFr": [
+   184→      "Considérez tout gain garanti comme un signal d’alerte",
+   185→      "Vérifiez l’agrément de la société auprès du régulateur financier",
+   186→      "Demandez comment les profits sont réellement générés",
+   187→      "N’investissez jamais une somme que vous ne pouvez pas perdre"
+   188→    ],
+   189→    "affectedEn": [
+   190→      "If you sent money, contact your bank or mobile money provider immediately through its official number.",
+   191→      "Keep screenshots, numbers, links and receipts as evidence.",
+   192→      "Report the incident to the competent authorities and to GLOPROFAS so others can be warned."
+   193→    ],
+   194→    "affectedFr": [
+   195→      "Si vous avez envoyé de l’argent, contactez immédiatement votre banque ou votre opérateur de mobile money via son numéro officiel.",
+   196→      "Conservez captures, numéros, liens et reçus comme preuves.",
+   197→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS afin d’alerter d’autres personnes."
+   198→    ],
+   199→    "icon": "trending-up",
+   200→    "featured": true,
+   201→    "tileSize": "medium"
+   202→  },
+   203→  {
+   204→    "slugEn": "employment-scams",
+   205→    "slugFr": "employment-scams",
+   206→    "nameEn": "Fake job offers",
+   207→    "nameFr": "Fausses offres d’emploi",
+   208→    "summaryEn": "Jobs that ask you to pay a fee before you start.",
+   209→    "summaryFr": "Des emplois qui exigent des frais avant de commencer.",
+   210→    "definitionEn": "Employment scams use fake job offers to collect fees or personal documents from job seekers.",
+   211→    "definitionFr": "Les arnaques à l’emploi utilisent de fausses offres pour soutirer des frais ou des documents personnels aux demandeurs d’emploi.",
+   212→    "stepsEn": [
+   213→      "An attractive job is advertised, often abroad or with high pay. After a quick “interview”, you are asked to pay for registration, training, a medical test or a visa."
+   214→    ],
+   215→    "stepsFr": [
+   216→      "Un poste attrayant est proposé, souvent à l’étranger ou bien payé. Après un « entretien » rapide, on vous demande de payer une inscription, une formation, un examen médical ou un visa."
+   217→    ],
+   218→    "signsEn": [
+   219→      "Payment required before you start",
+   220→      "An offer without a real interview",
+   221→      "Contact only through messaging apps",
+   222→      "Salary far above the market for the role"
+   223→    ],
+   224→    "signsFr": [
+   225→      "Paiement exigé avant de commencer",
+   226→      "Offre sans véritable entretien",
+   227→      "Contact uniquement par messagerie",
+   228→      "Salaire bien au-dessus du marché"
+   229→    ],
+   230→    "techniquesEn": [
+   231→      "Illustrative example: A graduate is offered a hotel job abroad and asked to pay 75,000 FCFA for “visa processing”. After payment, the recruiter stops responding."
+   232→    ],
+   233→    "techniquesFr": [
+   234→      "Exemple illustratif : un diplômé se voit proposer un emploi d’hôtel à l’étranger et doit payer 75 000 FCFA de « frais de visa ». Après paiement, le recruteur ne répond plus."
+   235→    ],
+   236→    "protectEn": [
+   237→      "Genuine employers do not charge you to be hired",
+   238→      "Research the company’s official address and phone number",
+   239→      "Do not send ID copies until you have verified the employer",
+   240→      "Be wary of offers you did not apply for"
+   241→    ],
+   242→    "protectFr": [
+   243→      "Un véritable employeur ne vous fait pas payer pour être embauché",
+   244→      "Recherchez l’adresse et le numéro officiels de l’entreprise",
+   245→      "N’envoyez pas de pièce d’identité avant d’avoir vérifié l’employeur",
+   246→      "Méfiez-vous des offres auxquelles vous n’avez pas postulé"
+   247→    ],
+   248→    "affectedEn": [
+   249→      "If you sent money, contact your bank or mobile money provider immediately through its official number.",
+   250→      "Keep screenshots, numbers, links and receipts as evidence.",
+   251→      "Report the incident to the competent authorities and to GLOPROFAS so others can be warned."
+   252→    ],
+   253→    "affectedFr": [
+   254→      "Si vous avez envoyé de l’argent, contactez immédiatement votre banque ou votre opérateur de mobile money via son numéro officiel.",
+   255→      "Conservez captures, numéros, liens et reçus comme preuves.",
+   256→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS afin d’alerter d’autres personnes."
+   257→    ],
+   258→    "icon": "briefcase",
+   259→    "featured": true,
+   260→    "tileSize": "medium"
+   261→  },
+   262→  {
+   263→    "slugEn": "romance-scams",
+   264→    "slugFr": "romance-scams",
+   265→    "nameEn": "Romance scams",
+   266→    "nameFr": "Arnaques sentimentales",
+   267→    "summaryEn": "Online relationships built to ask for money.",
+   268→    "summaryFr": "Relations en ligne construites pour demander de l’argent.",
+   269→    "definitionEn": "Romance scams build an online relationship in order to ask for money.",
+   270→    "definitionFr": "Les arnaques sentimentales construisent une relation en ligne afin de demander de l’argent.",
+   271→    "stepsEn": [
+   272→      "The scammer spends weeks building trust and affection, then faces a sudden emergency: a hospital bill, a blocked parcel, a ticket to visit you."
+   273→    ],
+   274→    "stepsFr": [
+   275→      "L’escroc passe des semaines à gagner votre confiance et votre affection, puis survient une urgence : facture d’hôpital, colis bloqué, billet pour venir vous voir."
+   276→    ],
+   277→    "signsEn": [
+   278→      "They always avoid video calls or meeting",
+   279→      "Declarations of love very quickly",
+   280→      "Repeated emergencies needing money",
+   281→      "Requests to keep the relationship secret"
+   282→    ],
+   283→    "signsFr": [
+   284→      "Refus constant des appels vidéo ou des rencontres",
+   285→      "Déclarations d’amour très rapides",
+   286→      "Urgences répétées nécessitant de l’argent",
+   287→      "Demande de garder la relation secrète"
+   288→    ],
+   289→    "techniquesEn": [
+   290→      "Illustrative example: After two months of daily messages, a “doctor working abroad” asks for help paying customs on a gift. Then another fee appears, and another."
+   291→    ],
+   292→    "techniquesFr": [
+   293→      "Exemple illustratif : après deux mois de messages quotidiens, un « médecin travaillant à l’étranger » demande de l’aide pour payer la douane d’un cadeau. Puis d’autres frais apparaissent."
+   294→    ],
+   295→    "protectEn": [
+   296→      "Never send money to someone you have not met in person",
+   297→      "Do a reverse image search of their photos",
+   298→      "Talk to a trusted friend about the relationship",
+   299→      "Be cautious of anyone who moves you off the dating app quickly"
+   300→    ],
+   301→    "protectFr": [
+   302→      "N’envoyez jamais d’argent à quelqu’un que vous n’avez pas rencontré",
+   303→      "Faites une recherche inversée de ses photos",
+   304→      "Parlez de la relation à une personne de confiance",
+   305→      "Méfiez-vous de qui vous fait quitter vite l’application de rencontre"
+   306→    ],
+   307→    "affectedEn": [
+   308→      "If you sent money, contact your bank or mobile money provider immediately through its official number.",
+   309→      "Keep screenshots, numbers, links and receipts as evidence.",
+   310→      "Report the incident to the competent authorities and to GLOPROFAS so others can be warned."
+   311→    ],
+   312→    "affectedFr": [
+   313→      "Si vous avez envoyé de l’argent, contactez immédiatement votre banque ou votre opérateur de mobile money via son numéro officiel.",
+   314→      "Conservez captures, numéros, liens et reçus comme preuves.",
+   315→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS afin d’alerter d’autres personnes."
+   316→    ],
+   317→    "icon": "heart-crack",
+   318→    "featured": false,
+   319→    "tileSize": "compact"
+   320→  },
+   321→  {
+   322→    "slugEn": "online-shopping-scams",
+   323→    "slugFr": "online-shopping-scams",
+   324→    "nameEn": "Online shopping scams",
+   325→    "nameFr": "Arnaques aux achats en ligne",
+   326→    "summaryEn": "Goods paid for that never arrive.",
+   327→    "summaryFr": "Des articles payés qui n’arrivent jamais.",
+   328→    "definitionEn": "Online shopping scams take your payment for goods that never arrive or are not as described.",
+   329→    "definitionFr": "Les arnaques aux achats en ligne encaissent votre paiement pour des articles qui n’arrivent jamais ou ne correspondent pas.",
+   330→    "stepsEn": [
+   331→      "A seller on social media offers a phone or appliance at a very low price and asks for full payment by transfer. Once paid, they block you."
+   332→    ],
+   333→    "stepsFr": [
+   334→      "Un vendeur sur les réseaux sociaux propose un téléphone à très bas prix et exige un paiement complet par transfert. Une fois payé, il vous bloque."
+   335→    ],
+   336→    "signsEn": [
+   337→      "Prices far below the normal market",
+   338→      "Payment only by direct transfer",
+   339→      "New pages with few real reviews",
+   340→      "Pressure: “only one left today”"
+   341→    ],
+   342→    "signsFr": [
+   343→      "Prix très inférieurs au marché",
+   344→      "Paiement uniquement par transfert direct",
+   345→      "Pages récentes avec peu d’avis réels",
+   346→      "Pression : « plus qu’un seul aujourd’hui »"
+   347→    ],
+   348→    "techniquesEn": [
+   349→      "Illustrative example: A page sells new smartphones at half price. The buyer pays by mobile money and receives a fake tracking number; the page vanishes a week later."
+   350→    ],
+   351→    "techniquesFr": [
+   352→      "Exemple illustratif : une page vend des smartphones neufs à moitié prix. L’acheteur paie par mobile money et reçoit un faux numéro de suivi ; la page disparaît une semaine plus tard."
+   353→    ],
+   354→    "protectEn": [
+   355→      "Prefer cash on delivery or protected payment options",
+   356→      "Check the seller’s history and reviews",
+   357→      "Meet in a safe public place for local purchases",
+   358→      "Keep all messages and receipts"
+   359→    ],
+   360→    "protectFr": [
+   361→      "Privilégiez le paiement à la livraison ou protégé",
+   362→      "Vérifiez l’historique et les avis du vendeur",
+   363→      "Pour un achat local, rencontrez-vous dans un lieu public",
+   364→      "Conservez messages et reçus"
+   365→    ],
+   366→    "affectedEn": [
+   367→      "If you sent money, contact your bank or mobile money provider immediately through its official number.",
+   368→      "Keep screenshots, numbers, links and receipts as evidence.",
+   369→      "Report the incident to the competent authorities and to GLOPROFAS so others can be warned."
+   370→    ],
+   371→    "affectedFr": [
+   372→      "Si vous avez envoyé de l’argent, contactez immédiatement votre banque ou votre opérateur de mobile money via son numéro officiel.",
+   373→      "Conservez captures, numéros, liens et reçus comme preuves.",
+   374→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS afin d’alerter d’autres personnes."
+   375→    ],
+   376→    "icon": "shopping-bag",
+   377→    "featured": false,
+   378→    "tileSize": "compact"
+   379→  },
+   380→  {
+   381→    "slugEn": "cryptocurrency-scams",
+   382→    "slugFr": "cryptocurrency-scams",
+   383→    "nameEn": "Cryptocurrency scams",
+   384→    "nameFr": "Arnaques aux cryptomonnaies",
+   385→    "summaryEn": "Fake platforms and coins that trap deposits.",
+   386→    "summaryFr": "Fausses plateformes qui bloquent vos dépôts.",
+   387→    "definitionEn": "Cryptocurrency scams use fake trading platforms, coins or “mentors” to take your deposits.",
+   388→    "definitionFr": "Les arnaques aux cryptomonnaies utilisent de fausses plateformes, de faux jetons ou de faux « mentors » pour capter vos dépôts.",
+   389→    "stepsEn": [
+   390→      "A mentor shows impressive profits on a platform you have never heard of. Your balance grows on screen, but when you try to withdraw, you must pay fees first."
+   391→    ],
+   392→    "stepsFr": [
+   393→      "Un mentor montre des profits impressionnants sur une plateforme inconnue. Votre solde grimpe à l’écran, mais pour retirer, il faut d’abord payer des frais."
+   394→    ],
+   395→    "signsEn": [
+   396→      "Unknown platforms showing constant gains",
+   397→      "A “mentor” who manages your account",
+   398→      "Withdrawal blocked until you pay a fee",
+   399→      "Requests to send crypto to a personal wallet"
+   400→    ],
+   401→    "signsFr": [
+   402→      "Plateformes inconnues affichant des gains constants",
+   403→      "Un « mentor » qui gère votre compte",
+   404→      "Retrait bloqué jusqu’au paiement de frais",
+   405→      "Demande d’envoyer des cryptos vers un portefeuille personnel"
+   406→    ],
+   407→    "techniquesEn": [
+   408→      "Illustrative example: A student deposits a small amount on a platform recommended in a chat group. The dashboard shows it doubling. To withdraw, he is asked to pay 20%. The site goes offline."
+   409→    ],
+   410→    "techniquesFr": [
+   411→      "Exemple illustratif : un étudiant dépose une petite somme sur une plateforme recommandée dans un groupe. Le tableau de bord montre qu’elle double. Pour retirer, on lui demande 20 %. Le site disparaît."
+   412→    ],
+   413→    "protectEn": [
+   414→      "Use only well-known, regulated exchanges",
+   415→      "Never give anyone remote access to your device",
+   416→      "Be suspicious of profit screenshots",
+   417→      "If withdrawal requires a fee, stop paying"
+   418→    ],
+   419→    "protectFr": [
+   420→      "Utilisez uniquement des plateformes connues et réglementées",
+   421→      "Ne donnez jamais un accès à distance à votre appareil",
+   422→      "Méfiez-vous des captures de profits",
+   423→      "Si un retrait exige des frais, arrêtez de payer"
+   424→    ],
+   425→    "affectedEn": [
+   426→      "If you sent money, contact your bank or mobile money provider immediately through its official number.",
+   427→      "Keep screenshots, numbers, links and receipts as evidence.",
+   428→      "Report the incident to the competent authorities and to GLOPROFAS so others can be warned."
+   429→    ],
+   430→    "affectedFr": [
+   431→      "Si vous avez envoyé de l’argent, contactez immédiatement votre banque ou votre opérateur de mobile money via son numéro officiel.",
+   432→      "Conservez captures, numéros, liens et reçus comme preuves.",
+   433→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS afin d’alerter d’autres personnes."
+   434→    ],
+   435→    "icon": "bitcoin",
+   436→    "featured": false,
+   437→    "tileSize": "compact"
+   438→  },
+   439→  {
+   440→    "slugEn": "impersonation-scams",
+   441→    "slugFr": "impersonation-scams",
+   442→    "nameEn": "Impersonation scams",
+   443→    "nameFr": "Usurpation d’identité",
+   444→    "summaryEn": "Someone pretends to be a relative, bank or official.",
+   445→    "summaryFr": "Quelqu’un se fait passer pour un proche, une banque ou un agent.",
+   446→    "definitionEn": "Impersonation scams involve someone pretending to be a relative, a bank, an operator or an official to get money or information.",
+   447→    "definitionFr": "L’usurpation consiste à se faire passer pour un proche, une banque, un opérateur ou un agent public afin d’obtenir de l’argent ou des informations.",
+   448→    "stepsEn": [
+   449→      "A caller says your son had an accident, or a “bank officer” needs to verify your account. The story is urgent and emotional so you act before checking."
+   450→    ],
+   451→    "stepsFr": [
+   452→      "Un appelant annonce que votre fils a eu un accident, ou un « conseiller bancaire » doit vérifier votre compte. L’histoire est urgente et émotive pour vous faire agir avant de vérifier."
+   453→    ],
+   454→    "signsEn": [
+   455→      "A new number claiming to be a family member",
+   456→      "Requests to keep it secret",
+   457→      "Officials asking for payment by mobile money",
+   458→      "Callers who already know a few details about you"
+   459→    ],
+   460→    "signsFr": [
+   461→      "Un nouveau numéro se disant membre de la famille",
+   462→      "Demande de garder le secret",
+   463→      "Agents exigeant un paiement par mobile money",
+   464→      "Appelants connaissant déjà quelques détails sur vous"
+   465→    ],
+   466→    "techniquesEn": [
+   467→      "Illustrative example: A grandmother receives a call from “her grandson’s friend” saying he is in hospital and needs money now. She calls her grandson directly; he is fine."
+   468→    ],
+   469→    "techniquesFr": [
+   470→      "Exemple illustratif : une grand-mère reçoit l’appel d’un « ami de son petit-fils » affirmant qu’il est à l’hôpital et a besoin d’argent. Elle appelle son petit-fils : il va bien."
+   471→    ],
+   472→    "protectEn": [
+   473→      "Hang up and call the person or organisation on a number you already know",
+   474→      "Agree a family code word for emergencies",
+   475→      "Banks and authorities do not ask for PINs by phone",
+   476→      "Limit personal details you post publicly"
+   477→    ],
+   478→    "protectFr": [
+   479→      "Raccrochez et rappelez la personne sur un numéro que vous connaissez",
+   480→      "Convenez d’un mot de code familial pour les urgences",
+   481→      "Banques et autorités ne demandent pas de code par téléphone",
+   482→      "Limitez les informations personnelles publiées"
+   483→    ],
+   484→    "affectedEn": [
+   485→      "If you sent money, contact your bank or mobile money provider immediately through its official number.",
+   486→      "Keep screenshots, numbers, links and receipts as evidence.",
+   487→      "Report the incident to the competent authorities and to GLOPROFAS so others can be warned."
+   488→    ],
+   489→    "affectedFr": [
+   490→      "Si vous avez envoyé de l’argent, contactez immédiatement votre banque ou votre opérateur de mobile money via son numéro officiel.",
+   491→      "Conservez captures, numéros, liens et reçus comme preuves.",
+   492→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS afin d’alerter d’autres personnes."
+   493→    ],
+   494→    "icon": "user-x",
+   495→    "featured": false,
+   496→    "tileSize": "compact"
+   497→  },
+   498→  {
+   499→    "slugEn": "advance-fee-scams",
+   500→    "slugFr": "advance-fee-scams",
+   501→    "nameEn": "Advance-fee scams",
+   502→    "nameFr": "Arnaques aux avances de frais",
+   503→    "summaryEn": "Pay a small fee now to unlock a large sum later.",
+   504→    "summaryFr": "Payer de petits frais pour débloquer une grosse somme.",
+   505→    "definitionEn": "Advance-fee scams ask you to pay a small amount now to unlock a much larger sum: an inheritance, a prize, a contract or a grant.",
+   506→    "definitionFr": "Les arnaques aux avances de frais vous demandent de payer une petite somme pour débloquer un montant bien plus important : héritage, prix, contrat ou subvention.",
+   507→    "stepsEn": [
+   508→      "Each payment is followed by a new obstacle: a tax, a lawyer’s fee, a transfer charge. The large sum never comes."
+   509→    ],
+   510→    "stepsFr": [
+   511→      "Chaque paiement est suivi d’un nouvel obstacle : taxe, honoraires d’avocat, frais de transfert. La grosse somme n’arrive jamais."
+   512→    ],
+   513→    "signsEn": [
+   514→      "A windfall you never expected",
+   515→      "Fees to release money that is “yours”",
+   516→      "Official-looking documents and stamps",
+   517→      "Requests for secrecy"
+   518→    ],
+   519→    "signsFr": [
+   520→      "Une aubaine totalement inattendue",
+   521→      "Des frais pour libérer un argent « à vous »",
+   522→      "Documents et tampons d’apparence officielle",
+   523→      "Demande de discrétion"
+   524→    ],
+   525→    "techniquesEn": [
+   526→      "Illustrative example: A letter claims a distant relative left an inheritance. A “lawyer” asks for processing fees, then court fees, then a transfer tax."
+   527→    ],
+   528→    "techniquesFr": [
+   529→      "Exemple illustratif : une lettre annonce l’héritage d’un parent éloigné. Un « avocat » réclame des frais de dossier, puis de tribunal, puis une taxe de transfert."
+   530→    ],
+   531→    "protectEn": [
+   532→      "Never pay to receive money",
+   533→      "Verify any “official” directly with the institution",
+   534→      "Search the wording of the message online",
+   535→      "Ask a trusted person before paying anything"
+   536→    ],
+   537→    "protectFr": [
+   538→      "Ne payez jamais pour recevoir de l’argent",
+   539→      "Vérifiez tout document « officiel » auprès de l’institution",
+   540→      "Recherchez le texte du message en ligne",
+   541→      "Demandez conseil à une personne de confiance"
+   542→    ],
+   543→    "affectedEn": [
+   544→      "If you sent money, contact your bank or mobile money provider immediately through its official number.",
+   545→      "Keep screenshots, numbers, links and receipts as evidence.",
+   546→      "Report the incident to the competent authorities and to GLOPROFAS so others can be warned."
+   547→    ],
+   548→    "affectedFr": [
+   549→      "Si vous avez envoyé de l’argent, contactez immédiatement votre banque ou votre opérateur de mobile money via son numéro officiel.",
+   550→      "Conservez captures, numéros, liens et reçus comme preuves.",
+   551→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS afin d’alerter d’autres personnes."
+   552→    ],
+   553→    "icon": "hand-coins",
+   554→    "featured": false,
+   555→    "tileSize": "compact"
+   556→  },
+   557→  {
+   558→    "slugEn": "fake-loan-scams",
+   559→    "slugFr": "fake-loan-scams",
+   560→    "nameEn": "Fake loan scams",
+   561→    "nameFr": "Faux prêts",
+   562→    "summaryEn": "Loans that require upfront “processing” payments.",
+   563→    "summaryFr": "Des prêts qui exigent des frais de dossier à l’avance.",
+   564→    "definitionEn": "Fake loan scams promise quick credit with no checks, then demand upfront payments before the loan is released.",
+   565→    "definitionFr": "Les faux prêts promettent un crédit rapide sans vérification, puis exigent des paiements avant le décaissement.",
+   566→    "stepsEn": [
+   567→      "An advert offers instant approval. You are asked to pay insurance, a processing fee or a deposit. The loan never arrives, or an app harvests your contacts to harass you."
+   568→    ],
+   569→    "stepsFr": [
+   570→      "Une annonce promet une approbation immédiate. On vous demande une assurance, des frais de dossier ou un dépôt. Le prêt n’arrive jamais, ou une application aspire vos contacts pour vous harceler."
+   571→    ],
+   572→    "signsEn": [
+   573→      "Guaranteed approval regardless of credit",
+   574→      "Fees required before disbursement",
+   575→      "Apps asking for access to your contacts and photos",
+   576→      "Lenders with no physical address"
+   577→    ],
+   578→    "signsFr": [
+   579→      "Approbation garantie quel que soit votre profil",
+   580→      "Frais exigés avant le décaissement",
+   581→      "Applications demandant l’accès à vos contacts et photos",
+   582→      "Prêteurs sans adresse physique"
+   583→    ],
+   584→    "techniquesEn": [
+   585→      "Illustrative example: A couple facing school fees responds to an “instant loan” advert. They pay 15,000 FCFA for “insurance”. The loan officer then asks for a second fee."
+   586→    ],
+   587→    "techniquesFr": [
+   588→      "Exemple illustratif : un couple confronté aux frais de scolarité répond à une annonce de « prêt instantané ». Il paie 15 000 FCFA d’« assurance ». Le conseiller réclame ensuite d’autres frais."
+   589→    ],
+   590→    "protectEn": [
+   591→      "Borrow only from licensed institutions",
+   592→      "Legitimate lenders deduct fees from the loan, not before",
+   593→      "Check app permissions before installing",
+   594→      "Read reviews from independent sources"
+   595→    ],
+   596→    "protectFr": [
+   597→      "Empruntez uniquement auprès d’établissements agréés",
+   598→      "Un vrai prêteur déduit les frais du prêt, pas avant",
+   599→      "Vérifiez les autorisations des applications",
+   600→      "Consultez des avis indépendants"
+   601→    ],
+   602→    "affectedEn": [
+   603→      "If you sent money, contact your bank or mobile money provider immediately through its official number.",
+   604→      "Keep screenshots, numbers, links and receipts as evidence.",
+   605→      "Report the incident to the competent authorities and to GLOPROFAS so others can be warned."
+   606→    ],
+   607→    "affectedFr": [
+   608→      "Si vous avez envoyé de l’argent, contactez immédiatement votre banque ou votre opérateur de mobile money via son numéro officiel.",
+   609→      "Conservez captures, numéros, liens et reçus comme preuves.",
+   610→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS afin d’alerter d’autres personnes."
+   611→    ],
+   612→    "icon": "landmark",
+   613→    "featured": false,
+   614→    "tileSize": "compact"
+   615→  },
+   616→  {
+   617→    "slugEn": "business-email-compromise",
+   618→    "slugFr": "business-email-compromise",
+   619→    "nameEn": "Business email compromise",
+   620→    "nameFr": "Compromission de messagerie d’entreprise",
+   621→    "summaryEn": "Hijacked or spoofed emails that redirect payments.",
+   622→    "summaryFr": "Courriels piratés ou usurpés qui détournent des paiements.",
+   623→    "definitionEn": "Business email compromise uses a hacked or look-alike email account to redirect payments or obtain sensitive data from an organisation.",
+   624→    "definitionFr": "La compromission de messagerie d’entreprise utilise un compte piraté ou imité pour détourner des paiements ou obtenir des données sensibles.",
+   625→    "stepsEn": [
+   626→      "A supplier’s “new bank details” arrive by email, or the “director” urgently asks finance to make a confidential transfer. The address looks almost right."
+   627→    ],
+   628→    "stepsFr": [
+   629→      "Les « nouvelles coordonnées bancaires » d’un fournisseur arrivent par courriel, ou le « directeur » demande en urgence un virement confidentiel. L’adresse semble presque correcte."
+   630→    ],
+   631→    "signsEn": [
+   632→      "Last-minute changes to bank details",
+   633→      "Urgent, confidential payment requests from executives",
+   634→      "Slightly altered email domains",
+   635→      "Requests to bypass normal approval"
+   636→    ],
+   637→    "signsFr": [
+   638→      "Changements de coordonnées bancaires de dernière minute",
+   639→      "Demandes de paiement urgentes et confidentielles de la direction",
+   640→      "Domaines de messagerie légèrement modifiés",
+   641→      "Demandes de contourner la validation habituelle"
+   642→    ],
+   643→    "techniquesEn": [
+   644→      "Illustrative example: An accountant receives an invoice from a regular supplier with new account details. A quick call to the supplier’s known number reveals they changed nothing."
+   645→    ],
+   646→    "techniquesFr": [
+   647→      "Exemple illustratif : une comptable reçoit d’un fournisseur habituel une facture avec un nouveau compte. Un appel au numéro connu du fournisseur révèle qu’il n’a rien changé."
+   648→    ],
+   649→    "protectEn": [
+   650→      "Confirm any change of bank details by phone on a known number",
+   651→      "Require two approvals for transfers",
+   652→      "Enable two-step verification on all business email",
+   653→      "Train staff to pause on urgent payment requests"
+   654→    ],
+   655→    "protectFr": [
+   656→      "Confirmez tout changement de coordonnées par téléphone, sur un numéro connu",
+   657→      "Exigez une double validation des virements",
+   658→      "Activez la validation en deux étapes sur toutes les messageries",
+   659→      "Formez le personnel à marquer une pause face à l’urgence"
+   660→    ],
+   661→    "affectedEn": [
+   662→      "If you sent money, contact your bank or mobile money provider immediately through its official number.",
+   663→      "Keep screenshots, numbers, links and receipts as evidence.",
+   664→      "Report the incident to the competent authorities and to GLOPROFAS so others can be warned."
+   665→    ],
+   666→    "affectedFr": [
+   667→      "Si vous avez envoyé de l’argent, contactez immédiatement votre banque ou votre opérateur de mobile money via son numéro officiel.",
+   668→      "Conservez captures, numéros, liens et reçus comme preuves.",
+   669→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS afin d’alerter d’autres personnes."
+   670→    ],
+   671→    "icon": "building-2",
+   672→    "featured": false,
+   673→    "tileSize": "compact"
+   674→  },
+   675→  {
+   676→    "slugEn": "fake-websites",
+   677→    "slugFr": "fake-websites",
+   678→    "nameEn": "Fake websites and platforms",
+   679→    "nameFr": "Faux sites et plateformes",
+   680→    "summaryEn": "Copycat sites and apps designed to collect payments.",
+   681→    "summaryFr": "Sites et applications copiés pour encaisser des paiements.",
+   682→    "definitionEn": "Fake websites and platforms copy real brands, shops or services to collect payments, logins or personal data.",
+   683→    "definitionFr": "Les faux sites et plateformes copient des marques, boutiques ou services réels pour encaisser des paiements ou voler des données.",
+   684→    "stepsEn": [
+   685→      "Ads or messages lead to a site that looks like a known business. Payments made there go to scammers, and details entered are stolen."
+   686→    ],
+   687→    "stepsFr": [
+   688→      "Des publicités ou messages mènent à un site ressemblant à une entreprise connue. Les paiements vont aux escrocs et les données saisies sont volées."
+   689→    ],
+   690→    "signsEn": [
+   691→      "Web addresses with extra words or odd endings",
+   692→      "Prices or offers that seem too good",
+   693→      "No contact details, or only a messaging number",
+   694→      "Pressure countdown timers"
+   695→    ],
+   696→    "signsFr": [
+   697→      "Adresses web avec des mots en trop ou des extensions étranges",
+   698→      "Prix ou offres trop beaux",
+   699→      "Aucune coordonnée, ou seulement un numéro de messagerie",
+   700→      "Compte à rebours pour vous presser"
+   701→    ],
+   702→    "techniquesEn": [
+   703→      "Illustrative example: A search ad leads to a page copying a well-known airline, with cheap fares. After payment, no booking exists with the real airline."
+   704→    ],
+   705→    "techniquesFr": [
+   706→      "Exemple illustratif : une publicité mène à une page imitant une compagnie aérienne connue, avec des tarifs bas. Après paiement, aucune réservation n’existe chez la vraie compagnie."
+   707→    ],
+   708→    "protectEn": [
+   709→      "Type addresses yourself or use official apps",
+   710→      "Check the exact domain before paying",
+   711→      "Search the site name with the word “scam”",
+   712→      "Use payment methods that offer protection"
+   713→    ],
+   714→    "protectFr": [
+   715→      "Saisissez les adresses vous-même ou utilisez les applications officielles",
+   716→      "Vérifiez le domaine exact avant de payer",
+   717→      "Recherchez le nom du site avec le mot « arnaque »",
+   718→      "Utilisez des moyens de paiement protégés"
+   719→    ],
+   720→    "affectedEn": [
+   721→      "If you sent money, contact your bank or mobile money provider immediately through its official number.",
+   722→      "Keep screenshots, numbers, links and receipts as evidence.",
+   723→      "Report the incident to the competent authorities and to GLOPROFAS so others can be warned."
+   724→    ],
+   725→    "affectedFr": [
+   726→      "Si vous avez envoyé de l’argent, contactez immédiatement votre banque ou votre opérateur de mobile money via son numéro officiel.",
+   727→      "Conservez captures, numéros, liens et reçus comme preuves.",
+   728→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS afin d’alerter d’autres personnes."
+   729→    ],
+   730→    "icon": "globe",
+   731→    "featured": false,
+   732→    "tileSize": "compact"
+   733→  }
+   734→];
+   735→

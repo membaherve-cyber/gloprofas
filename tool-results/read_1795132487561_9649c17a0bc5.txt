@@ -1,0 +1,737 @@
+     1→{
+     2→  "meta": {
+     3→    "title": "GLOPROFAS — Scam prevention and digital safety",
+     4→    "description": "GLOPROFAS helps individuals, families and businesses recognise fraud, protect their money and know what to do next.",
+     5→    "organisation": "Global Programme for the Fight Against Scams"
+     6→  },
+     7→  "nav": {
+     8→    "about": "About",
+     9→    "awareness": "Scam Awareness",
+    10→    "resources": "Resources",
+    11→    "services": "Services",
+    12→    "news": "News",
+    13→    "involved": "Get Involved",
+    14→    "campaigns": "Campaigns",
+    15→    "contact": "Contact",
+    16→    "report": "Report a scam",
+    17→    "search": "Search",
+    18→    "login": "Login",
+    19→    "menu": "Menu",
+    20→    "close": "Close",
+    21→    "latestAlert": "Latest alert",
+    22→    "openMenu": "Open menu",
+    23→    "closeMenu": "Close menu",
+    24→    "mainMenu": "Main menu",
+    25→    "skip": "Skip to main content",
+    26→    "language": "Language",
+    27→    "viewAll": "View all",
+    28→    "helper": "Free guidance, public scam alerts and professional support."
+    29→  },
+    30→  "home": {
+    31→    "eyebrow": "Scam prevention and digital safety",
+    32→    "title": "Spot the scam before it costs you.",
+    33→    "lead": "GLOPROFAS helps individuals, families and businesses recognise fraud, protect their money and know what to do next. Free guidance, public scam alerts and professional support.",
+    34→    "primaryCta": "Report a scam",
+    35→    "secondaryCta": "Learn how to stay safe",
+    36→    "heroChipsLabel": "Common scam types",
+    37→    "heroImageAlt": "Aerial view of a West African coastal city at golden hour, with rooftops, roads, a lagoon and a bridge",
+    38→    "imageAlts": {
+    39→      "intro": "A shopper checking her phone between market stalls",
+    40→      "report": "Cash being exchanged at a market stall",
+    41→      "resource": "A contactless payment being made at a shop counter"
+    42→    },
+    43→    "heroVideo": {
+    44→      "label": "Background video: aerial view of an African city",
+    45→      "pause": "Pause the background video",
+    46→      "play": "Play the background video",
+    47→      "note": "Muted aerial footage. Use the pause control to stop the motion.",
+    48→      "posterNote": "Aerial view of an African city"
+    49→    },
+    50→    "strip": "Got a suspicious message? Check before you pay.",
+    51→    "stripCta": "Ask the assistant",
+    52→    "intro": {
+    53→      "eyebrow": "Who we are",
+    54→      "h2": "Fighting scams through awareness, prevention and action.",
+    55→      "body": "GLOPROFAS is an international not-for-profit initiative working on scam awareness, prevention, education and assistance. We explain how fraud works, publish plain-language guidance and give people a clear next step when something feels wrong. Our work is independent and educational: we do not investigate crimes or recover funds.",
+    56→      "points": [
+    57→        "Plain-language explanations of the scams people actually meet",
+    58→        "Practical checklists for individuals, families and small businesses",
+    59→        "A guided report route that helps you record what happened",
+    60→        "Professional support, kept separate from our free public work"
+    61→      ],
+    62→      "cta": "Read about GLOPROFAS",
+    63→      "anchorValue": "18",
+    64→      "anchorLabel": "scam types explained in our awareness centre"
+    65→    },
+    66→    "marqueeLabel": "Scam types covered",
+    67→    "scams": {
+    68→      "eyebrow": "Know the signs",
+    69→      "h2": "Common scams, explained without alarm.",
+    70→      "lead": "Each guide covers how the scam works, the warning signs that matter, how to protect yourself and what to do if you are affected.",
+    71→      "cta": "Open the awareness centre"
+    72→    },
+    73→    "how": {
+    74→      "eyebrow": "How scams work",
+    75→      "h2": "Four stages, one predictable pattern.",
+    76→      "lead": "Most fraud follows the same steps. Recognising the stage you are in is often enough to stop it.",
+    77→      "steps": [
+    78→        {
+    79→          "title": "Contact",
+    80→          "body": "Someone approaches you unexpectedly — by message, call, social media or a website that looks familiar."
+    81→        },
+    82→        {
+    83→          "title": "Pressure",
+    84→          "body": "They create urgency, fear or an opportunity that disappears if you do not act immediately."
+    85→        },
+    86→        {
+    87→          "title": "Payment",
+    88→          "body": "Money is requested through a channel that is hard to trace, or you are asked to share a code or password."
+    89→        },
+    90→        {
+    91→          "title": "Disappearance",
+    92→          "body": "The contact goes quiet, the offer vanishes, and a new request may arrive from a different account."
+    93→        }
+    94→      ],
+    95→      "techniquesTitle": "Techniques to recognise",
+    96→      "techniquesLead": "Scams change shape, but the mechanics repeat. These are the methods we see most often."
+    97→    },
+    98→    "counters": {
+    99→      "eyebrow": "What you will find here",
+   100→      "h2": "Verified information, not marketing claims.",
+   101→      "lead": "Every figure below comes from content published on this site. We publish a number only when it is real.",
+   102→      "categories": "Scam types explained",
+   103→      "resources": "Resources published",
+   104→      "alerts": "Public scam alerts",
+   105→      "languages": "Languages"
+   106→    },
+   107→    "report": {
+   108→      "eyebrow": "Report a scam",
+   109→      "h2": "Have you encountered a scam?",
+   110→      "body": "Tell us what happened in a short, guided form. You do not need an account. Your report is private, it helps document patterns of fraud, and you receive a reference number. A report is not a police complaint and does not guarantee that money will be recovered.",
+   111→      "steps": [
+   112→        {
+   113→          "title": "What happened",
+   114→          "body": "Choose the closest scam type and describe the incident."
+   115→        },
+   116→        {
+   117→          "title": "Details",
+   118→          "body": "Channel, country, and any contact details used by the other party."
+   119→        },
+   120→        {
+   121→          "title": "Reference number",
+   122→          "body": "Receive a reference and clear advice on what to do next."
+   123→        }
+   124→      ],
+   125→      "cta": "Start a report",
+   126→      "notice": "Takes about five minutes. You are not to blame."
+   127→    },
+   128→    "campaigns": {
+   129→      "eyebrow": "Awareness in the field",
+   130→      "h2": "We lead anti-scam campaigns, seminars and forums.",
+   131→      "lead": "GLOPROFAS runs awareness campaigns, seminars and forums inside schools, churches, youth centres and companies. The purpose is to explain the threats, the risks and the real consequences of fraud, with a particular focus on the scamming schemes in use today.",
+   132→      "cta": "See our campaigns",
+   133→      "ctaSecondary": "Invite GLOPROFAS",
+   134→      "audiencesLabel": "Where we work",
+   135→      "audiences": [
+   136→        "Schools",
+   137→        "Churches",
+   138→        "Youth centres",
+   139→        "Companies"
+   140→      ],
+   141→      "bullets": [
+   142→        "Sessions built around the messages people actually receive",
+   143→        "Modern schemes: mobile money fraud, phishing, fake jobs, investment fraud",
+   144→        "Practical consequences: money lost, blocked accounts, damaged trust",
+   145→        "Clear next steps for anyone affected"
+   146→      ]
+   147→    },
+   148→    "resources": {
+   149→      "eyebrow": "Protection and resources",
+   150→      "h2": "Practical guidance you can use today.",
+   151→      "lead": "Checklists, guides and short explainers built for real situations, not theory.",
+   152→      "cta": "Visit the resource centre",
+   153→      "featured": "Featured resource"
+   154→    },
+   155→    "services": {
+   156→      "eyebrow": "Our services",
+   157→      "h2": "Free public work. Separate professional services.",
+   158→      "lead": "Our awareness, education and public guidance stay free. Paid services are a separate division with its own scope, and we say clearly what they are.",
+   159→      "freeTitle": "Free and public-interest",
+   160→      "freeBody": "Everything you need to recognise and respond to a scam, open to everyone.",
+   161→      "freePoints": [
+   162→        "Scam guides and warning signs",
+   163→        "Public scam alerts",
+   164→        "Reporting and guidance route",
+   165→        "Community awareness material"
+   166→      ],
+   167→      "freeCta": "Explore the awareness centre",
+   168→      "paidTitle": "Professional services",
+   169→      "paidBody": "Assessments, awareness programmes and training for businesses and institutions.",
+   170→      "paidPoints": [
+   171→        "Digital safety and fraud risk assessments",
+   172→        "Employee awareness programmes",
+   173→        "Training and workshops",
+   174→        "Policy and impersonation reviews"
+   175→      ],
+   176→      "paidCta": "See professional services",
+   177→      "pricingNote": "Prices are set by service. Where no price is published, the service is quoted after an enquiry. We never collect payment on this website."
+   178→    },
+   179→    "alerts": {
+   180→      "eyebrow": "Latest alerts and news",
+   181→      "h2": "What we are tracking now.",
+   182→      "lead": "Reported suspicious activity, awareness campaigns and organisational news.",
+   183→      "alertsTitle": "Scam alerts",
+   184→      "newsTitle": "News and articles",
+   185→      "cta": "All alerts",
+   186→      "newsCta": "All news"
+   187→    },
+   188→    "newsletter": {
+   189→      "eyebrow": "Stay informed",
+   190→      "h2": "A short monthly briefing.",
+   191→      "body": "New scam alerts, updated guides and useful reminders. One email a month, no marketing lists.",
+   192→      "cta": "Subscribe",
+   193→      "consent": "I agree to receive the GLOPROFAS briefing and accept the privacy policy."
+   194→    },
+   195→    "final": {
+   196→      "h2": "Together, we can make the digital world safer.",
+   197→      "report": "Report a scam",
+   198→      "resources": "Access resources",
+   199→      "contact": "Contact GLOPROFAS"
+   200→    },
+   201→    "heroC11": {
+   202→      "logoAlt": "GLOPROFAS - Global Programme for the Fight Against Scams",
+   203→      "badge": "Global Programme for the Fight Against Scams",
+   204→      "eyebrow": "Fraud prevention and digital safety",
+   205→      "title": "Spot the scam before it costs you.",
+   206→      "lead": "GLOPROFAS helps people recognise fraud, protect their money and know what to do next.",
+   207→      "verifyCta": "Verify a Scam",
+   208→      "reportCta": "Report an Incident",
+   209→      "secondaryCta": "Learn how to stay safe"
+   210→    },
+   211→    "pillarsC12": {
+   212→      "eyebrow": "Verification & Protection Pillars",
+   213→      "h2": "Three core pillars to detect, report and analyse fraud.",
+   214→      "lead": "Every tool on GLOPROFAS is built to give individuals, families and institutions an immediate, trustworthy defence against modern scamming schemes.",
+   215→      "items": [
+   216→        {
+   217→          "id": "database-check",
+   218→          "badge": "Pillar 01",
+   219→          "title": "Real-time Database Check",
+   220→          "description": "Instantly cross-check suspicious phone numbers, website links, emails and messages against our live database of public scam alerts and reported fraud patterns.",
+   221→          "highlights": [
+   222→            "Instant phone number, URL & message verification",
+   223→            "Cross-referenced with active regional scam alerts",
+   224→            "AI-assisted warning sign analysis with Jarvis"
+   225→          ],
+   226→          "cta": "Verify a Scam",
+   227→          "href": "/check"
+   228→        },
+   229→        {
+   230→          "id": "community-reporting",
+   231→          "badge": "Pillar 02",
+   232→          "title": "Community Reporting",
+   233→          "description": "Submit a guided, confidential incident report in under five minutes with no account required. What you share helps protect others across the community.",
+   234→          "highlights": [
+   235→            "Guided confidential intake with no account required",
+   236→            "Private evidence protection & unique reference code",
+   237→            "Immediate bank & mobile-money safety guidance"
+   238→          ],
+   239→          "cta": "Report an Incident",
+   240→          "href": "/report"
+   241→        },
+   242→        {
+   243→          "id": "secure-analytics",
+   244→          "badge": "Pillar 03",
+   245→          "title": "Secure Analytics",
+   246→          "description": "Access anonymised fraud trend intelligence, risk-classified alerts (Low, Medium, High, Critical) and field awareness insights for households and organisations.",
+   247→          "highlights": [
+   248→            "Risk-graded public alerts (Low, Medium, High, Critical)",
+   249→            "Anonymised regional scam trend & channel intelligence",
+   250→            "Field awareness insights for schools, churches & companies"
+   251→          ],
+   252→          "cta": "Explore Scam Alerts",
+   253→          "href": "/alerts"
+   254→        }
+   255→      ]
+   256→    }
+   257→  },
+   258→  "common": {
+   259→    "readMore": "Read more",
+   260→    "learnMore": "Learn more",
+   261→    "backTo": "Back to",
+   262→    "published": "Published",
+   263→    "updated": "Updated",
+   264→    "minutes": "min read",
+   265→    "risk": "Risk",
+   266→    "low": "Low",
+   267→    "medium": "Medium",
+   268→    "high": "High",
+   269→    "critical": "Critical",
+   270→    "category": "Category",
+   271→    "country": "Country",
+   272→    "language": "Language",
+   273→    "type": "Type",
+   274→    "date": "Date",
+   275→    "author": "Author",
+   276→    "related": "Related",
+   277→    "noResults": "No results found. Try a different search or filter.",
+   278→    "loading": "Loading…",
+   279→    "demo": "Demo content",
+   280→    "all": "All",
+   281→    "filters": "Filters",
+   282→    "clearFilters": "Clear filters",
+   283→    "results": "results",
+   284→    "required": "Required",
+   285→    "optional": "Optional",
+   286→    "email": "Email address",
+   287→    "name": "Full name",
+   288→    "submit": "Submit",
+   289→    "sending": "Sending…",
+   290→    "close": "Close",
+   291→    "copy": "Copy",
+   292→    "copied": "Copied",
+   293→    "errorTitle": "Something went wrong",
+   294→    "errorBody": "Please try again. If the problem continues, contact us.",
+   295→    "notFoundTitle": "Page not found",
+   296→    "notFoundBody": "The page you are looking for has moved or no longer exists.",
+   297→    "goHome": "Back to the homepage",
+   298→    "page": "Page",
+   299→    "previous": "Previous",
+   300→    "next": "Next",
+   301→    "download": "Download",
+   302→    "share": "Share this page",
+   303→    "faq": "Frequently asked questions",
+   304→    "search": "Search",
+   305→    "searchPlaceholder": "Search guides, alerts and resources",
+   306→    "notPolice": "GLOPROFAS is not a police service or a financial authority."
+   307→  },
+   308→  "report": {
+   309→    "h1": "Report a scam",
+   310→    "lead": "This takes about five minutes. You are not to blame, and what you share helps others stay safe.",
+   311→    "stepNames": [
+   312→      "What happened",
+   313→      "Details",
+   314→      "Evidence",
+   315→      "About you",
+   316→      "Review"
+   317→    ],
+   318→    "next": "Continue",
+   319→    "back": "Back",
+   320→    "submit": "Submit report",
+   321→    "submitting": "Submitting…",
+   322→    "labels": {
+   323→      "category": "Scam category",
+   324→      "notSure": "I am not sure",
+   325→      "description": "What happened?",
+   326→      "descriptionHelp": "Describe the messages, calls or payments involved. Do not include passwords, PINs or one-time codes.",
+   327→      "incidentDate": "When did it happen?",
+   328→      "channel": "How did they contact you?",
+   329→      "country": "Country where it happened",
+   330→      "city": "City or region (optional)",
+   331→      "suspiciousUrl": "Suspicious website or link (optional)",
+   332→      "phone": "Phone number involved (optional)",
+   333→      "emailInvolved": "Email address involved (optional)",
+   334→      "moneyLost": "Did you lose money?",
+   335→      "amount": "Amount",
+   336→      "currency": "Currency",
+   337→      "ongoing": "Is the situation still ongoing?",
+   338→      "evidence": "Evidence (optional)",
+   339→      "evidenceHelp": "Screenshots, PDFs or correspondence. JPG, PNG, WebP or PDF, up to 5 files of 10 MB each.",
+   340→      "name": "Your name (optional)",
+   341→      "reporterEmail": "Your email address",
+   342→      "reporterEmailHelp": "Used only to acknowledge your report and, if needed, to request details.",
+   343→      "language": "Preferred contact language",
+   344→      "yes": "Yes",
+   345→      "no": "No",
+   346→      "review": "Review your report",
+   347→      "consent": "I understand that this report is not an official police report, that submitting it does not guarantee recovery of funds, and that GLOPROFAS may contact me about this report."
+   348→    },
+   349→    "confirm": {
+   350→      "title": "Report received",
+   351→      "body": "Keep this reference number. It is the only way to discuss your report with us.",
+   352→      "reference": "Reference number",
+   353→      "nextTitle": "What happens next",
+   354→      "nextBody": "Your report is stored privately and reviewed by our team. We do not publish reports and we never share your details publicly. We may contact you for clarification.",
+   355→      "safetyTitle": "If you sent money",
+   356→      "safetyBody": "Contact your bank or mobile money provider now, using the number on the back of your card or in the official app. Ask them to block the transaction or account. Then report the incident to the competent authorities in your country through their official channels.",
+   357→      "again": "Submit another report",
+   358→      "home": "Return to the homepage"
+   359→    },
+   360→    "errors": {
+   361→      "category": "Choose the closest scam category.",
+   362→      "description": "Describe what happened in at least 30 characters.",
+   363→      "date": "Enter a valid date that is not in the future.",
+   364→      "channel": "Select how you were contacted.",
+   365→      "country": "Select or enter a country.",
+   366→      "email": "Enter a valid email address.",
+   367→      "consent": "Confirm that you understand how your report is used.",
+   368→      "submit": "Your report could not be submitted. Please check the fields and try again.",
+   369→      "fileType": "Only JPG, PNG, WebP and PDF files are accepted.",
+   370→      "fileSize": "Each file must be 10 MB or smaller.",
+   371→      "rate": "Too many submissions from this connection. Please try again later."
+   372→    }
+   373→  },
+   374→  "contact": {
+   375→    "h1": "Contact GLOPROFAS",
+   376→    "lead": "Questions about our work, a partnership, media or professional services. Written enquiries only reach the right team.",
+   377→    "formTitle": "Send a message",
+   378→    "subject": "Subject",
+   379→    "category": "What is this about?",
+   380→    "categories": {
+   381→      "general": "General enquiry",
+   382→      "partnership": "Partnership",
+   383→      "media": "Media",
+   384→      "services": "Professional services"
+   385→    },
+   386→    "message": "Your message",
+   387→    "success": "Thank you. Your message has been received and our team will reply by email.",
+   388→    "detailsTitle": "Organisation details",
+   389→    "emailLabel": "Email",
+   390→    "phoneLabel": "Telephone",
+   391→    "locationLabel": "Location",
+   392→    "notConfigured": "Not configured yet",
+   393→    "disclaimer": "Do not send passwords, PINs, one-time codes, card numbers or identity documents through this form."
+   394→  },
+   395→  "involved": {
+   396→    "h1": "Get involved",
+   397→    "lead": "Awareness works when it is shared. Here is how individuals and organisations can take part.",
+   398→    "volunteerTitle": "Volunteer",
+   399→    "volunteerBody": "We look for people who can review translated material, support community sessions or contribute professional expertise.",
+   400→    "partnerTitle": "Partner",
+   401→    "partnerBody": "We work with NGOs, educational institutions, businesses, financial institutions, technology companies and community organisations. Partnerships are described only once they are agreed.",
+   402→    "supportTitle": "Support our mission",
+   403→    "supportBody": "Donation options appear here only when the organisation has configured them. We never publish unverified bank or payment details.",
+   404→    "volunteerForm": "Volunteer application",
+   405→    "partnerForm": "Partnership enquiry",
+   406→    "background": "Professional background",
+   407→    "skills": "Skills",
+   408→    "languages": "Languages",
+   409→    "interests": "Areas of interest",
+   410→    "motivation": "Why do you want to take part?",
+   411→    "organisation": "Organisation name",
+   412→    "organisationType": "Organisation type",
+   413→    "contactPerson": "Contact person",
+   414→    "proposal": "Proposal",
+   415→    "volunteerSuccess": "Thank you. Your volunteer application has been received.",
+   416→    "partnerSuccess": "Thank you. Your partnership enquiry has been received."
+   417→  },
+   418→  "services": {
+   419→    "h1": "Professional services",
+   420→    "lead": "Assessment, awareness and training for businesses and institutions, delivered by our professional services division.",
+   421→    "heroImageAlt": "Three colleagues reviewing a fraud-prevention plan in a meeting room",
+   422→    "freeNote": "Our guides, alerts and public guidance are free and remain free. Paid services below are separate.",
+   423→    "groups": {
+   424→      "individual": "Individual protection",
+   425→      "business": "Business protection",
+   426→      "enterprise": "Enterprise and institutional",
+   427→      "training": "Training and capacity building"
+   428→    },
+   429→    "pricing": {
+   430→      "free": "Free",
+   431→      "paid": "Paid",
+   432→      "custom-quotation": "Custom quotation",
+   433→      "consultation": "Consultation request",
+   434→      "training-package": "Training package"
+   435→    },
+   436→    "enquire": "Enquire about this service",
+   437→    "enquiryTitle": "Service enquiry",
+   438→    "enquiryBody": "Tell us what you need. We reply with scope and next steps; no payment is taken on this website.",
+   439→    "service": "Service required",
+   440→    "requirements": "Describe your requirements",
+   441→    "contactMethod": "Preferred contact method",
+   442→    "phone": "Telephone",
+   443→    "success": "Thank you. Your enquiry has been received and our team will reply with next steps."
+   444→  },
+   445→  "resources": {
+   446→    "h1": "Resource centre",
+   447→    "lead": "Guides, checklists and explainers on digital safety and fraud prevention.",
+   448→    "formats": {
+   449→      "guide": "Guide",
+   450→      "checklist": "Checklist",
+   451→      "pdf": "PDF",
+   452→      "video": "Video",
+   453→      "infographic": "Infographic",
+   454→      "faq": "FAQ"
+   455→    },
+   456→    "categories": {
+   457→      "personal-security": "Personal digital security",
+   458→      "financial-protection": "Financial protection",
+   459→      "mobile-money": "Mobile money safety",
+   460→      "shopping": "Online shopping protection",
+   461→      "business-fraud": "Business fraud prevention",
+   462→      "social-media": "Social media security",
+   463→      "identity-protection": "Identity protection",
+   464→      "family": "Parental and family digital safety",
+   465→      "small-business": "Small business cybersecurity"
+   466→    }
+   467→  },
+   468→  "alerts": {
+   469→    "h1": "Scam alerts",
+   470→    "lead": "Reported suspicious activity and public warnings. Alerts describe patterns, never unproven accusations against a named person or business.",
+   471→    "archive": "Alert archive",
+   472→    "recommended": "Recommended actions",
+   473→    "alertType": "Scam alert"
+   474→  },
+   475→  "news": {
+   476→    "h1": "News and publications",
+   477→    "lead": "Organisational news, awareness campaigns, articles and press releases.",
+   478→    "kinds": {
+   479→      "news": "News",
+   480→      "article": "Article",
+   481→      "campaign": "Campaign",
+   482→      "press": "Press release"
+   483→    }
+   484→  },
+   485→  "about": {
+   486→    "h1": "About GLOPROFAS",
+   487→    "lead": "An international not-for-profit initiative for scam awareness, prevention, education and assistance.",
+   488→    "heroImageAlt": "Printed guidance documents, glasses and a cup of tea on a desk",
+   489→    "whoTitle": "Who we are",
+   490→    "whoBody": "The Global Programme for the Fight Against Scams brings awareness, practical education and clear guidance together in one place. We work globally, with particular attention to Africa, Central Africa, West Africa and Cameroon.",
+   491→    "missionTitle": "Mission",
+   492→    "missionBody": "Prevent scams, protect individuals and businesses, promote digital safety, educate communities and support coordinated action against online fraud.",
+   493→    "visionTitle": "Vision",
+   494→    "visionBody": "A safer digital environment where individuals and organisations can take part in digital life with greater awareness and confidence.",
+   495→    "campaignsTitle": "Campaigns, seminars and forums",
+   496→    "campaignsBody": "GLOPROFAS leads anti-scam campaigns, seminars and forums in schools, churches, youth centres and companies. Each session sensitises the public on the threats, risks and consequences associated with all manners of fraud, with a particular focus on modern-day scamming schemes — and ends with concrete protection and reporting steps.",
+   497→    "campaignsCta": "See our campaigns",
+   498→    "objectivesTitle": "Objectives",
+   499→    "objectives": [
+   500→      "Increase public awareness of current scam techniques",
+   501→      "Educate communities through accessible, translated material",
+   502→      "Improve the ability of individuals to detect fraud early",
+   503→      "Promote responsible digital behaviour",
+   504→      "Support people affected by scams with appropriate guidance",
+   505→      "Encourage the reporting of suspicious activity",
+   506→      "Help businesses understand their fraud exposure",
+   507→      "Facilitate responsible information sharing"
+   508→    ],
+   509→    "approachTitle": "Our approach",
+   510→    "approach": [
+   511→      {
+   512→        "title": "Awareness",
+   513→        "body": "Public campaigns and plain-language explanations."
+   514→      },
+   515→      {
+   516→        "title": "Education",
+   517→        "body": "Guides, checklists and training material."
+   518→      },
+   519→      {
+   520→        "title": "Prevention",
+   521→        "body": "Practical steps people can take before money moves."
+   522→      },
+   523→      {
+   524→        "title": "Reporting",
+   525→        "body": "A guided route to record incidents safely."
+   526→      },
+   527→      {
+   528→        "title": "Guidance",
+   529→        "body": "Clear next steps after a scam attempt or loss."
+   530→      },
+   531→      {
+   532→        "title": "Collaboration",
+   533→        "body": "Work with organisations that share the objective."
+   534→      },
+   535→      {
+   536→        "title": "Professional assistance",
+   537→        "body": "Paid assessments kept separate from free work."
+   538→      }
+   539→    ],
+   540→    "geographyTitle": "Geographic focus",
+   541→    "geographyBody": "A global initiative with particular attention to African markets. This page does not imply offices, staff or operations in any country unless that information is published and verified.",
+   542→    "governanceTitle": "Governance and transparency",
+   543→    "governanceBody": "Leadership details, governance documents, policies, annual reports and partnership information are published here as they are approved by the organisation. Nothing on this page should be read as a claim of government affiliation, regulatory accreditation or investigative authority.",
+   544→    "disclaimerTitle": "What we do not do",
+   545→    "disclaimer": [
+   546→      "We are not a law enforcement authority and cannot arrest or prosecute anyone.",
+   547→      "We cannot guarantee the recovery of funds or assets.",
+   548→      "We cannot certify a person, website, business or transaction as legitimate.",
+   549→      "We do not replace your bank, mobile money provider or the competent authorities."
+   550→    ]
+   551→  },
+   552→  "campaigns": {
+   553→    "eyebrow": "Campaigns, seminars and forums",
+   554→    "h1": "Awareness that reaches people where they are.",
+   555→    "lead": "GLOPROFAS leads anti-scam campaigns, seminars and forums in schools, churches, youth centres and companies to sensitise the public on the threats, risks and consequences associated with all manners of fraud.",
+   556→    "introTitle": "What we do in the field",
+   557→    "introBody": "We run structured awareness sessions rather than general warnings. Each campaign, seminar or forum is prepared with the host organisation, built around real message examples and focused on modern-day scamming schemes: mobile money fraud, phishing, fake job offers, investment platforms, impersonation and online shopping fraud. We explain what the threat looks like, who it targets, what the loss or damage can be, and which steps actually protect people.",
+   558→    "audiencesTitle": "Where we run sessions",
+   559→    "audiences": [
+   560→      {
+   561→        "title": "Schools",
+   562→        "body": "Sessions for secondary and higher-education students on fake job offers, mobile money fraud, romance scams and social media account takeover. We cover the consequences of sharing identity documents and passwords, and the reporting route."
+   563→      },
+   564→      {
+   565→        "title": "Churches and faith communities",
+   566→        "body": "Forums for congregations and leaders on fake charity appeals, investment promises, family money requests and impersonation of pastors or relatives. Plain-language material, questions answered openly, and guidance for supporting a member who has lost money."
+   567→      },
+   568→      {
+   569→        "title": "Youth centres and community groups",
+   570→        "body": "Workshops for young people and community networks on online shopping traps, side-hustle and cryptocurrency schemes, and sextortion-style pressure. Focused on early detection and on refusing pressure to act immediately."
+   571→      },
+   572→      {
+   573→        "title": "Companies and institutions",
+   574→        "body": "Briefings for staff and management on invoice redirection, business email compromise, payroll diversion and impersonation of directors. Sessions connect awareness to payment approvals, call-back verification and an internal response procedure."
+   575→      }
+   576→    ],
+   577→    "topicsTitle": "Themes covered in every session",
+   578→    "topics": [
+   579→      "How modern scam operations are built and why they work",
+   580→      "The threats: phishing, mobile money fraud, fake jobs, fake investments, impersonation",
+   581→      "The risks: irreversible transfers, account takeover, stolen identity, reputation damage",
+   582→      "The consequences for individuals, families and businesses",
+   583→      "Warning signs and verification habits that stop a payment",
+   584→      "What to do after a loss, and which official channels to contact",
+   585→      "Reporting through GLOPROFAS and through the competent authorities"
+   586→    ],
+   587→    "formatTitle": "Format and what a session includes",
+   588→    "formats": [
+   589→      {
+   590→        "title": "Duration",
+   591→        "body": "45, 60 or 90 minutes, in English or French."
+   592→      },
+   593→      {
+   594→        "title": "Preparation",
+   595→        "body": "A short briefing with the host to match real local cases."
+   596→      },
+   597→      {
+   598→        "title": "Material",
+   599→        "body": "Printed checklist and links to the relevant GLOPROFAS guides."
+   600→      },
+   601→      {
+   602→        "title": "Follow-up",
+   603→        "body": "Written summary and answers to outstanding questions."
+   604→      }
+   605→    ],
+   606→    "inviteTitle": "Invite GLOPROFAS to your organisation",
+   607→    "inviteBody": "Schools, churches, youth centres, associations and companies can request a campaign, seminar or forum. Tell us the audience, the approximate size and the timing. Public-interest sessions are free; professional programmes for companies and institutions are quoted separately.",
+   608→    "cta": "Request a session",
+   609→    "ctaSecondary": "Explore awareness guides",
+   610→    "note": "Sessions are educational. GLOPROFAS does not run investigations, does not certify anyone as legitimate, and cannot recover funds. No fee is ever charged to attend a public session, and we never collect payments through this website.",
+   611→    "imageAlts": {
+   612→      "school": "Facilitator leading an anti-fraud session with students in a school hall",
+   613→      "community": "Community awareness forum with mixed-age participants in a church hall",
+   614→      "youth": "Mentor and young people discussing a phone during a youth centre workshop",
+   615→      "corporate": "Presenter briefing staff on fraud prevention in a meeting room"
+   616→    }
+   617→  },
+   618→  "search": {
+   619→    "h1": "Search",
+   620→    "lead": "Search guides, alerts, resources and news across GLOPROFAS.",
+   621→    "placeholder": "Try “mobile money”, “phishing” or “invoice”",
+   622→    "allTypes": "All content",
+   623→    "types": {
+   624→      "category": "Scam guide",
+   625→      "alert": "Alert",
+   626→      "resource": "Resource",
+   627→      "article": "Article"
+   628→    }
+   629→  },
+   630→  "newsletter": {
+   631→    "h1": "Newsletter",
+   632→    "lead": "One short briefing a month on new scams, updated guides and practical reminders.",
+   633→    "name": "First name",
+   634→    "country": "Country",
+   635→    "language": "Preferred language",
+   636→    "email": "Email address",
+   637→    "consent": "I agree to receive the GLOPROFAS briefing and accept the privacy policy.",
+   638→    "submit": "Subscribe",
+   639→    "success": "Thank you. Check your inbox to confirm your subscription. If it does not arrive, check your spam folder.",
+   640→    "confirmed": "Your subscription is confirmed. Thank you for joining the briefing.",
+   641→    "unsubscribed": "You have been unsubscribed and will no longer receive the briefing.",
+   642→    "invalidToken": "This link is invalid or has expired.",
+   643→    "duplicate": "This email address is already subscribed or awaiting confirmation.",
+   644→    "rate": "Too many attempts. Please try again later."
+   645→  },
+   646→  "assistant": {
+   647→    "name": "GLOPROFAS AI Assistant",
+   648→    "open": "Open the GLOPROFAS AI Assistant",
+   649→    "close": "Close the assistant",
+   650→    "clear": "Clear conversation",
+   651→    "welcome": "Hello. I can explain how common scams work, help you check a suspicious message and point you to the right GLOPROFAS guidance. I cannot recover funds or confirm whether a person or business is legitimate.",
+   652→    "suggestions": [
+   653→      "Is this message a scam?",
+   654→      "How do I protect my mobile money account?",
+   655→      "Someone asked for a fee to release a job offer. Is that normal?",
+   656→      "What should I do after sending money to a scammer?"
+   657→    ],
+   658→    "placeholder": "Ask about a scam or how to stay safe",
+   659→    "send": "Send",
+   660→    "disclaimer": "Educational information, not legal, banking or law-enforcement advice. For a loss, contact your bank or provider now.",
+   661→    "sources": "Sources",
+   662→    "reportCta": "Report what happened",
+   663→    "error": "The assistant is unavailable right now. Please try again in a moment.",
+   664→    "rateLimit": "You have reached the message limit for now. Please try again later.",
+   665→    "thinking": "Checking GLOPROFAS guidance…",
+   666→    "languageNote": "Answers in English and French"
+   667→  },
+   668→  "footer": {
+   669→    "description": "An international not-for-profit initiative working on scam awareness, prevention, education and assistance, with a separate professional services division.",
+   670→    "quickLinks": "Explore",
+   671→    "resources": "Resources",
+   672→    "contact": "Contact",
+   673→    "legal": "Legal",
+   674→    "followUs": "Follow",
+   675→    "disclaimer": "GLOPROFAS provides awareness, education, information and professional services. We are not a law enforcement or financial authority and cannot guarantee the recovery of funds.",
+   676→    "login": {
+   677→      "title": "Staff and partner login",
+   678→      "body": "Administration area for GLOPROFAS staff. Access is recorded.",
+   679→      "submit": "Sign in",
+   680→      "demoTitle": "Demonstration credentials",
+   681→      "demoBody": "This is a demonstration deployment. Use the credentials below to review the back office.",
+   682→      "demoEmailLabel": "Email",
+   683→      "demoPasswordLabel": "Password",
+   684→      "warning": "Replace these credentials before any production use.",
+   685→      "secureNote": "Sessions are database-backed, HttpOnly and expire automatically."
+   686→    },
+   687→    "copyright": "Global Programme for the Fight Against Scams. All rights reserved.",
+   688→    "demoNote": "Demonstration content — replace before publication."
+   689→  },
+   690→  "legal": {
+   691→    "privacy": "Privacy policy",
+   692→    "terms": "Terms and conditions",
+   693→    "cookies": "Cookie policy",
+   694→    "disclaimer": "General disclaimer",
+   695→    "reporting": "Reporting disclaimer",
+   696→    "ai": "AI assistant disclaimer",
+   697→    "updated": "Last updated"
+   698→  },
+   699→  "admin": {
+   700→    "title": "GLOPROFAS administration",
+   701→    "loginTitle": "Sign in",
+   702→    "loginLead": "Staff access only. All access is logged.",
+   703→    "email": "Email address",
+   704→    "password": "Password",
+   705→    "signIn": "Sign in",
+   706→    "signOut": "Sign out",
+   707→    "invalid": "Email or password is incorrect.",
+   708→    "locked": "Too many attempts. Please wait before trying again.",
+   709→    "dashboard": "Dashboard",
+   710→    "reports": "Scam reports",
+   711→    "messages": "Contact messages",
+   712→    "enquiries": "Service enquiries",
+   713→    "subscribers": "Newsletter subscribers",
+   714→    "volunteers": "Volunteer applications",
+   715→    "partnerships": "Partnership enquiries",
+   716→    "settings": "Website settings",
+   717→    "back": "Back to website",
+   718→    "reference": "Reference",
+   719→    "status": "Status",
+   720→    "new": "New",
+   721→    "underReview": "Under review",
+   722→    "infoRequired": "Additional information required",
+   723→    "reviewed": "Reviewed",
+   724→    "closed": "Closed",
+   725→    "updateStatus": "Update status",
+   726→    "note": "Internal note",
+   727→    "addNote": "Add note",
+   728→    "demo": "Demo credentials",
+   729→    "recent": "Recent records",
+   730→    "noRecords": "No records yet.",
+   731→    "accessDenied": "You do not have access to this area.",
+   732→    "dashboardIntro": "Operational overview from live database records.",
+   733→    "statusUpdated": "Status updated.",
+   734→    "logged": "Activity logged."
+   735→  }
+   736→}
+   737→

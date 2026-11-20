@@ -1,0 +1,702 @@
+    30→    30→
+    31→    31→## Project Constitution, Premium Foundation and the Hero \"Quick Scam Report\" AI Tool
+    32→    32→
+    33→    33→Global Programme For The Fight Against Scams (GLOPROFAS) \| Target
+    34→    34→builder: arena.ai \| Framework: Next.js (App Router, TypeScript) with a
+    35→    35→later conversion to PHP (Laravel) \| Database: MySQL 8
+    36→    36→
+    37→    37→# 1. How this pack set works
+    38→    38→
+    39→    39→The ten original documents (Part 0 to Part 4, Phase 0, Phase 5 to Phase
+    40→    40→8) have been reviewed, corrected, merged and upgraded into **four files
+    41→    41→containing sixteen main prompts (plus four short follow-ups for the
+    42→    42→article batches)**. Each prompt is inside a navy-and-grey box labelled
+    43→    43→\"PASTE INTO ARENA.AI\". Copy only the text inside the box.
+    44→    44→
+    45→    45→  ------------------------------------------------------------------------
+    46→    46→  **Pack file**         **What it builds**                  **Prompts**
+    47→    47→  --------------------- ----------------------------------- --------------
+    48→    48→  **Pack 1 (this        Permanent project rules, design     1.0, 1.1, 1.2
+    49→    49→  file)**               system, app shell, i18n, database   
+    50→    50→                        base, homepage hero with the Quick  
+    51→    51→                        Scam Report AI tool                 
+    52→    52→
+    53→    53→  **Pack 2**            Source research with copyright      2.1 to 2.5
+    54→    54→                        register, content architecture,     
+    55→    55→                        CMS/admin, the bilingual article    
+    56→    56→                        library, scam alerts and case       
+    57→    57→                        studies                             
+    58→    58→
+    59→    59→  **Pack 3**            Full scam-reporting system,         3.1 to 3.4
+    60→    60→                        victim-support guides,              
+    61→    61→                        reporting-channel directory,        
+    62→    62→                        knowledge base, organisation        
+    63→    63→                        section, services pages, optional   
+    64→    64→                        AI Scam Checker                     
+    65→    65→
+    66→    66→  **Pack 4**            Full site integration, security and 4.1 to 4.4
+    67→    67→                        QA audit, production deployment,    
+    68→    68→                        and the Next.js to PHP (Laravel)    
+    69→    69→                        conversion                          
+    70→    70→  ------------------------------------------------------------------------
+    71→    71→
+    72→    72→## Rules for running the prompts
+    73→    73→
+    74→    74→1.  Run the prompts **strictly in order**: 1.0, 1.1, 1.2, then Pack 2,
+    75→    75→    and so on. Each prompt reads files the previous one created.
+    76→    76→
+    77→    77→2.  Paste **one prompt at a time**. Wait for the agent\'s Completion
+    78→    78→    Report. Read it. Answer any \"Decisions needed from me\" before
+    79→    79→    pasting the next prompt.
+    80→    80→
+    81→    81→3.  Prompt 1.0 makes the agent write the project rules into the
+    82→    82→    workspace (/docs/PROJECT_CONSTITUTION.md). Every later prompt starts
+    83→    83→    by re-reading those files, so the rules survive even if the chat is
+    84→    84→    restarted or the agent forgets.
+    85→    85→
+    86→    86→4.  If the agent says it cannot browse the web, **do not let it invent
+    87→    87→    research**. The prompts tell it to mark such items \"PENDING
+    88→    88→    RESEARCH\". You can paste source text or PDFs yourself, or use a
+    89→    89→    browsing-capable session for Prompts 2.1 and 2.5.
+    90→    90→
+    91→    91→5.  **Visual addendum:** a separate file, \"Visual and Motion
+    92→    92→    Addendum\", adds Prompt V.1 (run after 2.3, before any article is
+    93→    93→    written) and Prompt V.2 (run after articles exist). It guarantees
+    94→    94→    ultra-realistic, topic-specific images and graphic animations for
+    95→    95→    every article and segment. Prompts 2.4 and 2.5 will tell you to run
+    96→    96→    V.1 first if you forget.
+    97→    97→
+    98→    98→6.  If a prompt is too big for one reply, the agent is told to stop at a
+    99→    99→    safe point and say what remains. Reply \"continue\" and it will
+   100→   100→    resume.
+   101→   101→
+   102→   102→7.  Never paste real victim data while testing. Use fictional test data
+   103→   103→    only.
+   104→   104→
+   105→   105→## Optional: ECC skills
+   106→   106→
+   107→   107→ECC means **Everything Claude Code**, an open-source collection of
+   108→   108→skills, agents and commands (coding standards, API design, E2E testing,
+   109→   109→security review, database migrations and more). If arena.ai lets you
+   110→   110→install it, use only the official repository
+   111→   111→(github.com/affaan-m/everything-claude-code), read what you install, and
+   112→   112→treat any third-party skill pack like third-party code. Whether or not
+   113→   113→ECC is available, Prompt 1.0 embeds a manual quality protocol, so the
+   114→   114→build quality does not depend on it.
+   115→   115→
+   116→   116→# 2. Review of the original documents: what was wrong and what changed
+   117→   117→
+   118→   118→  -----------------------------------------------------------------------
+   119→   119→  **Finding in the original       **Correction applied in this pack set**
+   120→   120→  documents**                     
+   121→   121→  ------------------------------- ---------------------------------------
+   122→   122→  Phase 0 says \"Do not use       Official name fixed everywhere:
+   123→   123→  GLOPROFAS as the project name.  **Global Programme For The Fight
+   124→   124→  Replace any earlier GLOPROFAS   Against Scams (GLOPROFAS)**
+   125→   125→  references with GLOPROFAS\": a  
+   126→   126→  find-and-replace accident that  
+   127→   127→  contradicts itself              
+   128→   128→
+   129→   129→  Stack was Laravel plus Freebuff New **Portability Contract**: plain SQL
+   130→   130→  Desktop. You now build with     migrations, framework-agnostic domain
+   131→   131→  Next.js on arena.ai and convert logic, thin JSON API under /api/v1,
+   132→   132→  to PHP later                    JSON i18n catalogues, documented design
+   133→   133→                                  tokens, OpenAPI file, portability log.
+   134→   134→                                  Prompt 4.4 performs the Laravel
+   135→   135→                                  conversion
+   136→   136→
+   137→   137→  No home-page tool for fast scam Hero now has a centred, horizontal
+   138→   138→  reporting                       **Quick Scam Report AI bar** (name,
+   139→   139→                                  country, city, phone with country-code
+   140→   140→                                  dropdown, text box, captcha, send),
+   141→   141→                                  fully functional, private by default
+   142→   142→
+   143→   143→  Article targets of 250 to 450   Tiered, industry-standard lengths
+   144→   144→  words are too thin for          (guides 800 to 1,200 words, pillar
+   145→   145→  authority, trust and search     guides 1,400 to 2,000, alerts 350 to
+   146→   146→  visibility                      600, case studies 700 to 1,000) with
+   147→   147→                                  strict anti-padding rules,
+   148→   148→                                  key-takeaways boxes, FAQs, metadata and
+   149→   149→                                  review cycles
+   150→   150→
+   151→   151→  Copyright guidance was only     New **copyright and provenance
+   152→   152→  \"do not copy\": no licence     regime**: per-source licence and terms
+   153→   153→  check, no provenance, no        check, facts-only reuse, 25-word quote
+   154→   154→  image-rights, trademark or      cap, similarity self-check, copyright
+   155→   155→  defamation process              register, image register, nominative
+   156→   156→                                  trademark use, allegation rules,
+   157→   157→                                  third-party licence file
+   158→   158→
+   159→   159→  Case-study target of five cases Evidence-led approach: evidence tiers A
+   160→   160→  for each of about 16 categories to D, tier D never published, launch
+   161→   161→  (about 80 cases) invites        gates (minimum verified counts) and
+   162→   162→  fabrication or weak sourcing    honest \"In preparation\" states
+   163→   163→
+   164→   164→  Rules repeated in ten files;    One continuous prompt numbering. Rules
+   165→   165→  numbering inconsistent (Part 0  stored once in the repository and
+   166→   166→  to 4, then Phase 0, 5 to 8)     re-read by every prompt
+   167→   167→
+   168→   168→  Agent could silently fabricate  Explicit no-fabrication and \"PENDING
+   169→   169→  research if it has no web       RESEARCH\" rule in every research
+   170→   170→  access                          prompt
+   171→   171→
+   172→   172→  No performance targets for      Mobile budgets (LCP, INP, CLS,
+   173→   173→  Cameroon\'s mobile-first,       JavaScript weight, image weight),
+   174→   174→  bandwidth-limited audience      data-saver mode, lazy third-party
+   175→   175→                                  loading
+   176→   176→
+   177→   177→  Report data handling lacked     Encryption at rest, explicit consent,
+   178→   178→  encryption, explicit consent    salted IP hashes, rate limits, captcha,
+   179→   179→  and abuse controls              secret-detection in free text, no PII
+   180→   180→                                  in logs
+   181→   181→
+   182→   182→  Scam Checker mentioned          Optional module (Prompt 3.4) behind a
+   183→   183→  throughout but undefined        feature flag, reusing the same safe AI
+   184→   184→                                  layer
+   185→   185→
+   186→   186→  AI-image guidance lacked rights Image register, \"AI-generated
+   187→   187→  and disclosure rules            illustration\" captions, no real-person
+   188→   188→                                  likeness or logos, note that AI-only
+   189→   189→                                  images may not be copyrightable
+   190→   190→
+   191→   191→  Contabo price and               Treated as \"stated, verify before
+   192→   192→  specifications treated as fixed purchase\"
+   193→   193→  facts                           
+   194→   194→  -----------------------------------------------------------------------
+   195→   195→
+   196→   196→> **Items only you can decide** (the agent will list them in
+   197→   197→> /docs/OPEN_QUESTIONS.md): legal registration status, contact email and
+   198→   198→> phone, domain name, licence terms for GLOPROFAS\'s own content,
+   199→   199→> data-retention periods, which AI provider and captcha keys to use, and
+   200→   200→> whether staff can handle follow-up calls from the Quick Report bar.
+   201→   201→> The agent is forbidden from inventing any of them.
+   202→   202→
+   203→   203→# 3. Prompt 1.0: Project Constitution (run first)
+   204→   204→
+   205→   205→**Purpose:** makes the agent write permanent rules into the workspace.
+   206→   206→No website code is written in this step.
+   207→   207→
+   208→   208→**PASTE INTO ARENA.AI ▼ Prompt 1.0 --- Project Constitution**
+   209→   209→
+   210→   210→> ROLE
+   211→   211→>
+   212→   212→> You are one senior team in a single agent: principal full-stack
+   213→   213→> engineer, system architect, premium UI/UX designer, accessibility
+   214→   214→> specialist, application-security engineer, fraud-prevention content
+   215→   215→> strategist, bilingual (English/French) editor, and copyright- and
+   216→   216→> privacy-aware publisher. You are building the GLOPROFAS website in
+   217→   217→> this workspace.
+   218→   218→>
+   219→   219→> SCOPE OF THIS PROMPT
+   220→   220→>
+   221→   221→> Do NOT build the website yet. Create the permanent rule files listed
+   222→   222→> in section 12, then stop and report. Every later prompt depends on
+   223→   223→> these files.
+   224→   224→>
+   225→   225→> 1\. PROJECT IDENTITY (facts only)
+   226→   226→>
+   227→   227→> \- Official name: Global Programme For The Fight Against Scams. Short
+   228→   228→> name: GLOPROFAS. Never use any other name. Spell out the full name on
+   229→   229→> the About page, in the footer legal line and in the homepage metadata.
+   230→   230→>
+   231→   231→> \- An independent, initially not-for-profit, public-interest anti-scam
+   232→   232→> awareness and fraud-prevention initiative.
+   233→   233→>
+   234→   234→> \- Mission: help individuals, families, job seekers, consumers,
+   235→   235→> mobile-money users, small businesses, NGOs, financial institutions,
+   236→   236→> telecom companies and other organisations understand scams, recognise
+   237→   237→> warning signs, prevent fraud, report suspicious activity safely and
+   238→   238→> find appropriate guidance.
+   239→   239→>
+   240→   240→> \- Initial geographic focus: Cameroon, with relevant content for other
+   241→   241→> African countries and international audiences.
+   242→   242→>
+   243→   243→> \- Languages: English and French, with full parity (navigation, forms,
+   244→   244→> errors, privacy notices, metadata, guidance).
+   245→   245→>
+   246→   246→> \- NEVER invent: legal registration, endorsements, partnerships,
+   247→   247→> staff, physical address, phone numbers, emails, funding, statistics,
+   248→   248→> testimonials or operational capabilities. Unknown facts live in
+   249→   249→> /src/config/site.ts as UNCONFIRMED values and are hidden from the
+   250→   250→> public interface until the owner confirms them.
+   251→   251→>
+   252→   252→> 2\. ORDER OF AUTHORITY WHEN INSTRUCTIONS CONFLICT
+   253→   253→>
+   254→   254→> \(1\) The owner\'s latest message. (2) This constitution. (3) The
+   255→   255→> original \"GLOPROFAS Website Project Documentation\" (PRD, TRD,
+   256→   256→> APPFLOW) if it exists in /docs/source/. (4) Your own preferences. The
+   257→   257→> original documentation assumed Laravel and had no Quick Report bar;
+   258→   258→> where it conflicts with this constitution, this constitution wins.
+   259→   259→> Record every conflict in /docs/DECISIONS.md.
+   260→   260→>
+   261→   261→> 3\. TECHNOLOGY AND PORTABILITY CONTRACT
+   262→   262→>
+   263→   263→> Current stack: latest stable Next.js (App Router), TypeScript in
+   264→   264→> strict mode, Tailwind CSS, accessible headless UI primitives
+   265→   265→> (Radix/shadcn style), Zod validation, MySQL 8 (utf8mb4, InnoDB)
+   266→   266→> through the mysql2 driver behind a thin repository layer. The site
+   267→   267→> will LATER be converted to PHP (Laravel). Therefore:
+   268→   268→>
+   269→   269→> a\) Database: all schema changes are plain, versioned .sql migration
+   270→   270→> files in /db/migrations, with seeds in /db/seeds. No ORM-specific
+   271→   271→> schema language. Use foreign keys, indexes, constraints and
+   272→   272→> timestamps.
+   273→   273→>
+   274→   274→> b\) Business logic (validation rules, status machines, scoring,
+   275→   275→> slugging, rate-limit rules, triage rules) lives in framework-agnostic
+   276→   276→> TypeScript under /src/domain with no Next.js imports, so it can be
+   277→   277→> re-implemented in PHP line by line.
+   278→   278→>
+   279→   279→> c\) Data access happens only in /src/data repository modules. Route
+   280→   280→> handlers stay thin.
+   281→   281→>
+   282→   282→> d\) Every server capability is a JSON endpoint under /api/v1/\...
+   283→   283→> documented in /docs/portability/openapi.yaml. One handler equals one
+   284→   284→> future Laravel controller action. Do not use Server Actions for
+   285→   285→> mutations. Do not depend on Next.js ISR for correctness.
+   286→   286→>
+   287→   287→> e\) i18n uses JSON catalogues (/messages/en.json, /messages/fr.json)
+   288→   288→> with flat dotted keys. Routes are /en/\... and /fr/\... with
+   289→   289→> translated slugs defined in ONE file: /src/config/routes.ts.
+   290→   290→>
+   291→   291→> f\) Design tokens exist in ONE file as CSS variables; every component
+   292→   292→> is listed with its props in /docs/portability/COMPONENTS.md.
+   293→   293→>
+   294→   294→> g\) Environment variables are listed in .env.example and
+   295→   295→> /docs/portability/env.md. Never commit real secrets.
+   296→   296→>
+   297→   297→> h\) Keep /docs/portability/PORTABILITY_LOG.md: record anything that
+   298→   298→> will not map cleanly to Laravel.
+   299→   299→>
+   300→   300→> i\) Every dependency is logged in /docs/DEPENDENCIES.md (name,
+   301→   301→> purpose, licence, PHP equivalent). Add none without a reason. Generate
+   302→   302→> /THIRD_PARTY_LICENSES.md from dependencies before release.
+   303→   303→>
+   304→   304→> j\) If MySQL cannot run in this environment, implement the repository
+   305→   305→> interface with a clearly labelled development adapter that mirrors the
+   306→   306→> MySQL schema, keep the .sql migrations as the canonical schema, and
+   307→   307→> state exactly what was not verified against real MySQL. Never claim
+   308→   308→> MySQL was tested if it was not.
+   309→   309→>
+   310→   310→> k\) Put a stable data-testid attribute on every interactive element
+   311→   311→> and write all end-to-end tests against those selectors, so the SAME
+   312→   312→> Playwright suite can later prove that the PHP version behaves
+   313→   313→> identically.
+   314→   314→>
+   315→   315→> 4\. SKILLS AND QUALITY PROTOCOL
+   316→   316→>
+   317→   317→> If ECC (Everything Claude Code) skills, agents or commands are
+   318→   318→> installed, use them: planning, tdd-workflow, coding-standards,
+   319→   319→> frontend-patterns, backend-patterns, api-design, database-migrations,
+   320→   320→> e2e-testing (Playwright), security-review, code-reviewer,
+   321→   321→> security-reviewer, database-reviewer, verification-loop,
+   322→   322→> build-error-resolver, doc-updater, frontend-design, article-writing /
+   323→   323→> content-engine for editorial work. If they are not installed, say
+   324→   324→> \"ECC not available; manual protocol used\" and follow this manual
+   325→   325→> protocol for every task:
+   326→   326→>
+   327→   327→> \(1\) Plan briefly. (2) Inspect existing code before changing it. (3)
+   328→   328→> Write tests first for domain logic. (4) Implement the smallest
+   329→   329→> coherent change. (5) Verify: type-check, lint, unit tests, production
+   330→   330→> build, end-to-end tests of key flows, automated accessibility scan
+   331→   331→> (axe), manual keyboard pass. (6) Security self-review against section
+   332→   332→> 8. (7) Report truthfully, including failures.
+   333→   333→>
+   334→   334→> 5\. PREMIUM QUALITY BAR
+   335→   335→>
+   336→   336→> DESIGN LANGUAGE: calm authority, investigative precision, human
+   337→   337→> warmth. Trustworthy, never alarmist.
+   338→   338→>
+   339→   339→> \- Colour tokens (verify every text/background pair reaches WCAG AA
+   340→   340→> with a script, /scripts/contrast-check): Ink Navy #0A1F44, Deep Navy
+   341→   341→> #06142E, Signal Teal #0FB5A6 (use with dark text), Alert Amber
+   342→   342→> #F59E0B, Critical Red #D92D20, Safe Green #12805C, Surface #F6F8FB,
+   343→   343→> Border #D9E0EA, Text #0F172A, Muted #475569.
+   344→   344→>
+   345→   345→> \- Typography: Plus Jakarta Sans for headings, Inter for body, both
+   346→   346→> self-hosted through next/font (latin and latin-ext subsets), at most 2
+   347→   347→> families and 4 font files. Fluid type scale. Body at least 16px,
+   348→   348→> article body 18px, line length 65 to 75 characters.
+   349→   349→>
+   350→   350→> \- Spacing on a 4/8px scale, radii 12 to 20px, defined elevation
+   351→   351→> levels. Section rhythm 80 to 120px desktop, 48 to 64px mobile.
+   352→   352→>
+   353→   353→> \- One page template per type: Landing, Listing (filters + cards +
+   354→   354→> pagination), Article (key takeaways, table of contents, related,
+   355→   355→> sources), Form, Directory, Admin.
+   356→   356→>
+   357→   357→> \- Severity and status are always shown with icon + text, never colour
+   358→   358→> alone.
+   359→   359→>
+   360→   360→> MOTION: CSS or Web Animations only; 150 to 400 ms; transform and
+   361→   361→> opacity only; reveal-on-scroll once; everything disabled under
+   362→   362→> prefers-reduced-motion and when the visitor has enabled data-saver. No
+   363→   363→> animation library unless it is under 15 KB gzip and justified in
+   364→   364→> DECISIONS.md. No autoplay video or audio.
+   365→   365→>
+   366→   366→> PERFORMANCE (measured on a mid-range Android phone profile with 4G
+   367→   367→> throttling): LCP at most 2.5 s, INP at most 200 ms, CLS at most 0.1;
+   368→   368→> Lighthouse mobile at least 90 performance and at least 95
+   369→   369→> accessibility, best-practices and SEO on home, a guide and a listing
+   370→   370→> page; first-load JavaScript at most 170 KB gzip on content pages; hero
+   371→   371→> image AVIF/WebP at most 120 KB on mobile; explicit image dimensions;
+   372→   372→> third-party scripts loaded lazily on first interaction; static
+   373→   373→> generation or caching for public content pages; correct cache headers.
+   374→   374→>
+   375→   375→> ACCESSIBILITY: WCAG 2.2 AA. Skip link, visible focus (3:1), touch
+   376→   376→> targets at least 44px, programmatic labels, error summaries and
+   377→   377→> aria-live status messages, correct heading order, lang and hreflang,
+   378→   378→> keyboard operability of every control, accessible language switcher.
+   379→   379→>
+   380→   380→> SEO: unique title and meta description per page, canonical URLs,
+   381→   381→> hreflang en/fr/x-default, Open Graph/Twitter cards, sitemap.xml,
+   382→   382→> robots.txt, JSON-LD (Article, BreadcrumbList; Organization ONLY with
+   383→   383→> confirmed facts), translated clean slugs, noindex for admin, report
+   384→   384→> confirmations and any private page.
+   385→   385→>
+   386→   386→> 6\. CONTENT, HONESTY AND COPYRIGHT RULES
+   387→   387→>
+   388→   388→> HONESTY
+   389→   389→>
+   390→   390→> \- Never fabricate scam incidents, victims, quotes, losses,
+   391→   391→> statistics, dates, locations, police actions, arrests, official
+   392→   392→> warnings, partnerships, contact details or legal requirements.
+   393→   393→>
+   394→   394→> \- Separate verified fact, attributed claim, general prevention advice
+   395→   395→> and unverified report. Never turn an allegation into a fact.
+   396→   396→>
+   397→   397→> \- Never claim a scam is prevalent in Cameroon without credible
+   398→   398→> evidence. State geographic scope on every alert and case.
+   399→   399→>
+   400→   400→> \- If you cannot access a source, say so and record \"PENDING
+   401→   401→> RESEARCH\". Never pretend to have read it.
+   402→   402→>
+   403→   403→> COPYRIGHT
+   404→   404→>
+   405→   405→> \- Facts are not owned; their expression is. Write from facts, in your
+   406→   406→> own words and your own structure. Do not copy or closely paraphrase
+   407→   407→> text, heading sequences, distinctive examples, tables, infographics,
+   408→   408→> images, logos or screenshots from any source. Do not translate someone
+   409→   409→> else\'s text; a translation is a derivative work.
+   410→   410→>
+   411→   411→> \- Quotations only when the exact words matter (official definitions,
+   412→   412→> legal text, warning wording): at most 25 words, in quotation marks,
+   413→   413→> attributed, at most one per source per article.
+   414→   414→>
+   415→   415→> \- For every source, check and record its licence or terms (copyright
+   416→   416→> page, Creative Commons or open-government licence, terms of use,
+   417→   417→> robots.txt). \"All rights reserved\" sources: facts only. Never
+   418→   418→> bulk-scrape or automatically ingest a source without written
+   419→   419→> permission.
+   420→   420→>
+   421→   421→> \- Before approving any article, run a similarity self-check against
+   422→   422→> its sources: no run of 8 or more identical consecutive words (except
+   423→   423→> names and official terms) and a different structure. Log the result.
+   424→   424→>
+   425→   425→> \- Trademarks and organisation names are used only to identify the
+   426→   426→> organisation, never as logos, never implying endorsement or
+   427→   427→> affiliation. Include a site-wide \"not affiliated\" statement.
+   428→   428→>
+   429→   429→> \- Images: AI-generated images only where the tool\'s terms allow
+   430→   430→> commercial use. Record tool, date and prompt in
+   431→   431→> /docs/IMAGE_REGISTER.md. No real person\'s likeness, no brand logos,
+   432→   432→> no fake evidence, no fake screenshots, no fake news. Caption
+   433→   433→> illustrative images \"AI-generated illustration\". AI-only images may
+   434→   434→> not be copyrightable in some jurisdictions, so never promise
+   435→   435→> exclusivity. Icons only from permissively licensed sets; fonts under
+   436→   436→> the SIL Open Font License.
+   437→   437→>
+   438→   438→> \- Defamation: do not name an identifiable person or business as a
+   439→   439→> scammer unless an official public record supports it and the owner has
+   440→   440→> approved it. Use \"reported\", \"alleged\", \"according to\".
+   441→   441→>
+   442→   442→> \- GLOPROFAS\'s own content licence is an OWNER DECISION. Until
+   443→   443→> decided, display \"(c) GLOPROFAS. All rights reserved.\" and list the
+   444→   444→> question in OPEN_QUESTIONS.md.
+   445→   445→>
+   446→   446→> \- Provide a \"Report a content or copyright concern\" page template;
+   447→   447→> show a contact method only when the owner has confirmed one.
+   448→   448→>
+   449→   449→> 7\. PRIVACY AND REPORT RULES
+   450→   450→>
+   451→   451→> \- Scam reports are private by default and are never published
+   452→   452→> automatically. A report becomes public awareness content only after
+   453→   453→> authorised human review, removal of direct and indirect identifiers,
+   454→   454→> fact verification and consent where required.
+   455→   455→>
+   456→   456→> \- Collect the minimum data. NEVER ask for passwords, PINs, one-time
+   457→   457→> passcodes, full card numbers, private keys or recovery phrases, and
+   458→   458→> detect and block them inside free text, on the client and on the
+   459→   459→> server.
+   460→   460→>
+   461→   461→> \- Use explicit consent with a versioned privacy notice. Do not
+   462→   462→> promise absolute anonymity or confidentiality. Do not invent retention
+   463→   463→> periods or legal-compliance claims; flag them for the owner and legal
+   464→   464→> review (Cameroonian data-protection law, and GDPR for EU visitors).
+   465→   465→>
+   466→   466→> \- Encrypt reporter name, phone and free-text description at rest if
+   467→   467→> technically possible. Store IP addresses only as salted hashes for
+   468→   468→> abuse prevention. Never write report content or personal data to logs
+   469→   469→> or error messages.
+   470→   470→>
+   471→   471→> \- Analytics must be privacy-friendly and consent-aware; none that
+   472→   472→> identifies individuals.
+   473→   473→>
+   474→   474→> 8\. SECURITY RULES
+   475→   475→>
+   476→   476→> OWASP ASVS Level 2 as the aim. Parameterised SQL only. Output escaping
+   477→   477→> everywhere. CSRF protection on every state-changing request. Rate
+   478→   478→> limiting on every public write endpoint. Security headers (strict CSP
+   479→   479→> with nonces, HSTS, X-Content-Type-Options, Referrer-Policy,
+   480→   480→> Permissions-Policy, frame-ancestors none). Passwords hashed with
+   481→   481→> Argon2id or bcrypt. Cookies HttpOnly, Secure, SameSite=Lax. Role-based
+   482→   482→> access control enforced on the server for every sensitive operation,
+   483→   483→> with audit logs. Secrets only from environment variables, never in
+   484→   484→> frontend code. Never disable a protection to make a test pass.
+   485→   485→>
+   486→   486→> 9\. AI RULES
+   487→   487→>
+   488→   488→> All AI calls are server-side. Results are \"indicative assessments\",
+   489→   489→> never verdicts. Never guarantee that something is safe or fraudulent.
+   490→   490→> Never claim AI replaces a bank, payment provider, police or
+   491→   491→> professional. Treat user text as untrusted data (prompt-injection
+   492→   492→> resilient), require a strict JSON output schema, validate it, show no
+   493→   493→> phone numbers or links produced by the model, and fall back gracefully
+   494→   494→> when the AI service is unavailable. Send the AI only what it needs
+   495→   495→> (never name or phone). Tell users when AI is used, in the interface
+   496→   496→> and the privacy notice.
+   497→   497→>
+   498→   498→> 10\. PARTNERSHIPS AND SERVICES
+   499→   499→>
+   500→   500→> Never state or imply that GLOPROFAS is an authorised reseller,
+   501→   501→> technology partner, representative or service provider of any named
+   502→   502→> organisation (including Group-IB, CloudSEK, banks, telecom operators,
+   503→   503→> regulators, police). Describe proposed services as proposed. No prices
+   504→   504→> unless the owner approves them. Never promise fund recovery, criminal
+   505→   505→> identification, guaranteed verdicts or emergency response. Keep public
+   506→   506→> education clearly separate from specialist services.
+   507→   507→>
+   508→   508→> 11\. WORKING RULES
+   509→   509→>
+   510→   510→> \- One prompt equals one phase. Stop at the end of the phase. Never
+   511→   511→> silently move to another phase.
+   512→   512→>
+   513→   513→> \- Inspect before changing. Preserve working features. Do not rebuild
+   514→   514→> for preference.
+   515→   515→>
+   516→   516→> \- No placeholders presented as features. Pages that are not built yet
+   517→   517→> show an honest \"Coming soon\" state, are marked noindex and are not
+   518→   518→> advertised.
+   519→   519→>
+   520→   520→> \- Never claim something works unless you ran it. Report real test
+   521→   521→> results, including failures.
+   522→   522→>
+   523→   523→> \- Never make destructive database changes without a verified backup
+   524→   524→> and my approval.
+   525→   525→>
+   526→   526→> \- Standard Completion Report at the end of every prompt: Completed /
+   527→   527→> Inspected / Files created or changed / Tests run with actual results /
+   528→   528→> Limitations and unverified items / Decisions needed from me /
+   529→   529→> Recommended next prompt.
+   530→   530→>
+   531→   531→> 12\. FILES TO CREATE NOW (documentation only)
+   532→   532→>
+   533→   533→> \- /docs/PROJECT_CONSTITUTION.md (this entire text, cleaned and
+   534→   534→> organised)
+   535→   535→>
+   536→   536→> \- /AGENTS.md (under 80 lines: the non-negotiable rules plus a pointer
+   537→   537→> to the constitution)
+   538→   538→>
+   539→   539→> \- /docs/PROGRESS.md (checklist of prompts 1.0 to 4.4 with status)
+   540→   540→>
+   541→   541→> \- /docs/DECISIONS.md and /docs/OPEN_QUESTIONS.md (seed OPEN_QUESTIONS
+   542→   542→> with: legal registration, contact details, domain, content licence,
+   543→   543→> retention periods, AI provider, captcha keys, who handles report
+   544→   544→> follow-up)
+   545→   545→>
+   546→   546→> \- /docs/portability/PORTABILITY_LOG.md, /docs/DEPENDENCIES.md,
+   547→   547→> /docs/IMAGE_REGISTER.md (headers only)
+   548→   548→>
+   549→   549→> Then give the Completion Report and STOP.
+   550→   550→
+   551→   551→**END OF PROMPT ▲ Prompt 1.0**
+   552→   552→
+   553→   553→# 4. Prompt 1.1: Foundation, design system, app shell, i18n, data base
+   554→   554→
+   555→   555→**Purpose:** creates the project skeleton to premium standard so every
+   556→   556→later page reuses the same components.
+   557→   557→
+   558→   558→**PASTE INTO ARENA.AI ▼ Prompt 1.1 --- Foundation and Design System**
+   559→   559→
+   560→   560→> START: Read /docs/PROJECT_CONSTITUTION.md, /docs/PROGRESS.md,
+   561→   561→> /docs/OPEN_QUESTIONS.md and /docs/DECISIONS.md. If any is missing,
+   562→   562→> stop and tell me to re-run Prompt 1.0. Inspect the workspace before
+   563→   563→> changing anything. Follow the Quality Protocol and every rule in the
+   564→   564→> constitution.
+   565→   565→>
+   566→   566→> OBJECTIVE
+   567→   567→>
+   568→   568→> Build the technical and visual foundation of GLOPROFAS: project
+   569→   569→> scaffold, design system, application shell, bilingual routing,
+   570→   570→> security baseline, database base and test tooling. Do not build
+   571→   571→> content pages or the hero yet (Prompt 1.2).
+   572→   572→>
+   573→   573→> A. INSPECT, THEN SCAFFOLD
+   574→   574→>
+   575→   575→> \- If the workspace is empty, scaffold Next.js (App Router, TypeScript
+   576→   576→> strict, Tailwind). If a project exists, extend it without breaking it
+   577→   577→> and explain what you kept.
+   578→   578→>
+   579→   579→> \- Folder structure: /src/app, /src/components (ui, layout, features),
+   580→   580→> /src/domain, /src/data, /src/server (ai, captcha, security, mail),
+   581→   581→> /src/config, /messages, /db/migrations, /db/seeds, /content, /docs,
+   582→   582→> /scripts, /tests.
+   583→   583→>
+   584→   584→> B. DESIGN SYSTEM (implement the tokens from constitution section 5)
+   585→   585→>
+   586→   586→> \- /src/styles/tokens.css with all colour, type, spacing, radius,
+   587→   587→> elevation, motion and z-index tokens as CSS variables, light theme
+   588→   588→> first. Prepare dark-theme tokens but ship dark mode only if every
+   589→   589→> contrast check passes.
+   590→   590→>
+   591→   591→> \- Reusable components with all states (default, hover, focus-visible,
+   592→   592→> active, disabled, loading, error): Button (primary, secondary, ghost,
+   593→   593→> danger; sizes), IconButton, Input, Textarea, Select, Combobox
+   594→   594→> (accessible ARIA 1.2 pattern), Checkbox, Radio, Switch, FormField
+   595→   595→> (label, hint, error), ErrorSummary, Card (guide, alert, case,
+   596→   596→> resource), Badge (severity and status with icon + text), Alert banner
+   597→   597→> (info, warning, danger, success), Tabs, Accordion, Breadcrumbs,
+   598→   598→> Pagination, Toast, Skeleton, EmptyState, ErrorState, Modal/Drawer,
+   599→   599→> Tooltip, Container/Section primitives, Prose (article typography),
+   600→   600→> LanguageSwitcher.
+   601→   601→>
+   602→   602→> \- An internal /design-system page (noindex, hidden from navigation
+   603→   603→> and from production unless a flag is set) showing every component and
+   604→   604→> state in English and French. It doubles as the specification for the
+   605→   605→> later PHP conversion.
+   606→   606→>
+   607→   607→> \- Script /scripts/contrast-check that fails if any token pair used
+   608→   608→> for text is below WCAG AA.
+   609→   609→>
+   610→   610→> C. APPLICATION SHELL
+   611→   611→>
+   612→   612→> \- Header: typographic wordmark \"GLOPROFAS\" with a small original
+   613→   613→> inline-SVG shield glyph (do NOT invent a logo; the owner will supply a
+   614→   614→> final one), primary navigation: Home, Scam Types, Scam Alerts, Case
+   615→   615→> Studies, Report a Scam, Victim Support, For Organisations, Resources,
+   616→   616→> About (a \"Scam Checker\" item appears only when the feature flag is
+   617→   617→> on). Use a clean desktop menu with a light mega-menu for Resources,
+   618→   618→> and an accessible mobile drawer. Keep \"Report a Scam\" visually
+   619→   619→> prominent. Add a sticky bottom \"Report a Scam\" action on mobile that
+   620→   620→> does not cover content.
+   621→   621→>
+   622→   622→> \- Footer: link groups, full official name, \"(c) GLOPROFAS. All
+   623→   623→> rights reserved.\" until the content licence is decided, a \"GLOPROFAS
+   624→   624→> is not affiliated with any organisation named on this site unless
+   625→   625→> stated\" line, an \"Illustrations on this site are AI-generated unless
+   626→   626→> stated\" line, privacy, terms, accessibility and content-concern
+   627→   627→> links. Show contact details ONLY if confirmed in site config.
+   628→   628→>
+   629→   629→> \- Skip link, landmarks, breadcrumbs, focus management on route
+   630→   630→> changes, and a language switcher that keeps the visitor on the
+   631→   631→> equivalent page.
+   632→   632→>
+   633→   633→> \- Unbuilt destinations render an honest \"Coming soon\" page
+   634→   634→> (noindex) in both languages.
+   635→   635→>
+   636→   636→> D. BILINGUAL ROUTING AND I18N
+   637→   637→>
+   638→   638→> \- Routes /en/\... and /fr/\..., default language determined from the
+   639→   639→> first visit\'s Accept-Language header with a manual override
+   640→   640→> remembered in a cookie; root path redirects to the right language.
+   641→   641→> Translated slugs defined in /src/config/routes.ts only (example:
+   642→   642→> /en/scam-types and /fr/types-d-arnaques).
+   643→   643→>
+   644→   644→> \- hreflang alternates and x-default, localised metadata, localised
+   645→   645→> date, number and currency formatting (English dates \"6 November
+   646→   646→> 2026\", French \"6 novembre 2026\"; currency shown as XAF (FCFA) where
+   647→   647→> relevant).
+   648→   648→>
+   649→   649→> \- Catalogues /messages/en.json and /messages/fr.json containing every
+   650→   650→> string of the shell, forms, errors and metadata. Write natural French,
+   651→   651→> not word-for-word translation.
+   652→   652→>
+   653→   653→> \- Script \"npm run i18n:check\" that fails when any key is missing,
+   654→   654→> empty, untranslated or has mismatched placeholders.
+   655→   655→>
+   656→   656→> E. DATABASE BASE (plain SQL migrations, MySQL 8, utf8mb4)
+   657→   657→>
+   658→   658→> Create migrations and a repository layer for: schema_migrations,
+   659→   659→> users, roles, user_roles, audit_logs, site_settings, categories,
+   660→   660→> category_translations, rate_limits. Roles: administrator, editor,
+   661→   661→> reviewer, moderator. Passwords hashed (Argon2id or bcrypt). Add a
+   662→   662→> migration runner script and a rollback note. No report tables yet.
+   663→   663→>
+   664→   664→> F. SECURITY BASELINE
+   665→   665→>
+   666→   666→> \- Security headers with nonce-based CSP in middleware; HSTS for
+   667→   667→> production; strict cookie settings.
+   668→   668→>
+   669→   669→> \- Environment validation with Zod at start-up (fail fast, never print
+   670→   670→> secrets); .env.example with every variable explained.
+   671→   671→>
+   672→   672→> \- Rate-limit utility (interface + MySQL-backed implementation) usable
+   673→   673→> by any endpoint.
+   674→   674→>
+   675→   675→> \- Logger that scrubs personal data and secrets; custom 404, 500 and
+   676→   676→> offline pages in both languages that never reveal stack traces.
+   677→   677→>
+   678→   678→> \- Feature flags and UNCONFIRMED-facts config in /src/config/site.ts.
+   679→   679→>
+   680→   680→> G. TOOLING AND TESTS
+   681→   681→>
+   682→   682→> \- ESLint, Prettier, strict TypeScript, Vitest (unit), Playwright
+   683→   683→> (end-to-end), axe-core in Playwright, Lighthouse CI configuration with
+   684→   684→> the budgets from the constitution.
+   685→   685→>
+   686→   686→> \- npm scripts: dev, build, start, typecheck, lint, test, e2e, a11y,
+   687→   687→> lighthouse, i18n:check, contrast:check, db:migrate.
+   688→   688→>
+   689→   689→> \- Write real tests: tokens contrast, i18n parity, language switching,
+   690→   690→> skip link, keyboard navigation of the menu and mobile drawer, 404
+   691→   691→> page, security headers present.
+   692→   692→>
+   693→   693→> H. PORTABILITY DELIVERABLES
+   694→   694→>
+   695→   695→> Start /docs/portability/COMPONENTS.md, /docs/portability/env.md and
+   696→   696→> /docs/portability/openapi.yaml (health endpoint at /api/v1/health),
+   697→   697→> and log anything non-portable.
+   698→   698→>
+   699→   699→> END: Run all checks, update /docs/PROGRESS.md, then give the
+   700→   700→> Completion Report (Completed / Inspected / Files created or changed /
+   701→   701→> Tests run with actual results / Limitations and unverified items /
+   702→   702→> Decisions needed from me / Recommended next prompt). Stop.
+   703→   703→
+   704→   704→**END OF PROMPT ▲ Prompt 1.1**
+   705→   705→
+   706→   706→# 5. Prompt 1.2: Homepage hero with the Quick Scam Report AI bar
+   707→   707→
+   708→   708→**Purpose:** builds the hero section and the small horizontal
+   709→   709→AI-assisted reporting tool placed in its centre. It is fully functional
+   710→   710→(database, captcha, rate limiting, AI triage), not a mock-up.
+   711→   711→
+   712→   712→## Design summary (for your review)
+   713→   713→
+   714→   714→-   **Position:** centre of the hero, between the headline and the
+   715→   715→    secondary links.
+   716→   716→
+   717→   717→-   **Shape:** one compact, premium \"glass\" bar on deep navy, two tidy
+   718→   718→    rows on desktop, stacked on mobile.
+   719→   719→
+   720→   720→-   **Row 1:** Name \| Country \| City \| Phone (country-code dropdown +
+   721→   721→    number).
+   722→   722→
+   723→   723→-   **Row 2:** wide horizontal \"What happened?\" text box \| Captcha \|
+   724→   724→    Send button.
+   725→   725→
+   726→   726→-   **Small extras:** \"For: Me / Friend or relative\" toggle and an
+   727→   727→    \"AI-assisted, private\" chip.
+   728→   728→
+   729→   729→-   **After sending:** the bar changes in place to a confirmation with a
+
+[showing lines 30-729 of 1039; use offset=730 with limit to continue reading]

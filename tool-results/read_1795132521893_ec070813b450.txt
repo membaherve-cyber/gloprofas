@@ -1,0 +1,533 @@
+     1→export const alertSeed = [
+     2→  {
+     3→    "slugEn": "4765f308-62d4-4eb6-b28d-07e4227f8423",
+     4→    "slugFr": "4765f308-62d4-4eb6-b28d-07e4227f8423",
+     5→    "titleEn": "Reported suspicious activity: fake mobile money reversal SMS",
+     6→    "titleFr": "Activité suspecte signalée : faux SMS d’annulation de transfert",
+     7→    "summaryEn": "Illustrative alert. Messages claim a transfer was sent by mistake and ask you to send it back.",
+     8→    "summaryFr": "Alerte illustrative. Des messages affirment qu’un transfert a été envoyé par erreur et demandent son renvoi.",
+     9→    "bodyEn": [
+    10→      "Illustrative alert. Messages claim a transfer was sent by mistake and ask you to send it back."
+    11→    ],
+    12→    "bodyFr": [
+    13→      "Alerte illustrative. Des messages affirment qu’un transfert a été envoyé par erreur et demandent son renvoi."
+    14→    ],
+    15→    "actionsEn": [
+    16→      "Do not act on the message or call.",
+    17→      "Check directly with the organisation through its official channel.",
+    18→      "Never share PINs or one-time codes.",
+    19→      "Keep evidence and report the incident."
+    20→    ],
+    21→    "actionsFr": [
+    22→      "N’agissez pas sur la base du message ou de l’appel.",
+    23→      "Vérifiez directement auprès de l’organisation par son canal officiel.",
+    24→      "Ne partagez jamais de code PIN ou de code à usage unique.",
+    25→      "Conservez les preuves et signalez l’incident."
+    26→    ],
+    27→    "country": "Cameroon",
+    28→    "riskLevel": "critical",
+    29→    "imageUrl": "/images/zite/img_XRXUCAiJJ46mAuVh.jpg",
+    30→    "categorySlugEn": "mobile-money-scams",
+    31→    "date": "2026-10-28"
+    32→  },
+    33→  {
+    34→    "slugEn": "470da78a-4787-4979-9f71-057fe61d5e50",
+    35→    "slugFr": "470da78a-4787-4979-9f71-057fe61d5e50",
+    36→    "titleEn": "Job offers asking for a “registration fee”",
+    37→    "titleFr": "Offres d’emploi exigeant des « frais d’inscription »",
+    38→    "summaryEn": "Illustrative alert. Recruiters ask for payment before an interview.",
+    39→    "summaryFr": "Alerte illustrative. De faux recruteurs demandent un paiement avant l’entretien.",
+    40→    "bodyEn": [
+    41→      "Illustrative alert. Recruiters ask for payment before an interview."
+    42→    ],
+    43→    "bodyFr": [
+    44→      "Alerte illustrative. De faux recruteurs demandent un paiement avant l’entretien."
+    45→    ],
+    46→    "actionsEn": [
+    47→      "Do not act on the message or call.",
+    48→      "Check directly with the organisation through its official channel.",
+    49→      "Never share PINs or one-time codes.",
+    50→      "Keep evidence and report the incident."
+    51→    ],
+    52→    "actionsFr": [
+    53→      "N’agissez pas sur la base du message ou de l’appel.",
+    54→      "Vérifiez directement auprès de l’organisation par son canal officiel.",
+    55→      "Ne partagez jamais de code PIN ou de code à usage unique.",
+    56→      "Conservez les preuves et signalez l’incident."
+    57→    ],
+    58→    "country": "West Africa",
+    59→    "riskLevel": "high",
+    60→    "imageUrl": "/images/zite/img_RNp07pYUDwb_i1sA.jpg",
+    61→    "categorySlugEn": "employment-scams",
+    62→    "date": "2026-10-24"
+    63→  },
+    64→  {
+    65→    "slugEn": "881dce1a-df7b-4d32-963b-4f2ecd1e1b8b",
+    66→    "slugFr": "881dce1a-df7b-4d32-963b-4f2ecd1e1b8b",
+    67→    "titleEn": "Investment groups promising daily returns",
+    68→    "titleFr": "Groupes d’investissement promettant des gains quotidiens",
+    69→    "summaryEn": "Illustrative alert. Messaging groups promote guaranteed daily profits.",
+    70→    "summaryFr": "Alerte illustrative. Des groupes de messagerie promettent des profits quotidiens garantis.",
+    71→    "bodyEn": [
+    72→      "Illustrative alert. Messaging groups promote guaranteed daily profits."
+    73→    ],
+    74→    "bodyFr": [
+    75→      "Alerte illustrative. Des groupes de messagerie promettent des profits quotidiens garantis."
+    76→    ],
+    77→    "actionsEn": [
+    78→      "Do not act on the message or call.",
+    79→      "Check directly with the organisation through its official channel.",
+    80→      "Never share PINs or one-time codes.",
+    81→      "Keep evidence and report the incident."
+    82→    ],
+    83→    "actionsFr": [
+    84→      "N’agissez pas sur la base du message ou de l’appel.",
+    85→      "Vérifiez directement auprès de l’organisation par son canal officiel.",
+    86→      "Ne partagez jamais de code PIN ou de code à usage unique.",
+    87→      "Conservez les preuves et signalez l’incident."
+    88→    ],
+    89→    "country": "Central Africa",
+    90→    "riskLevel": "medium",
+    91→    "imageUrl": "/images/zite/img_2jsmyLqQWbvqkX0_.jpg",
+    92→    "categorySlugEn": "investment-scams",
+    93→    "date": "2026-10-20"
+    94→  }
+    95→];
+    96→
+    97→export const articleSeed = [
+    98→  {
+    99→    "slugEn": "84b3aae8-32a2-40eb-9c90-c414846fbc8a",
+   100→    "slugFr": "84b3aae8-32a2-40eb-9c90-c414846fbc8a",
+   101→    "titleEn": "Five questions to ask before you send money to anyone",
+   102→    "titleFr": "Cinq questions à se poser avant d’envoyer de l’argent",
+   103→    "excerptEn": "A short pause and five simple questions stop most scams before money leaves your account.",
+   104→    "excerptFr": "Une courte pause et cinq questions simples arrêtent la plupart des arnaques avant que l’argent ne parte.",
+   105→    "bodyEn": [
+   106→      "Most scams succeed in the few minutes between a message arriving and a payment being made. Slowing down is your best protection.",
+   107→      "1. Did I expect this request? Unexpected requests for money deserve extra care.",
+   108→      "2. Can I verify it on a number I already know? Call the person or organisation directly, never using the contact details in the message.",
+   109→      "3. Is someone rushing me? Urgency is the scammer’s main tool. A genuine request can wait an hour.",
+   110→      "4. Am I being asked for a code or PIN? No legitimate organisation needs your PIN or one-time code.",
+   111→      "5. Would I be comfortable telling a friend about this payment? Requests for secrecy are a warning sign.",
+   112→      "If any answer worries you, stop and check. You lose nothing by waiting."
+   113→    ],
+   114→    "bodyFr": [
+   115→      "La plupart des arnaques réussissent dans les quelques minutes entre l’arrivée d’un message et le paiement. Ralentir est votre meilleure protection.",
+   116→      "1. Est-ce que j’attendais cette demande ? Une demande d’argent inattendue mérite une attention particulière.",
+   117→      "2. Puis-je la vérifier sur un numéro que je connais déjà ? Appelez directement la personne ou l’organisation, jamais avec les coordonnées du message.",
+   118→      "3. Me presse-t-on ? L’urgence est l’outil principal de l’escroc. Une vraie demande peut attendre une heure.",
+   119→      "4. Me demande-t-on un code ou un PIN ? Aucune organisation légitime n’a besoin de votre code.",
+   120→      "5. Serais-je à l’aise d’en parler à un ami ? Une demande de secret est un signal d’alerte.",
+   121→      "Si une réponse vous inquiète, arrêtez et vérifiez. Attendre ne vous coûte rien."
+   122→    ],
+   123→    "kind": "article",
+   124→    "tag": "Prevention",
+   125→    "authorName": "GLOPROFAS Editorial",
+   126→    "date": "2026-10-27",
+   127→    "imageUrl": "/images/zite/img_9FEr6sokBRFWKAW9.jpg"
+   128→  },
+   129→  {
+   130→    "slugEn": "f10d1bb2-3e78-457f-9375-174734191e5f",
+   131→    "slugFr": "f10d1bb2-3e78-457f-9375-174734191e5f",
+   132→    "titleEn": "How to recognise a fake recruitment message",
+   133→    "titleFr": "Reconnaître un faux message de recrutement",
+   134→    "excerptEn": "Fake job offers are designed for people under pressure to find work. Here is how to tell them apart.",
+   135→    "excerptFr": "Les fausses offres d’emploi visent les personnes pressées de trouver du travail. Voici comment les repérer.",
+   136→    "bodyEn": [
+   137→      "Looking for work is stressful, and scammers know it. Fake recruiters target job seekers with offers that look like a lucky break.",
+   138→      "The clearest sign is a request for money. Genuine employers do not charge for registration, training, uniforms, medical tests or visas before you are hired.",
+   139→      "Other signs include offers you never applied for, interviews held only by text, salaries far above the market and pressure to accept immediately.",
+   140→      "Before responding, search for the company’s official website and phone number, and contact them directly. Never send copies of your ID until you are sure the employer is real."
+   141→    ],
+   142→    "bodyFr": [
+   143→      "Chercher un emploi est stressant, et les escrocs le savent. De faux recruteurs ciblent les demandeurs d’emploi avec des offres qui ressemblent à une chance inespérée.",
+   144→      "Le signe le plus clair est une demande d’argent. Un véritable employeur ne fait pas payer l’inscription, la formation, l’uniforme, l’examen médical ou le visa avant l’embauche.",
+   145→      "Autres signes : offres auxquelles vous n’avez pas postulé, entretiens uniquement par écrit, salaires bien au-dessus du marché et pression pour accepter immédiatement.",
+   146→      "Avant de répondre, recherchez le site et le numéro officiels de l’entreprise et contactez-la directement. N’envoyez jamais de pièce d’identité avant d’être sûr de l’employeur."
+   147→    ],
+   148→    "kind": "article",
+   149→    "tag": "Awareness",
+   150→    "authorName": "GLOPROFAS Editorial",
+   151→    "date": "2026-10-22",
+   152→    "imageUrl": "/images/zite/img_RNp07pYUDwb_i1sA.jpg"
+   153→  },
+   154→  {
+   155→    "slugEn": "5f261c0b-297a-4451-8118-9cbe77cf40a5",
+   156→    "slugFr": "5f261c0b-297a-4451-8118-9cbe77cf40a5",
+   157→    "titleEn": "What to do in the first hour after a scam",
+   158→    "titleFr": "Que faire dans l’heure qui suit une arnaque",
+   159→    "excerptEn": "Acting quickly can limit the damage. A calm checklist for the first hour.",
+   160→    "excerptFr": "Agir vite peut limiter les dégâts. Une liste calme pour la première heure.",
+   161→    "bodyEn": [
+   162→      "Realising you have been scammed is upsetting. It is not your fault, and quick action can help.",
+   163→      "First, contact your bank or mobile money provider through its official number. Explain what happened and ask whether the transaction can be stopped or the account secured.",
+   164→      "Second, change any passwords or PINs you may have shared, starting with email and mobile money.",
+   165→      "Third, gather evidence: screenshots, phone numbers, links, transaction references and dates.",
+   166→      "Fourth, report the incident to the competent authorities and to GLOPROFAS. Your report can help warn others.",
+   167→      "Finally, be cautious of anyone who contacts you offering to recover your money for a fee. This is often a second scam."
+   168→    ],
+   169→    "bodyFr": [
+   170→      "Comprendre que l’on a été victime d’une arnaque est éprouvant. Ce n’est pas votre faute, et agir vite peut aider.",
+   171→      "D’abord, contactez votre banque ou votre opérateur de mobile money via son numéro officiel. Expliquez la situation et demandez si la transaction peut être bloquée ou le compte sécurisé.",
+   172→      "Ensuite, changez les mots de passe ou codes que vous avez pu partager, en commençant par la messagerie et le mobile money.",
+   173→      "Puis rassemblez les preuves : captures, numéros, liens, références de transaction et dates.",
+   174→      "Signalez l’incident aux autorités compétentes et à GLOPROFAS. Votre signalement peut alerter d’autres personnes.",
+   175→      "Enfin, méfiez-vous de quiconque propose de récupérer votre argent contre paiement : c’est souvent une seconde arnaque."
+   176→    ],
+   177→    "kind": "article",
+   178→    "tag": "Guidance",
+   179→    "authorName": "GLOPROFAS Editorial",
+   180→    "date": "2026-10-18",
+   181→    "imageUrl": "/images/zite/img_wFZrRplDj0fdHgRB.jpg"
+   182→  }
+   183→];
+   184→
+   185→export const resourceSeed = [
+   186→  {
+   187→    "slugEn": "129071d7-b97e-4113-ac80-6b27150d65f1",
+   188→    "slugFr": "129071d7-b97e-4113-ac80-6b27150d65f1",
+   189→    "titleEn": "Mobile money safety guide",
+   190→    "titleFr": "Guide de sécurité du mobile money",
+   191→    "descriptionEn": "Protect your PIN, spot fake reversals and know who to call.",
+   192→    "descriptionFr": "Protégez votre code, repérez les faux renvois et sachez qui appeler.",
+   193→    "type": "guide",
+   194→    "category": "personal-security",
+   195→    "language": "EN/FR",
+   196→    "fileSizeKb": 1228,
+   197→    "featured": true
+   198→  },
+   199→  {
+   200→    "slugEn": "008242c5-654a-45d7-abc6-7ee6bd1db2a3",
+   201→    "slugFr": "008242c5-654a-45d7-abc6-7ee6bd1db2a3",
+   202→    "titleEn": "Check-before-you-pay checklist",
+   203→    "titleFr": "Liste de vérification avant de payer",
+   204→    "descriptionEn": "",
+   205→    "descriptionFr": "",
+   206→    "type": "checklist",
+   207→    "category": "personal-security",
+   208→    "language": "EN/FR",
+   209→    "fileSizeKb": 240,
+   210→    "featured": false
+   211→  },
+   212→  {
+   213→    "slugEn": "98ee53e8-7202-4b64-8fc0-ce4d4a465793",
+   214→    "slugFr": "98ee53e8-7202-4b64-8fc0-ce4d4a465793",
+   215→    "titleEn": "Phishing warning signs",
+   216→    "titleFr": "Signes d’hameçonnage",
+   217→    "descriptionEn": "",
+   218→    "descriptionFr": "",
+   219→    "type": "infographic",
+   220→    "category": "personal-security",
+   221→    "language": "EN",
+   222→    "fileSizeKb": 680,
+   223→    "featured": false
+   224→  },
+   225→  {
+   226→    "slugEn": "a4093103-7fcf-40a8-8d48-e0c516deb8f9",
+   227→    "slugFr": "a4093103-7fcf-40a8-8d48-e0c516deb8f9",
+   228→    "titleEn": "Small business fraud prevention",
+   229→    "titleFr": "Prévention de la fraude pour les PME",
+   230→    "descriptionEn": "",
+   231→    "descriptionFr": "",
+   232→    "type": "pdf",
+   233→    "category": "personal-security",
+   234→    "language": "FR",
+   235→    "fileSizeKb": 2150,
+   236→    "featured": false
+   237→  },
+   238→  {
+   239→    "slugEn": "1f3022dd-40c0-4335-a3df-b05f89c8b52c",
+   240→    "slugFr": "1f3022dd-40c0-4335-a3df-b05f89c8b52c",
+   241→    "titleEn": "Securing your social media accounts",
+   242→    "titleFr": "Sécuriser vos comptes de réseaux sociaux",
+   243→    "descriptionEn": "",
+   244→    "descriptionFr": "",
+   245→    "type": "video",
+   246→    "category": "personal-security",
+   247→    "language": "EN/FR",
+   248→    "fileSizeKb": null,
+   249→    "featured": false
+   250→  }
+   251→];
+   252→
+   253→export const serviceSeed = [
+   254→  {
+   255→    slugEn: "personal-digital-safety-assessment",
+   256→    slugFr: "diagnostic-securite-numerique-personnel",
+   257→    nameEn: "Personal digital safety assessment",
+   258→    nameFr: "Diagnostic de sécurité numérique personnel",
+   259→    descriptionEn:
+   260→      "A structured review of your accounts, devices and habits, with prioritised recommendations.",
+   261→    descriptionFr:
+   262→      "Une revue structurée de vos comptes, appareils et habitudes, avec des recommandations priorisées.",
+   263→    groupKey: "individual",
+   264→    pricingMode: "custom-quotation",
+   265→    bullets: ["Account and device review", "Priority action list", "Follow-up questions by email"],
+   266→    bulletsFr: ["Revue des comptes et appareils", "Liste d’actions prioritaires", "Questions de suivi par courriel"],
+   267→  },
+   268→  {
+   269→    slugEn: "scam-exposure-consultation",
+   270→    slugFr: "consultation-exposition-arnaques",
+   271→    nameEn: "Scam exposure consultation",
+   272→    nameFr: "Consultation sur l’exposition aux arnaques",
+   273→    descriptionEn:
+   274→      "A conversation about a suspicious situation you have experienced or observed.",
+   275→    descriptionFr:
+   276→      "Un échange sur une situation suspecte vécue ou observée.",
+   277→    groupKey: "individual",
+   278→    pricingMode: "consultation",
+   279→    bullets: ["Warning-sign review", "Practical next steps", "Guidance on official reporting routes"],
+   280→    bulletsFr: ["Analyse des signes d’alerte", "Prochaines étapes concrètes", "Orientation vers les circuits officiels"],
+   281→  },
+   282→  {
+   283→    slugEn: "account-security-guidance",
+   284→    slugFr: "accompagnement-securite-comptes",
+   285→    nameEn: "Account security guidance",
+   286→    nameFr: "Accompagnement à la sécurité des comptes",
+   287→    descriptionEn:
+   288→      "Step-by-step help enabling two-step verification and recovering an account safely.",
+   289→    descriptionFr:
+   290→      "Aide pas à pas pour activer la validation en deux étapes et récupérer un compte en sécurité.",
+   291→    groupKey: "individual",
+   292→    pricingMode: "free",
+   293→    bullets: ["Guided setup session", "Recovery checklist", "No credential sharing required"],
+   294→    bulletsFr: ["Séance d’installation guidée", "Liste de récupération", "Aucun partage d’identifiants demandé"],
+   295→  },
+   296→  {
+   297→    slugEn: "business-fraud-risk-assessment",
+   298→    slugFr: "diagnostic-risque-fraude-entreprise",
+   299→    nameEn: "Business fraud risk assessment",
+   300→    nameFr: "Diagnostic du risque de fraude en entreprise",
+   301→    descriptionEn:
+   302→      "A review of payment, procurement and supplier processes against common fraud schemes.",
+   303→    descriptionFr:
+   304→      "Une revue des processus de paiement, d’achat et de fournisseurs au regard des schémas de fraude courants.",
+   305→    groupKey: "business",
+   306→    pricingMode: "custom-quotation",
+   307→    bullets: ["Process interviews", "Control gap summary", "Prioritised remediation plan"],
+   308→    bulletsFr: ["Entretiens sur les processus", "Résumé des lacunes de contrôle", "Plan de remédiation priorisé"],
+   309→  },
+   310→  {
+   311→    slugEn: "employee-awareness-programme",
+   312→    slugFr: "programme-sensibilisation-employes",
+   313→    nameEn: "Employee security awareness programme",
+   314→    nameFr: "Programme de sensibilisation des employés",
+   315→    descriptionEn:
+   316→      "A twelve-month programme with short sessions, translated material and simple metrics.",
+   317→    descriptionFr:
+   318→      "Un programme de douze mois avec séances courtes, supports traduits et indicateurs simples.",
+   319→    groupKey: "business",
+   320→    pricingMode: "training-package",
+   321→    bullets: ["Monthly micro-sessions", "Phishing recognition practice", "Reporting culture guidance"],
+   322→    bulletsFr: ["Micro-séances mensuelles", "Exercices de reconnaissance d’hameçonnage", "Conseils sur la culture de signalement"],
+   323→  },
+   324→  {
+   325→    slugEn: "impersonation-monitoring-review",
+   326→    slugFr: "revue-surveillance-usurpation",
+   327→    nameEn: "Online impersonation review",
+   328→    nameFr: "Revue de l’usurpation en ligne",
+   329→    descriptionEn:
+   330→      "An assessment of how your brand could be copied and which takedown routes exist.",
+   331→    descriptionFr:
+   332→      "Une évaluation de la manière dont votre marque peut être copiée et des procédures de retrait existantes.",
+   333→    groupKey: "business",
+   334→    pricingMode: "custom-quotation",
+   335→    bullets: ["Domain and profile review", "Takedown process map", "Staff briefing note"],
+   336→    bulletsFr: ["Revue des domaines et profils", "Cartographie des procédures de retrait", "Note de briefing pour le personnel"],
+   337→  },
+   338→  {
+   339→    slugEn: "institutional-awareness-programme",
+   340→    slugFr: "programme-sensibilisation-institutionnel",
+   341→    nameEn: "Institutional anti-fraud awareness programme",
+   342→    nameFr: "Programme institutionnel de sensibilisation à la fraude",
+   343→    descriptionEn:
+   344→      "A tailored programme for institutions that need consistent messaging across departments.",
+   345→    descriptionFr:
+   346→      "Un programme sur mesure pour les institutions ayant besoin d’un message cohérent entre services.",
+   347→    groupKey: "enterprise",
+   348→    pricingMode: "custom-quotation",
+   349→    bullets: ["Department mapping", "Bilingual material", "Management briefing"],
+   350→    bulletsFr: ["Cartographie des services", "Supports bilingues", "Briefing de direction"],
+   351→  },
+   352→  {
+   353→    slugEn: "executive-awareness-session",
+   354→    slugFr: "seance-sensibilisation-dirigeants",
+   355→    nameEn: "Executive awareness session",
+   356→    nameFr: "Séance de sensibilisation des dirigeants",
+   357→    descriptionEn:
+   358→      "A short session on decision-level fraud risks: payments, authority and reputational exposure.",
+   359→    descriptionFr:
+   360→      "Une séance courte sur les risques de fraude au niveau décisionnel : paiements, autorité et exposition réputationnelle.",
+   361→    groupKey: "enterprise",
+   362→    pricingMode: "consultation",
+   363→    bullets: ["Ninety-minute session", "Scenario discussion", "Governance checklist"],
+   364→    bulletsFr: ["Séance de quatre-vingt-dix minutes", "Discussion de scénarios", "Liste de vérification de gouvernance"],
+   365→  },
+   366→  {
+   367→    slugEn: "customised-workshop",
+   368→    slugFr: "atelier-sur-mesure",
+   369→    nameEn: "Customised fraud prevention workshop",
+   370→    nameFr: "Atelier de prévention de la fraude sur mesure",
+   371→    descriptionEn:
+   372→      "A workshop built around the scenarios your teams actually meet.",
+   373→    descriptionFr:
+   374→      "Un atelier construit autour des scénarios réellement rencontrés par vos équipes.",
+   375→    groupKey: "training",
+   376→    pricingMode: "training-package",
+   377→    bullets: ["Scenario design with your team", "Facilitated session", "Take-away material"],
+   378→    bulletsFr: ["Conception des scénarios avec votre équipe", "Séance animée", "Supports à emporter"],
+   379→  },
+   380→  {
+   381→    slugEn: "online-awareness-session",
+   382→    slugFr: "seance-sensibilisation-en-ligne",
+   383→    nameEn: "Online awareness session",
+   384→    nameFr: "Séance de sensibilisation en ligne",
+   385→    descriptionEn:
+   386→      "A remote session for distributed teams and community groups, in English or French.",
+   387→    descriptionFr:
+   388→      "Une séance à distance pour équipes dispersées et groupes communautaires, en anglais ou en français.",
+   389→    groupKey: "training",
+   390→    pricingMode: "custom-quotation",
+   391→    bullets: ["Sixty to ninety minutes", "Live questions", "Recording available on request"],
+   392→    bulletsFr: ["Soixante à quatre-vingt-dix minutes", "Questions en direct", "Enregistrement disponible sur demande"],
+   393→  },
+   394→  {
+   395→    slugEn: "fraud-prevention-policy-review",
+   396→    slugFr: "revue-politique-prevention-fraude",
+   397→    nameEn: "Fraud prevention policy review",
+   398→    nameFr: "Revue de la politique de prévention de la fraude",
+   399→    descriptionEn:
+   400→      "A reading of your existing policies against practical controls and clear reporting lines.",
+   401→    descriptionFr:
+   402→      "Une relecture de vos politiques existantes au regard des contrôles pratiques et des circuits de signalement.",
+   403→    groupKey: "business",
+   404→    pricingMode: "custom-quotation",
+   405→    bullets: ["Document review", "Gap analysis", "Draft amendments"],
+   406→    bulletsFr: ["Revue documentaire", "Analyse des écarts", "Propositions d’amendements"],
+   407→  },
+   408→  {
+   409→    slugEn: "individual-awareness-workshop",
+   410→    slugFr: "atelier-sensibilisation-particuliers",
+   411→    nameEn: "Individual awareness training",
+   412→    nameFr: "Formation de sensibilisation pour particuliers",
+   413→    descriptionEn:
+   414→      "A practical session on messages, payments and account security for small groups.",
+   415→    descriptionFr:
+   416→      "Une séance pratique sur les messages, les paiements et la sécurité des comptes pour de petits groupes.",
+   417→    groupKey: "training",
+   418→    pricingMode: "custom-quotation",
+   419→    bullets: ["Small group format", "Real message examples", "Printed checklist"],
+   420→    bulletsFr: ["Format petit groupe", "Exemples de messages réels", "Liste de vérification imprimée"],
+   421→  },
+   422→];
+   423→
+   424→export const siteSettingsSeed = {
+   425→  organisation: {
+   426→    legalName: "Global Programme for the Fight Against Scams",
+   427→    shortName: "GLOPROFAS",
+   428→    email: "contact@gloprofas.org",
+   429→    phone: "",
+   430→    location: "Yaoundé, Cameroon · International initiative",
+   431→    socials: { linkedin: "", facebook: "", x: "" },
+   432→  },
+   433→  newsletter: { doubleOptIn: true, fromName: "GLOPROFAS" },
+   434→  donation: { configured: false, url: "", note: "" },
+   435→  assistant: { enabled: true, dailyCap: 400, perSessionLimit: 18 },
+   436→  legal: {
+   437→    privacy: {
+   438→      titleEn: "Privacy policy",
+   439→      titleFr: "Politique de confidentialité",
+   440→      updated: "2026-11-01",
+   441→      bodyEn: [
+   442→        "GLOPROFAS collects only the information needed to answer an enquiry, record a scam report, process a subscription or deliver a professional service. This demonstrator site stores the data you submit in its own database.",
+   443→        "Scam reports are stored privately. They are visible only to authorised staff, are never published, and are retained for a configurable period before deletion. The email address you provide is used to acknowledge the report and, where necessary, to request clarification.",
+   444→        "We do not sell personal data, do not share reports with third parties, and do not use advertising trackers. Contact details published on this site are managed by the organisation.",
+   445→        "You may request access, correction or deletion of your data by writing to the organisation email address published on the contact page. We respond within a reasonable period and may ask you to verify your identity first.",
+   446→      ],
+   447→      bodyFr: [
+   448→        "GLOPROFAS ne collecte que les informations nécessaires pour répondre à une demande, consigner un signalement, gérer un abonnement ou fournir un service professionnel. Ce site de démonstration stocke dans sa propre base les données que vous transmettez.",
+   449→        "Les signalements sont conservés de façon privée. Ils ne sont visibles que par le personnel autorisé, ne sont jamais publiés et sont conservés pendant une durée configurable avant suppression. L’adresse électronique fournie sert à accuser réception et, si nécessaire, à demander des précisions.",
+   450→        "Nous ne vendons pas de données personnelles, ne partageons pas les signalements avec des tiers et n’utilisons pas de traceurs publicitaires. Les coordonnées publiées sur ce site sont gérées par l’organisation.",
+   451→        "Vous pouvez demander l’accès, la rectification ou la suppression de vos données en écrivant à l’adresse publiée sur la page de contact. Nous répondons dans un délai raisonnable et pouvons demander une vérification d’identité préalable.",
+   452→      ],
+   453→    },
+   454→    terms: {
+   455→      titleEn: "Terms and conditions",
+   456→      titleFr: "Conditions d’utilisation",
+   457→      updated: "2026-11-01",
+   458→      bodyEn: [
+   459→        "This website provides awareness, education, information and access to professional services. Content is written for general guidance and does not constitute legal, financial or law-enforcement advice.",
+   460→        "You agree to use the site lawfully and not to submit false reports, attempt to access private data or interfere with the service. Reports must describe your own experience or an incident you are authorised to report.",
+   461→        "Professional services are provided under a separate written agreement. Nothing on this site is an offer of credit, insurance or recovery services.",
+   462→        "We may update content and these terms. The version published on this page applies from its stated date.",
+   463→      ],
+   464→      bodyFr: [
+   465→        "Ce site fournit de la sensibilisation, de l’éducation, des informations et un accès à des services professionnels. Les contenus sont rédigés à titre d’orientation générale et ne constituent pas un conseil juridique, financier ou policier.",
+   466→        "Vous vous engagez à utiliser le site de manière licite et à ne pas transmettre de faux signalements, tenter d’accéder à des données privées ou perturber le service. Les signalements doivent décrire votre propre expérience ou un incident que vous êtes autorisé à signaler.",
+   467→        "Les services professionnels font l’objet d’un contrat écrit distinct. Rien sur ce site ne constitue une offre de crédit, d’assurance ou de récupération de fonds.",
+   468→        "Nous pouvons mettre à jour les contenus et les présentes conditions. La version publiée sur cette page s’applique à compter de sa date.",
+   469→      ],
+   470→    },
+   471→    cookies: {
+   472→      titleEn: "Cookie policy",
+   473→      titleFr: "Politique relative aux cookies",
+   474→      updated: "2026-11-01",
+   475→      bodyEn: [
+   476→        "This site uses one essential cookie to keep an authenticated staff session active. It is HttpOnly, Secure in production and SameSite=Lax. Without it, the administrative area cannot function.",
+   477→        "No advertising, analytics or third-party tracking cookies are set before consent. The awareness assistant stores the conversation in browser memory only for the current visit.",
+   478→        "You can clear cookies in your browser at any time. Clearing the session cookie simply signs you out.",
+   479→      ],
+   480→      bodyFr: [
+   481→        "Ce site utilise un cookie essentiel pour maintenir une session authentifiée du personnel. Il est HttpOnly, Secure en production et SameSite=Lax. Sans lui, l’espace d’administration ne peut pas fonctionner.",
+   482→        "Aucun cookie publicitaire, analytique ou de suivi tiers n’est déposé avant consentement. L’assistant de sensibilisation conserve la conversation en mémoire du navigateur pour la visite en cours.",
+   483→        "Vous pouvez supprimer les cookies dans votre navigateur à tout moment. La suppression du cookie de session vous déconnecte simplement.",
+   484→      ],
+   485→    },
+   486→    disclaimer: {
+   487→      titleEn: "General disclaimer",
+   488→      titleFr: "Avertissement général",
+   489→      updated: "2026-11-01",
+   490→      bodyEn: [
+   491→        "GLOPROFAS is an awareness, education and professional services initiative. It is not a law enforcement authority, does not have investigative powers and cannot certify any website, person, business or transaction as legitimate.",
+   492→        "We cannot guarantee the recovery of funds, assets or accounts. Never pay anyone who promises recovery in exchange for an upfront fee.",
+   493→        "Information is provided in good faith and reviewed periodically. Fraud techniques change quickly; always verify time-sensitive details with your bank, your provider or the competent authorities.",
+   494→      ],
+   495→      bodyFr: [
+   496→        "GLOPROFAS est une initiative de sensibilisation, d’éducation et de services professionnels. Elle n’est pas une autorité de police, ne dispose pas de pouvoirs d’enquête et ne peut certifier qu’un site, une personne, une entreprise ou une transaction est légitime.",
+   497→        "Nous ne pouvons garantir la récupération de fonds, de biens ou de comptes. Ne payez jamais une personne promettant une récupération contre des frais d’avance.",
+   498→        "Les informations sont fournies de bonne foi et révisées périodiquement. Les techniques de fraude évoluent vite ; vérifiez toujours les éléments sensibles auprès de votre banque, de votre opérateur ou des autorités compétentes.",
+   499→      ],
+   500→    },
+   501→    reporting: {
+   502→      titleEn: "Reporting disclaimer",
+   503→      titleFr: "Avertissement sur les signalements",
+   504→      updated: "2026-11-01",
+   505→      bodyEn: [
+   506→        "Submitting a report through this site does not create a police complaint, does not start a legal procedure and does not guarantee that any action will be taken.",
+   507→        "Reports are reviewed by our team for awareness purposes. We do not investigate, do not recover funds and do not represent you in any dispute.",
+   508→        "If money has been lost or an account is at risk, contact your bank or mobile money provider immediately and report the incident to the competent authorities in your country through their official channels.",
+   509→      ],
+   510→      bodyFr: [
+   511→        "Envoyer un signalement via ce site ne crée pas une plainte, n’ouvre aucune procédure judiciaire et ne garantit aucune suite.",
+   512→        "Les signalements sont examinés par notre équipe à des fins de sensibilisation. Nous n’enquêtons pas, ne récupérons pas de fonds et ne vous représentons dans aucun litige.",
+   513→        "En cas de perte financière ou de compte menacé, contactez immédiatement votre banque ou votre opérateur de monnaie électronique et signalez les faits aux autorités compétentes de votre pays via leurs canaux officiels.",
+   514→      ],
+   515→    },
+   516→    ai: {
+   517→      titleEn: "AI assistant disclaimer",
+   518→      titleFr: "Avertissement sur l’assistant IA",
+   519→      updated: "2026-11-01",
+   520→      bodyEn: [
+   521→        "The GLOPROFAS AI Assistant provides general educational information on scam awareness and digital safety. It retrieves published GLOPROFAS content and may also give general guidance that is clearly labelled as not organisation-verified.",
+   522→        "It cannot authenticate a person, website or transaction, cannot confirm whether an offer is genuine, cannot recover funds and does not provide legal, banking or law-enforcement advice.",
+   523→        "Never send passwords, PINs, one-time codes, card numbers or identity documents to the assistant. Where an output appears to conflict with a published policy or with the law, the published policy and the law prevail.",
+   524→      ],
+   525→      bodyFr: [
+   526→        "L’assistant IA GLOPROFAS fournit des informations éducatives générales sur la sensibilisation aux arnaques et la sécurité numérique. Il recherche les contenus GLOPROFAS publiés et peut aussi donner des conseils généraux clairement identifiés comme non vérifiés par l’organisation.",
+   527→        "Il ne peut authentifier une personne, un site ou une transaction, confirmer la sincérité d’une offre, récupérer des fonds, ni fournir de conseil juridique, bancaire ou policier.",
+   528→        "Ne transmettez jamais de mots de passe, codes PIN, codes à usage unique, numéros de carte ou documents d’identité à l’assistant. En cas de contradiction entre une réponse et une politique publiée ou la loi, la politique publiée et la loi prévalent.",
+   529→      ],
+   530→    },
+   531→  },
+   532→};
+   533→

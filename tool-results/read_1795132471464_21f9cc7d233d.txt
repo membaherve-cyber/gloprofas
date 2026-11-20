@@ -1,0 +1,974 @@
+     1→     1→@import "tailwindcss";
+     2→     2→
+     3→     3→@theme {
+     4→     4→  --color-navy-950: #050b1a;
+     5→     5→  --color-navy-900: #0a1631;
+     6→     6→  --color-navy-800: #10244d;
+     7→     7→  --color-blue-600: #3467eb;
+     8→     8→  --color-blue-500: #5586f6;
+     9→     9→  --color-cyan-400: #40c4d3;
+    10→    10→  --color-signal-400: #f0ac3d;
+    11→    11→  --color-ink-900: #0b1220;
+    12→    12→  --color-slate-600: #4b5870;
+    13→    13→  --color-slate-300: #aab6ca;
+    14→    14→  --color-line-200: #dce3ee;
+    15→    15→  --color-mist-50: #f4f7fb;
+    16→    16→  --color-brand-600: #3467eb;
+    17→    17→  --color-brand-500: #5586f6;
+    18→    18→  --color-cyanx: #40c4d3;
+    19→    19→  --color-signal: #f0ac3d;
+    20→    20→  --color-ink: #0b1220;
+    21→    21→  --color-slatex-600: #4b5870;
+    22→    22→  --color-slatex-300: #aab6ca;
+    23→    23→  --color-line: #dce3ee;
+    24→    24→  --color-mist: #f4f7fb;
+    25→    25→  --color-risk-low: #159769;
+    26→    26→  --color-risk-medium: #c18708;
+    27→    27→  --color-risk-high: #d75c09;
+    28→    28→  --color-risk-critical: #d23434;
+    29→    29→
+    30→    30→
+    31→    31→  /* ── Typographic scale · single source of truth ──────────────
+    32→    32→     Seven steps only. Ratio ~1.125 (major second) for UI text,
+    33→    33→     headings handled by .h1–.h4. All rem so user font prefs apply. */
+    34→    34→  --text-micro: 0.6875rem;   /* 11px · labels, eyebrows */
+    35→    35→  --text-micro--line-height: 1.45;
+    36→    36→  --text-micro--letter-spacing: var(--tracking-label);
+    37→    37→  --text-caption: 0.75rem;   /* 12px · meta, captions */
+    38→    38→  --text-caption--line-height: 1.5;
+    39→    39→  --text-small: 0.8125rem;   /* 13px · small UI, nav */
+    40→    40→  --text-small--line-height: 1.55;
+    41→    41→  --text-base: 0.875rem;     /* 14px · secondary body */
+    42→    42→  --text-base--line-height: 1.6;
+    43→    43→  --text-body: 0.9375rem;    /* 15px · primary body */
+    44→    44→  --text-body--line-height: 1.65;
+    45→    45→  --text-lead: 1.0625rem;    /* 17px · deck / standfirst */
+    46→    46→  --text-lead--line-height: 1.6;
+    47→    47→  --text-title: 1.25rem;     /* 20px · card titles */
+    48→    48→  --text-title--line-height: 1.3;
+    49→    49→
+    50→    50→  --font-heading: "Sora Variable", "Sora", ui-sans-serif, system-ui, sans-serif;
+    51→    51→  --font-sans: "Manrope Variable", "Manrope", ui-sans-serif, system-ui, sans-serif;
+    52→    52→
+    53→    53→  --radius-sm: 8px;
+    54→    54→  --radius-md: 14px;
+    55→    55→  --radius-lg: 22px;
+    56→    56→
+    57→    57→  --shadow-e1: 0 1px 2px rgba(10, 22, 49, 0.06), 0 4px 12px rgba(10, 22, 49, 0.06);
+    58→    58→  --shadow-e2: 0 8px 24px rgba(10, 22, 49, 0.1);
+    59→    59→  --shadow-e3: 0 24px 60px rgba(10, 22, 49, 0.18);
+    60→    60→
+    61→    61→  --ease-out-brand: cubic-bezier(0.22, 0.61, 0.36, 1);
+    62→    62→  /* ── Motion · three durations, one primary curve ─────────────
+    63→    63→     fast  = state change (hover/focus/active)
+    64→    64→     base  = component transition (colour, border, opacity)
+    65→    65→     slow  = media transform / entrance reveal
+    66→    66→     Curve is a restrained ease-out: quick departure, soft settle. */
+    67→    67→  --duration-fast: 150ms;
+    68→    68→  --duration-base: 240ms;
+    69→    69→  --duration-slow: 480ms;
+    70→    70→  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+    71→    71→  --ease-entrance: cubic-bezier(0.16, 0.84, 0.44, 1);
+    72→    72→
+    73→    73→  /* ── Tracking · three roles only ─────────────────────────────
+    74→    74→     Display type needs negative tracking that relaxes as size drops;
+    75→    75→     uppercase labels need positive tracking for legibility. */
+    76→    76→  --tracking-display: -0.022em;
+    77→    77→  --tracking-tight: -0.011em;
+    78→    78→  --tracking-label: 0.14em;
+    79→    79→
+    80→    80→}
+    81→    81→
+    82→    82→@layer base {
+    83→    83→  :root {
+    84→    84→    --ring-light: var(--color-blue-600);
+    85→    85→    --ring-dark: var(--color-cyan-400);
+    86→    86→    --gutter: 20px;
+    87→    87→    --container: 1240px;
+    88→    88→  }
+    89→    89→
+    90→    90→  * {
+    91→    91→    border-color: var(--color-line-200);
+    92→    92→  }
+    93→    93→
+    94→    94→  html {
+    95→    95→    scroll-behavior: smooth;
+    96→    96→    -webkit-text-size-adjust: 100%;
+    97→    97→  }
+    98→    98→
+    99→    99→  body {
+   100→   100→    font-family: var(--font-sans);
+   101→   101→    color: var(--color-ink-900);
+   102→   102→    background: #ffffff;
+   103→   103→    font-size: var(--text-body);
+   104→   104→    line-height: 1.7;
+   105→   105→    -webkit-font-smoothing: antialiased;
+   106→   106→    text-rendering: optimizeLegibility;
+   107→   107→  }
+   108→   108→
+   109→   109→  h1,
+   110→   110→  h2,
+   111→   111→  h3,
+   112→   112→  h4,
+   113→   113→  h5 {
+   114→   114→    font-family: var(--font-heading);
+   115→   115→    text-wrap: balance;
+   116→   116→  }
+   117→   117→
+   118→   118→  h1 {
+   119→   119→    font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+   120→   120→    line-height: 1.05;
+   121→   121→    font-weight: 700;
+   122→   122→    letter-spacing: var(--tracking-display);
+   123→   123→  }
+   124→   124→
+   125→   125→  h2 {
+   126→   126→    font-size: clamp(2rem, 1.4rem + 2.2vw, 3.25rem);
+   127→   127→    line-height: 1.12;
+   128→   128→    font-weight: 700;
+   129→   129→    letter-spacing: var(--tracking-display);
+   130→   130→  }
+   131→   131→
+   132→   132→  h3 {
+   133→   133→    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+   134→   134→    line-height: 1.2;
+   135→   135→    font-weight: 600;
+   136→   136→    letter-spacing: var(--tracking-tight);
+   137→   137→  }
+   138→   138→
+   139→   139→  h4 {
+   140→   140→    font-size: var(--text-title);
+   141→   141→    line-height: 1.3;
+   142→   142→    font-weight: 600;
+   143→   143→  }
+   144→   144→
+   145→   145→  p {
+   146→   146→    text-wrap: pretty;
+   147→   147→  }
+   148→   148→
+   149→   149→  :focus-visible {
+   150→   150→    outline: 2px solid var(--ring-light);
+   151→   151→    outline-offset: 2px;
+   152→   152→    border-radius: 2px;
+   153→   153→  }
+   154→   154→
+   155→   155→  .on-dark :focus-visible,
+   156→   156→  .on-dark:focus-visible {
+   157→   157→    outline-color: var(--ring-dark);
+   158→   158→  }
+   159→   159→
+   160→   160→  ::selection {
+   161→   161→    background: var(--color-blue-600);
+   162→   162→    color: #fff;
+   163→   163→  }
+   164→   164→
+   165→   165→  input,
+   166→   166→  textarea,
+   167→   167→  select {
+   168→   168→    font: inherit;
+   169→   169→    color: inherit;
+   170→   170→  }
+   171→   171→}
+   172→   172→
+   173→   173→@layer components {
+   174→   174→  .container-page,
+   175→   175→  .container-g {
+   176→   176→    width: 100%;
+   177→   177→    max-width: var(--container);
+   178→   178→    margin-inline: auto;
+   179→   179→    padding-inline: var(--gutter);
+   180→   180→  }
+   181→   181→
+   182→   182→  @media (min-width: 1024px) {
+   183→   183→    :root {
+   184→   184→      --gutter: 32px;
+   185→   185→    }
+   186→   186→  }
+   187→   187→
+   188→   188→  .section,
+   189→   189→  .section-y {
+   190→   190→    padding-block: clamp(4.5rem, 3rem + 6vw, 8rem);
+   191→   191→  }
+   192→   192→
+   193→   193→  .h1 {
+   194→   194→    font-family: var(--font-heading);
+   195→   195→    font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+   196→   196→  }
+   197→   197→
+   198→   198→  .h2 {
+   199→   199→    font-family: var(--font-heading);
+   200→   200→    font-size: clamp(2rem, 1.4rem + 2.2vw, 3.25rem);
+   201→   201→  }
+   202→   202→
+   203→   203→  .h3 {
+   204→   204→    font-family: var(--font-heading);
+   205→   205→    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+   206→   206→  }
+   207→   207→
+   208→   208→  .h4 {
+   209→   209→    font-family: var(--font-heading);
+   210→   210→    font-size: var(--text-title);
+   211→   211→    font-weight: 600;
+   212→   212→    line-height: 1.3;
+   213→   213→  }
+   214→   214→
+   215→   215→  .dark-surface {
+   216→   216→    border: 1px solid rgba(255, 255, 255, 0.08);
+   217→   217→    box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+   218→   218→  }
+   219→   219→
+   220→   220→  .grid-pattern {
+   221→   221→    background-image:
+   222→   222→      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+   223→   223→      linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+   224→   224→    background-size: 32px 32px;
+   225→   225→  }
+   226→   226→
+   227→   227→  .float-chip {
+   228→   228→    animation: float 7s ease-in-out infinite;
+   229→   229→  }
+   230→   230→
+   231→   231→  .eyebrow {
+   232→   232→    display: inline-flex;
+   233→   233→    align-items: center;
+   234→   234→    gap: 0.5rem;
+   235→   235→    font-size: var(--text-micro);
+   236→   236→    line-height: 1.45;
+   237→   237→    font-weight: 700;
+   238→   238→    letter-spacing: var(--tracking-label);
+   239→   239→    text-transform: uppercase;
+   240→   240→    color: var(--color-blue-600);
+   241→   241→  }
+   242→   242→
+   243→   243→  .on-dark .eyebrow,
+   244→   244→  .eyebrow-dark {
+   245→   245→    color: var(--color-cyan-400);
+   246→   246→  }
+   247→   247→
+   248→   248→  .eyebrow::before {
+   249→   249→    content: "";
+   250→   250→    width: 28px;
+   251→   251→    height: 2px;
+   252→   252→    background: currentColor;
+   253→   253→    display: inline-block;
+   254→   254→  }
+   255→   255→
+   256→   256→  .lead {
+   257→   257→    font-size: var(--text-lead);
+   258→   258→    line-height: 1.7;
+   259→   259→    color: var(--color-slate-600);
+   260→   260→    max-width: 62ch;
+   261→   261→  }
+   262→   262→
+   263→   263→  .on-dark .lead {
+   264→   264→    color: var(--color-slate-300);
+   265→   265→  }
+   266→   266→
+   267→   267→  .prose-gloprofas > * + * {
+   268→   268→    margin-top: 1.5rem;
+   269→   269→  }
+   270→   270→
+   271→   271→  .prose-gloprofas p,
+   272→   272→  .prose-gloprofas li {
+   273→   273→    line-height: var(--text-body--line-height);
+   274→   274→    max-width: 68ch;
+   275→   275→  }
+   276→   276→
+   277→   277→  .prose-gloprofas h2 {
+   278→   278→    font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.25rem);
+   279→   279→    margin-top: 2.5rem;
+   280→   280→  }
+   281→   281→
+   282→   282→  .prose-gloprofas h3 {
+   283→   283→    margin-top: 2rem;
+   284→   284→    font-size: var(--text-heading);
+   285→   285→  }
+   286→   286→
+   287→   287→  .prose-gloprofas ul {
+   288→   288→    list-style: none;
+   289→   289→    padding: 0;
+   290→   290→  }
+   291→   291→
+   292→   292→  .prose-gloprofas ul li {
+   293→   293→    position: relative;
+   294→   294→    padding-left: 1.6rem;
+   295→   295→    margin-top: 0.5rem;
+   296→   296→  }
+   297→   297→
+   298→   298→  .prose-gloprofas ul li::before {
+   299→   299→    content: "";
+   300→   300→    position: absolute;
+   301→   301→    left: 0;
+   302→   302→    top: 0.72em;
+   303→   303→    width: 7px;
+   304→   304→    height: 7px;
+   305→   305→    border-radius: 2px;
+   306→   306→    background: var(--color-blue-600);
+   307→   307→  }
+   308→   308→
+   309→   309→  .on-dark .prose-gloprofas ul li::before {
+   310→   310→    background: var(--color-cyan-400);
+   311→   311→  }
+   312→   312→
+   313→   313→  .btn {
+   314→   314→    display: inline-flex;
+   315→   315→    align-items: center;
+   316→   316→    justify-content: center;
+   317→   317→    gap: 0.55rem;
+   318→   318→    min-height: 52px;
+   319→   319→    padding: 0 1.6rem;
+   320→   320→    border-radius: 999px;
+   321→   321→    font-weight: 600;
+   322→   322→    font-size: var(--text-body);
+   323→   323→    line-height: 1;
+   324→   324→    border: 1px solid transparent;
+   325→   325→    transition:
+   326→   326→      background-color 150ms var(--ease-standard),
+   327→   327→      border-color 150ms var(--ease-standard),
+   328→   328→      color 150ms var(--ease-standard),
+   329→   329→      transform 150ms var(--ease-standard);
+   330→   330→    cursor: pointer;
+   331→   331→    text-decoration: none;
+   332→   332→    white-space: nowrap;
+   333→   333→    position: relative;
+   334→   334→    overflow: hidden;
+   335→   335→  }
+   336→   336→
+   337→   337→  .btn:disabled,
+   338→   338→  .btn[aria-disabled="true"] {
+   339→   339→    opacity: 0.55;
+   340→   340→    cursor: not-allowed;
+   341→   341→  }
+   342→   342→
+   343→   343→  .btn-signal {
+   344→   344→    background: var(--color-signal-400);
+   345→   345→    color: var(--color-navy-950);
+   346→   346→  }
+   347→   347→
+   348→   348→  .btn-signal:hover {
+   349→   349→    background: #ffc258;
+   350→   350→  }
+   351→   351→
+   352→   352→  .btn-primary {
+   353→   353→    background: var(--color-blue-600);
+   354→   354→    color: #fff;
+   355→   355→  }
+   356→   356→
+   357→   357→  .btn-primary:hover {
+   358→   358→    background: #1f52d8;
+   359→   359→  }
+   360→   360→
+   361→   361→  .btn-outline {
+   362→   362→    border-color: color-mix(in srgb, var(--color-navy-900) 22%, transparent);
+   363→   363→    color: var(--color-ink-900);
+   364→   364→    background: transparent;
+   365→   365→  }
+   366→   366→
+   367→   367→  .btn-outline:hover {
+   368→   368→    border-color: var(--color-blue-600);
+   369→   369→    color: var(--color-blue-600);
+   370→   370→    background: color-mix(in srgb, var(--color-blue-600) 6%, transparent);
+   371→   371→  }
+   372→   372→
+   373→   373→  .on-dark .btn-outline {
+   374→   374→    border-color: rgba(255, 255, 255, 0.26);
+   375→   375→    color: #fff;
+   376→   376→  }
+   377→   377→
+   378→   378→  .on-dark .btn-outline:hover {
+   379→   379→    border-color: var(--color-cyan-400);
+   380→   380→    color: var(--color-cyan-400);
+   381→   381→    background: rgba(255, 255, 255, 0.05);
+   382→   382→  }
+   383→   383→
+   384→   384→  .btn-ghost {
+   385→   385→    color: var(--color-ink-900);
+   386→   386→    background: transparent;
+   387→   387→  }
+   388→   388→
+   389→   389→  .btn-ghost:hover {
+   390→   390→    background: color-mix(in srgb, var(--color-navy-900) 6%, transparent);
+   391→   391→  }
+   392→   392→
+   393→   393→  .on-dark .btn-ghost {
+   394→   394→    color: #fff;
+   395→   395→  }
+   396→   396→
+   397→   397→  .on-dark .btn-ghost:hover {
+   398→   398→    background: rgba(255, 255, 255, 0.08);
+   399→   399→  }
+   400→   400→
+   401→   401→  .btn-sm {
+   402→   402→    min-height: 44px;
+   403→   403→    padding: 0 1.15rem;
+   404→   404→    font-size: var(--text-base);
+   405→   405→  }
+   406→   406→
+   407→   407→  .link-arrow {
+   408→   408→    display: inline-flex;
+   409→   409→    align-items: center;
+   410→   410→    gap: 0.4rem;
+   411→   411→    font-weight: 600;
+   412→   412→    color: var(--color-blue-600);
+   413→   413→    text-decoration: none;
+   414→   414→  }
+   415→   415→
+   416→   416→  .link-arrow svg {
+   417→   417→    transition: transform 150ms var(--ease-standard);
+   418→   418→  }
+   419→   419→
+   420→   420→  .link-arrow:hover svg {
+   421→   421→    transform: translateX(4px);
+   422→   422→  }
+   423→   423→
+   424→   424→  .on-dark .link-arrow {
+   425→   425→    color: var(--color-blue-500);
+   426→   426→  }
+   427→   427→
+   428→   428→  .card {
+   429→   429→    background: #fff;
+   430→   430→    border: 1px solid var(--color-line-200);
+   431→   431→    border-radius: 2px;
+   432→   432→    transition:
+   433→   433→      border-color 250ms var(--ease-standard),
+   434→   434→      transform 250ms var(--ease-standard),
+   435→   435→      box-shadow 250ms var(--ease-standard);
+   436→   436→  }
+   437→   437→
+   438→   438→  .card-hover:hover {
+   439→   439→    transform: translateY(-4px);
+   440→   440→    border-color: color-mix(in srgb, var(--color-blue-600) 45%, var(--color-line-200));
+   441→   441→    box-shadow: var(--shadow-e1);
+   442→   442→  }
+   443→   443→
+   444→   444→  .surface-dark {
+   445→   445→    background: var(--color-navy-900);
+   446→   446→    border: 1px solid rgba(255, 255, 255, 0.08);
+   447→   447→    border-radius: 2px;
+   448→   448→  }
+   449→   449→
+   450→   450→  .field {
+   451→   451→    display: block;
+   452→   452→    width: 100%;
+   453→   453→    min-height: 48px;
+   454→   454→    padding: 0.7rem 0.9rem;
+   455→   455→    border: 1px solid var(--color-line-200);
+   456→   456→    border-radius: 2px;
+   457→   457→    background: #fff;
+   458→   458→    color: var(--color-ink-900);
+   459→   459→    transition:
+   460→   460→      border-color 150ms var(--ease-standard),
+   461→   461→      box-shadow 150ms var(--ease-standard);
+   462→   462→  }
+   463→   463→
+   464→   464→  .field:focus {
+   465→   465→    border-color: var(--color-blue-600);
+   466→   466→    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-blue-600) 18%, transparent);
+   467→   467→    outline: none;
+   468→   468→  }
+   469→   469→
+   470→   470→  .field[aria-invalid="true"] {
+   471→   471→    border-color: var(--color-risk-critical);
+   472→   472→  }
+   473→   473→
+   474→   474→  textarea.field {
+   475→   475→    min-height: 132px;
+   476→   476→    resize: vertical;
+   477→   477→  }
+   478→   478→
+   479→   479→  .label {
+   480→   480→    display: block;
+   481→   481→    font-weight: 600;
+   482→   482→    font-size: var(--text-body);
+   483→   483→    margin-bottom: 0.4rem;
+   484→   484→  }
+   485→   485→
+   486→   486→  .hint {
+   487→   487→    font-size: var(--text-small);
+   488→   488→    color: var(--color-slate-600);
+   489→   489→    margin-top: 0.35rem;
+   490→   490→    line-height: 1.5;
+   491→   491→  }
+   492→   492→
+   493→   493→  .error-text {
+   494→   494→    display: flex;
+   495→   495→    gap: 0.35rem;
+   496→   496→    align-items: center;
+   497→   497→    font-size: var(--text-small);
+   498→   498→    font-weight: 600;
+   499→   499→    color: var(--color-risk-critical);
+   500→   500→    margin-top: 0.35rem;
+   501→   501→  }
+   502→   502→
+   503→   503→  .chip {
+   504→   504→    display: inline-flex;
+   505→   505→    align-items: center;
+   506→   506→    gap: 0.4rem;
+   507→   507→    padding: 0.35rem 0.7rem;
+   508→   508→    border-radius: 999px;
+   509→   509→    font-size: var(--text-caption);
+   510→   510→    font-weight: 600;
+   511→   511→    letter-spacing: var(--tracking-label);
+   512→   512→    background: var(--color-mist-50);
+   513→   513→    color: var(--color-slate-600);
+   514→   514→    border: 1px solid var(--color-line-200);
+   515→   515→  }
+   516→   516→
+   517→   517→  .on-dark .chip {
+   518→   518→    background: rgba(255, 255, 255, 0.06);
+   519→   519→    border-color: rgba(255, 255, 255, 0.12);
+   520→   520→    color: var(--color-slate-300);
+   521→   521→  }
+   522→   522→
+   523→   523→  .stat-value {
+   524→   524→    font-family: var(--font-heading);
+   525→   525→    font-variant-numeric: tabular-nums;
+   526→   526→    font-weight: 700;
+   527→   527→    letter-spacing: var(--tracking-display);
+   528→   528→    font-size: clamp(2.25rem, 1.6rem + 2vw, 3.5rem);
+   529→   529→    line-height: 1;
+   530→   530→  }
+   531→   531→
+   532→   532→  .watermark-mark {
+   533→   533→    position: absolute;
+   534→   534→    pointer-events: none;
+   535→   535→    color: #fff;
+   536→   536→    opacity: 0.06;
+   537→   537→  }
+   538→   538→
+   539→   539→  .grid-placeholder {
+   540→   540→    background-color: var(--color-navy-800);
+   541→   541→    background-image:
+   542→   542→      linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+   543→   543→      linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+   544→   544→    background-size: 32px 32px;
+   545→   545→  }
+   546→   546→
+   547→   547→  .bg-hero-overlay {
+   548→   548→    background: linear-gradient(
+   549→   549→      90deg,
+   550→   550→      rgba(5, 11, 26, 0.9) 0%,
+   551→   551→      rgba(10, 22, 49, 0.82) 45%,
+   552→   552→      rgba(10, 22, 49, 0.55) 100%
+   553→   553→    );
+   554→   554→  }
+   555→   555→
+   556→   556→  .bg-band-dark {
+   557→   557→    background: linear-gradient(135deg, var(--color-navy-900) 0%, var(--color-navy-800) 100%);
+   558→   558→  }
+   559→   559→
+   560→   560→  .reveal {
+   561→   561→    opacity: 0;
+   562→   562→    transform: translateY(16px);
+   563→   563→    transition:
+   564→   564→      opacity 600ms var(--ease-standard),
+   565→   565→      transform 600ms var(--ease-standard);
+   566→   566→  }
+   567→   567→
+   568→   568→  .reveal.is-visible {
+   569→   569→    opacity: 1;
+   570→   570→    transform: none;
+   571→   571→  }
+   572→   572→
+   573→   573→  .marquee-track {
+   574→   574→    display: flex;
+   575→   575→    width: max-content;
+   576→   576→    animation: marquee 48s linear infinite;
+   577→   577→  }
+   578→   578→
+   579→   579→  .marquee:hover .marquee-track,
+   580→   580→  .marquee:focus-within .marquee-track {
+   581→   581→    animation-play-state: paused;
+   582→   582→  }
+   583→   583→
+   584→   584→  /* Button label roll: two spans stacked in one grid cell; the
+   585→   585→     duplicate is offset below the clip line so only one renders.
+   586→   586→     Root cause of "doubled text": this was inline-flex, which put
+   587→   587→     both spans side by side with nothing clipping them. */
+   588→   588→  .text-roll {
+   589→   589→    display: inline-grid;
+   590→   590→    overflow: hidden;
+   591→   591→    height: 1.25em;
+   592→   592→    line-height: 1.25;
+   593→   593→  }
+   594→   594→
+   595→   595→  .text-roll span {
+   596→   596→    grid-area: 1 / 1;
+   597→   597→    transition: transform var(--duration-fast) var(--ease-standard);
+   598→   598→  }
+   599→   599→
+   600→   600→  .text-roll span:last-child {
+   601→   601→    transform: translateY(115%);
+   602→   602→  }
+   603→   603→
+   604→   604→  .btn:hover .text-roll span:first-child,
+   605→   605→  .btn:focus-visible .text-roll span:first-child {
+   606→   606→    transform: translateY(-115%);
+   607→   607→  }
+   608→   608→
+   609→   609→  .btn:hover .text-roll span:last-child,
+   610→   610→  .btn:focus-visible .text-roll span:last-child {
+   611→   611→    transform: translateY(0);
+   612→   612→  }
+   613→   613→
+   614→   614→  .floating-chip {
+   615→   615→    animation: float 7s ease-in-out infinite;
+   616→   616→  }
+   617→   617→
+   618→   618→  .accordion-panel {
+   619→   619→    display: grid;
+   620→   620→    grid-template-rows: 0fr;
+   621→   621→    transition: grid-template-rows 250ms var(--ease-standard);
+   622→   622→  }
+   623→   623→
+   624→   624→  .accordion-panel[data-open="true"] {
+   625→   625→    grid-template-rows: 1fr;
+   626→   626→  }
+   627→   627→
+   628→   628→  .table-dense th {
+   629→   629→    text-align: left;
+   630→   630→    font-size: var(--text-caption);
+   631→   631→    letter-spacing: var(--tracking-label);
+   632→   632→    text-transform: uppercase;
+   633→   633→    color: var(--color-slate-600);
+   634→   634→    padding: 0.7rem 0.9rem;
+   635→   635→    border-bottom: 1px solid var(--color-line-200);
+   636→   636→    background: var(--color-mist-50);
+   637→   637→    white-space: nowrap;
+   638→   638→  }
+   639→   639→
+   640→   640→  .table-dense td {
+   641→   641→    padding: 0.8rem 0.9rem;
+   642→   642→    border-bottom: 1px solid var(--color-line-200);
+   643→   643→    font-size: var(--text-base);
+   644→   644→    vertical-align: top;
+   645→   645→  }
+   646→   646→
+   647→   647→  .table-dense tr:hover td {
+   648→   648→    background: color-mix(in srgb, var(--color-mist-50) 70%, #fff);
+   649→   649→  }
+   650→   650→
+   651→   651→  .sr-only-focusable:not(:focus) {
+   652→   652→    position: absolute;
+   653→   653→    width: 1px;
+   654→   654→    height: 1px;
+   655→   655→    padding: 0;
+   656→   656→    margin: -1px;
+   657→   657→    overflow: hidden;
+   658→   658→    clip: rect(0, 0, 0, 0);
+   659→   659→    white-space: nowrap;
+   660→   660→    border: 0;
+   661→   661→  }
+   662→   662→}
+   663→   663→
+   664→   664→@keyframes marquee {
+   665→   665→  from {
+   666→   666→    transform: translateX(0);
+   667→   667→  }
+   668→   668→  to {
+   669→   669→    transform: translateX(-50%);
+   670→   670→  }
+   671→   671→}
+   672→   672→
+   673→   673→@keyframes float {
+   674→   674→  0%,
+   675→   675→  100% {
+   676→   676→    transform: translateY(0);
+   677→   677→  }
+   678→   678→  50% {
+   679→   679→    transform: translateY(-8px);
+   680→   680→  }
+   681→   681→}
+   682→   682→
+   683→   683→@keyframes hero-zoom {
+   684→   684→  0% {
+   685→   685→    transform: scale(1);
+   686→   686→  }
+   687→   687→  100% {
+   688→   688→    transform: scale(1.07);
+   689→   689→  }
+   690→   690→}
+   691→   691→
+   692→   692→.hero-aerial-zoom {
+   693→   693→  animation: hero-zoom 22s ease-in-out infinite alternate;
+   694→   694→  transform-origin: center center;
+   695→   695→}
+   696→   696→
+   697→   697→@keyframes pulse-dot {
+   698→   698→  0%,
+   699→   699→  100% {
+   700→   700→    opacity: 1;
+   701→   701→    transform: scale(1);
+   702→   702→  }
+   703→   703→  50% {
+   704→   704→    opacity: 0.45;
+   705→   705→    transform: scale(0.8);
+   706→   706→  }
+   707→   707→}
+   708→   708→
+   709→   709→.animate-dot {
+   710→   710→  animation: pulse-dot 2.4s ease-in-out infinite;
+   711→   711→}
+   712→   712→
+   713→   713→@media (prefers-reduced-motion: reduce) {
+   714→   714→  html {
+   715→   715→    scroll-behavior: auto;
+   716→   716→  }
+   717→   717→  *,
+   718→   718→  *::before,
+   719→   719→  *::after {
+   720→   720→    animation-duration: 0.001ms !important;
+   721→   721→    animation-iteration-count: 1 !important;
+   722→   722→    transition-duration: 0.001ms !important;
+   723→   723→    scroll-behavior: auto !important;
+   724→   724→  }
+   725→   725→  .reveal {
+   726→   726→    opacity: 1;
+   727→   727→    transform: none;
+   728→   728→  }
+   729→   729→  .marquee-track {
+   730→   730→    animation: none;
+   731→   731→  }
+   732→   732→  .marquee {
+   733→   733→    overflow-x: auto;
+   734→   734→  }
+   735→   735→}
+   736→   736→
+   737→   737→/* ============================================================
+   738→   738→   EDITORIAL ART DIRECTION LAYER
+   739→   739→   Institutional intelligence-briefing system: hairline rules,
+   740→   740→   crisp geometry, disciplined type, graded photography.
+   741→   741→   Unlayered so it takes precedence over utility classes.
+   742→   742→   ============================================================ */
+   743→   743→
+   744→   744→:root {
+   745→   745→  --ed-rule: #d8dee8;
+   746→   746→  --ed-rule-dark: rgba(255, 255, 255, 0.14);
+   747→   747→  --ed-ink: #0b1220;
+   748→   748→  --ed-muted: #55617a;
+   749→   749→  --ed-paper: #ffffff;
+   750→   750→  --ed-wash: #f6f7f9;
+   751→   751→  --ed-accent: #1f4fd8;
+   752→   752→}
+   753→   753→
+   754→   754→/* --- Typographic discipline · single authority ──────────────
+   755→   755→   Display leading is tightened for editorial density; tracking
+   756→   756→   relaxes as size decreases so smaller headings stay open. */
+   757→   757→.h1 {
+   758→   758→  font-weight: 600;
+   759→   759→  letter-spacing: var(--tracking-display);
+   760→   760→  line-height: 1.04;
+   761→   761→  text-wrap: balance;
+   762→   762→}
+   763→   763→.h2 {
+   764→   764→  font-weight: 600;
+   765→   765→  letter-spacing: var(--tracking-display);
+   766→   766→  line-height: 1.1;
+   767→   767→  text-wrap: balance;
+   768→   768→}
+   769→   769→.h3 {
+   770→   770→  font-weight: 600;
+   771→   771→  letter-spacing: var(--tracking-tight);
+   772→   772→  line-height: 1.22;
+   773→   773→}
+   774→   774→.h4 {
+   775→   775→  font-weight: 600;
+   776→   776→  letter-spacing: var(--tracking-tight);
+   777→   777→  line-height: 1.32;
+   778→   778→}
+   779→   779→
+   780→   780→/* Editorial label register — replaces shouty tracking-wide badges */
+   781→   781→.ed-label {
+   782→   782→  font-family: var(--font-sans);
+   783→   783→  font-size: var(--text-micro);
+   784→   784→  font-weight: 700;
+   785→   785→  letter-spacing: var(--tracking-label);
+   786→   786→  text-transform: uppercase;
+   787→   787→  line-height: 1.45;
+   788→   788→  color: var(--ed-muted);
+   789→   789→}
+   790→   790→.on-dark .ed-label { color: #9fb0cc; }
+   791→   791→
+   792→   792→.ed-num {
+   793→   793→  font-family: var(--font-heading);
+   794→   794→  font-variant-numeric: tabular-nums;
+   795→   795→  font-weight: 500;
+   796→   796→  letter-spacing: var(--tracking-display);
+   797→   797→  color: var(--ed-accent);
+   798→   798→}
+   799→   799→.on-dark .ed-num { color: #7fa6ff; }
+   800→   800→
+   801→   801→/* --- Hairline rule system ------------------------------------- */
+   802→   802→.ed-rule-t { border-top: 1px solid var(--ed-rule); }
+   803→   803→.ed-rule-b { border-bottom: 1px solid var(--ed-rule); }
+   804→   804→.on-dark .ed-rule-t { border-top-color: var(--ed-rule-dark); }
+   805→   805→.on-dark .ed-rule-b { border-bottom-color: var(--ed-rule-dark); }
+   806→   806→
+   807→   807→/* Section masthead: index + rule, the editorial signature */
+   808→   808→.ed-masthead {
+   809→   809→  display: flex;
+   810→   810→  align-items: baseline;
+   811→   811→  justify-content: space-between;
+   812→   812→  gap: 1rem;
+   813→   813→  padding-bottom: 0.75rem;
+   814→   814→  border-bottom: 1px solid var(--ed-rule);
+   815→   815→  margin-bottom: 2.5rem;
+   816→   816→}
+   817→   817→.on-dark .ed-masthead { border-bottom-color: var(--ed-rule-dark); }
+   818→   818→
+   819→   819→/* Deck / standfirst paragraph */
+   820→   820→.ed-deck {
+   821→   821→  font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.25rem);
+   822→   822→  line-height: 1.62;
+   823→   823→  color: var(--ed-muted);
+   824→   824→  max-width: 62ch;
+   825→   825→  font-weight: 400;
+   826→   826→}
+   827→   827→.on-dark .ed-deck { color: #b9c6dc; }
+   828→   828→
+   829→   829→/* --- Ruled editorial list (replaces card grids) --------------- */
+   830→   830→.ed-list { border-top: 1px solid var(--ed-rule); }
+   831→   831→.on-dark .ed-list { border-top-color: var(--ed-rule-dark); }
+   832→   832→
+   833→   833→.ed-item {
+   834→   834→  display: block;
+   835→   835→  border-bottom: 1px solid var(--ed-rule);
+   836→   836→  padding: 1.5rem 0;
+   837→   837→  transition: background-color var(--duration-base) var(--ease-standard);
+   838→   838→}
+   839→   839→.on-dark .ed-item { border-bottom-color: var(--ed-rule-dark); }
+   840→   840→.ed-item:hover { background-color: rgba(31, 79, 216, 0.028); }
+   841→   841→.on-dark .ed-item:hover { background-color: rgba(255, 255, 255, 0.035); }
+   842→   842→
+   843→   843→/* Headline link with rule-reveal underline */
+   844→   844→.ed-link {
+   845→   845→  text-decoration: none;
+   846→   846→  background-image: linear-gradient(currentColor, currentColor);
+   847→   847→  background-size: 0% 1px;
+   848→   848→  background-repeat: no-repeat;
+   849→   849→  background-position: 0 100%;
+   850→   850→  transition: background-size var(--duration-base) var(--ease-standard);
+   851→   851→}
+   852→   852→.ed-link:hover,
+   853→   853→.ed-link:focus-visible { background-size: 100% 1px; }
+   854→   854→
+   855→   855→/* --- Photography: consistent grade + crisp crops -------------- */
+   856→   856→.ed-media {
+   857→   857→  position: relative;
+   858→   858→  overflow: hidden;
+   859→   859→  background-color: #0a1631;
+   860→   860→}
+   861→   861→.ed-media > img {
+   862→   862→  width: 100%;
+   863→   863→  height: 100%;
+   864→   864→  object-fit: cover;
+   865→   865→  filter: saturate(0.9) contrast(1.04) brightness(0.99);
+   866→   866→  transition: transform var(--duration-slow) var(--ease-entrance);
+   867→   867→}
+   868→   868→.ed-media-hover:hover > img { transform: scale(1.025); }
+   869→   869→
+   870→   870→/* Caption register */
+   871→   871→.ed-caption {
+   872→   872→  font-size: var(--text-small);
+   873→   873→  line-height: 1.5;
+   874→   874→  color: var(--ed-muted);
+   875→   875→  padding-top: 0.625rem;
+   876→   876→  border-top: 1px solid var(--ed-rule);
+   877→   877→  margin-top: 0.75rem;
+   878→   878→}
+   879→   879→.on-dark .ed-caption {
+   880→   880→  color: #9fb0cc;
+   881→   881→  border-top-color: var(--ed-rule-dark);
+   882→   882→}
+   883→   883→
+   884→   884→/* --- Surfaces: flat paper, not floating glass ----------------- */
+   885→   885→.ed-panel {
+   886→   886→  background: var(--ed-paper);
+   887→   887→  border: 1px solid var(--ed-rule);
+   888→   888→  border-radius: 0;
+   889→   889→}
+   890→   890→.ed-panel-dark {
+   891→   891→  background: #0a1631;
+   892→   892→  border: 1px solid var(--ed-rule-dark);
+   893→   893→  border-radius: 0;
+   894→   894→}
+   895→   895→.ed-wash { background: var(--ed-wash); }
+   896→   896→
+   897→   897→/* --- Buttons: squared, confident ------------------------------ */
+   898→   898→.btn {
+   899→   899→  border-radius: 2px;
+   900→   900→  font-weight: 600;
+   901→   901→  letter-spacing: var(--tracking-tight);
+   902→   902→}
+   903→   903→.btn-sm { border-radius: 2px; }
+   904→   904→.chip { border-radius: 2px; }
+   905→   905→
+   906→   906→/* --- Underline form fields (editorial, not boxed glass) ------- */
+   907→   907→.ed-field {
+   908→   908→  width: 100%;
+   909→   909→  background: transparent;
+   910→   910→  border: 0;
+   911→   911→  border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+   912→   912→  border-radius: 0;
+   913→   913→  padding: 0.625rem 0;
+   914→   914→  color: #fff;
+   915→   915→  font-size: var(--text-body);
+   916→   916→  transition: border-color var(--duration-fast) var(--ease-standard);
+   917→   917→}
+   918→   918→.ed-field::placeholder { color: rgba(255, 255, 255, 0.42); }
+   919→   919→.ed-field:focus {
+   920→   920→  outline: none;
+   921→   921→  border-bottom-color: #7fa6ff;
+   922→   922→}
+   923→   923→.ed-field-light {
+   924→   924→  color: var(--ed-ink);
+   925→   925→  border-bottom-color: var(--ed-rule);
+   926→   926→}
+   927→   927→.ed-field-light::placeholder { color: #93a0b6; }
+   928→   928→.ed-field-light:focus { border-bottom-color: var(--ed-accent); }
+   929→   929→select.ed-field option { color: #0b1220; }
+   930→   930→
+   931→   931→/* --- Neutralise the decorative AI tells ---------------------- */
+   932→   932→.animate-dot {
+   933→   933→  animation: none !important;
+   934→   934→  opacity: 1 !important;
+   935→   935→  transform: none !important;
+   936→   936→  border-radius: 0;
+   937→   937→  width: 6px;
+   938→   938→  height: 6px;
+   939→   939→}
+   940→   940→.float-chip { animation: none !important; }
+   941→   941→.floating-chip { animation: none !important; }
+   942→   942→.watermark-mark { display: none !important; }
+   943→   943→
+   944→   944→/* Kill residual glass / glow utilities anywhere they survive */
+   945→   945→[class*="backdrop-blur"] { backdrop-filter: none !important; }
+   946→   946→
+   947→   947→/* Hero: calmer, editorial framing */
+   948→   948→.hero-aerial-zoom { animation: none !important; }
+   949→   949→
+   950→   950→/* Tighter, intentional section rhythm */
+   951→   951→.section-y { padding-block: clamp(4rem, 2.5rem + 5vw, 6.5rem); }
+   952→   952→.section { padding-block: clamp(4rem, 2.5rem + 5vw, 6.5rem); }
+   953→   953→
+   954→   954→@media (prefers-reduced-motion: reduce) {
+   955→   955→  .text-roll span { transition: none; }
+   956→   956→  .btn:hover .text-roll span:first-child,
+   957→   957→  .btn:focus-visible .text-roll span:first-child { transform: none; }
+   958→   958→  .text-roll span:last-child { transform: translateY(115%); }
+   959→   959→  .ed-media > img { transition: none; }
+   960→   960→  .ed-link { transition: none; }
+   961→   961→  .ed-item { transition: none; }
+   962→   962→}
+   963→   963→
+   964→   964→/* Expose motion + tracking tokens as utilities so component code
+   965→   965→   references the system rather than ad-hoc values. */
+   966→   966→@utility duration-fast { transition-duration: var(--duration-fast); }
+   967→   967→@utility duration-base { transition-duration: var(--duration-base); }
+   968→   968→@utility duration-slow { transition-duration: var(--duration-slow); }
+   969→   969→@utility ease-standard { transition-timing-function: var(--ease-standard); }
+   970→   970→@utility ease-entrance { transition-timing-function: var(--ease-entrance); }
+   971→   971→@utility tracking-display { letter-spacing: var(--tracking-display); }
+   972→   972→@utility tracking-tight { letter-spacing: var(--tracking-tight); }
+   973→   973→@utility tracking-label { letter-spacing: var(--tracking-label); }
+   974→   974→
