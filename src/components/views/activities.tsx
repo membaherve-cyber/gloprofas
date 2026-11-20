@@ -72,10 +72,10 @@ export function ActivitiesView() {
                 <img
                   src="/images/gen/about-workshop.jpg"
                   alt={fr ? "Animateur communal an atelier de sensibilisation aux arnaques au Cameroun" : "Community facilitator at an anti-scam awareness workshop in Cameroon"}
-                  width={1344}
-                  height={768}
+                  width={864}
+                  height={1152}
                   loading="lazy"
-                  className="img-editorial aspect-[4/3] w-full object-cover"
+                  className="img-editorial aspect-[4/5] w-full object-cover"
                 />
               </div>
             </Reveal>

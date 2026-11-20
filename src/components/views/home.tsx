@@ -175,12 +175,12 @@ export function HomeView() {
       <section className="on-dark relative isolate flex min-h-[100svh] items-center overflow-hidden bg-navy-900 pt-[110px] pb-14 lg:pt-[128px] lg:pb-20">
         <div className="absolute inset-0 -z-20" aria-hidden>
           <img
-            src="/images/gen/hero-main.jpg"
+            src="/images/gen/hero-cafe-woman.jpg"
             alt=""
-            width={1472}
-            height={736}
+            width={1440}
+            height={720}
             fetchPriority="high"
-            className="img-editorial h-full w-full object-cover object-[72%_center]"
+            className="img-editorial h-full w-full object-cover object-[70%_center]"
           />
         </div>
         <div className="hero-scrim hero-scrim-anim absolute inset-0 -z-10" aria-hidden />
@@ -298,10 +298,10 @@ export function HomeView() {
               <Reveal delay={140}>
                 <div className="card-g mt-8 overflow-hidden">
                   <img
-                    src="/images/gen/check-verify.jpg"
-                    alt={fr ? "Une personne examine attentivement un message suspect sur son téléphone avant d'agir" : "A person carefully examines a suspicious message on their phone before acting"}
-                    width={1344}
-                    height={768}
+                    src="/images/gen/verify-hands.jpg"
+                    alt={fr ? "Mains posées sur une table de café à côté d’un téléphone retourné et d’un carnet — une pause pour vérifier avant d’agir" : "Hands resting on a cafe table beside a face-down phone and a notebook — pausing to verify before acting"}
+                    width={1024}
+                    height={1024}
                     loading="lazy"
                     className="img-editorial aspect-[16/10] w-full object-cover"
                   />
@@ -357,8 +357,8 @@ export function HomeView() {
                 <img
                   src="/images/gen/about-workshop.jpg"
                   alt={fr ? "Un animateur anime un atelier de sensibilisation aux arnaques devant un public attentif au Cameroun" : "A facilitator leads an anti-scam awareness workshop for an engaged audience in Cameroon"}
-                  width={1344}
-                  height={768}
+                  width={864}
+                  height={1152}
                   loading="lazy"
                   className="img-editorial aspect-[4/5] w-full object-cover"
                 />
@@ -629,12 +629,12 @@ export function HomeView() {
             <Reveal>
               <div className="card-g overflow-hidden">
                 <img
-                  src="/images/gen/report-scene.jpg"
-                  alt={fr ? "Une personne remplit calmement un signalement en ligne, composée et déterminée" : "A person calmly completes an online report, composed and determined"}
-                  width={1344}
-                  height={768}
+                  src="/images/gen/report-desk.jpg"
+                  alt={fr ? "Vue de dessus d’un bureau préparé pour un signalement — ordinateur portable, liste de contrôle manuscrite, stylo et lunettes" : "Overhead view of a desk prepared for filing a report — laptop, handwritten checklist, pen and eyeglasses"}
+                  width={864}
+                  height={1152}
                   loading="lazy"
-                  className="img-editorial aspect-[16/10] w-full object-cover"
+                  className="img-editorial aspect-[4/5] w-full object-cover"
                 />
               </div>
             </Reveal>
@@ -700,10 +700,10 @@ export function HomeView() {
                 <A href="/resources/scam-checker" className="group mt-6 block">
                   <article className="card-g hoverable overflow-hidden">
                     <img
-                      src="/images/gen/check-verify.jpg"
-                      alt={fr ? "Personne vérifiant un message suspect sur son téléphone" : "Person checking a suspicious message on their phone"}
-                      width={1344}
-                      height={768}
+                      src="/images/gen/verify-hands.jpg"
+                      alt={fr ? "Un téléphone retourné et un carnet posés sur une table de café à l’heure bleue — vérifier avant de faire confiance" : "A face-down phone and a notebook on a cafe table at blue hour — verifying before trusting"}
+                      width={1024}
+                      height={1024}
                       loading="lazy"
                       className="img-editorial aspect-video w-full object-cover"
                     />

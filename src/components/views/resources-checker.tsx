@@ -155,8 +155,8 @@ export function ScamCheckerView() {
             ? "Pas sûr qu’un message, une offre ou une communication soit légitime ? Utilisez le GLOPROFAS Scam Checker pour examiner les signaux d’alerte courants et repérer les schémas potentiellement suspects."
             : "Not sure whether a message, offer or communication is legitimate? Use the GLOPROFAS Scam Checker to examine common warning signs and identify potentially suspicious patterns."
         }
-        image="/images/gen/check-verify.jpg"
-        imageAlt={fr ? "Personne vérifiant attentivement un message suspect sur son téléphone" : "Person carefully checking a suspicious message on their phone"}
+        image="/images/gen/verify-hands.jpg"
+        imageAlt={fr ? "Mains posées sur une table de café à côté d’un téléphone retourné et d’un carnet, à l’heure bleue" : "Hands resting on a cafe table beside a face-down phone and a notebook at blue hour"}
         breadcrumb={[{ label: fr ? "Centre de ressources" : "Resource Centre", href: "/resources" }, { label: "Scam Checker" }]}
       >
         <p className="mt-1 max-w-xl text-[13px] leading-relaxed text-slatex-300">{R(CHECKER_PRIVACY, locale)}</p>

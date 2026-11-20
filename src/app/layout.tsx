@@ -121,9 +121,9 @@ export const metadata: Metadata = {
     alternateLocale: "fr_FR",
     images: [
       {
-        url: "/images/gen/hero-main.jpg",
-        width: 1472,
-        height: 736,
+        url: "/images/gen/hero-cafe-woman.jpg",
+        width: 1440,
+        height: 720,
         alt: "GLOPROFAS — spot the scam before it costs you",
       },
       {
@@ -138,7 +138,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE.fullName} — ${SITE.tagline.en}`,
     description: SITE.description.en,
-    images: ["/images/gen/hero-main.jpg"],
+    images: ["/images/gen/hero-cafe-woman.jpg"],
   },
   robots: {
     index: true,

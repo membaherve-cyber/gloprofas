@@ -82,8 +82,8 @@ export function CheckView() {
             ? "Collez le message suspect, le lien ou le numéro de téléphone. Oskie le compare aux schémas d'arnaques connus et vous donne une évaluation indicative."
             : "Paste the suspicious message, link or phone number. Oskie compares it against known scam patterns and gives you an indicative assessment."
         }
-        image="/images/gen/check-verify.jpg"
-        imageAlt={fr ? "Personne vérifiant attentivement un message sur son téléphone" : "Person carefully verifying a message on their phone"}
+        image="/images/gen/verify-hands.jpg"
+        imageAlt={fr ? "Mains posées sur une table de café à côté d’un téléphone retourné et d’un carnet, à l’heure bleue" : "Hands resting on a cafe table beside a face-down phone and a notebook at blue hour"}
       />
 
       <section className="section-y bg-white">

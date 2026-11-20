@@ -200,6 +200,80 @@ export function ArticleLibraryView() {
           </div>
         </div>
       </section>
+
+      {/* Deep-dive editorial feature — investment, crypto & romance fraud */}
+      <section className="section-y bg-mist-50">
+        <div className="container-g grid items-center gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <Reveal>
+              <div className="card-g overflow-hidden">
+                <img
+                  src="/images/gen/investor-senior.jpg"
+                  alt={fr ? "Homme âgé réfléchi examinant une tablette à la tombée de la nuit, éclairé par une lampe de lecture chaude" : "Thoughtful older man examining a tablet at twilight, lit by a warm reading lamp"}
+                  width={864}
+                  height={1152}
+                  loading="lazy"
+                  className="img-editorial aspect-[4/5] w-full object-cover"
+                />
+              </div>
+            </Reveal>
+          </div>
+          <div className="lg:col-span-7 lg:pl-4">
+            <Reveal>
+              <p className="eyebrow">{fr ? "Analyse approfondie" : "Deep dive"}</p>
+              <h2 className="h2-g mt-4">
+                {fr ? "Investissement, crypto et fausses histoires d’amour." : "Investment, crypto and romance fraud."}
+              </h2>
+              <p className="lead-g mt-5">
+                {fr
+                  ? "Ces schémas partagent le même moteur : la confiance, amplifiée par l’urgence et la promesse de gains. Nos guides les plus détaillés décortiquent chaque étape de la manipulation, avec des listes de vérification à passer avant tout transfert d’argent."
+                  : "These schemes share one engine — trust, amplified by urgency and the promise of returns. Our most detailed guides walk through every step of the manipulation, with checklists to run before you send money to anyone."}
+              </p>
+            </Reveal>
+            <Reveal delay={120}>
+              <ul className="mt-8 divide-y divide-line-200 border-y border-line-200">
+                {[
+                  {
+                    href: "/resources/practical-tools/investment-scams-and-ponzi-schemes",
+                    en: "Investment scams and Ponzi schemes",
+                    fr: "Arnaques à l’investissement et schémas de Ponzi",
+                  },
+                  {
+                    href: "/resources/practical-tools/cryptocurrency-and-digital-asset-scams",
+                    en: "Cryptocurrency and digital-asset scams",
+                    fr: "Arnaques aux cryptomonnaies et actifs numériques",
+                  },
+                  {
+                    href: "/resources/practical-tools/romance-scams-recognising-emotional-manipulation",
+                    en: "Romance scams: recognising emotional manipulation",
+                    fr: "Fausses histoires d’amour : reconnaître la manipulation émotionnelle",
+                  },
+                ].map((item) => (
+                  <li key={item.href}>
+                    <A href={item.href} className="group flex items-center justify-between gap-4 py-4">
+                      <span className="font-heading text-[15px] font-semibold text-ink-900 transition-colors group-hover:text-brand-600">
+                        {fr ? item.fr : item.en}
+                      </span>
+                      <ArrowRight
+                        size={16}
+                        strokeWidth={2}
+                        className="shrink-0 text-slatex-400 transition-all group-hover:translate-x-0.5 group-hover:text-brand-600"
+                        aria-hidden
+                      />
+                    </A>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-6">
+                <Btn href="/report" variant="outline" size="sm">
+                  <Siren size={14} aria-hidden />
+                  {fr ? "Vous avez déjà payé ? Signaler maintenant" : "Already paid? Report it now"}
+                </Btn>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

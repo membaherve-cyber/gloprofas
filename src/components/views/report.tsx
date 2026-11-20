@@ -209,7 +209,7 @@ export function ReportView() {
       <section className="on-dark relative overflow-hidden bg-navy-950 pt-32 pb-24">
         <div className="absolute inset-0" aria-hidden>
           <img
-            src="/images/gen/report-scene.jpg"
+            src="/images/gen/report-desk.jpg"
             alt=""
             className="img-editorial h-full w-full object-cover opacity-15"
           />
@@ -318,8 +318,8 @@ export function ReportView() {
         eyebrow={fr ? "Signalement confidentiel" : "Confidential reporting"}
         title={t("report.h1")}
         lead={t("report.lead")}
-        image="/images/gen/report-scene.jpg"
-        imageAlt={fr ? "Personne remplissant calmement un signalement en ligne" : "Person calmly completing an online report"}
+        image="/images/gen/report-desk.jpg"
+        imageAlt={fr ? "Espace de travail préparé pour un signalement : ordinateur portable, carnet et lunettes sur un bureau en bois" : "Workspace prepared for reporting: laptop, notebook and eyeglasses on a wooden desk"}
       >
         <p className="flex items-start gap-2.5 rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-[13px] text-slatex-300">
           <Lock size={15} className="mt-0.5 shrink-0 text-cyanx-500" aria-hidden />

@@ -353,7 +353,7 @@ function ResourceCentreLanding() {
             <div className="on-dark relative overflow-hidden rounded-2xl bg-navy-950 p-8 sm:p-10">
               <div
                 aria-hidden
-                className="absolute inset-0 bg-[url('/images/gen/check-verify.jpg')] bg-cover bg-center opacity-20"
+                className="absolute inset-0 bg-[url('/images/gen/verify-hands.jpg')] bg-cover bg-center opacity-20"
               />
               <div className="hero-scrim absolute inset-0" aria-hidden />
               <div className="relative max-w-2xl">
