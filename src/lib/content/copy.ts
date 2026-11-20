@@ -270,7 +270,6 @@ export const L = {
       { en: "Community education", fr: "Éducation des communautés" },
     ],
     paidTitle: { en: "Professional services", fr: "Services professionnels" },
-    paidTag: { en: "Paid or on quotation", fr: "Payant ou sur devis" },
     paid: [
       {
         en: "Individual digital safety assessments",

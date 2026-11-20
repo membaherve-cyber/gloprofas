@@ -155,7 +155,7 @@
     "services": {
       "eyebrow": "Nos services",
       "h2": "Un travail public gratuit. Des services professionnels distincts.",
-      "lead": "Nos actions de sensibilisation, d’éducation et nos conseils publics restent gratuits. Les services payants constituent une division séparée, avec un périmètre clairement annoncé.",
+      "lead": "Nos actions de sensibilisation, d’éducation et nos conseils publics restent gratuits. Les services professionnels constituent une division séparée, avec un périmètre clairement annoncé.",
       "freeTitle": "Gratuit et d’intérêt public",
       "freeBody": "Tout ce qu’il faut pour reconnaître et traiter une arnaque, ouvert à tous.",
       "freePoints": [
@@ -419,7 +419,7 @@
     "h1": "Services professionnels",
     "lead": "Diagnostics, sensibilisation et formations destinés aux entreprises et institutions, assurés par notre division de services professionnels.",
     "heroImageAlt": "Trois collègues examinant un plan de prévention de la fraude en salle de réunion",
-    "freeNote": "Nos guides, alertes et conseils publics sont gratuits et le restent. Les services payants ci-dessous sont distincts.",
+    "freeNote": "Nos guides, alertes et conseils publics sont gratuits et le restent. Les services professionnels ci-dessous constituent une division distincte.",
     "groups": {
       "individual": "Protection individuelle",
       "business": "Protection des entreprises",
@@ -428,10 +428,10 @@
     },
     "pricing": {
       "free": "Gratuit",
-      "paid": "Payant",
-      "custom-quotation": "Devis sur mesure",
+      "paid": "Professionnel",
+      "custom-quotation": "Sur demande",
       "consultation": "Demande de consultation",
-      "training-package": "Forfait de formation"
+      "training-package": "Programme de formation"
     },
     "enquire": "Demander ce service",
     "enquiryTitle": "Demande de service",
@@ -534,7 +534,7 @@
       },
       {
         "title": "Assistance professionnelle",
-        "body": "Des diagnostics payants, distincts du travail gratuit."
+        "body": "Des diagnostics professionnels, distincts du travail gratuit."
       }
     ],
     "geographyTitle": "Zone d’intervention",
@@ -604,7 +604,7 @@
       }
     ],
     "inviteTitle": "Invitez GLOPROFAS dans votre organisation",
-    "inviteBody": "Écoles, églises, centres de jeunesse, associations et entreprises peuvent demander une campagne, un séminaire ou un forum. Indiquez le public, l’effectif approximatif et les dates souhaitées. Les séances d’intérêt public sont gratuites ; les programmes professionnels destinés aux entreprises et institutions font l’objet d’un devis distinct.",
+    "inviteBody": "Écoles, églises, centres de jeunesse, associations et entreprises peuvent demander une campagne, un séminaire ou un forum. Indiquez le public, l’effectif approximatif et les dates souhaitées. Les séances d’intérêt public sont gratuites ; les programmes professionnels destinés aux entreprises et institutions sont disponibles sur demande.",
     "cta": "Demander une séance",
     "ctaSecondary": "Explorer les fiches de sensibilisation",
     "note": "Les séances sont éducatives. GLOPROFAS ne mène pas d’enquête, ne certifie la légitimité de personne et ne peut récupérer de fonds. Aucun frais n’est jamais demandé pour participer à une séance publique, et aucun paiement n’est collecté via ce site.",

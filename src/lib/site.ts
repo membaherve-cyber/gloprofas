@@ -18,8 +18,8 @@ export const SITE = {
   url: "https://gloprofas.org",
   email: "contact@gloprofas.org",
   location: {
-    en: "Yaoundé, Cameroon · International initiative",
-    fr: "Yaoundé, Cameroun · Initiative internationale",
+    en: "Akwa, Douala, Cameroon · International initiative",
+    fr: "Akwa, Douala, Cameroun · Initiative internationale",
   },
   policyVersion: "2026-11",
 } as const;

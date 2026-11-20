@@ -1476,11 +1476,6 @@ export const ZITE_CONTENT = {
       "fr": "Services professionnels"
     },
     {
-      "key": "services.paidTag",
-      "en": "Paid or on quotation",
-      "fr": "Payant ou sur devis"
-    },
-    {
       "key": "services.paid.0",
       "en": "Individual digital safety assessments",
       "fr": "Évaluations de sécurité numérique individuelles"

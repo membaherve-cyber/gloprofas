@@ -10,6 +10,7 @@ import { ShieldCheck, Siren, MessageCircleQuestion, Radar } from "lucide-react";
 import { A } from "@/lib/router";
 import { useI18n } from "@/lib/i18n";
 import { R, L } from "@/lib/content/copy";
+import { ZITE_CONTENT } from "@/lib/content/zite-data";
 import { NAV_ITEMS } from "@/lib/site";
 
 export function Footer() {
@@ -109,7 +110,7 @@ export function Footer() {
               </div>
               <div className="flex gap-2">
                 <dt className="text-slatex-400">{locale === "fr" ? "Emplacement" : "Location"}:</dt>
-                <dd>{locale === "fr" ? "Yaoundé, Cameroun · Initiative internationale" : "Yaoundé, Cameroon · International initiative"}</dd>
+                <dd>{locale === "fr" ? "Akwa, Douala, Cameroun · Initiative internationale" : "Akwa, Douala, Cameroon · International initiative"}</dd>
               </div>
             </dl>
             <p className="mt-5 text-[12.5px] leading-relaxed text-slatex-400">
@@ -118,7 +119,31 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-7 text-[12.5px] text-slatex-400 lg:flex-row lg:items-center lg:justify-between">
+        {/* Topics index — visible deep links to every scam category (internal linking) */}
+        <nav
+          aria-label={locale === "fr" ? "Types d’arnaques couverts" : "Scam types covered"}
+          className="mt-10 border-t border-white/10 pt-7"
+        >
+          <p className="mb-3 font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-white/70">
+            {locale === "fr"
+              ? "Types d’arnaques que nous couvrons"
+              : "Scam types we cover"}
+          </p>
+          <ul className="flex flex-wrap gap-x-4 gap-y-2 text-[12.5px] text-slatex-400">
+            {ZITE_CONTENT.categories.map((c) => (
+              <li key={c.slug}>
+                <A
+                  href={`/scams/${c.slug}`}
+                  className="transition-colors hover:text-cyanx-500"
+                >
+                  {locale === "fr" ? c.title.fr : c.title.en}
+                </A>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-7 text-[12.5px] text-slatex-400 lg:flex-row lg:items-center lg:justify-between">
           <p>
             © {year} {R(L.footer.rights, locale)}
           </p>

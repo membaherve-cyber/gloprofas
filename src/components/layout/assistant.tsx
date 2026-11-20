@@ -7,7 +7,7 @@
  */
 
 import React, { useEffect, useRef, useState } from "react";
-import { MessageCircle, Send, Sparkles, X } from "lucide-react";
+import { Send, X } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { A } from "@/lib/router";
 
@@ -16,6 +16,27 @@ type Msg = {
   content: string;
   sources?: { title: string; href: string }[];
 };
+
+/**
+ * Oskie brand mark — the GLOPROFAS "G", used on the assistant launcher
+ * and in the chat header.
+ */
+function OskieMark({ size = 44 }: { size?: number }) {
+  return (
+    <span
+      aria-hidden
+      className="flex items-center justify-center rounded-full bg-white"
+      style={{ width: size * 0.72, height: size * 0.72 }}
+    >
+      <span
+        className="font-heading font-extrabold leading-none text-brand-600"
+        style={{ fontSize: size * 0.46 }}
+      >
+        G
+      </span>
+    </span>
+  );
+}
 
 export function AssistantLauncher() {
   const { locale, t } = useI18n();
@@ -109,7 +130,7 @@ export function AssistantLauncher() {
         aria-expanded={open}
         className="assistant-fab fixed bottom-5 right-5 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-brand-600 text-white shadow-e3 transition-transform hover:scale-105 hover:bg-brand-700"
       >
-        {open ? <X size={22} /> : <MessageCircle size={24} />}
+        {open ? <X size={22} /> : <OskieMark size={44} />}
         {!open ? (
           <span className="absolute -right-0.5 -top-0.5 flex h-3.5 w-3.5">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyanx-500 opacity-60" />
@@ -127,8 +148,8 @@ export function AssistantLauncher() {
         >
           {/* Header */}
           <div className="on-dark flex items-center gap-3 bg-brand-600 px-4 py-3.5 text-white">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/15">
-              <Sparkles size={17} aria-hidden />
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white">
+              <span className="font-heading text-[20px] font-extrabold leading-none text-brand-600">G</span>
             </span>
             <div className="min-w-0 flex-1">
               <p className="font-heading text-[14.5px] font-bold leading-tight">Oskie</p>

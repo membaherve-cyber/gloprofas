@@ -39,6 +39,7 @@ import {
   type ZiteCategory,
 } from "@/lib/content/zite-data";
 import { categoryImage } from "@/lib/site";
+import { FAQ_ITEMS } from "@/lib/content/faq-data";
 import {
   Reveal,
   Btn,
@@ -813,9 +814,6 @@ export function HomeView() {
               <div className="on-dark h-full rounded-[14px] bg-navy-950 p-7 ring-1 ring-white/10">
                 <div className="flex items-center justify-between">
                   <h3 className="h3-g text-white">{R(L.services.paidTitle, locale)}</h3>
-                  <span className="chip-g border-signal-500/40 bg-signal-500/10 text-signal-400">
-                    {R(L.services.paidTag, locale)}
-                  </span>
                 </div>
                 <ul className="mt-6 space-y-3">
                   {L.services.paid.map((f, i) => (
@@ -999,6 +997,9 @@ export function HomeView() {
         </div>
       </section>
 
+      {/* ═══ 12b · FAQ (mirrors FAQPage structured data) ═══ */}
+      <FaqSection />
+
       {/* ═══ 13 · BRIEFING / NEWSLETTER (dark) ═══ */}
       <NewsletterSection />
 
@@ -1015,6 +1016,46 @@ export function HomeView() {
         </div>
       </section>
     </>
+  );
+}
+
+/* ---------------- FAQ section (mirrors FAQPage structured data) ---------------- */
+
+function FaqSection() {
+  const { locale } = useI18n();
+  const fr = locale === "fr";
+  return (
+    <section className="section-y bg-mist-50" id="faq">
+      <div className="container-g">
+        <Reveal>
+          <Masthead num="10" eyebrow={fr ? "Questions fréquentes" : "Frequently asked questions"} />
+        </Reveal>
+        <div className="mt-8 max-w-2xl">
+          <Reveal delay={60}>
+            <h2 className="h2-g">{fr ? "Les questions que tout le monde se pose." : "The questions everyone asks."}</h2>
+            <p className="lead-g mt-3">
+              {fr
+                ? "Des réponses directes, fondées sur nos propres guides — en anglais comme en français."
+                : "Direct answers, grounded in our own guidance — in English and in French."}
+            </p>
+          </Reveal>
+        </div>
+        <Reveal delay={120} className="mt-8">
+          <Accordion type="single" collapsible className="divide-y divide-line-200 rounded-xl border border-line-200 bg-white">
+            {FAQ_ITEMS.map((f, i) => (
+              <AccordionItem key={i} value={`faq-${i}`} className="border-0">
+                <AccordionTrigger className="px-5 py-4 text-left font-heading text-[14.5px] font-semibold text-ink-900 hover:no-underline hover:text-brand-600 [&>svg]:text-brand-600">
+                  {R(f.q, locale)}
+                </AccordionTrigger>
+                <AccordionContent className="px-5 pb-4 text-[13.5px] leading-relaxed text-slatex-600">
+                  {R(f.a, locale)}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Reveal>
+      </div>
+    </section>
   );
 }
 

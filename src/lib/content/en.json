@@ -155,7 +155,7 @@
     "services": {
       "eyebrow": "Our services",
       "h2": "Free public work. Separate professional services.",
-      "lead": "Our awareness, education and public guidance stay free. Paid services are a separate division with its own scope, and we say clearly what they are.",
+      "lead": "Our awareness, education and public guidance stay free. Professional services are a separate division with its own scope, and we say clearly what they are.",
       "freeTitle": "Free and public-interest",
       "freeBody": "Everything you need to recognise and respond to a scam, open to everyone.",
       "freePoints": [
@@ -419,7 +419,7 @@
     "h1": "Professional services",
     "lead": "Assessment, awareness and training for businesses and institutions, delivered by our professional services division.",
     "heroImageAlt": "Three colleagues reviewing a fraud-prevention plan in a meeting room",
-    "freeNote": "Our guides, alerts and public guidance are free and remain free. Paid services below are separate.",
+    "freeNote": "Our guides, alerts and public guidance are free and remain free. The professional services below are a separate division.",
     "groups": {
       "individual": "Individual protection",
       "business": "Business protection",
@@ -428,10 +428,10 @@
     },
     "pricing": {
       "free": "Free",
-      "paid": "Paid",
-      "custom-quotation": "Custom quotation",
+      "paid": "Professional",
+      "custom-quotation": "On request",
       "consultation": "Consultation request",
-      "training-package": "Training package"
+      "training-package": "Training programme"
     },
     "enquire": "Enquire about this service",
     "enquiryTitle": "Service enquiry",
@@ -440,7 +440,8 @@
     "requirements": "Describe your requirements",
     "contactMethod": "Preferred contact method",
     "phone": "Telephone",
-    "success": "Thank you. Your enquiry has been received and our team will reply with next steps."
+    "success": "Thank you. Your enquiry has been received and our team will reply with next steps.",
+    "lead2": null
   },
   "resources": {
     "h1": "Resource centre",
@@ -534,7 +535,7 @@
       },
       {
         "title": "Professional assistance",
-        "body": "Paid assessments kept separate from free work."
+        "body": "Professional assessments kept separate from free work."
       }
     ],
     "geographyTitle": "Geographic focus",
@@ -604,7 +605,7 @@
       }
     ],
     "inviteTitle": "Invite GLOPROFAS to your organisation",
-    "inviteBody": "Schools, churches, youth centres, associations and companies can request a campaign, seminar or forum. Tell us the audience, the approximate size and the timing. Public-interest sessions are free; professional programmes for companies and institutions are quoted separately.",
+    "inviteBody": "Schools, churches, youth centres, associations and companies can request a campaign, seminar or forum. Tell us the audience, the approximate size and the timing. Public-interest sessions are free; professional programmes for companies and institutions are available on request.",
     "cta": "Request a session",
     "ctaSecondary": "Explore awareness guides",
     "note": "Sessions are educational. GLOPROFAS does not run investigations, does not certify anyone as legitimate, and cannot recover funds. No fee is ever charged to attend a public session, and we never collect payments through this website.",
