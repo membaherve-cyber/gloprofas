@@ -1,0 +1,562 @@
+   180→            width={1472}
+   181→            height={736}
+   182→            fetchPriority="high"
+   183→            className="img-editorial h-full w-full object-cover object-[72%_center]"
+   184→          />
+   185→        </div>
+   186→        <div className="hero-scrim hero-scrim-anim absolute inset-0 -z-10" aria-hidden />
+   187→
+   188→        <div className="container-g grid w-full items-center gap-12 lg:grid-cols-12">
+   189→          <div className="lg:col-span-7">
+   190→            <Reveal>
+   191→              <p className="eyebrow flex items-center gap-3 text-cyanx-500">
+   192→                <span className="pulse-dot inline-block h-1.5 w-1.5 rounded-full bg-cyanx-500" aria-hidden />
+   193→                {R(L.hero.eyebrow, locale)}
+   194→              </p>
+   195→            </Reveal>
+   196→            <Reveal delay={90}>
+   197→              <h1 className="h1-g mt-5 max-w-[16ch] text-white">{R(L.hero.h1, locale)}</h1>
+   198→            </Reveal>
+   199→            <Reveal delay={170}>
+   200→              <p className="lead-g mt-6 max-w-xl text-slatex-300">{R(L.hero.lead, locale)}</p>
+   201→            </Reveal>
+   202→            <Reveal delay={240} className="mt-9 flex flex-wrap gap-3">
+   203→              <Btn href="/report" variant="signal">
+   204→                <Siren size={16} strokeWidth={2.2} aria-hidden />
+   205→                {fr ? "Signaler un incident" : "Report an Incident"}
+   206→              </Btn>
+   207→              <Btn href="/check" variant="outlineDark">
+   208→                <ShieldCheck size={16} aria-hidden />
+   209→                {fr ? "Vérifier une arnaque" : "Verify a Scam"}
+   210→              </Btn>
+   211→            </Reveal>
+   212→            <Reveal delay={300}>
+   213→              <p className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12.5px] font-medium text-white/60">
+   214→                <span className="inline-flex items-center gap-1.5">
+   215→                  <Check size={13} className="text-cyanx-500" aria-hidden />
+   216→                  {fr ? "Gratuit" : "Free"}
+   217→                </span>
+   218→                <span className="inline-flex items-center gap-1.5">
+   219→                  <Check size={13} className="text-cyanx-500" aria-hidden />
+   220→                  {fr ? "Privé par défaut" : "Private by default"}
+   221→                </span>
+   222→                <span className="inline-flex items-center gap-1.5">
+   223→                  <Check size={13} className="text-cyanx-500" aria-hidden />
+   224→                  {fr ? "Anglais et français" : "English and French"}
+   225→                </span>
+   226→              </p>
+   227→            </Reveal>
+   228→          </div>
+   229→
+   230→          {/* Documented patterns rail */}
+   231→          <div className="hidden lg:col-span-5 lg:block">
+   232→            <Reveal delay={340}>
+   233→              <div className="rounded-2xl border border-white/15 bg-navy-950/45 p-6 backdrop-blur-[3px]">
+   234→                <p className="eyebrow mb-1 text-white/50">
+   235→                  {fr ? "Schémas documentés" : "Documented patterns"}
+   236→                </p>
+   237→                <ul>
+   238→                  {featuredCats.slice(0, 4).map((cat: ZiteCategory, idx: number) => (
+   239→                    <li key={cat.id} className="border-b border-white/10 last:border-0">
+   240→                      <A
+   241→                        href={`/scams/${cat.slug}`}
+   242→                        className="group flex items-baseline gap-3 py-3.5 text-[14.5px] text-white/85 transition-colors hover:text-white"
+   243→                      >
+   244→                        <span className="mast-num text-xs">{String(idx + 1).padStart(2, "0")}</span>
+   245→                        <span className="font-medium">{R(cat.title, locale)}</span>
+   246→                        <ArrowUpRight
+   247→                          aria-hidden
+   248→                          className="ml-auto h-3.5 w-3.5 shrink-0 opacity-0 transition-opacity group-hover:opacity-70"
+   249→                          strokeWidth={1.5}
+   250→                        />
+   251→                      </A>
+   252→                    </li>
+   253→                  ))}
+   254→                </ul>
+   255→                <A
+   256→                  href="/scams"
+   257→                  className="mt-2 inline-flex items-center gap-1.5 text-[13px] font-semibold text-cyanx-500 hover:text-cyanx-400"
+   258→                >
+   259→                  {fr ? "Voir les 12 guides" : "Browse all 12 guides"}
+   260→                  <ChevronRight size={14} aria-hidden />
+   261→                </A>
+   262→              </div>
+   263→            </Reveal>
+   264→          </div>
+   265→        </div>
+   266→      </section>
+   267→
+   268→      {/* ═══ 02 · VERIFICATION STRIP ═══ */}
+   269→      <section className="on-dark border-y border-white/10 bg-navy-950">
+   270→        <div className="container-g flex flex-col items-start justify-between gap-4 py-6 md:flex-row md:items-center">
+   271→          <p className="font-heading text-lg font-medium text-white md:text-xl">
+   272→            {R(L.strip.text, locale)}
+   273→          </p>
+   274→          <LinkG href="/check" className="shrink-0 !text-cyanx-500">{R(L.strip.cta, locale)}</LinkG>
+   275→        </div>
+   276→      </section>
+   277→
+   278→      {/* ═══ 03 · PILLARS ═══ */}
+   279→      <section className="section-y bg-white">
+   280→        <div className="container-g">
+   281→          <Reveal>
+   282→            <Masthead num="01" eyebrow={fr ? "Architecture de protection" : "Protection architecture"} />
+   283→          </Reveal>
+   284→          <div className="mt-8 grid gap-10 lg:grid-cols-12">
+   285→            <div className="lg:col-span-5">
+   286→              <Reveal delay={60}>
+   287→                <h2 className="h2-g">
+   288→                  {fr
+   289→                    ? "Trois piliers pour détecter, signaler et analyser la fraude."
+   290→                    : "Three core pillars to detect, report and analyse fraud."}
+   291→                </h2>
+   292→                <p className="lead-g mt-4">
+   293→                  {fr
+   294→                    ? "Chaque outil de GLOPROFAS offre aux particuliers, aux familles et aux institutions une défense immédiate et fiable contre les arnaques modernes."
+   295→                    : "Every tool on GLOPROFAS is built to give individuals, families and institutions an immediate, trustworthy defence against modern scamming schemes."}
+   296→                </p>
+   297→              </Reveal>
+   298→              <Reveal delay={140}>
+   299→                <div className="card-g mt-8 overflow-hidden">
+   300→                  <img
+   301→                    src="/images/gen/check-verify.jpg"
+   302→                    alt={fr ? "Une personne examine attentivement un message suspect sur son téléphone avant d'agir" : "A person carefully examines a suspicious message on their phone before acting"}
+   303→                    width={1344}
+   304→                    height={768}
+   305→                    loading="lazy"
+   306→                    className="img-editorial aspect-[16/10] w-full object-cover"
+   307→                  />
+   308→                </div>
+   309→              </Reveal>
+   310→            </div>
+   311→            <div className="lg:col-span-7">
+   312→              <div className="flex flex-col gap-4">
+   313→                {PILLARS.map((p, i) => {
+   314→                  const Icon = p.icon;
+   315→                  return (
+   316→                    <Reveal key={p.id} delay={80 + i * 90}>
+   317→                      <article className="card-g hoverable p-6">
+   318→                        <div className="flex items-start gap-4">
+   319→                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+   320→                            <Icon size={20} strokeWidth={1.9} aria-hidden />
+   321→                          </span>
+   322→                          <div className="min-w-0">
+   323→                            <p className="eyebrow mb-1.5">{`Pillar 0${i + 1}`}</p>
+   324→                            <h3 className="h3-g text-[1.15rem]">{R(p.title, locale)}</h3>
+   325→                            <p className="mt-2 text-[14px] leading-relaxed text-slatex-600">
+   326→                              {R(p.description, locale)}
+   327→                            </p>
+   328→                            <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+   329→                              {p.highlights.map((h, j) => (
+   330→                                <li key={j} className="flex items-start gap-2 text-[13px] text-ink-700">
+   331→                                  <Check size={14} className="mt-1 shrink-0 text-risk-low" aria-hidden />
+   332→                                  {R(h, locale)}
+   333→                                </li>
+   334→                              ))}
+   335→                            </ul>
+   336→                            <div className="mt-5">
+   337→                              <LinkG href={p.href}>{R(p.cta, locale)}</LinkG>
+   338→                            </div>
+   339→                          </div>
+   340→                        </div>
+   341→                      </article>
+   342→                    </Reveal>
+   343→                  );
+   344→                })}
+   345→              </div>
+   346→            </div>
+   347→          </div>
+   348→        </div>
+   349→      </section>
+   350→
+   351→      {/* ═══ 04 · ABOUT INTRO ═══ */}
+   352→      <section className="section-y bg-mist-50">
+   353→        <div className="container-g grid gap-12 lg:grid-cols-12">
+   354→          <div className="lg:col-span-5">
+   355→            <Reveal>
+   356→              <div className="card-g overflow-hidden">
+   357→                <img
+   358→                  src="/images/gen/about-workshop.jpg"
+   359→                  alt={fr ? "Un animateur anime un atelier de sensibilisation aux arnaques devant un public attentif au Cameroun" : "A facilitator leads an anti-scam awareness workshop for an engaged audience in Cameroon"}
+   360→                  width={1344}
+   361→                  height={768}
+   362→                  loading="lazy"
+   363→                  className="img-editorial aspect-[4/5] w-full object-cover"
+   364→                />
+   365→              </div>
+   366→            </Reveal>
+   367→          </div>
+   368→          <div className="lg:col-span-7 lg:pl-4">
+   369→            <Reveal>
+   370→              <Masthead num="02" eyebrow={R(L.intro.eyebrow, locale)} />
+   371→            </Reveal>
+   372→            <Reveal delay={70}>
+   373→              <h2 className="h2-g mt-6">{R(L.intro.h2, locale)}</h2>
+   374→              <p className="lead-g mt-5">{R(L.intro.body, locale)}</p>
+   375→            </Reveal>
+   376→            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+   377→              {L.intro.points.map((pt, i) => (
+   378→                <Reveal key={i} delay={120 + i * 70}>
+   379→                  <div className="flex items-start gap-3.5">
+   380→                    <span className="mast-num pt-0.5 text-[15px]">{String(i + 1).padStart(2, "0")}</span>
+   381→                    <p className="text-[14.5px] font-medium leading-snug text-ink-900">{R(pt, locale)}</p>
+   382→                  </div>
+   383→                </Reveal>
+   384→              ))}
+   385→            </div>
+   386→            <Reveal delay={420} className="mt-10 flex flex-wrap items-center gap-6">
+   387→              <Btn href="/about" variant="outline">
+   388→                {fr ? "À propos de GLOPROFAS" : "About GLOPROFAS"}
+   389→              </Btn>
+   390→              <p className="text-[13.5px] text-slatex-600">
+   391→                <span className="font-heading text-lg font-bold text-brand-600">12</span>{" "}
+   392→                {R(L.intro.anchor, locale)}
+   393→              </p>
+   394→            </Reveal>
+   395→          </div>
+   396→        </div>
+   397→      </section>
+   398→
+   399→      {/* ═══ 05 · SCAM LIBRARY ═══ */}
+   400→      <section className="section-y bg-white">
+   401→        <div className="container-g">
+   402→          <Reveal>
+   403→            <Masthead num="03" eyebrow={R(L.scams.eyebrow, locale)} />
+   404→          </Reveal>
+   405→          <div className="mt-8 grid gap-10 lg:grid-cols-12">
+   406→            {/* Featured card */}
+   407→            <div className="lg:col-span-5">
+   408→              <Reveal delay={60}>
+   409→                <A href={`/scams/${heroCat.slug}`} className="group block">
+   410→                  <article className="card-g hoverable h-full overflow-hidden">
+   411→                    <div className="relative">
+   412→                      <img
+   413→                        src={categoryImage(heroCat.slug, heroCat.imageUrl)}
+   414→                        alt={fr ? `Illustration : ${R(heroCat.title, "fr")}` : `Illustration: ${R(heroCat.title, "en")}`}
+   415→                        width={1344}
+   416→                        height={768}
+   417→                        loading="lazy"
+   418→                        className="img-editorial aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+   419→                      />
+   420→                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-950/85 to-transparent p-5 pt-16">
+   421→                        <p className="eyebrow !text-cyanx-500">{fr ? "Guide vedette" : "Featured guide"}</p>
+   422→                        <h3 className="mt-1 font-heading text-xl font-semibold text-white">
+   423→                          {R(heroCat.title, locale)}
+   424→                        </h3>
+   425→                      </div>
+   426→                    </div>
+   427→                    <div className="p-5">
+   428→                      <p className="text-[14px] text-slatex-600">{R(heroCat.summary, locale)}</p>
+   429→                      <span className="link-g mt-4 !text-brand-600">
+   430→                        {fr ? "Lire le guide" : "Read the guide"}
+   431→                        <ChevronRight size={14} aria-hidden />
+   432→                      </span>
+   433→                    </div>
+   434→                  </article>
+   435→                </A>
+   436→              </Reveal>
+   437→            </div>
+   438→            {/* Index of the rest */}
+   439→            <div className="lg:col-span-7">
+   440→              <Reveal delay={100}>
+   441→                <h2 className="h2-g">{R(L.scams.h2, locale)}</h2>
+   442→                <p className="lead-g mt-3">{R(L.scams.lead, locale)}</p>
+   443→              </Reveal>
+   444→              <ul className="mt-7 grid gap-x-8 sm:grid-cols-2">
+   445→                {restCats.map((cat: ZiteCategory, i: number) => {
+   446→                  const Icon = getCategoryIcon(cat.icon);
+   447→                  return (
+   448→                    <li key={cat.id} className="border-b border-line-200">
+   449→                      <A
+   450→                        href={`/scams/${cat.slug}`}
+   451→                        className="group flex items-center gap-3.5 py-[13px]"
+   452→                      >
+   453→                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-mist-50 text-brand-600 transition-colors group-hover:bg-brand-50">
+   454→                          <Icon size={16} strokeWidth={1.9} aria-hidden />
+   455→                        </span>
+   456→                        <span className="min-w-0">
+   457→                          <span className="block truncate font-heading text-[14px] font-semibold text-ink-900 transition-colors group-hover:text-brand-600">
+   458→                            {R(cat.title, locale)}
+   459→                          </span>
+   460→                          <span className="block truncate text-[12.5px] text-slatex-600">
+   461→                            {R(cat.summary, locale)}
+   462→                          </span>
+   463→                        </span>
+   464→                        <ChevronRight
+   465→                          size={15}
+   466→                          aria-hidden
+   467→                          className="ml-auto shrink-0 text-slatex-400 transition-transform group-hover:translate-x-0.5 group-hover:text-brand-600"
+   468→                        />
+   469→                      </A>
+   470→                    </li>
+   471→                  );
+   472→                })}
+   473→              </ul>
+   474→              <Reveal delay={160} className="mt-6">
+   475→                <LinkG href="/scams">{fr ? "Index complet" : "Full index"}</LinkG>
+   476→              </Reveal>
+   477→            </div>
+   478→          </div>
+   479→        </div>
+   480→      </section>
+   481→
+   482→      {/* ═══ 06 · ANATOMY (dark) ═══ */}
+   483→      <section className="on-dark section-y bg-navy-950">
+   484→        <div className="container-g">
+   485→          <Reveal>
+   486→            <Masthead num="04" eyebrow={R(L.how.eyebrow, locale)} dark />
+   487→          </Reveal>
+   488→          <div className="mt-8 max-w-2xl">
+   489→            <Reveal delay={60}>
+   490→              <h2 className="h2-g text-white">{R(L.how.h2, locale)}</h2>
+   491→            </Reveal>
+   492→          </div>
+   493→
+   494→          {/* 4 moves */}
+   495→          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+   496→            {L.how.steps.map((step, i) => (
+   497→              <Reveal key={i} delay={80 + i * 80}>
+   498→                <div className="card-dark-g h-full p-5">
+   499→                  <div className="mast-num text-[26px] leading-none">{String(i + 1).padStart(2, "0")}</div>
+   500→                  <h3 className="mt-4 font-heading text-[15.5px] font-semibold text-white">{R(step.t, locale)}</h3>
+   501→                  <p className="mt-2 text-[13.5px] leading-relaxed text-slatex-300">{R(step.d, locale)}</p>
+   502→                </div>
+   503→              </Reveal>
+   504→            ))}
+   505→          </div>
+   506→
+   507→          {/* Interception diagram */}
+   508→          <Reveal delay={160}>
+   509→            <div className="card-dark-g mt-6 p-6 lg:p-8">
+   510→              <p className="eyebrow mb-6">
+   511→                {fr ? "Où arrêter une arnaque" : "Where to stop a scam"}
+   512→              </p>
+   513→              <ol className="grid items-stretch gap-3 md:grid-cols-4">
+   514→                <li className="rounded-lg border border-white/12 bg-white/[0.03] p-4">
+   515→                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slatex-400">
+   516→                    {fr ? "Étape 1" : "Stage 1"}
+   517→                  </p>
+   518→                  <p className="mt-1.5 font-heading text-[14.5px] font-semibold text-white">
+   519→                    {fr ? "Vecteur entrant" : "Incoming vector"}
+   520→                  </p>
+   521→                  <p className="mt-1.5 text-[12.5px] text-slatex-300">
+   522→                    {fr ? "Message, appel ou publication." : "A message, call or post arrives."}
+   523→                  </p>
+   524→                </li>
+   525→                <li className="rounded-lg border border-white/12 bg-white/[0.03] p-4">
+   526→                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-slatex-400">
+   527→                    {fr ? "Étape 2" : "Stage 2"}
+   528→                  </p>
+   529→                  <p className="mt-1.5 font-heading text-[14.5px] font-semibold text-white">
+   530→                    {fr ? "Pression organisée" : "Engineered pressure"}
+   531→                  </p>
+   532→                  <p className="mt-1.5 text-[12.5px] text-slatex-300">
+   533→                    {fr ? "Urgence, peur ou espoir." : "Urgency, fear or hope."}
+   534→                  </p>
+   535→                </li>
+   536→                <li className="relative rounded-lg border-2 border-signal-500/70 bg-signal-500/[0.07] p-4">
+   537→                  <span className="absolute -top-3 left-4 rounded-full bg-signal-500 px-2.5 py-0.5 text-[10.5px] font-bold uppercase tracking-wider text-navy-950">
+   538→                    {fr ? "Arrêtez ici" : "Stop here"}
+   539→                  </span>
+   540→                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-signal-400">
+   541→                    {fr ? "Porte de vérification" : "Verification gate"}
+   542→                  </p>
+   543→                  <p className="mt-1.5 font-heading text-[14.5px] font-semibold text-white">
+   544→                    {fr ? "Pause et contre-vérification" : "Pause and verify"}
+   545→                  </p>
+   546→                  <p className="mt-1.5 text-[12.5px] text-slatex-300">
+   547→                    {fr
+   548→                      ? "Canal officiel, numéro connu, aucun code partagé."
+   549→                      : "Official channel, known number, no code shared."}
+   550→                  </p>
+   551→                </li>
+   552→                <li className="rounded-lg border border-cyanx-500/30 bg-cyanx-500/[0.06] p-4">
+   553→                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-cyanx-500">
+   554→                    {fr ? "Résultat" : "Outcome"}
+   555→                  </p>
+   556→                  <p className="mt-1.5 font-heading text-[14.5px] font-semibold text-white">
+   557→                    {fr ? "Argent protégé" : "Protected outcome"}
+   558→                  </p>
+   559→                  <p className="mt-1.5 text-[12.5px] text-slatex-300">
+   560→                    {fr ? "Aucun paiement, aucune donnée perdue." : "No payment made, no data lost."}
+   561→                  </p>
+   562→                </li>
+   563→              </ol>
+   564→            </div>
+   565→          </Reveal>
+   566→
+   567→          {/* Techniques accordion */}
+   568→          <div className="mt-10 grid gap-10 lg:grid-cols-12">
+   569→            <div className="lg:col-span-4">
+   570→              <Reveal delay={60}>
+   571→                <h3 className="h3-g text-white">{R(L.how.techTitle, locale)}</h3>
+   572→                <p className="mt-3 text-[13.5px] leading-relaxed text-slatex-300">
+   573→                  {fr
+   574→                    ? "Les mêmes leviers psychologiques reviennent dans presque toutes les arnaques. Apprenez à les nommer pour mieux les repérer."
+   575→                    : "The same psychological levers recur in almost every scam. Learn to name them to spot them faster."}
+   576→                </p>
+   577→              </Reveal>
+   578→            </div>
+   579→            <div className="lg:col-span-8">
+   580→              <Reveal delay={120}>
+   581→                <Accordion type="single" collapsible className="divide-y divide-white/10 rounded-xl border border-white/12">
+   582→                  {L.how.techniques.map((tech, i) => (
+   583→                    <AccordionItem key={i} value={`t-${i}`} className="border-0">
+   584→                      <AccordionTrigger className="px-5 py-4 text-left font-heading text-[14.5px] font-semibold text-white hover:no-underline hover:text-cyanx-500 [&>svg]:text-cyanx-500">
+   585→                        <span className="flex items-baseline gap-3">
+   586→                          <span className="mast-num text-[12px]">{String(i + 1).padStart(2, "0")}</span>
+   587→                          {R(tech.t, locale)}
+   588→                        </span>
+   589→                      </AccordionTrigger>
+   590→                      <AccordionContent className="px-5 pb-4 text-[13.5px] leading-relaxed text-slatex-300">
+   591→                        {R(tech.d, locale)}
+   592→                      </AccordionContent>
+   593→                    </AccordionItem>
+   594→                  ))}
+   595→                </Accordion>
+   596→              </Reveal>
+   597→            </div>
+   598→          </div>
+   599→        </div>
+   600→      </section>
+   601→
+   602→      {/* ═══ 07 · FIGURES band ═══ */}
+   603→      <section className="on-dark bg-navy-900 py-12">
+   604→        <div className="container-g grid gap-8 sm:grid-cols-3">
+   605→          <Reveal>
+   606→            <StatCell dark value="EN · FR" label={R(L.stats.languages, locale)} />
+   607→          </Reveal>
+   608→          <Reveal delay={90}>
+   609→            <StatCell
+   610→              dark
+   611→              value={fr ? "Gratuit" : "Free"}
+   612→              label={fr ? "Accès sans inscription" : "No account needed"}
+   613→            />
+   614→          </Reveal>
+   615→          <Reveal delay={180}>
+   616→            <StatCell
+   617→              dark
+   618→              value={fr ? "Confidentiel" : "Confidential"}
+   619→              label={fr ? "Signalements protégés" : "Protected reporting"}
+   620→            />
+   621→          </Reveal>
+   622→        </div>
+   623→      </section>
+   624→
+   625→      {/* ═══ 08 · REPORT ═══ */}
+   626→      <section className="section-y bg-white">
+   627→        <div className="container-g grid gap-12 lg:grid-cols-12">
+   628→          <div className="lg:col-span-6">
+   629→            <Reveal>
+   630→              <div className="card-g overflow-hidden">
+   631→                <img
+   632→                  src="/images/gen/report-scene.jpg"
+   633→                  alt={fr ? "Une personne remplit calmement un signalement en ligne, composée et déterminée" : "A person calmly completes an online report, composed and determined"}
+   634→                  width={1344}
+   635→                  height={768}
+   636→                  loading="lazy"
+   637→                  className="img-editorial aspect-[16/10] w-full object-cover"
+   638→                />
+   639→              </div>
+   640→            </Reveal>
+   641→          </div>
+   642→          <div className="lg:col-span-6">
+   643→            <Reveal>
+   644→              <Masthead num="05" eyebrow={R(L.reportSec.eyebrow, locale)} />
+   645→            </Reveal>
+   646→            <Reveal delay={70}>
+   647→              <h2 className="h2-g mt-6">{R(L.reportSec.h2, locale)}</h2>
+   648→              <p className="lead-g mt-4">{R(L.reportSec.body, locale)}</p>
+   649→            </Reveal>
+   650→            <Reveal delay={140}>
+   651→              <div className="mt-6 rounded-xl border-l-4 border-signal-500 bg-signal-100/60 px-5 py-4 text-[13.5px] leading-relaxed text-ink-700">
+   652→                <div className="flex items-center gap-2 font-heading text-[13px] font-bold uppercase tracking-wide text-signal-600">
+   653→                  <Lock size={14} aria-hidden />
+   654→                  {fr ? "Confidentiel" : "Confidential"}
+   655→                </div>
+   656→                <p className="mt-1.5">{R(L.reportSec.note, locale)}</p>
+   657→              </div>
+   658→            </Reveal>
+   659→            <Reveal delay={200}>
+   660→              <div className="on-dark mt-6 rounded-xl bg-navy-950 p-6">
+   661→                <p className="eyebrow mb-4">{fr ? "Protocole de signalement" : "Reporting protocol"}</p>
+   662→                <ol className="space-y-3.5">
+   663→                  {L.reportSec.steps.map((s, i) => (
+   664→                    <li key={i} className="flex items-start gap-3.5">
+   665→                      <span className="mast-num pt-0.5 text-[14px]">{String(i + 1).padStart(2, "0")}</span>
+   666→                      <div>
+   667→                        <p className="font-heading text-[14px] font-semibold text-white">{R(s.t, locale)}</p>
+   668→                        <p className="mt-0.5 text-[13px] text-slatex-300">{R(s.d, locale)}</p>
+   669→                      </div>
+   670→                    </li>
+   671→                  ))}
+   672→                </ol>
+   673→                <div className="mt-6">
+   674→                  <Btn href="/report" variant="signal">
+   675→                    <Siren size={16} strokeWidth={2.2} aria-hidden />
+   676→                    {R(L.report, locale)}
+   677→                  </Btn>
+   678→                </div>
+   679→                <p className="mt-4 border-t border-white/10 pt-4 text-[12px] text-slatex-400">
+   680→                  {fr
+   681→                    ? "Nous ne demandons jamais de mots de passe, de codes PIN ou de codes à usage unique."
+   682→                    : "We never ask for passwords, PINs or one-time codes."}
+   683→                </p>
+   684→              </div>
+   685→            </Reveal>
+   686→          </div>
+   687→        </div>
+   688→      </section>
+   689→
+   690→      {/* ═══ 09 · RESOURCES ═══ */}
+   691→      <section className="section-y bg-mist-50">
+   692→        <div className="container-g">
+   693→          <Reveal>
+   694→            <Masthead num="06" eyebrow={R(L.res.eyebrow, locale)} />
+   695→          </Reveal>
+   696→          <div className="mt-8 grid gap-10 lg:grid-cols-12">
+   697→            <div className="lg:col-span-5">
+   698→              <Reveal delay={60}>
+   699→                <h2 className="h2-g">{R(L.res.h2, locale)}</h2>
+   700→                <A href="/resources/scam-checker" className="group mt-6 block">
+   701→                  <article className="card-g hoverable overflow-hidden">
+   702→                    <img
+   703→                      src="/images/gen/check-verify.jpg"
+   704→                      alt={fr ? "Personne vérifiant un message suspect sur son téléphone" : "Person checking a suspicious message on their phone"}
+   705→                      width={1344}
+   706→                      height={768}
+   707→                      loading="lazy"
+   708→                      className="img-editorial aspect-video w-full object-cover"
+   709→                    />
+   710→                    <div className="p-5">
+   711→                      <div className="flex items-center gap-2.5">
+   712→                        <span className="chip-g bg-[#159769]/10 text-[#0d6e4a]">{fr ? "Outil gratuit" : "Free tool"}</span>
+   713→                        <span className="text-[12px] font-semibold uppercase tracking-wide text-signal-600">
+   714→                          {R(L.res.featured, locale)}
+   715→                        </span>
+   716→                      </div>
+   717→                      <h3 className="h3-g mt-2.5 text-[1.1rem]">GLOPROFAS Scam Checker</h3>
+   718→                      <p className="mt-1.5 text-[13.5px] text-slatex-600">
+   719→                        {fr
+   720→                          ? "Collez un message suspect ou cochez des signaux d’alerte : l’outil explique chaque schéma détecté et les bons réflexes."
+   721→                          : "Paste a suspicious message or tick warning signs: the tool explains every detected pattern and the right reflexes."}
+   722→                      </p>
+   723→                    </div>
+   724→                  </article>
+   725→                </A>
+   726→              </Reveal>
+   727→            </div>
+   728→            <div className="lg:col-span-7">
+   729→              <ul className="divide-y divide-line-200">
+   730→                {[
+   731→                  {
+   732→                    href: "/resources/practical-tools",
+   733→                    icon: FileText,
+   734→                    t: { en: "Practical Tools to Protect Yourself", fr: "Outils pratiques pour vous protéger" },
+   735→                    d: { en: "In-depth guides covering online, money, social, business and emerging scams", fr: "Des guides approfondis : en ligne, argent, social, entreprise et arnaques émergentes" },
+   736→                  },
+   737→                  {
+   738→                    href: "/resources/knowledge-tools",
+   739→                    icon: ListChecks,
+
+[showing lines 180-739 of 1215; use offset=740 with limit to continue reading]

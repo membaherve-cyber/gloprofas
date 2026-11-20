@@ -1,8 +1,9 @@
 "use client";
 
 /**
- * GLOPROFAS global footer — navy-950, link columns, contact block,
- * legal line, disclaimer.
+ * GLOPROFAS global footer — Apple.com edition.
+ * Soft gray surface, 12px secondary text, hairline dividers,
+ * compact link columns, legal line, disclaimer.
  */
 
 import React from "react";
@@ -33,15 +34,13 @@ export function Footer() {
   ];
 
   return (
-    <footer className="on-dark bg-navy-950 text-slatex-300">
-      <div className="container-g py-14 lg:py-16">
+    <footer className="bg-[#f5f5f7] text-slatex-600">
+      <div className="container-g py-12 lg:py-14">
         <div className="grid gap-10 md:grid-cols-12">
           {/* Brand */}
           <div className="md:col-span-5">
-            <div className="mb-5 inline-block rounded-md bg-white px-3 py-2">
-              <img src="/images/gloprofas-logo.png" alt="GLOPROFAS" className="h-9 w-auto" />
-            </div>
-            <p className="max-w-md text-[14px] leading-relaxed text-slatex-300">
+            <img src="/images/gloprofas-logo.png" alt="GLOPROFAS" className="mb-5 h-9 w-auto" />
+            <p className="max-w-md text-[13px] leading-relaxed text-slatex-600">
               {R(L.footer.desc, locale)}
             </p>
             <div className="mt-6 flex flex-wrap gap-2.5">
@@ -49,9 +48,9 @@ export function Footer() {
                 <A
                   key={href}
                   href={href}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3.5 py-2 text-[12.5px] font-semibold text-white/85 transition-colors hover:border-cyanx-500/60 hover:text-cyanx-500"
+                  className="inline-flex items-center gap-2 rounded-full border border-black/[0.12] bg-white px-3.5 py-2 text-[12.5px] font-medium text-ink-900 transition-all duration-[400ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-black/30 hover:bg-white active:scale-[0.98]"
                 >
-                  <Icon size={14} strokeWidth={2.2} aria-hidden />
+                  <Icon size={14} strokeWidth={2} aria-hidden />
                   {label}
                 </A>
               ))}
@@ -60,15 +59,15 @@ export function Footer() {
 
           {/* Quick links + Resource Centre */}
           <nav className="md:col-span-2" aria-label={R(L.footer.quick, locale)}>
-            <h2 className="mb-4 font-heading text-[13px] font-semibold uppercase tracking-[0.14em] text-white">
+            <h2 className="mb-3 text-[12px] font-semibold text-ink-900">
               {R(L.footer.quick, locale)}
             </h2>
-            <ul className="space-y-2.5 text-[14px]">
+            <ul className="space-y-2 text-[12.5px]">
               {NAV_ITEMS.slice(0, 5).map((item) => (
                 <li key={item.key}>
                   <A
                     href={item.href}
-                    className="transition-colors hover:text-cyanx-500"
+                    className="text-[#424245] transition-colors duration-300 hover:text-ink-900 hover:underline"
                   >
                     {R(L.nav[item.key as keyof typeof L.nav], locale)}
                   </A>
@@ -77,15 +76,15 @@ export function Footer() {
             </ul>
           </nav>
           <nav className="md:col-span-2" aria-label={locale === "fr" ? "Centre de ressources" : "Resource Centre"}>
-            <h2 className="mb-4 font-heading text-[13px] font-semibold uppercase tracking-[0.14em] text-white">
+            <h2 className="mb-3 text-[12px] font-semibold text-ink-900">
               {locale === "fr" ? "Ressources" : "Resources"}
             </h2>
-            <ul className="space-y-2.5 text-[14px]">
+            <ul className="space-y-2 text-[12.5px]">
               {resourceLinks.map((item) => (
                 <li key={item.href}>
                   <A
                     href={item.href}
-                    className="transition-colors hover:text-cyanx-500"
+                    className="text-[#424245] transition-colors duration-300 hover:text-ink-900 hover:underline"
                   >
                     {item.label}
                   </A>
@@ -96,24 +95,24 @@ export function Footer() {
 
           {/* Contact */}
           <div className="md:col-span-3">
-            <h2 className="mb-4 font-heading text-[13px] font-semibold uppercase tracking-[0.14em] text-white">
+            <h2 className="mb-3 text-[12px] font-semibold text-ink-900">
               {R(L.footer.contactTitle, locale)}
             </h2>
-            <dl className="space-y-2.5 text-[14px]">
+            <dl className="space-y-2 text-[12.5px]">
               <div className="flex gap-2">
                 <dt className="text-slatex-400">{locale === "fr" ? "Courriel" : "Email"}:</dt>
                 <dd>
-                  <a href="mailto:contact@gloprofas.org" className="transition-colors hover:text-cyanx-500">
+                  <a href="mailto:contact@gloprofas.org" className="text-[#424245] transition-colors duration-300 hover:text-ink-900 hover:underline">
                     contact@gloprofas.org
                   </a>
                 </dd>
               </div>
               <div className="flex gap-2">
                 <dt className="text-slatex-400">{locale === "fr" ? "Emplacement" : "Location"}:</dt>
-                <dd>{locale === "fr" ? "Akwa, Douala, Cameroun · Initiative internationale" : "Akwa, Douala, Cameroon · International initiative"}</dd>
+                <dd className="text-[#424245]">{locale === "fr" ? "Akwa, Douala, Cameroun · Initiative internationale" : "Akwa, Douala, Cameroon · International initiative"}</dd>
               </div>
             </dl>
-            <p className="mt-5 text-[12.5px] leading-relaxed text-slatex-400">
+            <p className="mt-5 text-[12px] leading-relaxed text-slatex-400">
               {R(L.footer.disclaimer, locale)}
             </p>
           </div>
@@ -122,19 +121,19 @@ export function Footer() {
         {/* Topics index — visible deep links to every scam category (internal linking) */}
         <nav
           aria-label={locale === "fr" ? "Types d’arnaques couverts" : "Scam types covered"}
-          className="mt-10 border-t border-white/10 pt-7"
+          className="mt-9 border-t border-black/[0.08] pt-6"
         >
-          <p className="mb-3 font-heading text-[12px] font-semibold uppercase tracking-[0.14em] text-white/70">
+          <p className="mb-3 text-[12px] font-semibold text-slatex-600">
             {locale === "fr"
               ? "Types d’arnaques que nous couvrons"
               : "Scam types we cover"}
           </p>
-          <ul className="flex flex-wrap gap-x-4 gap-y-2 text-[12.5px] text-slatex-400">
+          <ul className="flex flex-wrap gap-x-4 gap-y-2 text-[12px] text-slatex-400">
             {ZITE_CONTENT.categories.map((c) => (
               <li key={c.slug}>
                 <A
                   href={`/scams/${c.slug}`}
-                  className="transition-colors hover:text-cyanx-500"
+                  className="transition-colors duration-300 hover:text-ink-900 hover:underline"
                 >
                   {locale === "fr" ? c.title.fr : c.title.en}
                 </A>
@@ -143,21 +142,21 @@ export function Footer() {
           </ul>
         </nav>
 
-        <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-7 text-[12.5px] text-slatex-400 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-7 flex flex-col gap-4 border-t border-black/[0.08] pt-6 text-[12px] text-slatex-400 lg:flex-row lg:items-center lg:justify-between">
           <p>
             © {year} {R(L.footer.rights, locale)}
           </p>
           <nav aria-label={t("legal.privacy")} className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <A href="/legal/privacy" className="transition-colors hover:text-white">
+            <A href="/legal/privacy" className="text-[#424245] transition-colors duration-300 hover:text-ink-900 hover:underline">
               {t("legal.privacy")}
             </A>
-            <A href="/legal/terms" className="transition-colors hover:text-white">
+            <A href="/legal/terms" className="text-[#424245] transition-colors duration-300 hover:text-ink-900 hover:underline">
               {t("legal.terms")}
             </A>
-            <A href="/legal/cookies" className="transition-colors hover:text-white">
+            <A href="/legal/cookies" className="text-[#424245] transition-colors duration-300 hover:text-ink-900 hover:underline">
               {t("legal.cookies")}
             </A>
-            <A href="/admin" className="transition-colors hover:text-white" rel="nofollow">
+            <A href="/admin" className="text-[#424245] transition-colors duration-300 hover:text-ink-900 hover:underline" rel="nofollow">
               {locale === "fr" ? "Connexion équipe" : "Team log in"}
             </A>
           </nav>

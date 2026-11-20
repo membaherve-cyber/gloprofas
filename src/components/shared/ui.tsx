@@ -290,9 +290,9 @@ export function StatCell({
   dark?: boolean;
 }) {
   return (
-    <div className={`border-l-2 pl-5 ${dark ? "border-cyanx-500/50" : "border-brand-600/40"}`}>
+    <div className={`border-l pl-5 ${dark ? "border-white/20" : "border-black/[0.12]"}`}>
       <div
-        className={`font-heading text-[clamp(1.9rem,1.4rem+1.8vw,2.8rem)] font-semibold leading-none ${
+        className={`font-heading text-[clamp(1.9rem,1.4rem+1.8vw,2.8rem)] font-bold leading-none tracking-[-0.03em] ${
           dark ? "text-white" : "text-ink-900"
         }`}
       >

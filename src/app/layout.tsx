@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/sora";
-import "@fontsource-variable/manrope";
+import "@fontsource-variable/inter";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { SITE } from "@/lib/site";
@@ -161,7 +160,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050b1a",
+  themeColor: "#fbfbfd",
   width: "device-width",
   initialScale: 1,
 };

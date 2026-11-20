@@ -230,7 +230,7 @@ export function HomeView() {
           {/* Documented patterns rail */}
           <div className="hidden lg:col-span-5 lg:block">
             <Reveal delay={340}>
-              <div className="rounded-2xl border border-white/15 bg-navy-950/45 p-6 backdrop-blur-[3px]">
+              <div className="rounded-[28px] border border-white/[0.12] bg-black/40 p-7 backdrop-blur-xl">
                 <p className="eyebrow mb-1 text-white/50">
                   {fr ? "Schémas documentés" : "Documented patterns"}
                 </p>
@@ -314,9 +314,9 @@ export function HomeView() {
                   const Icon = p.icon;
                   return (
                     <Reveal key={p.id} delay={80 + i * 90}>
-                      <article className="card-g hoverable p-6">
+                      <article className="card-g hoverable p-8 lg:p-9">
                         <div className="flex items-start gap-4">
-                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#f5f5f7] text-ink-900">
                             <Icon size={20} strokeWidth={1.9} aria-hidden />
                           </span>
                           <div className="min-w-0">
@@ -450,7 +450,7 @@ export function HomeView() {
                         href={`/scams/${cat.slug}`}
                         className="group flex items-center gap-3.5 py-[13px]"
                       >
-                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-mist-50 text-brand-600 transition-colors group-hover:bg-brand-50">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#f5f5f7] text-ink-900 transition-colors duration-[400ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] group-hover:bg-black/[0.06]">
                           <Icon size={16} strokeWidth={1.9} aria-hidden />
                         </span>
                         <span className="min-w-0">
@@ -648,8 +648,8 @@ export function HomeView() {
               <p className="lead-g mt-4">{R(L.reportSec.body, locale)}</p>
             </Reveal>
             <Reveal delay={140}>
-              <div className="mt-6 rounded-xl border-l-4 border-signal-500 bg-signal-100/60 px-5 py-4 text-[13.5px] leading-relaxed text-ink-700">
-                <div className="flex items-center gap-2 font-heading text-[13px] font-bold uppercase tracking-wide text-signal-600">
+              <div className="mt-6 rounded-2xl border border-black/[0.08] bg-[#f5f5f7] px-5 py-4 text-[13.5px] leading-relaxed text-ink-700">
+                <div className="flex items-center gap-2 font-heading text-[13px] font-semibold text-ink-900">
                   <Lock size={14} aria-hidden />
                   {fr ? "Confidentiel" : "Confidential"}
                 </div>
@@ -657,7 +657,7 @@ export function HomeView() {
               </div>
             </Reveal>
             <Reveal delay={200}>
-              <div className="on-dark mt-6 rounded-xl bg-navy-950 p-6">
+              <div className="on-dark mt-6 rounded-[24px] bg-black p-6 lg:p-8">
                 <p className="eyebrow mb-4">{fr ? "Protocole de signalement" : "Reporting protocol"}</p>
                 <ol className="space-y-3.5">
                   {L.reportSec.steps.map((s, i) => (
@@ -756,7 +756,7 @@ export function HomeView() {
                   <Reveal key={r.href} delay={80 + i * 60}>
                     <li>
                       <A href={r.href} className="group flex items-center gap-4 py-4">
-                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-brand-600 ring-1 ring-line-200">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-ink-900 ring-1 ring-black/[0.08]">
                           <r.icon size={17} strokeWidth={1.9} aria-hidden />
                         </span>
                         <span className="min-w-0 flex-1">
@@ -792,7 +792,7 @@ export function HomeView() {
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
             <Reveal delay={100}>
-              <div className="card-g h-full p-7">
+              <div className="card-g h-full p-8 lg:p-10">
                 <div className="flex items-center justify-between">
                   <h3 className="h3-g">{R(L.services.freeTitle, locale)}</h3>
                   <span className="chip-g bg-[#159769]/10 text-[#0d6e4a]">{R(L.services.freeTag, locale)}</span>
@@ -811,7 +811,7 @@ export function HomeView() {
               </div>
             </Reveal>
             <Reveal delay={180}>
-              <div className="on-dark h-full rounded-[14px] bg-navy-950 p-7 ring-1 ring-white/10">
+              <div className="on-dark h-full rounded-[24px] bg-black p-8 ring-1 ring-white/[0.1] lg:p-10">
                 <div className="flex items-center justify-between">
                   <h3 className="h3-g text-white">{R(L.services.paidTitle, locale)}</h3>
                 </div>
@@ -976,8 +976,8 @@ export function HomeView() {
                       {R(c.title, locale)}
                     </h3>
                     <p className="mt-2.5 flex-1 text-[13.5px] leading-relaxed text-slatex-600">{R(c.body, locale)}</p>
-                    <div className="mt-4 rounded-lg border-l-[3px] border-signal-500 bg-signal-100/50 px-3.5 py-2.5 text-[12.5px] font-medium leading-relaxed text-ink-700">
-                      <span className="font-heading text-[11px] font-bold uppercase tracking-wider text-signal-600">
+                    <div className="mt-4 rounded-r-xl border-l-[3px] border-ink-900 bg-[#f5f5f7] px-3.5 py-2.5 text-[12.5px] font-medium leading-relaxed text-ink-700">
+                      <span className="font-heading text-[11px] font-semibold text-slatex-600">
                         {fr ? "À retenir" : "Key takeaway"} ·{" "}
                       </span>
                       {R(c.lesson, locale)}

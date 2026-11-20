@@ -4,63 +4,77 @@
 @custom-variant dark (&:is(.dark *));
 
 /* ============================================================
-   GLOPROFAS DESIGN SYSTEM
-   Original visual identity: navy / blue / cyan / amber
-   Typography: Sora (headings) + Manrope (body)
+   GLOPROFAS DESIGN SYSTEM — APPLE HIG EDITION
+   Visual language: Apple.com product design system.
+   · SF Pro aesthetic typography (-apple-system / Inter)
+   · Pure white #ffffff + soft off-white #fbfbfd alternating
+   · 1px hairlines rgba(0,0,0,0.08) · accent reserved for
+     pill CTAs, active states and inline "Learn more >" links
+   · Bento cards: 24–28px radii, generous internal padding
+   · Spring physics: cubic-bezier(0.22, 1, 0.36, 1) @ 0.4s
+   · Tactile press: scale(0.98)
+   All legacy class names are preserved so every view inherits
+   the new system without structural changes.
    ============================================================ */
 
 @theme {
-  /* Brand palette (from original GLOPROFAS repository) */
-  --color-navy-950: #050b1a;
-  --color-navy-900: #0a1631;
-  --color-navy-800: #10244d;
-  --color-navy-700: #1a315f;
+  /* ---- Surfaces (Apple.com palette) ---- */
+  --color-navy-950: #000000; /* deep black bands */
+  --color-navy-900: #161617; /* near-black sections */
+  --color-navy-800: #1d1d1f; /* dark elevation */
+  --color-navy-700: #2c2c2e; /* dark raised */
 
-  --color-brand-700: #1f52d8;
-  --color-brand-600: #3467eb;
-  --color-brand-500: #5586f6;
-  --color-brand-100: #dfe9fd;
-  --color-brand-50: #eef4fe;
+  /* ---- Accent — restricted to pill CTAs, active states, links ---- */
+  --color-brand-700: #0066cc;
+  --color-brand-600: #0071e3; /* Apple CTA blue */
+  --color-brand-500: #2997ff; /* link blue on dark */
+  --color-brand-100: #e8f0fa;
+  --color-brand-50: #f5f5f7; /* neutral surface fill */
 
-  --color-cyanx-600: #2ba7b5;
-  --color-cyanx-500: #40c4d3;
-  --color-cyanx-100: #d3f3f6;
+  /* ---- On-dark accent (Apple dark-mode link blue) ---- */
+  --color-cyanx-600: #0071e3;
+  --color-cyanx-500: #2997ff;
+  --color-cyanx-100: #d9ecff;
 
-  --color-signal-600: #d9972f;
-  --color-signal-500: #f0ac3d;
-  --color-signal-400: #ffc258;
-  --color-signal-100: #fdeed7;
+  /* ---- Semantic warning (small indicators only) ---- */
+  --color-signal-600: #c65400;
+  --color-signal-500: #ff9500;
+  --color-signal-400: #ffb340;
+  --color-signal-100: #fff3e2;
 
-  --color-ink-900: #0b1220;
-  --color-ink-700: #232f47;
-  --color-slatex-600: #4b5870;
-  --color-slatex-400: #7c8aa5;
-  --color-slatex-300: #aab6ca;
-  --color-line-200: #dce3ee;
-  --color-mist-50: #f4f7fb;
+  /* ---- Text ---- */
+  --color-ink-900: #1d1d1f; /* primary text */
+  --color-ink-700: #26262b; /* long-form body */
+  --color-slatex-600: #6e6e73; /* secondary text */
+  --color-slatex-400: #86868b; /* tertiary text */
+  --color-slatex-300: #86868b; /* secondary on dark */
+  --color-line-200: rgba(0, 0, 0, 0.08); /* hairline */
+  --color-mist-50: #fbfbfd; /* soft off-white sections */
 
-  /* Risk scale */
+  /* ---- Risk scale (functional, semantic) ---- */
   --color-risk-low: #159769;
   --color-risk-medium: #c18708;
   --color-risk-high: #d75c09;
   --color-risk-critical: #d23434;
 
-  /* Fonts */
-  --font-heading: "Sora Variable", "Sora", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Manrope Variable", "Manrope", ui-sans-serif, system-ui, sans-serif;
+  /* ---- Typography: SF Pro aesthetic ---- */
+  --font-heading: -apple-system, BlinkMacSystemFont, "Inter Variable", "Inter",
+    "Helvetica Neue", sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Inter Variable", "Inter",
+    "Helvetica Neue", sans-serif;
 
-  /* Radii */
-  --radius-g-sm: 8px;
-  --radius-g: 14px;
-  --radius-g-lg: 22px;
+  /* ---- Radii: bento-scale corners ---- */
+  --radius-g-sm: 12px;
+  --radius-g: 24px;
+  --radius-g-lg: 28px;
 
-  /* Shadows — restrained, institutional */
-  --shadow-e1: 0 1px 2px rgba(11, 18, 32, 0.05), 0 1px 3px rgba(11, 18, 32, 0.04);
-  --shadow-e2: 0 4px 14px rgba(11, 18, 32, 0.08), 0 2px 4px rgba(11, 18, 32, 0.04);
-  --shadow-e3: 0 14px 40px rgba(5, 11, 26, 0.16), 0 4px 12px rgba(5, 11, 26, 0.08);
+  /* ---- Shadows — whisper-subtle, near-flat ---- */
+  --shadow-e1: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-e2: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --shadow-e3: 0 24px 80px rgba(0, 0, 0, 0.2);
 
-  /* Motion */
-  --ease-out-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* ---- Motion: spring-like easing ---- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* ---- shadcn/ui compatibility tokens ---- */
@@ -91,26 +105,26 @@
 }
 
 :root {
-  --radius: 0.75rem;
+  --radius: 0.875rem;
   --background: #ffffff;
-  --foreground: #0b1220;
+  --foreground: #1d1d1f;
   --card: #ffffff;
-  --card-foreground: #0b1220;
+  --card-foreground: #1d1d1f;
   --popover: #ffffff;
-  --popover-foreground: #0b1220;
-  --primary: #3467eb;
+  --popover-foreground: #1d1d1f;
+  --primary: #0071e3;
   --primary-foreground: #ffffff;
-  --secondary: #f4f7fb;
-  --secondary-foreground: #0b1220;
-  --muted: #f4f7fb;
-  --muted-foreground: #4b5870;
-  --accent: #eef4fe;
-  --accent-foreground: #1a315f;
+  --secondary: #f5f5f7;
+  --secondary-foreground: #1d1d1f;
+  --muted: #f5f5f7;
+  --muted-foreground: #6e6e73;
+  --accent: #f5f5f7;
+  --accent-foreground: #1d1d1f;
   --destructive: #d23434;
   --destructive-foreground: #ffffff;
-  --border: #dce3ee;
-  --input: #dce3ee;
-  --ring: #3467eb;
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.08);
+  --ring: #0071e3;
 }
 
 /* ============================================================
@@ -126,27 +140,29 @@
     background: #ffffff;
     color: var(--color-ink-900);
     font-family: var(--font-sans);
-    font-size: 15px;
-    line-height: 1.65;
+    font-size: 17px;
+    line-height: 1.6;
+    letter-spacing: -0.011em;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
-    font-weight: 600;
-    letter-spacing: -0.011em;
+    font-weight: 700;
+    letter-spacing: -0.03em;
     color: var(--color-ink-900);
   }
 
   ::selection {
-    background: #3467eb;
+    background: #0071e3;
     color: #fff;
   }
 
   /* Focus visibility — WCAG */
   :focus-visible {
-    outline: 2px solid #3467eb;
+    outline: 2px solid #0071e3;
     outline-offset: 2px;
     border-radius: 4px;
   }
@@ -154,7 +170,7 @@
 
 .on-dark :focus-visible,
 .focus-dark:focus-visible {
-  outline-color: #40c4d3;
+  outline-color: #2997ff;
 }
 
 @layer components {
@@ -164,7 +180,7 @@
 
 .container-g {
   width: 100%;
-  max-width: 1240px;
+  max-width: 1200px;
   margin-inline: auto;
   padding-inline: 20px;
 }
@@ -175,50 +191,61 @@
   }
 }
 
+/* Apple-grade vertical breathing room: 96–128px on desktop */
 .section-y {
-  padding-block: clamp(3.5rem, 2.5rem + 4.5vw, 6rem);
+  padding-block: clamp(4.5rem, 8vw, 8rem);
 }
 
-/* Headings scale */
+/* Grid/flex children must be able to shrink below their content's
+   min-content width — prevents horizontal blowout on small viewports */
+main .grid > *,
+main .flex > * {
+  min-width: 0;
+}
+
+/* Headings scale — tight, heavy, SF Pro display proportions */
 .h1-g {
   font-family: var(--font-heading);
-  font-size: clamp(2.4rem, 1.7rem + 3.4vw, 4.2rem);
-  line-height: 1.06;
-  letter-spacing: -0.022em;
-  font-weight: 600;
+  font-size: clamp(2.625rem, 1.6rem + 4.6vw, 5rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 700;
 }
 
 .h2-g {
   font-family: var(--font-heading);
-  font-size: clamp(1.75rem, 1.3rem + 2.1vw, 2.75rem);
-  line-height: 1.14;
-  letter-spacing: -0.017em;
-  font-weight: 600;
+  font-size: clamp(2rem, 1.3rem + 3.2vw, 3.375rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 700;
 }
 
 .h3-g {
   font-family: var(--font-heading);
-  font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.6rem);
-  line-height: 1.25;
+  font-size: clamp(1.375rem, 1.15rem + 1vw, 1.625rem);
+  line-height: 1.15;
+  letter-spacing: -0.021em;
   font-weight: 600;
 }
 
+/* Kicker label — quiet, neutral, sentence case */
 .eyebrow {
   font-family: var(--font-heading);
-  font-size: 11px;
+  font-size: 12.5px;
   font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-brand-600);
+  letter-spacing: 0.01em;
+  color: var(--color-slatex-600);
 }
 
 .on-dark .eyebrow {
-  color: var(--color-cyanx-500);
+  color: var(--color-slatex-400);
 }
 
+/* Lead paragraph — 17–19px, muted #6e6e73 */
 .lead-g {
-  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.125rem);
-  line-height: 1.6;
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.1875rem);
+  line-height: 1.58;
+  letter-spacing: -0.011em;
   color: var(--color-slatex-600);
 }
 
@@ -228,36 +255,62 @@
 
 /* Editorial hairlines */
 .ed-rule-t {
-  border-top: 1px solid var(--color-line-200);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .on-dark .ed-rule-t {
-  border-top-color: rgba(255, 255, 255, 0.14);
+  border-top-color: rgba(255, 255, 255, 0.12);
 }
 
-/* Numbered masthead label */
+/* Numbered masthead label — quiet tabular numeral */
 .mast-num {
   font-family: var(--font-heading);
   font-variant-numeric: tabular-nums;
-  color: var(--color-cyanx-500);
+  color: var(--color-slatex-400);
   font-weight: 600;
 }
 
-/* Image treatment */
+.on-dark .mast-num {
+  color: var(--color-slatex-400);
+}
+
+/* Image treatment — natural, unfiltered */
 .img-editorial {
-  filter: saturate(0.92) contrast(1.03);
+  filter: none;
 }
 
 /* ============================================================
-   Reveal-on-scroll (single use, transform/opacity only)
+   Frosted glass surface (global navigation)
+   ============================================================ */
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
+.glass-nav-solid {
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
+.glass-dark {
+  background: rgba(22, 22, 23, 0.72);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* ============================================================
+   Reveal-on-scroll (transform/opacity only)
    ============================================================ */
 
 .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition:
-    opacity 0.6s var(--ease-out-soft),
-    transform 0.6s var(--ease-out-soft);
+    opacity 0.7s var(--ease-out-soft),
+    transform 0.7s var(--ease-out-soft);
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform;
 }
@@ -268,7 +321,7 @@
 }
 
 /* ============================================================
-   Buttons
+   Buttons — pill-shaped, spring physics, tactile press
    ============================================================ */
 
 .btn-g {
@@ -277,29 +330,24 @@
   justify-content: center;
   gap: 0.5rem;
   font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.01em;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: -0.011em;
   line-height: 1;
-  border-radius: 10px;
-  padding: 0 1.25rem;
-  height: 46px;
-  transition:
-    transform 0.18s var(--ease-out-soft),
-    background-color 0.18s var(--ease-out-soft),
-    box-shadow 0.18s var(--ease-out-soft),
-    border-color 0.18s var(--ease-out-soft),
-    color 0.18s var(--ease-out-soft);
+  border-radius: 980px;
+  padding: 0 1.5rem;
+  height: 48px;
+  transition: all 0.4s var(--ease-out-soft);
   cursor: pointer;
   white-space: nowrap;
 }
 
 .btn-g:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .btn-g:active {
-  transform: translateY(0);
+  transform: scale(0.98);
 }
 
 .btn-g:disabled {
@@ -308,50 +356,47 @@
   transform: none;
 }
 
+/* Primary pill — the one place the accent lives */
 .btn-primary-g {
   background: var(--color-brand-600);
   color: #fff;
-  box-shadow: var(--shadow-e1);
 }
 
 .btn-primary-g:hover {
   background: var(--color-brand-700);
-  box-shadow: var(--shadow-e2);
 }
 
+/* Signal variant renders as the accent pill: the primary CTA */
 .btn-signal-g {
-  background: var(--color-signal-500);
-  color: var(--color-navy-950);
-  box-shadow: 0 2px 10px rgba(240, 172, 61, 0.28);
+  background: var(--color-brand-600);
+  color: #fff;
 }
 
 .btn-signal-g:hover {
-  background: var(--color-signal-400);
-  box-shadow: 0 6px 18px rgba(240, 172, 61, 0.36);
+  background: var(--color-brand-700);
 }
 
 .btn-outline-g {
   background: transparent;
   color: var(--color-ink-900);
-  border: 1px solid var(--color-line-200);
+  border: 1px solid rgba(0, 0, 0, 0.16);
 }
 
 .btn-outline-g:hover {
-  border-color: var(--color-brand-600);
-  color: var(--color-brand-600);
+  border-color: rgba(0, 0, 0, 0.3);
   background: var(--color-brand-50);
 }
 
 .btn-outline-dark-g {
-  background: rgba(255, 255, 255, 0.07);
-  color: #fff;
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f5f5f7;
+  border: 1px solid rgba(255, 255, 255, 0.24);
 }
 
 .btn-outline-dark-g:hover {
-  border-color: var(--color-cyanx-500);
-  color: var(--color-cyanx-500);
-  background: rgba(64, 196, 211, 0.1);
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
 .btn-ghost-g {
@@ -360,55 +405,53 @@
 }
 
 .btn-ghost-g:hover {
-  color: var(--color-brand-600);
+  color: var(--color-ink-900);
   background: var(--color-brand-50);
 }
 
 /* Small variant */
 .btn-g.btn-sm-g {
   height: 38px;
-  padding: 0 0.9rem;
-  font-size: 13px;
-  border-radius: 8px;
+  padding: 0 1.1rem;
+  font-size: 13.5px;
 }
 
 /* ============================================================
-   Cards
+   Cards — bento-scale radii, hairlines, whisper shadows
    ============================================================ */
 
 .card-g {
   background: #fff;
-  border: 1px solid var(--color-line-200);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: var(--radius-g);
-  transition:
-    transform 0.22s var(--ease-out-soft),
-    box-shadow 0.22s var(--ease-out-soft),
-    border-color 0.22s var(--ease-out-soft);
+  transition: all 0.4s var(--ease-out-soft);
 }
 
 .card-g.hoverable:hover,
 .card-g.hoverable:focus-within {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-e2);
-  border-color: #c4d3ec;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .card-dark-g {
-  background: rgba(255, 255, 255, 0.035);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-g);
+  transition: all 0.4s var(--ease-out-soft);
 }
 
-/* Quiet link with arrow */
+/* Quiet link with arrow — "Learn more >" */
 .link-g {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 14.5px;
+  letter-spacing: -0.011em;
   color: var(--color-brand-600);
-  transition: gap 0.18s var(--ease-out-soft), color 0.18s;
+  transition: gap 0.4s var(--ease-out-soft), color 0.4s var(--ease-out-soft);
 }
 
 .link-g:hover {
@@ -416,7 +459,7 @@
 }
 
 .link-g .lucide {
-  transition: transform 0.18s var(--ease-out-soft);
+  transition: transform 0.4s var(--ease-out-soft);
 }
 
 .link-g:hover .lucide {
@@ -425,11 +468,11 @@
 
 .on-dark .link-g,
 .link-cyan-g {
-  color: var(--color-cyanx-500);
+  color: var(--color-brand-500);
 }
 
 /* ============================================================
-   Chips / badges
+   Chips / badges — quiet, sentence case
    ============================================================ */
 
 .chip-g {
@@ -437,35 +480,34 @@
   align-items: center;
   gap: 0.4rem;
   font-family: var(--font-heading);
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.3rem 0.7rem;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  padding: 0.3rem 0.75rem;
   border-radius: 999px;
   border: 1px solid transparent;
 }
 
 /* ============================================================
-   Form fields (editorial underline style, accessible)
+   Form fields — clean fills, hairline borders
    ============================================================ */
 
 .field-g {
   width: 100%;
   background: #fff;
-  border: 1px solid var(--color-line-200);
-  border-radius: 10px;
-  padding: 0.7rem 0.9rem;
-  font-size: 14.5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  font-size: 15px;
   color: var(--color-ink-900);
-  transition: border-color 0.18s, box-shadow 0.18s;
-  min-height: 44px;
+  transition: border-color 0.4s var(--ease-out-soft), box-shadow 0.4s var(--ease-out-soft);
+  min-height: 46px;
 }
 
 .field-g:focus {
   outline: none;
   border-color: var(--color-brand-600);
-  box-shadow: 0 0 0 3px rgba(52, 103, 235, 0.14);
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.12);
 }
 
 .field-g::placeholder {
@@ -477,14 +519,15 @@
 }
 
 .field-g[aria-invalid="true"]:focus {
-  box-shadow: 0 0 0 3px rgba(210, 52, 52, 0.12);
+  box-shadow: 0 0 0 4px rgba(210, 52, 52, 0.12);
 }
 
 label.lbl-g {
   display: block;
   font-family: var(--font-heading);
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--color-ink-900);
   margin-bottom: 0.4rem;
 }
@@ -505,7 +548,7 @@ label.lbl-g {
 }
 
 /* ============================================================
-   Nav
+   Nav — frosted glass, ink text, accent active state
    ============================================================ */
 
 .nav-link-g {
@@ -514,81 +557,69 @@ label.lbl-g {
   align-items: center;
   white-space: nowrap;
   font-family: var(--font-heading);
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.78);
-  padding: 0.4rem 0.15rem;
-  transition: color 0.18s;
+  letter-spacing: -0.01em;
+  color: rgba(29, 29, 31, 0.72);
+  padding: 0.4rem 0.1rem;
+  transition: color 0.4s var(--ease-out-soft);
 }
 
 .nav-link-g:hover {
-  color: #fff;
-}
-
-.nav-link-g::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 100%;
-  bottom: -2px;
-  height: 2px;
-  background: var(--color-cyanx-500);
-  transition: right 0.22s var(--ease-out-soft);
-}
-
-.nav-link-g:hover::after,
-.nav-link-g.active::after {
-  right: 0;
+  color: var(--color-ink-900);
 }
 
 .nav-link-g.active {
-  color: #fff;
+  color: var(--color-brand-600);
 }
 
 /* ============================================================
-   Prose (article body)
+   Prose (article body) — 17px, relaxed leading
    ============================================================ */
 
 .prose-g {
-  font-size: 16px;
-  line-height: 1.75;
+  font-size: 17px;
+  line-height: 1.7;
+  letter-spacing: -0.011em;
   color: var(--color-ink-700);
   max-width: 72ch;
 }
 
 .prose-g h2 {
-  font-size: 1.45rem;
-  margin-top: 2.2rem;
+  font-size: 1.5rem;
+  letter-spacing: -0.021em;
+  margin-top: 2.4rem;
   margin-bottom: 0.8rem;
 }
 
 .prose-g h3 {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
+  letter-spacing: -0.016em;
   margin-top: 1.8rem;
   margin-bottom: 0.6rem;
 }
 
 .prose-g p {
-  margin-bottom: 1.05rem;
+  margin-bottom: 1.1rem;
 }
 
 .prose-g ul {
   list-style: disc;
   padding-left: 1.3rem;
-  margin-bottom: 1.05rem;
+  margin-bottom: 1.1rem;
 }
 
 .prose-g li {
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
 }
 
 .prose-g strong {
   color: var(--color-ink-900);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* ============================================================
-   Custom scrollbar for long lists
+   Custom scrollbar for long lists — neutral gray
    ============================================================ */
 
 .scroll-g::-webkit-scrollbar {
@@ -601,29 +632,30 @@ label.lbl-g {
 }
 
 .scroll-g::-webkit-scrollbar-thumb {
-  background: #c4cfdc;
+  background: #d2d2d7;
   border-radius: 8px;
 }
 
 .scroll-g::-webkit-scrollbar-thumb:hover {
-  background: #a9b8cc;
+  background: #b8b8bd;
 }
 
 /* ============================================================
-   Verification strip & hero motion
+   Live indicator & hero treatment
    ============================================================ */
 
 .pulse-dot {
   animation: pulse-dot 2.2s ease-in-out infinite;
 }
 
+/* Cinematic black scrim — cleaner, less navy */
 .hero-scrim {
   background: linear-gradient(
     96deg,
-    rgba(4, 9, 20, 0.95) 0%,
-    rgba(5, 11, 26, 0.86) 34%,
-    rgba(6, 14, 32, 0.55) 66%,
-    rgba(6, 14, 32, 0.38) 100%
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.72) 34%,
+    rgba(0, 0, 0, 0.42) 66%,
+    rgba(0, 0, 0, 0.28) 100%
   );
 }
 

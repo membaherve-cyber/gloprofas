@@ -128,13 +128,13 @@ export function AssistantLauncher() {
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? t("assistant.close") : t("assistant.open")}
         aria-expanded={open}
-        className="assistant-fab fixed bottom-5 right-5 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-brand-600 text-white shadow-e3 transition-transform hover:scale-105 hover:bg-brand-700"
+        className="assistant-fab fixed bottom-5 right-5 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-brand-600 text-white shadow-[0_8px_28px_rgba(0,113,227,0.35)] transition-all duration-[400ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-0.5 hover:bg-brand-700 active:scale-[0.96]"
       >
         {open ? <X size={22} /> : <OskieMark size={44} />}
         {!open ? (
           <span className="absolute -right-0.5 -top-0.5 flex h-3.5 w-3.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyanx-500 opacity-60" />
-            <span className="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-navy-950 bg-cyanx-500" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-60" />
+            <span className="relative inline-flex h-3.5 w-3.5 rounded-full border-2 border-brand-600 bg-white" />
           </span>
         ) : null}
       </button>
@@ -144,22 +144,22 @@ export function AssistantLauncher() {
         <div
           role="dialog"
           aria-label="Oskie — GLOPROFAS AI Assistant"
-          className="fixed bottom-24 right-5 z-[60] flex h-[min(560px,calc(100dvh-140px))] w-[min(400px,calc(100vw-40px))] flex-col overflow-hidden rounded-2xl bg-white shadow-e3 ring-1 ring-line-200"
+          className="fixed bottom-24 right-5 z-[60] flex h-[min(560px,calc(100dvh-140px))] w-[min(400px,calc(100vw-40px))] flex-col overflow-hidden rounded-[24px] bg-white shadow-e3 ring-1 ring-black/[0.08]"
         >
           {/* Header */}
-          <div className="on-dark flex items-center gap-3 bg-brand-600 px-4 py-3.5 text-white">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-white">
-              <span className="font-heading text-[20px] font-extrabold leading-none text-brand-600">G</span>
+          <div className="flex items-center gap-3 border-b border-black/[0.08] bg-white px-4 py-3.5">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-600">
+              <span className="font-heading text-[20px] font-bold leading-none text-white">G</span>
             </span>
             <div className="min-w-0 flex-1">
-              <p className="font-heading text-[14.5px] font-bold leading-tight">Oskie</p>
-              <p className="truncate text-[11.5px] text-white/75">{t("assistant.name")}</p>
+              <p className="font-heading text-[14.5px] font-bold leading-tight text-ink-900">Oskie</p>
+              <p className="truncate text-[11.5px] text-slatex-600">{t("assistant.name")}</p>
             </div>
             <button
               type="button"
               onClick={() => setOpen(false)}
               aria-label={t("assistant.close")}
-              className="flex h-8 w-8 items-center justify-center rounded-md hover:bg-white/15"
+              className="flex h-8 w-8 items-center justify-center rounded-full text-ink-900 transition-colors duration-300 hover:bg-black/[0.05]"
             >
               <X size={16} />
             </button>
@@ -168,16 +168,16 @@ export function AssistantLauncher() {
           {/* Messages */}
           <div
             ref={scrollRef}
-            className="scroll-g flex-1 space-y-3.5 overflow-y-auto bg-mist-50 px-4 py-4"
+            className="scroll-g flex-1 space-y-3.5 overflow-y-auto bg-[#fbfbfd] px-4 py-4"
             aria-live="polite"
           >
             {msgs.map((m, i) => (
               <div key={i} className={m.role === "user" ? "flex justify-end" : ""}>
                 <div
-                  className={`max-w-[85%] rounded-xl px-3.5 py-2.5 text-[13.5px] leading-relaxed ${
+                  className={`max-w-[85%] rounded-[18px] px-3.5 py-2.5 text-[13.5px] leading-relaxed ${
                     m.role === "user"
                       ? "bg-brand-600 text-white"
-                      : "border border-line-200 bg-white text-ink-900 shadow-e1"
+                      : "border border-black/[0.08] bg-white text-ink-900 shadow-e1"
                   }`}
                 >
                   <p className="whitespace-pre-wrap">{m.content}</p>
@@ -219,13 +219,13 @@ export function AssistantLauncher() {
 
           {/* Suggestions */}
           {msgs.length <= 1 ? (
-            <div className="flex flex-wrap gap-2 border-t border-line-200 bg-white px-4 py-3">
+            <div className="flex flex-wrap gap-2 border-t border-black/[0.08] bg-white px-4 py-3">
               {suggestions.map((s) => (
                 <button
                   key={s}
                   type="button"
                   onClick={() => send(s)}
-                  className="rounded-full border border-line-200 px-3 py-1.5 text-[12px] font-medium text-slatex-600 transition-colors hover:border-brand-500 hover:text-brand-600"
+                  className="rounded-full border border-black/[0.1] px-3 py-1.5 text-[12px] font-medium text-ink-900 transition-all duration-[400ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:border-black/30 active:scale-[0.98]"
                 >
                   {s}
                 </button>
@@ -235,7 +235,7 @@ export function AssistantLauncher() {
 
           {/* Input */}
           <form
-            className="border-t border-line-200 bg-white p-3"
+            className="border-t border-black/[0.08] bg-white p-3"
             onSubmit={(e) => {
               e.preventDefault();
               send(input);
@@ -255,7 +255,7 @@ export function AssistantLauncher() {
                 type="submit"
                 disabled={busy || !input.trim()}
                 aria-label={t("assistant.send")}
-                className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-brand-600 text-white transition-colors hover:bg-brand-700 disabled:opacity-50"
+                className="flex h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full bg-brand-600 text-white transition-all duration-[400ms] [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] hover:bg-brand-700 active:scale-[0.96] disabled:opacity-50"
               >
                 <Send size={16} />
               </button>
