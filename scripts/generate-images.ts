@@ -126,7 +126,7 @@ async function main() {
     try {
       const res = await zai.images.generations.create({
         prompt: img.prompt,
-        size: img.size,
+        size: img.size as "1344x768",
       });
       const b64 = res?.data?.[0]?.base64;
       if (!b64) throw new Error('empty response');

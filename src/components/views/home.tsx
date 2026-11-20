@@ -13,8 +13,11 @@ import {
   ArrowUpRight,
   BarChart3,
   Check,
+  CirclePlay,
   Database,
   FileText,
+  Globe,
+  ListChecks,
   Lock,
   ShieldAlert,
   ShieldCheck,
@@ -35,7 +38,7 @@ import {
   ZITE_CONTENT,
   type ZiteCategory,
 } from "@/lib/content/zite-data";
-import { categoryImage } from "@/lib/site";
+import { categoryImage, RC_STATS } from "@/lib/site";
 import {
   Reveal,
   Btn,
@@ -164,9 +167,6 @@ export function HomeView() {
 
   const alerts = ZITE_CONTENT.alerts;
   const articles = ZITE_CONTENT.articles;
-  const resources = ZITE_CONTENT.resources;
-  const featuredRes = resources.find((r) => r.featured) ?? resources[0];
-  const otherRes = resources.filter((r) => r.id !== featuredRes.id);
 
   return (
     <>
@@ -605,7 +605,7 @@ export function HomeView() {
             <StatCell dark value={cats.length} label={R(L.stats.categories, locale)} />
           </Reveal>
           <Reveal delay={90}>
-            <StatCell dark value={resources.length} label={R(L.stats.resources, locale)} />
+            <StatCell dark value={RC_STATS.articles + RC_STATS.checklists + RC_STATS.videos} label={R(L.stats.resources, locale)} />
           </Reveal>
           <Reveal delay={180}>
             <StatCell dark value="2" label={R(L.stats.languages, locale)} />
@@ -688,11 +688,11 @@ export function HomeView() {
             <div className="lg:col-span-5">
               <Reveal delay={60}>
                 <h2 className="h2-g">{R(L.res.h2, locale)}</h2>
-                <A href="/resources" className="group mt-6 block">
+                <A href="/resources/scam-checker" className="group mt-6 block">
                   <article className="card-g hoverable overflow-hidden">
                     <img
-                      src={featuredRes.imageUrl}
-                      alt={fr ? `Ressource : ${R(featuredRes.title, "fr")}` : `Resource: ${R(featuredRes.title, "en")}`}
+                      src="/images/gen/check-verify.jpg"
+                      alt={fr ? "Personne vérifiant un message suspect sur son téléphone" : "Person checking a suspicious message on their phone"}
                       width={1344}
                       height={768}
                       loading="lazy"
@@ -700,13 +700,17 @@ export function HomeView() {
                     />
                     <div className="p-5">
                       <div className="flex items-center gap-2.5">
-                        <span className="chip-g bg-brand-50 text-brand-600">{featuredRes.type}</span>
+                        <span className="chip-g bg-[#159769]/10 text-[#0d6e4a]">{fr ? "Outil gratuit" : "Free tool"}</span>
                         <span className="text-[12px] font-semibold uppercase tracking-wide text-signal-600">
                           {R(L.res.featured, locale)}
                         </span>
                       </div>
-                      <h3 className="h3-g mt-2.5 text-[1.1rem]">{R(featuredRes.title, locale)}</h3>
-                      <p className="mt-1.5 text-[13.5px] text-slatex-600">{R(featuredRes.description, locale)}</p>
+                      <h3 className="h3-g mt-2.5 text-[1.1rem]">GLOPROFAS Scam Checker</h3>
+                      <p className="mt-1.5 text-[13.5px] text-slatex-600">
+                        {fr
+                          ? "Collez un message suspect ou cochez des signaux d’alerte : l’outil explique chaque schéma détecté et les bons réflexes."
+                          : "Paste a suspicious message or tick warning signs: the tool explains every detected pattern and the right reflexes."}
+                      </p>
                     </div>
                   </article>
                 </A>
@@ -714,20 +718,43 @@ export function HomeView() {
             </div>
             <div className="lg:col-span-7">
               <ul className="divide-y divide-line-200">
-                {otherRes.map((r, i) => (
-                  <Reveal key={r.id} delay={80 + i * 60}>
+                {[
+                  {
+                    href: "/resources/practical-tools",
+                    icon: FileText,
+                    t: { en: "Practical Tools to Protect Yourself", fr: "Outils pratiques pour vous protéger" },
+                    d: { en: `${RC_STATS.articles} in-depth guides — online, money, social, business and emerging scams`, fr: `${RC_STATS.articles} guides approfondis — en ligne, argent, social, entreprise et arnaques émergentes` },
+                  },
+                  {
+                    href: "/resources/knowledge-tools",
+                    icon: ListChecks,
+                    t: { en: "Knowledge & Tools", fr: "Savoir et outils" },
+                    d: { en: `Searchable library and ${RC_STATS.checklists} printable bilingual checklists`, fr: `Bibliothèque de recherche et ${RC_STATS.checklists} listes bilingues à imprimer` },
+                  },
+                  {
+                    href: "/resources/video-learning",
+                    icon: CirclePlay,
+                    t: { en: "Video Learning Centre", fr: "Centre d’apprentissage vidéo" },
+                    d: { en: `${RC_STATS.videos} verified video lessons from trusted institutions`, fr: `${RC_STATS.videos} leçons vidéo vérifiées d’institutions fiables` },
+                  },
+                  {
+                    href: "/resources/reporting-channels",
+                    icon: Globe,
+                    t: { en: "Reporting Channels", fr: "Canaux de signalement" },
+                    d: { en: `Official reporting authorities for ${RC_STATS.countries} countries`, fr: `Autorités officielles de signalement pour ${RC_STATS.countries} pays` },
+                  },
+                ].map((r, i) => (
+                  <Reveal key={r.href} delay={80 + i * 60}>
                     <li>
-                      <A href="/resources" className="group flex items-center gap-4 py-4">
+                      <A href={r.href} className="group flex items-center gap-4 py-4">
                         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-brand-600 ring-1 ring-line-200">
-                          <FileText size={17} strokeWidth={1.9} aria-hidden />
+                          <r.icon size={17} strokeWidth={1.9} aria-hidden />
                         </span>
                         <span className="min-w-0 flex-1">
                           <span className="block font-heading text-[14.5px] font-semibold text-ink-900 group-hover:text-brand-600">
-                            {R(r.title, locale)}
+                            {R(r.t, locale)}
                           </span>
-                          <span className="mt-0.5 block text-[12.5px] text-slatex-600">
-                            {r.type} · {r.language}
-                          </span>
+                          <span className="mt-0.5 block text-[12.5px] text-slatex-600">{R(r.d, locale)}</span>
                         </span>
                         <ChevronRight size={16} aria-hidden className="text-slatex-400 group-hover:text-brand-600" />
                       </A>
@@ -736,7 +763,7 @@ export function HomeView() {
                 ))}
               </ul>
               <Reveal delay={400} className="mt-6">
-                <LinkG href="/resources">{fr ? "Toutes les ressources" : "All resources"}</LinkG>
+                <LinkG href="/resources">{fr ? "Tout le centre de ressources" : "Explore the Resource Centre"}</LinkG>
               </Reveal>
             </div>
           </div>

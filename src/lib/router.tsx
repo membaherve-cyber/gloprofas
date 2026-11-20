@@ -25,6 +25,9 @@ export type Route = {
 
 function parseHash(hash: string): Route {
   let h = hash.replace(/^#/, "");
+  // Strip any query string (#/resources/knowledge-tools?tab=checklists)
+  const qi = h.indexOf("?");
+  if (qi !== -1) h = h.slice(0, qi);
   if (!h.startsWith("/")) h = "/" + h;
   h = h.replace(/\/+$/, "") || "/";
   const parts = h.split("/").filter(Boolean);
@@ -58,6 +61,7 @@ type RouterCtx = {
    The snapshot is cached so its identity stays stable between calls. */
 let cachedHash = "\u0000";
 let cachedRoute = parseHash("");
+const cachedEmptyRoute: Route = { path: "/", section: "", parts: [] };
 
 function subscribeHash(listener: () => void) {
   window.addEventListener("hashchange", listener);
@@ -74,7 +78,7 @@ function getHashSnapshot(): Route {
 }
 
 function getHashServerSnapshot(): Route {
-  return parseHash("");
+  return cachedEmptyRoute;
 }
 
 const Ctx = createContext<RouterCtx | null>(null);

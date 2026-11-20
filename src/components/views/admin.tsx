@@ -11,6 +11,7 @@ import {
   ArrowLeft,
   ClipboardList,
   Inbox,
+  LayoutDashboard,
   LogOut,
   Mail,
   RefreshCw,
@@ -20,6 +21,7 @@ import {
 } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { Reveal } from "@/components/shared/ui";
+import { AdminContentPanel } from "./admin-content";
 
 interface AdminData {
   user: { name: string; email: string; role: string };
@@ -79,6 +81,7 @@ export function AdminView() {
   const [data, setData] = useState<AdminData | null>(null);
   const [loading, setLoading] = useState(true);
   const [unauthorized, setUnauthorized] = useState(false);
+  const [view, setView] = useState<"dashboard" | "content">("dashboard");
 
   // login state
   const [email, setEmail] = useState("admin@gloprofas.org");
@@ -262,13 +265,39 @@ export function AdminView() {
           <div>
             <p className="eyebrow">{fr ? "Backoffice" : "Backoffice"}</p>
             <h1 className="h2-g mt-2">
-              {fr ? "Tableau de bord" : "Dashboard"}
+              {view === "dashboard"
+                ? fr ? "Tableau de bord" : "Dashboard"
+                : fr ? "Centre de ressources — contenu" : "Resource Centre — content"}
             </h1>
             <p className="mt-1 text-[13px] text-slatex-600">
               {data.user.name} · {data.user.email} · {data.user.role}
             </p>
           </div>
           <div className="flex flex-wrap gap-2.5">
+            <div className="flex overflow-hidden rounded-lg border border-line-200 bg-white" role="group" aria-label={fr ? "Vue" : "View"}>
+              <button
+                type="button"
+                onClick={() => setView("dashboard")}
+                aria-pressed={view === "dashboard"}
+                className={`inline-flex h-9 items-center gap-1.5 px-3.5 text-[12.5px] font-semibold transition-colors ${
+                  view === "dashboard" ? "bg-navy-950 text-white" : "text-slatex-600 hover:text-brand-600"
+                }`}
+              >
+                <LayoutDashboard size={13} aria-hidden />
+                {fr ? "Tableau de bord" : "Dashboard"}
+              </button>
+              <button
+                type="button"
+                onClick={() => setView("content")}
+                aria-pressed={view === "content"}
+                className={`inline-flex h-9 items-center gap-1.5 px-3.5 text-[12.5px] font-semibold transition-colors ${
+                  view === "content" ? "bg-navy-950 text-white" : "text-slatex-600 hover:text-brand-600"
+                }`}
+              >
+                <ClipboardList size={13} aria-hidden />
+                {fr ? "Contenu" : "Content"}
+              </button>
+            </div>
             <button type="button" onClick={load} className="btn-g btn-outline-g btn-sm-g">
               <RefreshCw size={14} aria-hidden />
               {fr ? "Actualiser" : "Refresh"}
@@ -284,7 +313,11 @@ export function AdminView() {
           </div>
         </div>
 
+        {view === "content" ? <AdminContentPanel /> : null}
+
         {/* KPIs */}
+        {view === "dashboard" ? (
+        <>
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {kpiCards.map((card, i) => {
             const Icon = card.icon;
@@ -402,6 +435,8 @@ export function AdminView() {
             </div>
           </Reveal>
         </div>
+        </>
+        ) : null}
       </div>
     </section>
   );

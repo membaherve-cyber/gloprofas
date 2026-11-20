@@ -56,3 +56,5 @@ async function worker() {
 
 await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()));
 console.log(`ALLDONE ${results.length} checked, ${todo.length} todo were pending`);
+
+export {};

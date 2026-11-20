@@ -24,18 +24,26 @@ const VictimSupportView = lazy(() => import("@/components/views/victim-support")
 const NewsView = lazy(() => import("@/components/views/news").then((m) => ({ default: m.NewsView })));
 const NewsDetailView = lazy(() => import("@/components/views/news").then((m) => ({ default: m.NewsDetailView })));
 const ResourcesView = lazy(() => import("@/components/views/resources").then((m) => ({ default: m.ResourcesView })));
+const ScamCheckerView = lazy(() => import("@/components/views/resources-checker").then((m) => ({ default: m.ScamCheckerView })));
 const ServicesView = lazy(() => import("@/components/views/services").then((m) => ({ default: m.ServicesView })));
 const GetInvolvedView = lazy(() => import("@/components/views/get-involved").then((m) => ({ default: m.GetInvolvedView })));
 const ContactView = lazy(() => import("@/components/views/contact").then((m) => ({ default: m.ContactView })));
 const ReportView = lazy(() => import("@/components/views/report").then((m) => ({ default: m.ReportView })));
-const CheckView = lazy(() => import("@/components/views/check").then((m) => ({ default: m.CheckView })));
 const LegalView = lazy(() => import("@/components/views/legal").then((m) => ({ default: m.LegalView })));
 const AdminView = lazy(() => import("@/components/views/admin").then((m) => ({ default: m.AdminView })));
 
 /** Per-route document titles (bilingual). */
-function useRouteTitle(section: string, slug: string | undefined) {
+function useRouteTitle(section: string, slug: string | undefined, subSlug: string | undefined) {
   const { locale, t } = useI18n();
   useEffect(() => {
+    const resourceSubs: Record<string, { en: string; fr: string }> = {
+      "practical-tools": { en: "Practical Tools to Protect Yourself", fr: "Outils pratiques pour vous protéger" },
+      "knowledge-tools": { en: "Knowledge & Tools", fr: "Savoir et outils" },
+      "video-learning": { en: "Video Learning Centre", fr: "Centre d’apprentissage vidéo" },
+      "scam-checker": { en: "GLOPROFAS Scam Checker", fr: "GLOPROFAS Scam Checker" },
+      "reporting-channels": { en: "Where to Report Scams and Cybercrime", fr: "Où signaler les arnaques et la cybercriminalité" },
+      search: { en: "Search", fr: "Recherche" },
+    };
     const titles: Record<string, { en: string; fr: string }> = {
       "": {
         en: "GLOPROFAS | Scam Awareness & Fraud Prevention",
@@ -52,17 +60,23 @@ function useRouteTitle(section: string, slug: string | undefined) {
       "get-involved": { en: "Get Involved", fr: "S'impliquer" },
       contact: { en: "Contact", fr: "Contact" },
       report: { en: "Report a Scam", fr: "Signaler une arnaque" },
-      check: { en: "Check a Number, Link or Message", fr: "Vérifier un numéro, un lien ou un message" },
+      check: { en: "GLOPROFAS Scam Checker", fr: "GLOPROFAS Scam Checker" },
       legal: { en: t(`legal.${slug ?? "privacy"}`), fr: t(`legal.${slug ?? "privacy"}`) },
       admin: { en: "Team Log in", fr: "Connexion équipe" },
     };
-    const base = titles[section] ?? titles[""];
-    document.title = slug
-      ? `${base[locale]} · GLOPROFAS`
-      : section === ""
+    let base = titles[section] ?? titles[""];
+    if (section === "resources" && slug && resourceSubs[slug]) {
+      base = resourceSubs[slug];
+      // Detail pages set their own richer titles via the view itself.
+      if (subSlug) {
+        return;
+      }
+    }
+    document.title =
+      section === ""
         ? base[locale]
         : `${base[locale]} · GLOPROFAS`;
-  }, [section, slug, locale, t]);
+  }, [section, slug, subSlug, locale, t]);
 }
 
 function ViewSkeleton() {
@@ -80,7 +94,8 @@ function Views() {
   const { route } = useRouter();
   const { section, parts } = route;
   const slug = parts[0];
-  useRouteTitle(section, slug);
+  const subSlug = parts[1];
+  useRouteTitle(section, slug, subSlug);
 
   const view = useMemo(() => {
     switch (section) {
@@ -109,7 +124,7 @@ function Views() {
       case "report":
         return <ReportView />;
       case "check":
-        return <CheckView />;
+        return <ScamCheckerView />;
       case "legal":
         return <LegalView slug={slug ?? "privacy"} />;
       case "admin":

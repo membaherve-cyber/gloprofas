@@ -103,6 +103,12 @@ const organizationJsonLd = {
     "Mobile money fraud",
     "Investment scams",
     "Digital safety education",
+    "Romance scams",
+    "Business email compromise",
+    "Cryptocurrency fraud",
+    "Identity theft prevention",
+    "Deepfake scams",
+    "Scam reporting channels",
   ],
   availableLanguage: ["en", "fr"],
 };

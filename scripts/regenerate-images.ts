@@ -202,10 +202,25 @@ const JOBS: Job[] = [
 ];
 
 const only = process.argv.includes("--only") ? process.argv[process.argv.indexOf("--only") + 1] : null;
-const jobs = only ? JOBS.filter((j) => j.out === only) : JOBS;
+
+// Resume: skip files already regenerated in this run (mtime after 2026-11-20 15:45) with healthy size.
+const REGEN_EPOCH = new Date("2026-11-20T15:45:00Z").getTime();
+function alreadyDone(job: { out: string; dir: string }): boolean {
+  const p = path.join(job.dir, job.out);
+  try {
+    const st = fs.statSync(p);
+    return st.size > 30000 && st.mtimeMs >= REGEN_EPOCH;
+  } catch {
+    return false;
+  }
+}
+
+const jobs = only
+  ? JOBS.filter((j) => j.out === only)
+  : JOBS.filter((j) => !alreadyDone(j));
 
 async function generate(zai: Awaited<ReturnType<typeof ZAI.create>>, prompt: string, size: string) {
-  const res = await zai.images.generations.create({ prompt, size });
+  const res = await zai.images.generations.create({ prompt, size: size as "1344x768" });
   const b64 = res?.data?.[0]?.base64;
   if (!b64) throw new Error("empty response");
   return Buffer.from(b64, "base64");
@@ -214,6 +229,7 @@ async function generate(zai: Awaited<ReturnType<typeof ZAI.create>>, prompt: str
 async function review(zai: Awaited<ReturnType<typeof ZAI.create>>, jpg: Buffer) {
   const b64 = jpg.toString("base64");
   const res = await zai.chat.completions.createVision({
+    model: "glm-4.5v",
     messages: [
       {
         role: "user",
@@ -239,42 +255,60 @@ async function main() {
   const zai = await ZAI.create();
   const results: { out: string; status: string; score: number }[] = [];
 
-  for (const job of jobs) {
-    const outPath = path.join(job.dir, job.out);
-    let best: { score: number; buf: Buffer } | null = null;
-    let status = "FAIL";
+  // Outer retry loop: if the API token is temporarily unavailable (401),
+  // wait patiently and retry the remaining jobs instead of burning attempts.
+  let pending = [...jobs];
+  for (let round = 0; round < 40 && pending.length > 0; round++) {
+    if (round > 0) {
+      process.stdout.write(`[round ${round}] waiting 60s before retrying ${pending.length} jobs…\n`);
+      await new Promise((r) => setTimeout(r, 60000));
+    }
+    const stillPending: typeof pending = [];
 
-    for (let attempt = 1; attempt <= 3; attempt++) {
-      const prompt =
-        attempt === 1
-          ? `${job.prompt} ${STYLE}`
-          : `Simplified candid documentary photo: ${job.prompt.split(",")[0]}, single subject, natural daylight, realistic skin texture, no text, dim screens, simple background. ${SIMPLE}`;
-      try {
-        const png = await generate(zai, prompt, job.size);
-        const jpg = await sharp(png).jpeg({ quality: 86, mozjpeg: true }).toBuffer();
-        const r = await review(zai, jpg);
-        process.stdout.write(`  [${job.out}] attempt ${attempt}: score ${r.score} ${r.pass ? "PASS" : "FAIL"}\n`);
-        if (!best || r.score > best.score) best = { score: r.score, buf: jpg };
-        if (r.pass && r.score >= 90) break;
-      } catch (e) {
-        process.stdout.write(`  [${job.out}] attempt ${attempt} error: ${e instanceof Error ? e.message : e}\n`);
-        await new Promise((r) => setTimeout(r, 3000));
+    for (const job of pending) {
+      const outPath = path.join(job.dir, job.out);
+      let best: { score: number; buf: Buffer } | null = null;
+      let authIssue = false;
+      let status = "FAIL";
+
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        const prompt =
+          attempt === 1
+            ? `${job.prompt} ${STYLE}`
+            : `Simplified candid documentary photo: ${job.prompt.split(",")[0]}, single subject, natural daylight, realistic skin texture, no text, dim screens, simple background. ${SIMPLE}`;
+        try {
+          const png = await generate(zai, prompt, job.size);
+          const jpg = await sharp(png).jpeg({ quality: 86, mozjpeg: true }).toBuffer();
+          const r = await review(zai, jpg);
+          process.stdout.write(`  [${job.out}] attempt ${attempt}: score ${r.score} ${r.pass ? "PASS" : "FAIL"}\n`);
+          if (!best || r.score > best.score) best = { score: r.score, buf: jpg };
+          if (r.pass && r.score >= 90) break;
+        } catch (e) {
+          const msg = e instanceof Error ? e.message : String(e);
+          if (msg.includes("401")) authIssue = true;
+          process.stdout.write(`  [${job.out}] attempt ${attempt} error: ${msg.slice(0, 140)}\n`);
+          await new Promise((r) => setTimeout(r, authIssue ? 15000 : 3000));
+          if (authIssue) break; // don't burn attempts during an outage
+        }
+      }
+
+      if (best) {
+        fs.writeFileSync(outPath, best.buf);
+        status = best.score >= 90 ? "PASS" : best.score >= 85 ? "SOFT-PASS" : "FAIL";
+        results.push({ out: job.out, status, score: best.score });
+        if (status === "FAIL") stillPending.push(job);
+      } else {
+        stillPending.push(job); // auth/_network outage — retry next round
       }
     }
-
-    if (best) {
-      fs.writeFileSync(outPath, best.buf);
-      status = best.score >= 90 ? "PASS" : best.score >= 85 ? "SOFT-PASS" : "FAIL";
-      results.push({ out: job.out, status, score: best.score });
-    } else {
-      results.push({ out: job.out, status: "ERROR", score: 0 });
-    }
+    pending = stillPending;
   }
 
   console.log("\n==== SUMMARY ====");
   for (const r of results) console.log(`${r.status}\t${r.score}\t${r.out}`);
-  const fails = results.filter((r) => r.status === "FAIL" || r.status === "ERROR");
-  console.log(`DONE: ${results.length - fails.length}/${results.length} passed`);
+  const failedJobs = jobs.filter((j) => !results.some((r) => r.out === j.out));
+  const fails = [...results.filter((r) => r.status === "FAIL"), ...failedJobs];
+  console.log(`DONE: ${jobs.length - fails.length}/${jobs.length} passed`);
   if (fails.length) console.log("RETRY LIST: " + fails.map((f) => f.out).join(","));
 }
 

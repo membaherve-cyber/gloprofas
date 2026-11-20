@@ -18,9 +18,17 @@ export function Footer() {
 
   const actionLinks = [
     { href: "/report", label: R(L.report, locale), icon: Siren },
-    { href: "/check", label: locale === "fr" ? "Vérifier un numéro ou un lien" : "Check a number or link", icon: MessageCircleQuestion },
+    { href: "/resources/scam-checker", label: locale === "fr" ? "Scam Checker" : "Scam Checker", icon: MessageCircleQuestion },
     { href: "/alerts", label: locale === "fr" ? "Alertes arnaques" : "Scam alerts", icon: Radar },
-    { href: "/victim-support", label: locale === "fr" ? "Aide aux victimes" : "Victim support", icon: ShieldCheck },
+    { href: "/resources/reporting-channels/victim-guide", label: locale === "fr" ? "Guide d’urgence" : "Emergency guide", icon: ShieldCheck },
+  ];
+
+  const resourceLinks = [
+    { href: "/resources", label: locale === "fr" ? "Centre de ressources" : "Resource Centre" },
+    { href: "/resources/practical-tools", label: locale === "fr" ? "Outils pratiques (36 guides)" : "Practical Tools (36 guides)" },
+    { href: "/resources/knowledge-tools", label: locale === "fr" ? "Savoir et outils" : "Knowledge & Tools" },
+    { href: "/resources/video-learning", label: locale === "fr" ? "Centre vidéo" : "Video Learning Centre" },
+    { href: "/resources/reporting-channels", label: locale === "fr" ? "Canaux de signalement (67 pays)" : "Reporting Channels (67 countries)" },
   ];
 
   return (
@@ -49,13 +57,13 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick links */}
-          <nav className="md:col-span-3" aria-label={R(L.footer.quick, locale)}>
+          {/* Quick links + Resource Centre */}
+          <nav className="md:col-span-2" aria-label={R(L.footer.quick, locale)}>
             <h2 className="mb-4 font-heading text-[13px] font-semibold uppercase tracking-[0.14em] text-white">
               {R(L.footer.quick, locale)}
             </h2>
             <ul className="space-y-2.5 text-[14px]">
-              {NAV_ITEMS.slice(0, 6).map((item) => (
+              {NAV_ITEMS.slice(0, 5).map((item) => (
                 <li key={item.key}>
                   <A
                     href={item.href}
@@ -67,9 +75,26 @@ export function Footer() {
               ))}
             </ul>
           </nav>
+          <nav className="md:col-span-2" aria-label={locale === "fr" ? "Centre de ressources" : "Resource Centre"}>
+            <h2 className="mb-4 font-heading text-[13px] font-semibold uppercase tracking-[0.14em] text-white">
+              {locale === "fr" ? "Ressources" : "Resources"}
+            </h2>
+            <ul className="space-y-2.5 text-[14px]">
+              {resourceLinks.map((item) => (
+                <li key={item.href}>
+                  <A
+                    href={item.href}
+                    className="transition-colors hover:text-cyanx-500"
+                  >
+                    {item.label}
+                  </A>
+                </li>
+              ))}
+            </ul>
+          </nav>
 
           {/* Contact */}
-          <div className="md:col-span-4">
+          <div className="md:col-span-3">
             <h2 className="mb-4 font-heading text-[13px] font-semibold uppercase tracking-[0.14em] text-white">
               {R(L.footer.contactTitle, locale)}
             </h2>

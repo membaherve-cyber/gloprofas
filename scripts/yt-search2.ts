@@ -50,3 +50,5 @@ for (const [tag, q] of QUERIES) {
     console.log(`\n### ${tag}: ERROR ${e}`);
   }
 }
+
+export {};

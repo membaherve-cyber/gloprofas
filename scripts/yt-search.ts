@@ -54,3 +54,5 @@ console.log(`QUERY: ${query}`);
 for (const v of out.slice(0, limit)) {
   console.log(`${v.videoId} | ${v.duration} | ${v.channel} | ${v.title} | ${v.views} | ${v.published}`);
 }
+
+export {};
