@@ -35,7 +35,7 @@ const CATEGORY_ARTICLES: Record<string, string[]> = {
   manipulation: ["romance-scams-recognising-emotional-manipulation", "impersonation-scams-someone-you-trust"],
   financial: ["fake-mobile-money-payment-notifications", "mobile-money-scams-protect-mtn-momo-orange-money"],
   "advance-fee": ["how-to-recognise-and-avoid-online-scams", "lottery-prize-and-giveaway-scams", "fake-job-offers-and-employment-scams"],
-  impersonation: ["impersonation-scams-someone-you-trust", "how-to-recognise-fake-bank-representatives"],
+  impersonation: ["impersonation-scams-someone-you-trust", "fake-customer-support-and-technical-support-scams"],
   credentials: ["phishing-scams-recognise-fake-emails-messages", "mobile-money-scams-protect-mtn-momo-orange-money"],
   payment: ["investment-scams-and-ponzi-schemes", "mobile-money-scams-protect-mtn-momo-orange-money"],
   promises: ["investment-scams-and-ponzi-schemes", "lottery-prize-and-giveaway-scams"],

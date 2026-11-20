@@ -1,0 +1,34 @@
+PASS contactless-card-terminal.jpg
+BEST currency-exchange-desk.jpg 86
+BEST executive-phone-laptop.jpg 88
+BEST home-online-shopping.jpg 82
+BEST notebook-smartphone-notes.jpg 86
+BEST payment-counter.jpg 82
+BEST about-workshop.jpg 84
+BEST article-cat-emerging.jpg 88
+PASS article-cat-online.jpg
+BEST check-verify.jpg 88
+BEST currency-exchange-desk.jpg 84
+BEST executive-phone-laptop.jpg 86
+BEST home-online-shopping.jpg 86
+BEST notebook-smartphone-notes.jpg 84
+BEST payment-counter.jpg 82
+PASS about-workshop.jpg
+BEST article-cat-emerging.jpg 87
+BEST check-verify.jpg 88
+BEST family-impact.jpg 82
+BEST report-scene.jpg 88
+BEST reporting-directory.jpg 84
+PASS scam-advance-fee.jpg
+BEST scam-business.jpg 82
+BEST scam-crypto.jpg 88
+PASS scam-impersonation.jpg
+PASS scam-investment.jpg
+PASS scam-job.jpg
+PASS scam-phishing.jpg
+PASS scam-romance.jpg
+PASS scam-shopping.jpg
+BEST victim-guide.jpg 88
+BEST victim-support.jpg 86
+BEST scam-momo-notification.jpg 88
+PASS scam-crypto-recovery.jpg

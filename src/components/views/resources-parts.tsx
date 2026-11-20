@@ -10,9 +10,11 @@ import {
   ArrowRight,
   BookOpen,
   CirclePlay,
+  ExternalLink,
   FileDown,
   Globe,
   ListChecks,
+  Printer,
   Search,
   ShieldCheck,
   Siren,
@@ -24,6 +26,14 @@ import { useI18n } from "@/lib/i18n";
 import { R } from "@/lib/content/copy";
 import type { BiText } from "@/lib/content/zite-data";
 import { Reveal } from "@/components/shared/ui";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Checkbox } from "@/components/ui/checkbox";
 
 /* ---------------- API payload types ---------------- */
 
@@ -63,6 +73,7 @@ export type ChecklistDTO = {
   intro: BiText;
   warning: BiText;
   sections: { heading: BiText; items: BiText[] }[];
+  emergency?: BiText;
   references: { label: string; url: string }[];
   version: string;
   publishedAt: string;
@@ -318,7 +329,10 @@ export function VideoCard({ video, onOpen }: { video: VideoDTO; onOpen: (v: Vide
 
 export function ChecklistCard({ checklist }: { checklist: ChecklistDTO }) {
   const { locale } = useI18n();
-  const file = locale === "fr" ? checklist.pdfFr || checklist.pdfEn : checklist.pdfEn || checklist.pdfFr;
+  const fr = locale === "fr";
+  const file = fr ? checklist.pdfFr || checklist.pdfEn : checklist.pdfEn || checklist.pdfFr;
+  const [open, setOpen] = useState(false);
+  const [checked, setChecked] = useState<Set<string>>(new Set());
 
   const track = () => {
     fetch("/api/resources/checklists", {
@@ -328,6 +342,28 @@ export function ChecklistCard({ checklist }: { checklist: ChecklistDTO }) {
       keepalive: true,
     }).catch(() => {});
   };
+
+  const toggle = (key: string) => {
+    setChecked((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  };
+
+  const print = () => {
+    document.body.classList.add("checklist-printing");
+    window.print();
+    const cleanup = () => document.body.classList.remove("checklist-printing");
+    window.addEventListener("afterprint", cleanup, { once: true });
+    setTimeout(cleanup, 2000);
+  };
+
+  const progress = checklist.sections.reduce(
+    (s, sec) => s + sec.items.length,
+    0
+  );
 
   return (
     <article className="card-g hoverable flex h-full flex-col p-5">
@@ -339,24 +375,153 @@ export function ChecklistCard({ checklist }: { checklist: ChecklistDTO }) {
       <p className="mt-1.5 text-[12.5px] font-medium text-brand-600/90">{R(checklist.subtitle, locale)}</p>
       <p className="mt-2 line-clamp-3 text-[13px] leading-relaxed text-slatex-600">{R(checklist.intro, locale)}</p>
       <p className="mt-3 text-[12px] text-slatex-400">
-        {checklist.sections.reduce((s, sec) => s + sec.items.length, 0)}{" "}
-        {locale === "fr" ? "points à vérifier" : "check items"} · PDF EN/FR
+        {progress} {fr ? "points à vérifier" : "check items"} · PDF EN/FR
       </p>
       <div className="mt-auto flex flex-wrap items-center gap-2.5 pt-4">
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="btn-g btn-primary-g btn-sm-g"
+        >
+          <ListChecks size={14} aria-hidden />
+          {fr ? "Consulter" : "View"}
+        </button>
         <a
           href={file}
           download
           onClick={track}
-          className="btn-g btn-primary-g btn-sm-g"
-          aria-label={`${locale === "fr" ? "Télécharger" : "Download"}: ${R(checklist.title, locale)}`}
+          className="btn-g btn-ghost-g btn-sm-g"
+          aria-label={`${fr ? "Télécharger" : "Download"}: ${R(checklist.title, locale)}`}
         >
           <FileDown size={14} aria-hidden />
-          {locale === "fr" ? "Télécharger le PDF" : "Download PDF"}
+          {fr ? "PDF" : "PDF"}
         </a>
         <span className="text-[12px] text-slatex-400">
           {checklist.downloadCount > 0 ? `${checklist.downloadCount} ↓` : ""}
         </span>
       </div>
+
+      {/* On-site readable checklist with interactive tick boxes */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="checklist-print max-h-[85vh] max-w-2xl gap-0 overflow-y-auto p-0">
+          <div className="no-print px-6 pt-6">
+            <DialogHeader>
+              <DialogTitle className="text-left font-heading text-[1.15rem] font-bold text-ink-900">
+                {R(checklist.title, locale)}
+              </DialogTitle>
+              <DialogDescription className="text-left">{R(checklist.subtitle, locale)}</DialogDescription>
+            </DialogHeader>
+          </div>
+
+          <div className="px-6 pb-6">
+            {/* Print branding header */}
+            <div className="checklist-brand mb-4 flex items-center gap-2 border-b border-line-200 pb-3">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-600 text-white">
+                <ShieldCheck size={16} aria-hidden />
+              </span>
+              <div>
+                <p className="font-heading text-[13px] font-bold text-ink-900">GLOPROFAS</p>
+                <p className="text-[11px] text-slatex-500">{fr ? "Centre de ressources · gloprofas.org" : "Resource Centre · gloprofas.org"}</p>
+              </div>
+              <span className="ml-auto text-[11px] text-slatex-400">
+                {fr ? "Version" : "Version"} {checklist.version} · {checklist.publishedAt}
+              </span>
+            </div>
+
+            <p className="text-[13.5px] leading-relaxed text-slatex-600">{R(checklist.intro, locale)}</p>
+
+            <div className="mt-4 rounded-xl border-l-4 border-signal-500 bg-signal-100/50 p-4">
+              <p className="flex items-start gap-2 text-[13px] font-semibold leading-relaxed text-ink-900">
+                <TriangleAlert size={15} className="mt-0.5 shrink-0 text-signal-600" aria-hidden />
+                {R(checklist.warning, locale)}
+              </p>
+            </div>
+
+            {checklist.emergency ? (
+              <div className="mt-3 rounded-xl bg-[#d23434]/5 p-4 ring-1 ring-[#d23434]/20">
+                <p className="!mt-0 text-[12px] font-bold uppercase tracking-wide text-[#a52222]">
+                  {fr ? "Actions d’urgence" : "Emergency actions"}
+                </p>
+                <p className="mt-1 text-[13px] leading-relaxed text-ink-800">{R(checklist.emergency, locale)}</p>
+              </div>
+            ) : null}
+
+            <div className="mt-5 space-y-6">
+              {checklist.sections.map((sec, si) => (
+                <section key={si}>
+                  <h3 className="flex items-center gap-2 font-heading text-[0.95rem] font-bold text-ink-900">
+                    <ListChecks size={15} className="text-brand-600" aria-hidden />
+                    {R(sec.heading, locale)}
+                  </h3>
+                  <ul className="mt-2.5 space-y-2.5">
+                    {sec.items.map((item, ii) => {
+                      const key = `${si}-${ii}`;
+                      const id = `${checklist.slug}-${key}`;
+                      return (
+                        <li key={key}>
+                          <label htmlFor={id} className="flex cursor-pointer items-start gap-3 rounded-lg px-2 py-1.5 text-[13px] leading-relaxed text-ink-800 hover:bg-mist-30">
+                            <Checkbox
+                              id={id}
+                              checked={checked.has(key)}
+                              onCheckedChange={() => toggle(key)}
+                              className="mt-0.5"
+                            />
+                            <span>{R(item, locale)}</span>
+                          </label>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
+              ))}
+            </div>
+
+            {checklist.references?.length ? (
+              <div className="mt-6 border-t border-line-200 pt-4">
+                <p className="text-[12px] font-bold uppercase tracking-wide text-slatex-500">
+                  {fr ? "Références officielles" : "Official references"}
+                </p>
+                <ul className="mt-2 space-y-1.5">
+                  {checklist.references.map((r, i) => (
+                    <li key={i}>
+                      <a
+                        href={r.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-start gap-1.5 text-[12.5px] font-medium text-brand-600 hover:underline"
+                      >
+                        <ExternalLink size={11} className="mt-0.5 shrink-0" aria-hidden />
+                        {r.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            <div className="no-print mt-6 flex flex-wrap items-center gap-3 border-t border-line-200 pt-4">
+              <button type="button" onClick={print} className="btn-g btn-primary-g btn-sm-g">
+                <Printer size={14} aria-hidden />
+                {fr ? "Imprimer cette liste" : "Print this checklist"}
+              </button>
+              <a
+                href={file}
+                download
+                onClick={track}
+                className="btn-g btn-ghost-g btn-sm-g"
+              >
+                <FileDown size={14} aria-hidden />
+                {fr ? "Télécharger le PDF" : "Download PDF"}
+              </a>
+              <p className="text-[11.5px] text-slatex-400">
+                {fr
+                  ? "Cochez les cases directement à l’écran, puis imprimez ou téléchargez."
+                  : "Tick the boxes on screen, then print or download."}
+              </p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </article>
   );
 }

@@ -3,7 +3,7 @@
 /**
  * Knowledge & Tools — searchable knowledge library (GLOPROFAS resources +
  * curated external guides from official institutions) and the printable
- * checklist library (15 bilingual PDFs, free download without registration).
+ * checklist library (bilingual PDFs, free access without registration).
  */
 
 import React, { useEffect, useMemo, useState } from "react";
@@ -238,7 +238,7 @@ export function KnowledgeToolsView() {
             <Reveal>
               <SectionHeading
                 eyebrow={fr ? "Listes de vérification" : "Prevention checklists"}
-                title={fr ? "15 listes bilingues à télécharger et imprimer." : "15 bilingual checklists to download and print."}
+                title={fr ? "Des listes bilingues à consulter, imprimer et partager." : "Bilingual checklists to view, print and share."}
                 lead={
                   fr
                     ? "Chaque liste inclut la marque GLOPROFAS, des cases à cocher, les signaux d’alerte importants, les actions d’urgence et les références officielles. Gratuit, sans inscription, en anglais et en français."

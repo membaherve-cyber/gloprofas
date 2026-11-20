@@ -48,7 +48,7 @@ export const L = {
       en: "Got a suspicious message? Check before you pay.",
       fr: `Un message suspect${nbsp}? Vérifiez avant de payer.`,
     },
-    cta: { en: "Check it with Jarvis", fr: "Vérifier avec Jarvis" },
+    cta: { en: "Check it with Oskie", fr: "Vérifier avec Oskie" },
   },
   intro: {
     eyebrow: { en: "Who we are", fr: "Qui sommes-nous" },

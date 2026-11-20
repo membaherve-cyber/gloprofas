@@ -294,7 +294,7 @@ export const ARTICLES_D_E: Article[] = [
     relatedSlugs: [
       "business-email-compromise-how-companies-lose-money",
       "supplier-and-procurement-fraud",
-      "how-to-recognise-fake-bank-representatives",
+      "ceo-and-executive-impersonation-scams",
     ],
     checklistSlug: "bec-prevention",
     references: [
@@ -1028,7 +1028,7 @@ export const ARTICLES_D_E: Article[] = [
     },
     relatedSlugs: [
       "impersonation-scams-someone-you-trust",
-      "family-emergency-and-grandparent-scams",
+      "whatsapp-scams-common-tricks",
       "ceo-and-executive-impersonation-scams",
     ],
     checklistSlug: "general-scam-prevention",
@@ -1622,7 +1622,7 @@ export const ARTICLES_D_E: Article[] = [
       fr: "La générosité mérite autant de protection que l’argent. Choisissez vos causes avant la crise, vérifiez le collecteur et ne versez jamais de dons publics sur des comptes personnels.",
     },
     relatedSlugs: [
-      "how-to-identify-fake-social-media-accounts",
+      "facebook-instagram-tiktok-scams",
       "how-to-identify-fake-websites-and-online-stores",
       "online-marketplace-scams-buy-and-sell-safely",
     ],
@@ -1769,7 +1769,7 @@ export const ARTICLES_D_E: Article[] = [
       fr: "Personne ne peut vous vendre un visa garanti, et aucune ambassade ne fonctionne par « relations » privées. Vérifiez le domaine, utilisez les voies officielles : toute garantie est l’arnaque elle-même.",
     },
     relatedSlugs: [
-      "scholarship-and-education-scams",
+      "lottery-prize-and-giveaway-scams",
       "fake-job-offers-and-employment-scams",
       "how-to-identify-fake-websites-and-online-stores",
     ],

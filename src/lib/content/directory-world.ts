@@ -32,8 +32,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   /* ------------------------------------------------------------------ */
   {
     code: "GB",
-    name: "🇬🇧 United Kingdom",
-    nameFr: "🇬🇧 Royaume-Uni",
+    name: "United Kingdom",
+    nameFr: "Royaume-Uni",
     continent: "europe",
     emergency: "999",
     agencies: [
@@ -85,8 +85,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "FR",
-    name: "🇫🇷 France",
-    nameFr: "🇫🇷 France",
+    name: "France",
+    nameFr: "France",
     continent: "europe",
     emergency: "17 (police) / 112",
     agencies: [
@@ -145,8 +145,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "DE",
-    name: "🇩🇪 Germany",
-    nameFr: "🇩🇪 Allemagne",
+    name: "Germany",
+    nameFr: "Allemagne",
     continent: "europe",
     emergency: "110",
     agencies: [
@@ -205,8 +205,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "ES",
-    name: "🇪🇸 Spain",
-    nameFr: "🇪🇸 Espagne",
+    name: "Spain",
+    nameFr: "Espagne",
     continent: "europe",
     emergency: "112",
     agencies: [
@@ -266,8 +266,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "IT",
-    name: "🇮🇹 Italy",
-    nameFr: "🇮🇹 Italie",
+    name: "Italy",
+    nameFr: "Italie",
     continent: "europe",
     emergency: "112",
     agencies: [
@@ -326,8 +326,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "NL",
-    name: "🇳🇱 Netherlands",
-    nameFr: "🇳🇱 Pays-Bas",
+    name: "Netherlands",
+    nameFr: "Pays-Bas",
     continent: "europe",
     emergency: "112",
     agencies: [
@@ -386,8 +386,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "BE",
-    name: "🇧🇪 Belgium",
-    nameFr: "🇧🇪 Belgique",
+    name: "Belgium",
+    nameFr: "Belgique",
     continent: "europe",
     emergency: "112",
     agencies: [
@@ -446,8 +446,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "IE",
-    name: "🇮🇪 Ireland",
-    nameFr: "🇮🇪 Irlande",
+    name: "Ireland",
+    nameFr: "Irlande",
     continent: "europe",
     emergency: "112 / 999",
     agencies: [
@@ -506,8 +506,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "CH",
-    name: "🇨🇭 Switzerland",
-    nameFr: "🇨🇭 Suisse",
+    name: "Switzerland",
+    nameFr: "Suisse",
     continent: "europe",
     emergency: "117",
     agencies: [
@@ -556,8 +556,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "SE",
-    name: "🇸🇪 Sweden",
-    nameFr: "🇸🇪 Suède",
+    name: "Sweden",
+    nameFr: "Suède",
     continent: "europe",
     emergency: "112",
     agencies: [
@@ -616,8 +616,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "NO",
-    name: "🇳🇴 Norway",
-    nameFr: "🇳🇴 Norvège",
+    name: "Norway",
+    nameFr: "Norvège",
     continent: "europe",
     emergency: "112",
     agencies: [
@@ -676,8 +676,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "PT",
-    name: "🇵🇹 Portugal",
-    nameFr: "🇵🇹 Portugal",
+    name: "Portugal",
+    nameFr: "Portugal",
     continent: "europe",
     emergency: "112",
     agencies: [
@@ -736,8 +736,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "PL",
-    name: "🇵🇱 Poland",
-    nameFr: "🇵🇱 Pologne",
+    name: "Poland",
+    nameFr: "Pologne",
     continent: "europe",
     emergency: "112",
     agencies: [
@@ -797,8 +797,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "AT",
-    name: "🇦🇹 Austria",
-    nameFr: "🇦🇹 Autriche",
+    name: "Austria",
+    nameFr: "Autriche",
     continent: "europe",
     emergency: "133 (police) / 112",
     agencies: [
@@ -857,8 +857,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "DK",
-    name: "🇩🇰 Denmark",
-    nameFr: "🇩🇰 Danemark",
+    name: "Denmark",
+    nameFr: "Danemark",
     continent: "europe",
     emergency: "112",
     agencies: [
@@ -917,8 +917,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "FI",
-    name: "🇫🇮 Finland",
-    nameFr: "🇫🇮 Finlande",
+    name: "Finland",
+    nameFr: "Finlande",
     continent: "europe",
     emergency: "112",
     agencies: [
@@ -980,8 +980,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   /* ------------------------------------------------------------------ */
   {
     code: "US",
-    name: "🇺🇸 United States",
-    nameFr: "🇺🇸 États-Unis",
+    name: "United States",
+    nameFr: "États-Unis",
     continent: "north-america",
     emergency: "911",
     agencies: [
@@ -1040,8 +1040,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "CA",
-    name: "🇨🇦 Canada",
-    nameFr: "🇨🇦 Canada",
+    name: "Canada",
+    nameFr: "Canada",
     continent: "north-america",
     emergency: "911",
     agencies: [
@@ -1101,8 +1101,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "MX",
-    name: "🇲🇽 Mexico",
-    nameFr: "🇲🇽 Mexique",
+    name: "Mexico",
+    nameFr: "Mexique",
     continent: "north-america",
     emergency: "911",
     agencies: [
@@ -1154,8 +1154,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   /* ------------------------------------------------------------------ */
   {
     code: "BR",
-    name: "🇧🇷 Brazil",
-    nameFr: "🇧🇷 Brésil",
+    name: "Brazil",
+    nameFr: "Brésil",
     continent: "south-america",
     emergency: "190",
     agencies: [
@@ -1214,8 +1214,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "AR",
-    name: "🇦🇷 Argentina",
-    nameFr: "🇦🇷 Argentine",
+    name: "Argentina",
+    nameFr: "Argentine",
     continent: "south-america",
     emergency: "911",
     agencies: [
@@ -1264,8 +1264,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "CL",
-    name: "🇨🇱 Chile",
-    nameFr: "🇨🇱 Chili",
+    name: "Chile",
+    nameFr: "Chili",
     continent: "south-america",
     emergency: "133",
     agencies: [
@@ -1314,8 +1314,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "CO",
-    name: "🇨🇴 Colombia",
-    nameFr: "🇨🇴 Colombie",
+    name: "Colombia",
+    nameFr: "Colombie",
     continent: "south-america",
     emergency: "123",
     agencies: [
@@ -1364,8 +1364,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "PE",
-    name: "🇵🇪 Peru",
-    nameFr: "🇵🇪 Pérou",
+    name: "Peru",
+    nameFr: "Pérou",
     continent: "south-america",
     emergency: "105",
     agencies: [
@@ -1417,8 +1417,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   /* ------------------------------------------------------------------ */
   {
     code: "IN",
-    name: "🇮🇳 India",
-    nameFr: "🇮🇳 Inde",
+    name: "India",
+    nameFr: "Inde",
     continent: "asia",
     emergency: "112",
     agencies: [
@@ -1468,8 +1468,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "CN",
-    name: "🇨🇳 China",
-    nameFr: "🇨🇳 Chine",
+    name: "China",
+    nameFr: "Chine",
     continent: "asia",
     emergency: "110",
     agencies: [
@@ -1528,8 +1528,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "JP",
-    name: "🇯🇵 Japan",
-    nameFr: "🇯🇵 Japon",
+    name: "Japan",
+    nameFr: "Japon",
     continent: "asia",
     emergency: "110",
     agencies: [
@@ -1590,8 +1590,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "SG",
-    name: "🇸🇬 Singapore",
-    nameFr: "🇸🇬 Singapour",
+    name: "Singapore",
+    nameFr: "Singapour",
     continent: "asia",
     emergency: "999",
     agencies: [
@@ -1652,8 +1652,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "MY",
-    name: "🇲🇾 Malaysia",
-    nameFr: "🇲🇾 Malaisie",
+    name: "Malaysia",
+    nameFr: "Malaisie",
     continent: "asia",
     emergency: "999",
     agencies: [
@@ -1713,8 +1713,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "ID",
-    name: "🇮🇩 Indonesia",
-    nameFr: "🇮🇩 Indonésie",
+    name: "Indonesia",
+    nameFr: "Indonésie",
     continent: "asia",
     emergency: "110 / 112",
     agencies: [
@@ -1763,8 +1763,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "PH",
-    name: "🇵🇭 Philippines",
-    nameFr: "🇵🇭 Philippines",
+    name: "Philippines",
+    nameFr: "Philippines",
     continent: "asia",
     emergency: "911",
     agencies: [
@@ -1823,8 +1823,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "TH",
-    name: "🇹🇭 Thailand",
-    nameFr: "🇹🇭 Thaïlande",
+    name: "Thailand",
+    nameFr: "Thaïlande",
     continent: "asia",
     emergency: "191",
     agencies: [
@@ -1873,8 +1873,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "PK",
-    name: "🇵🇰 Pakistan",
-    nameFr: "🇵🇰 Pakistan",
+    name: "Pakistan",
+    nameFr: "Pakistan",
     continent: "asia",
     emergency: "15",
     agencies: [
@@ -1924,8 +1924,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "BD",
-    name: "🇧🇩 Bangladesh",
-    nameFr: "🇧🇩 Bangladesh",
+    name: "Bangladesh",
+    nameFr: "Bangladesh",
     continent: "asia",
     emergency: "999",
     agencies: [
@@ -1984,8 +1984,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "KR",
-    name: "🇰🇷 South Korea",
-    nameFr: "🇰🇷 Corée du Sud",
+    name: "South Korea",
+    nameFr: "Corée du Sud",
     continent: "asia",
     emergency: "112",
     agencies: [
@@ -2038,8 +2038,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   /* ------------------------------------------------------------------ */
   {
     code: "AE",
-    name: "🇦🇪 United Arab Emirates",
-    nameFr: "🇦🇪 Émirats arabes unis",
+    name: "United Arab Emirates",
+    nameFr: "Émirats arabes unis",
     continent: "middle-east",
     emergency: "999",
     agencies: [
@@ -2089,8 +2089,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "SA",
-    name: "🇸🇦 Saudi Arabia",
-    nameFr: "🇸🇦 Arabie saoudite",
+    name: "Saudi Arabia",
+    nameFr: "Arabie saoudite",
     continent: "middle-east",
     emergency: "999",
     agencies: [
@@ -2149,8 +2149,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "QA",
-    name: "🇶🇦 Qatar",
-    nameFr: "🇶🇦 Qatar",
+    name: "Qatar",
+    nameFr: "Qatar",
     continent: "middle-east",
     emergency: "999",
     agencies: [
@@ -2199,8 +2199,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "IL",
-    name: "🇮🇱 Israel",
-    nameFr: "🇮🇱 Israël",
+    name: "Israel",
+    nameFr: "Israël",
     continent: "middle-east",
     emergency: "100",
     agencies: [
@@ -2238,8 +2238,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "JO",
-    name: "🇯🇴 Jordan",
-    nameFr: "🇯🇴 Jordanie",
+    name: "Jordan",
+    nameFr: "Jordanie",
     continent: "middle-east",
     emergency: "911",
     agencies: [
@@ -2280,8 +2280,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   /* ------------------------------------------------------------------ */
   {
     code: "AU",
-    name: "🇦🇺 Australia",
-    nameFr: "🇦🇺 Australie",
+    name: "Australia",
+    nameFr: "Australie",
     continent: "oceania",
     emergency: "000",
     agencies: [
@@ -2340,8 +2340,8 @@ export const DIRECTORY_WORLD: DirectoryCountry[] = [
   },
   {
     code: "NZ",
-    name: "🇳🇿 New Zealand",
-    nameFr: "🇳🇿 Nouvelle-Zélande",
+    name: "New Zealand",
+    nameFr: "Nouvelle-Zélande",
     continent: "oceania",
     emergency: "111",
     agencies: [

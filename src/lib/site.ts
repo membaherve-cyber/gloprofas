@@ -55,14 +55,6 @@ export const NAV_ITEMS = [
   { key: "contact", href: "/contact" },
 ] as const;
 
-/** Resource Centre headline counts (kept lightweight for the client bundle). */
-export const RC_STATS = {
-  articles: 36,
-  checklists: 15,
-  videos: 13,
-  countries: 67,
-} as const;
-
 /** Mapped generated topical images for the 12 scam categories. */
 export const CATEGORY_IMAGES: Record<string, string> = {
   phishing: "/images/gen/scam-phishing.jpg",

@@ -2,14 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import ZAI from "z-ai-web-dev-sdk";
 import { rateLimit, limited, cleanText } from "@/lib/server/api-helpers";
 import { ZITE_CONTENT } from "@/lib/content/zite-data";
+import { ARTICLES } from "@/lib/content/resource-centre";
 
 /**
- * POST /api/assistant — Jarvis, the GLOPROFAS AI assistant.
+ * POST /api/assistant — Oskie, the GLOPROFAS AI assistant.
  * Server-side LLM (z-ai-web-dev-sdk) grounded in GLOPROFAS published content.
  * Responsible educational guidance only; graceful deterministic fallback.
  */
 
-const SYSTEM_PROMPT = `You are Jarvis, the GLOPROFAS AI Assistant. GLOPROFAS (Global Programme for the Fight Against Scams) is an independent, not-for-profit anti-scam awareness and fraud-prevention initiative focused on Cameroon, Africa and international audiences.
+const SYSTEM_PROMPT = `You are Oskie, the GLOPROFAS AI Assistant. GLOPROFAS (Global Programme for the Fight Against Scams) is an independent, not-for-profit anti-scam awareness and fraud-prevention initiative focused on Cameroon, Africa and international audiences.
 
 Your role: help visitors understand different types of scams, scam prevention practices, suspicious messages and activities, digital safety, available GLOPROFAS resources, and how to report suspected scams.
 
@@ -92,6 +93,22 @@ function searchContent(query: string): GroundingHit[] {
       });
     }
   }
+  for (const a of ARTICLES) {
+    const hay = normalise(
+      `${a.title.en} ${a.title.fr} ${a.summary.en} ${a.summary.fr} ${a.what.en} ${a.what.fr}`
+    );
+    const score = tokens.reduce((acc, t) => acc + (hay.includes(t) ? 1 : 0), 0);
+    if (score > 0) {
+      hits.push({
+        hit: {
+          title: a.title.en,
+          href: `/resources/practical-tools/${a.slug}`,
+          text: `${a.summary.en} ${a.what.en}`,
+        },
+        score,
+      });
+    }
+  }
 
   return hits
     .sort((x, y) => y.score - x.score)
@@ -101,15 +118,34 @@ function searchContent(query: string): GroundingHit[] {
 
 /* ---------- deterministic fallback ---------- */
 
-function localAnswer(message: string, hits: GroundingHit[]): string {
+function localAnswer(message: string, hits: GroundingHit[], locale: "en" | "fr"): string {
   const m = message.toLowerCase();
   const money =
     /(sent|send|paid|pay|transfer|virement|envoy|payé|argent|money|lost|perdu)/.test(m);
   const top = hits[0];
   const parts: string[] = [];
-  parts.push(
-    "Here is what GLOPROFAS guidance says:"
-  );
+
+  if (locale === "fr") {
+    parts.push("Voici ce que dit l’accompagnement GLOPROFAS :");
+    if (top) {
+      parts.push(`\n${top.title} — ${top.text.slice(0, 260)}`);
+    } else {
+      parts.push(
+        "\nLa plupart des arnaques suivent le même schéma : un contact inattendu, une pression pour agir vite, une demande de paiement ou de code, puis le silence. Faites une pause et vérifiez par un canal officiel que vous connaissez déjà."
+      );
+    }
+    if (money) {
+      parts.push(
+        "\nSi vous avez déjà envoyé de l’argent : contactez immédiatement votre banque ou votre opérateur de mobile money par son numéro officiel, changez les mots de passe partagés et conservez toutes les preuves (captures d’écran, numéros, reçus). Ne payez jamais de frais pour « récupérer » des fonds — c’est souvent une seconde arnaque."
+      );
+    }
+    parts.push(
+      "\nVous pouvez signaler ce qui s’est passé de manière confidentielle sur la page Signaler une arnaque. Ceci est un accompagnement éducatif général, pas un conseil juridique ou financier."
+    );
+    return parts.join(" ");
+  }
+
+  parts.push("Here is what GLOPROFAS guidance says:");
   if (top) {
     parts.push(`\n${top.title} — ${top.text.slice(0, 260)}`);
   } else {
@@ -164,7 +200,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (!answer) {
-      answer = localAnswer(message, hits);
+      answer = localAnswer(message, hits, locale);
     }
 
     return NextResponse.json(

@@ -25,10 +25,10 @@ export function Footer() {
 
   const resourceLinks = [
     { href: "/resources", label: locale === "fr" ? "Centre de ressources" : "Resource Centre" },
-    { href: "/resources/practical-tools", label: locale === "fr" ? "Outils pratiques (36 guides)" : "Practical Tools (36 guides)" },
+    { href: "/resources/practical-tools", label: locale === "fr" ? "Outils pratiques" : "Practical Tools" },
     { href: "/resources/knowledge-tools", label: locale === "fr" ? "Savoir et outils" : "Knowledge & Tools" },
     { href: "/resources/video-learning", label: locale === "fr" ? "Centre vidéo" : "Video Learning Centre" },
-    { href: "/resources/reporting-channels", label: locale === "fr" ? "Canaux de signalement (67 pays)" : "Reporting Channels (67 countries)" },
+    { href: "/resources/reporting-channels", label: locale === "fr" ? "Canaux de signalement" : "Reporting Channels" },
   ];
 
   return (

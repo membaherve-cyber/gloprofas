@@ -1,0 +1,60 @@
+=== GROUP: /images/context/article-business-controls.jpg /images/context/article-payment-pause.jpg /images/context/article-reporting.jpg /images/context/campaign-community.jpg /images/context/campaign-corporate.jpg /images/context/campaign-youth.jpg
+IMG1 | SCORE 95 | PASS | artifacts: none — natural skin texture, correct hands/anatomy, coherent office scene
+IMG2 | SCORE 94 | PASS | artifacts: blank white phone screen (unusual but plausible), otherwise realistic hands and market depth
+IMG3 | SCORE 96 | PASS | artifacts: none — believable lighting, fabric, and writing hand pose
+IMG4 | SCORE 93 | PASS | artifacts: none — crowded scene with consistent faces, natural crowd variety, coherent room
+IMG5 | SCORE 92 | PASS | artifacts: whiteboard diagram is generic/empty (minor), otherwise correct anatomy and believable people
+IMG6 | SCORE 95 | PASS | artifacts: none — natural gestures, correct hands, authentic documentary feel
+=== GROUP: /images/context/contactless-card-terminal.jpg /images/context/currency-exchange-desk.jpg /images/context/executive-phone-laptop.jpg /images/context/home-online-shopping.jpg /images/context/intro-phone.jpg /images/context/notebook-smartphone-notes.jpg
+IMG1 | SCORE 86 | FAIL | artifacts: mushy keypad with fake/no-legible button labels, slightly plastic terminal body, card edge unnaturally clean/floating
+IMG2 | SCORE 84 | FAIL | artifacts: gibberish/semi-gibberish interior signage ("ney CHAIGE" crop aside, poster text incoherent), odd mannequin-like figure with cane, AI-generated money posters, unnatural glass reflections
+IMG3 | SCORE 87 | FAIL | artifacts: thumb wrapping phone unrealistically, fingers hidden behind device, slightly waxy/over-smooth skin, airbrushed background, keyboard keys ill-defined
+IMG4 | SCORE 88 | FAIL | artifacts: plastic/waxy skin sheen, fingernails slightly wrong, tape/toothless cardboard texture too clean, odd blank label patch on box
+IMG5 | SCORE 92 | PASS | artifacts: none significant; convincing skin texture, correct anatomy, natural lighting
+IMG6 | SCORE 78 | FAIL | artifacts: gibberish mirrored/fake UI text on phone screen, awkward pen grip with ambiguous finger anatomy, smudged pen tip, inconsistent shadows
+=== GROUP: /images/context/payment-counter.jpg /images/context/person-finance-phone.jpg /images/context/person-phone-desk.jpg /images/context/remote-work-call.jpg /images/context/team-laptops-office.jpg /images/context/urban-professional.jpg
+IMG1 | SCORE 88 | FAIL | artifacts: keypad buttons slightly soft/uncrisp text, plastic-smooth terminal casing, overly clean stock staging
+IMG2 | SCORE 92 | PASS | artifacts: minor: phone screen text tiny/illegible blur (natural), slight banding in bokeh background
+IMG3 | SCORE 93 | PASS | artifacts: minor: laptop screen shows mushy texture, notebook cover text indistinct, otherwise anatomically clean
+IMG4 | SCORE 91 | PASS | artifacts: minor: earbud insertion slightly ambiguous, background man's laptop edge soft; hands and faces correct
+IMG5 | SCORE 94 | PASS | artifacts: minor: middle subject's tablet/pen grip slightly awkward; natural skin texture and consistent lighting
+IMG6 | SCORE 90 | PASS | artifacts: borderline: laptop rear logo is an odd elongated oval (brand-free render artifact), phone screen edges soft, otherwise realistic skin and hands
+=== GROUP: /images/gen/about-workshop.jpg /images/gen/article-cat-business.jpg /images/gen/article-cat-emerging.jpg /images/gen/article-cat-money.jpg /images/gen/article-cat-online.jpg /images/gen/article-cat-social.jpg
+IMG1 | SCORE 82 | FAIL | artifacts: waxy/plastic skin on foreground heads, hair over-rendered, overly uniform bokeh crowd, smooth sheen on shoulders suggesting AI generation
+IMG2 | SCORE 93 | PASS | artifacts: none significant; authentic older DSLR stock look, realistic hands, natural skin texture
+IMG3 | SCORE 79 | FAIL | artifacts: deformed laptop hinge/trackpad geometry, odd glowing oval logo, plastic-smooth skin, tie lanyard blends unnaturally, hands slightly waxy
+IMG4 | SCORE 94 | PASS | artifacts: none significant; gritty realistic market scene, natural skin texture, plausible currency notes
+IMG5 | SCORE 78 | FAIL | artifacts: over-smooth waxy skin, over-rendered hairline/facial hair, phone edges slightly warped, blurred background crowd looks AI-generated
+IMG6 | SCORE 92 | PASS | artifacts: none significant; realistic skin, braids, hands and glasses consistent with genuine photo
+=== GROUP: /images/gen/campaign-school.jpg /images/gen/campaign-seminar.jpg /images/gen/check-verify.jpg /images/gen/family-impact.jpg /images/gen/hero-main.jpg /images/gen/knowledge-tools.jpg
+IMG1 | SCORE 91 | PASS | artifacts: minor over-smoothing on faces, boy's raised hand finger spacing slightly stiff
+IMG2 | SCORE 93 | PASS | artifacts: presenter's clasped hands slightly mushy due to blur, otherwise clean
+IMG3 | SCORE 88 | FAIL | artifacts: phone screen shows smudged pseudo-content instead of a real display, slight over-smoothed skin texture
+IMG4 | SCORE 89 | FAIL | artifacts: waxy/plastic skin on both subjects, boy's hands resting on tablet slightly fused/unnatural, background kitchen items softly warped
+IMG5 | SCORE 90 | PASS | artifacts: mild over-smoothing on cheek, denim texture slightly synthetic; hands on phone acceptable
+IMG6 | SCORE 94 | PASS | artifacts: handwriting semi-gibberish but consistent with shallow depth-of-field blur; no anatomical issues
+=== GROUP: /images/gen/report-scene.jpg /images/gen/reporting-directory.jpg /images/gen/resource-centre-hero.jpg /images/gen/scam-advance-fee.jpg /images/gen/scam-business.jpg /images/gen/scam-crypto.jpg
+IMG1 | SCORE 84 | FAIL | artifacts: over-smoothed facial texture, slightly waxy skin, blur/bokeh inconsistent on laptop logo area, phone screen unnaturally blank
+IMG2 | SCORE 88 | FAIL | artifacts: pen grip slightly odd, fabric pattern shows AI-like warping, over-clean skin, faint plastic look on notebook edges
+IMG3 | SCORE 91 | PASS | artifacts: minor gibberish on phone app UI text, otherwise realistic
+IMG4 | SCORE 82 | FAIL | artifacts: hand/finger anatomy slightly off at cheek, over-smooth skin, background monitors show fake/gibberish screen content, subtle waxy sheen
+IMG5 | SCORE 78 | FAIL | artifacts: payment terminal buttons look garbled/AI-generated, ring finger on phone hand oddly bent, over-saturated commercial retouching, slightly plastic skin
+IMG6 | SCORE 74 | FAIL | artifacts: phone screen impossibly reflecting with odd gloss, hands slightly waxy with muddled knuckle detail, over-smoothed face, AI-typical creamy skin rendering
+=== GROUP: /images/gen/scam-impersonation.jpg /images/gen/scam-investment.jpg /images/gen/scam-job.jpg /images/gen/scam-loan.jpg /images/gen/scam-mobile-money.jpg /images/gen/scam-phishing.jpg
+IMG1 | SCORE 88 | FAIL | artifacts: slight over-smoothing on forehead vs. sharp wrinkles elsewhere, cord/hand area mildly smeared, over-polished editorial look
+IMG2 | SCORE 89 | FAIL | artifacts: mild waxy skin sheen, background monitor/tablet geometry ambiguous, teeth slightly uniform/plastic
+IMG3 | SCORE 86 | FAIL | artifacts: phone edge blends oddly into fingers, laptop screen gibberish faint UI, fabric pattern slightly repetitive, faint white dots on cheek
+IMG4 | SCORE 90 | PASS | artifacts: minor over-smoothing on arms, background clutter softly melted but plausible
+IMG5 | SCORE 92 | PASS | artifacts: slight hand/finger elongation, bokeh very smooth but acceptable
+IMG6 | SCORE 87 | FAIL | artifacts: fingers gripping phone slightly fused/warped, over-smooth skin, background pedestrians blurred into blobs, storefront geometry soft
+=== GROUP: /images/gen/scam-romance.jpg /images/gen/scam-shopping.jpg /images/gen/victim-guide.jpg /images/gen/victim-support.jpg /images/gen/video-learning.jpg /images/zite/img_2jsmyLqQWbvqkX0_.jpg
+IMG1 | SCORE 84 | FAIL | artifacts: over-smoothed skin, phone-to-hand contact slightly fused, background blur looks synthetic, waxy highlights on face
+IMG2 | SCORE 82 | FAIL | artifacts: overly clean/soft rendering, fingers curled unnaturally at chin, phone on table has blank fake screen, waxy skin
+IMG3 | SCORE 85 | FAIL | artifacts: phone screen blank/glowing unnaturally (fake-mockup look), thumb joint slightly warped, background bokeh too uniform/painterly
+IMG4 | SCORE 80 | FAIL | artifacts: overlapping distorted fingers on keyboard, faces too symmetrical/similar, over-smoothed skin, airbrushed mono-look
+IMG5 | SCORE 93 | PASS | artifacts: none significant; authentic candid documentary look, natural skin, plausible text on lanyards, realistic messy lighting
+IMG6 | SCORE 83 | FAIL | artifacts: elongated/warped fingers on hand, phone screen rendered blank, books stack slightly melting, over-smooth facial texture
+=== GROUP: /images/zite/img_9FEr6sokBRFWKAW9.jpg /images/zite/img_XRXUCAiJJ46mAuVh.jpg
+IMG1 | SCORE 95 | PASS | artifacts: none — authentic documentary subway scene; Korean signage legible and coherent, natural skin texture, correct hands and anatomy, believable mixed lighting
+IMG2 | SCORE 72 | FAIL | artifacts: gibberish/blurry fake banknote details, phone button layout illogical and screen seam suspicious, slightly over-smooth skin on hands, overly cinematic color grading, AI-typical shallow-depth "render" feel
+DONE

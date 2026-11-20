@@ -221,7 +221,7 @@
           "highlights": [
             "Vérification instantanée de numéros, liens et messages",
             "Croisement avec les alertes régionales actives",
-            "Analyse des signaux d’alerte assistée par Jarvis"
+            "Analyse des signaux d’alerte assistée par Oskie"
           ],
           "cta": "Vérifier une arnaque",
           "href": "/check"
@@ -645,10 +645,10 @@
   },
   "assistant": {
     "name": "Assistant IA GLOPROFAS",
-    "open": "Ouvrir l’assistant IA GLOPROFAS",
+    "open": "Ouvrir Oskie — Assistant IA GLOPROFAS",
     "close": "Fermer l’assistant",
     "clear": "Effacer la conversation",
-    "welcome": "Bonjour. Je peux expliquer le fonctionnement des arnaques courantes, vous aider à vérifier un message suspect et vous orienter vers les conseils GLOPROFAS adaptés. Je ne peux pas récupérer de fonds ni confirmer qu’une personne ou une entreprise est légitime.",
+    "welcome": "Bonjour, je suis Oskie. Je peux expliquer le fonctionnement des arnaques courantes, vous aider à vérifier un message suspect et vous orienter vers les conseils GLOPROFAS adaptés. Je ne peux pas récupérer de fonds ni confirmer qu’une personne ou une entreprise est légitime.",
     "suggestions": [
       "Ce message est-il une arnaque ?",
       "Comment protéger mon compte de monnaie électronique ?",

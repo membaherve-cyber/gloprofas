@@ -64,7 +64,7 @@ export const ZITE_CONTENT = {
       "slug": "phishing",
       "icon": "mail-warning",
       "featured": true,
-      "imageUrl": "/images/zite/img_BPedTDWHGQzb-FZp.jpg",
+      "imageUrl": "/images/gen/scam-phishing.jpg",
       "title": {
         "en": "Phishing",
         "fr": "Hameçonnage"
@@ -129,7 +129,7 @@ export const ZITE_CONTENT = {
       "slug": "mobile-money-scams",
       "icon": "smartphone",
       "featured": true,
-      "imageUrl": "/images/zite/img_XRXUCAiJJ46mAuVh.jpg",
+      "imageUrl": "/images/gen/scam-momo-notification.jpg",
       "title": {
         "en": "Mobile money fraud",
         "fr": "Fraude au mobile money"
@@ -194,7 +194,7 @@ export const ZITE_CONTENT = {
       "slug": "investment-scams",
       "icon": "trending-up",
       "featured": true,
-      "imageUrl": "/images/zite/img_2jsmyLqQWbvqkX0_.jpg",
+      "imageUrl": "/images/gen/scam-crypto-recovery.jpg",
       "title": {
         "en": "Investment scams",
         "fr": "Arnaques à l’investissement"
@@ -259,7 +259,7 @@ export const ZITE_CONTENT = {
       "slug": "employment-scams",
       "icon": "briefcase",
       "featured": true,
-      "imageUrl": "/images/zite/img_RNp07pYUDwb_i1sA.jpg",
+      "imageUrl": "/images/gen/scam-job.jpg",
       "title": {
         "en": "Fake job offers",
         "fr": "Fausses offres d’emploi"
@@ -324,7 +324,7 @@ export const ZITE_CONTENT = {
       "slug": "romance-scams",
       "icon": "heart-crack",
       "featured": false,
-      "imageUrl": "/images/zite/img_JX8TbpNwVvMe9H2u.jpg",
+      "imageUrl": "/images/gen/scam-romance.jpg",
       "title": {
         "en": "Romance scams",
         "fr": "Arnaques sentimentales"
@@ -389,7 +389,7 @@ export const ZITE_CONTENT = {
       "slug": "online-shopping-scams",
       "icon": "shopping-bag",
       "featured": false,
-      "imageUrl": "/images/zite/img_2VpUb4pq-e8YvIr-.jpg",
+      "imageUrl": "/images/gen/scam-shopping.jpg",
       "title": {
         "en": "Online shopping scams",
         "fr": "Arnaques aux achats en ligne"
@@ -454,7 +454,7 @@ export const ZITE_CONTENT = {
       "slug": "cryptocurrency-scams",
       "icon": "bitcoin",
       "featured": false,
-      "imageUrl": "/images/zite/img_S-KECSoRY5SCp7RJ.jpg",
+      "imageUrl": "/images/gen/scam-crypto.jpg",
       "title": {
         "en": "Cryptocurrency scams",
         "fr": "Arnaques aux cryptomonnaies"
@@ -519,7 +519,7 @@ export const ZITE_CONTENT = {
       "slug": "impersonation-scams",
       "icon": "user-x",
       "featured": false,
-      "imageUrl": "/images/zite/img_26twh5qIAbvzqRdl.jpg",
+      "imageUrl": "/images/gen/scam-impersonation.jpg",
       "title": {
         "en": "Impersonation scams",
         "fr": "Usurpation d’identité"
@@ -584,7 +584,7 @@ export const ZITE_CONTENT = {
       "slug": "advance-fee-scams",
       "icon": "hand-coins",
       "featured": false,
-      "imageUrl": "/images/zite/img_vjmeNsjN4mRiRXTp.jpg",
+      "imageUrl": "/images/gen/scam-advance-fee.jpg",
       "title": {
         "en": "Advance-fee scams",
         "fr": "Arnaques aux avances de frais"
@@ -649,7 +649,7 @@ export const ZITE_CONTENT = {
       "slug": "fake-loan-scams",
       "icon": "landmark",
       "featured": false,
-      "imageUrl": "/images/zite/img_9nFXPoNmoeCwAfJE.jpg",
+      "imageUrl": "/images/gen/scam-loan.jpg",
       "title": {
         "en": "Fake loan scams",
         "fr": "Faux prêts"
@@ -979,7 +979,7 @@ export const ZITE_CONTENT = {
       },
       "author": "GLOPROFAS Editorial",
       "date": "2026-10-18",
-      "imageUrl": "/images/zite/img_wFZrRplDj0fdHgRB.jpg"
+      "imageUrl": "/images/gen/article-cat-business.jpg"
     }
   ],
   "resources": [
@@ -997,7 +997,7 @@ export const ZITE_CONTENT = {
       "language": "EN/FR",
       "fileSize": "1.2 MB",
       "featured": true,
-      "imageUrl": "/images/zite/img_k_g-Bue4ibKanRTu.jpg"
+      "imageUrl": "/images/gen/knowledge-tools.jpg"
     },
     {
       "id": "008242c5-654a-45d7-abc6-7ee6bd1db2a3",
@@ -1147,8 +1147,8 @@ export const ZITE_CONTENT = {
     },
     {
       "key": "strip.cta",
-      "en": "Check it with Jarvis",
-      "fr": "Vérifier avec Jarvis"
+      "en": "Check it with Oskie",
+      "fr": "Vérifier avec Oskie"
     },
     {
       "key": "intro.eyebrow",

@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Jarvis — GLOPROFAS AI Assistant floating widget.
+ * Oskie — GLOPROFAS AI Assistant floating widget.
  * Calls POST /api/assistant (server-side LLM with GLOPROFAS content grounding).
  * Responsible educational guidance only.
  */
@@ -122,7 +122,7 @@ export function AssistantLauncher() {
       {open ? (
         <div
           role="dialog"
-          aria-label="Jarvis — GLOPROFAS AI Assistant"
+          aria-label="Oskie — GLOPROFAS AI Assistant"
           className="fixed bottom-24 right-5 z-[60] flex h-[min(560px,calc(100dvh-140px))] w-[min(400px,calc(100vw-40px))] flex-col overflow-hidden rounded-2xl bg-white shadow-e3 ring-1 ring-line-200"
         >
           {/* Header */}
@@ -131,7 +131,7 @@ export function AssistantLauncher() {
               <Sparkles size={17} aria-hidden />
             </span>
             <div className="min-w-0 flex-1">
-              <p className="font-heading text-[14.5px] font-bold leading-tight">Jarvis</p>
+              <p className="font-heading text-[14.5px] font-bold leading-tight">Oskie</p>
               <p className="truncate text-[11.5px] text-white/75">{t("assistant.name")}</p>
             </div>
             <button

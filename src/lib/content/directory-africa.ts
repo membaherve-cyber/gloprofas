@@ -23,8 +23,8 @@ import type { DirectoryCountry } from "./resource-centre-types";
 export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   {
     code: "CM",
-    name: "🇨🇲 Cameroon",
-    nameFr: "🇨🇲 Cameroun",
+    name: "Cameroon",
+    nameFr: "Cameroun",
     continent: "africa",
     priority: true,
     emergency: "117",
@@ -74,8 +74,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "NG",
-    name: "🇳🇬 Nigeria",
-    nameFr: "🇳🇬 Nigéria",
+    name: "Nigeria",
+    nameFr: "Nigéria",
     continent: "africa",
     priority: true,
     emergency: "112",
@@ -135,8 +135,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "GH",
-    name: "🇬🇭 Ghana",
-    nameFr: "🇬🇭 Ghana",
+    name: "Ghana",
+    nameFr: "Ghana",
     continent: "africa",
     priority: true,
     emergency: "191",
@@ -197,8 +197,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "ZA",
-    name: "🇿🇦 South Africa",
-    nameFr: "🇿🇦 Afrique du Sud",
+    name: "South Africa",
+    nameFr: "Afrique du Sud",
     continent: "africa",
     priority: true,
     emergency: "10111",
@@ -259,8 +259,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "KE",
-    name: "🇰🇪 Kenya",
-    nameFr: "🇰🇪 Kenya",
+    name: "Kenya",
+    nameFr: "Kenya",
     continent: "africa",
     priority: true,
     emergency: "999 / 112",
@@ -321,8 +321,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "UG",
-    name: "🇺🇬 Uganda",
-    nameFr: "🇺🇬 Ouganda",
+    name: "Uganda",
+    nameFr: "Ouganda",
     continent: "africa",
     priority: true,
     emergency: "999 / 112",
@@ -383,8 +383,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "TZ",
-    name: "🇹🇿 Tanzania",
-    nameFr: "🇹🇿 Tanzanie",
+    name: "Tanzania",
+    nameFr: "Tanzanie",
     continent: "africa",
     priority: true,
     agencies: [
@@ -433,8 +433,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "RW",
-    name: "🇷🇼 Rwanda",
-    nameFr: "🇷🇼 Rwanda",
+    name: "Rwanda",
+    nameFr: "Rwanda",
     continent: "africa",
     priority: true,
     emergency: "112",
@@ -485,8 +485,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "ET",
-    name: "🇪🇹 Ethiopia",
-    nameFr: "🇪🇹 Éthiopie",
+    name: "Ethiopia",
+    nameFr: "Éthiopie",
     continent: "africa",
     priority: true,
     emergency: "991 / 112",
@@ -525,8 +525,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "SN",
-    name: "🇸🇳 Senegal",
-    nameFr: "🇸🇳 Sénégal",
+    name: "Senegal",
+    nameFr: "Sénégal",
     continent: "africa",
     priority: true,
     emergency: "17",
@@ -576,8 +576,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "CI",
-    name: "🇨🇮 Côte d'Ivoire",
-    nameFr: "🇨🇮 Côte d’Ivoire",
+    name: "Côte d'Ivoire",
+    nameFr: "Côte d’Ivoire",
     continent: "africa",
     priority: true,
     agencies: [
@@ -616,8 +616,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "CD",
-    name: "🇨🇩 DR Congo",
-    nameFr: "🇨🇩 RD Congo",
+    name: "DR Congo",
+    nameFr: "RD Congo",
     continent: "africa",
     priority: true,
     agencies: [
@@ -655,8 +655,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "MA",
-    name: "🇲🇦 Morocco",
-    nameFr: "🇲🇦 Maroc",
+    name: "Morocco",
+    nameFr: "Maroc",
     continent: "africa",
     priority: true,
     emergency: "19 / 112",
@@ -706,8 +706,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "EG",
-    name: "🇪🇬 Egypt",
-    nameFr: "🇪🇬 Égypte",
+    name: "Egypt",
+    nameFr: "Égypte",
     continent: "africa",
     priority: true,
     emergency: "122",
@@ -768,8 +768,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "DZ",
-    name: "🇩🇿 Algeria",
-    nameFr: "🇩🇿 Algérie",
+    name: "Algeria",
+    nameFr: "Algérie",
     continent: "africa",
     priority: true,
     emergency: "17",
@@ -808,8 +808,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "TN",
-    name: "🇹🇳 Tunisia",
-    nameFr: "🇹🇳 Tunisie",
+    name: "Tunisia",
+    nameFr: "Tunisie",
     continent: "africa",
     priority: true,
     emergency: "197",
@@ -859,8 +859,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "ZM",
-    name: "🇿🇲 Zambia",
-    nameFr: "🇿🇲 Zambie",
+    name: "Zambia",
+    nameFr: "Zambie",
     continent: "africa",
     priority: true,
     emergency: "999",
@@ -911,8 +911,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "ZW",
-    name: "🇿🇼 Zimbabwe",
-    nameFr: "🇿🇼 Zimbabwe",
+    name: "Zimbabwe",
+    nameFr: "Zimbabwe",
     continent: "africa",
     priority: true,
     emergency: "99",
@@ -963,8 +963,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "BW",
-    name: "🇧🇼 Botswana",
-    nameFr: "🇧🇼 Botswana",
+    name: "Botswana",
+    nameFr: "Botswana",
     continent: "africa",
     priority: true,
     emergency: "999",
@@ -1015,8 +1015,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "BJ",
-    name: "🇧🇯 Benin",
-    nameFr: "🇧🇯 Bénin",
+    name: "Benin",
+    nameFr: "Bénin",
     continent: "africa",
     priority: true,
     emergency: "117",
@@ -1066,8 +1066,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "BF",
-    name: "🇧🇫 Burkina Faso",
-    nameFr: "🇧🇫 Burkina Faso",
+    name: "Burkina Faso",
+    nameFr: "Burkina Faso",
     continent: "africa",
     priority: true,
     emergency: "17",
@@ -1128,8 +1128,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "TG",
-    name: "🇹🇬 Togo",
-    nameFr: "🇹🇬 Togo",
+    name: "Togo",
+    nameFr: "Togo",
     continent: "africa",
     priority: true,
     emergency: "117",
@@ -1168,8 +1168,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "GA",
-    name: "🇬🇦 Gabon",
-    nameFr: "🇬🇦 Gabon",
+    name: "Gabon",
+    nameFr: "Gabon",
     continent: "africa",
     priority: true,
     agencies: [
@@ -1208,8 +1208,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "CG",
-    name: "🇨🇬 Republic of the Congo",
-    nameFr: "🇨🇬 République du Congo",
+    name: "Republic of the Congo",
+    nameFr: "République du Congo",
     continent: "africa",
     priority: true,
     emergency: "117",
@@ -1248,8 +1248,8 @@ export const DIRECTORY_AFRICA: DirectoryCountry[] = [
   },
   {
     code: "AO",
-    name: "🇦🇴 Angola",
-    nameFr: "🇦🇴 Angola",
+    name: "Angola",
+    nameFr: "Angola",
     continent: "africa",
     priority: true,
     agencies: [

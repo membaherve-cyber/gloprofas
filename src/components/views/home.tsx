@@ -38,7 +38,7 @@ import {
   ZITE_CONTENT,
   type ZiteCategory,
 } from "@/lib/content/zite-data";
-import { categoryImage, RC_STATS } from "@/lib/site";
+import { categoryImage } from "@/lib/site";
 import {
   Reveal,
   Btn,
@@ -118,7 +118,7 @@ const PILLARS = [
     highlights: [
       { en: "Instant phone number, URL & message verification", fr: "Vérification instantanée des numéros, liens et messages" },
       { en: "Cross-referenced with active regional scam alerts", fr: "Recoupement avec les alertes régionales actives" },
-      { en: "AI-assisted warning sign analysis with Jarvis", fr: "Analyse des signaux d’alerte assistée par IA avec Jarvis" },
+      { en: "AI-assisted warning sign analysis with Oskie", fr: "Analyse des signaux d’alerte assistée par IA avec Oskie" },
     ],
     cta: { en: "Verify a Scam", fr: "Vérifier une arnaque" },
     href: "/check",
@@ -602,13 +602,21 @@ export function HomeView() {
       <section className="on-dark bg-navy-900 py-12">
         <div className="container-g grid gap-8 sm:grid-cols-3">
           <Reveal>
-            <StatCell dark value={cats.length} label={R(L.stats.categories, locale)} />
+            <StatCell dark value="EN · FR" label={R(L.stats.languages, locale)} />
           </Reveal>
           <Reveal delay={90}>
-            <StatCell dark value={RC_STATS.articles + RC_STATS.checklists + RC_STATS.videos} label={R(L.stats.resources, locale)} />
+            <StatCell
+              dark
+              value={fr ? "Gratuit" : "Free"}
+              label={fr ? "Accès sans inscription" : "No account needed"}
+            />
           </Reveal>
           <Reveal delay={180}>
-            <StatCell dark value="2" label={R(L.stats.languages, locale)} />
+            <StatCell
+              dark
+              value={fr ? "Confidentiel" : "Confidential"}
+              label={fr ? "Signalements protégés" : "Protected reporting"}
+            />
           </Reveal>
         </div>
       </section>
@@ -723,25 +731,25 @@ export function HomeView() {
                     href: "/resources/practical-tools",
                     icon: FileText,
                     t: { en: "Practical Tools to Protect Yourself", fr: "Outils pratiques pour vous protéger" },
-                    d: { en: `${RC_STATS.articles} in-depth guides — online, money, social, business and emerging scams`, fr: `${RC_STATS.articles} guides approfondis — en ligne, argent, social, entreprise et arnaques émergentes` },
+                    d: { en: "In-depth guides covering online, money, social, business and emerging scams", fr: "Des guides approfondis : en ligne, argent, social, entreprise et arnaques émergentes" },
                   },
                   {
                     href: "/resources/knowledge-tools",
                     icon: ListChecks,
                     t: { en: "Knowledge & Tools", fr: "Savoir et outils" },
-                    d: { en: `Searchable library and ${RC_STATS.checklists} printable bilingual checklists`, fr: `Bibliothèque de recherche et ${RC_STATS.checklists} listes bilingues à imprimer` },
+                    d: { en: "Searchable knowledge library and printable bilingual checklists", fr: "Bibliothèque de recherche et listes bilingues à imprimer" },
                   },
                   {
                     href: "/resources/video-learning",
                     icon: CirclePlay,
                     t: { en: "Video Learning Centre", fr: "Centre d’apprentissage vidéo" },
-                    d: { en: `${RC_STATS.videos} verified video lessons from trusted institutions`, fr: `${RC_STATS.videos} leçons vidéo vérifiées d’institutions fiables` },
+                    d: { en: "Verified video lessons from trusted institutions", fr: "Leçons vidéo vérifiées d’institutions fiables" },
                   },
                   {
                     href: "/resources/reporting-channels",
                     icon: Globe,
                     t: { en: "Reporting Channels", fr: "Canaux de signalement" },
-                    d: { en: `Official reporting authorities for ${RC_STATS.countries} countries`, fr: `Autorités officielles de signalement pour ${RC_STATS.countries} pays` },
+                    d: { en: "Official reporting authorities across every continent, Africa first", fr: "Autorités officielles de signalement sur tous les continents, l’Afrique en priorité" },
                   },
                 ].map((r, i) => (
                   <Reveal key={r.href} delay={80 + i * 60}>

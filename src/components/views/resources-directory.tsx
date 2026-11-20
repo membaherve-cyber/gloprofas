@@ -2,7 +2,7 @@
 
 /**
  * Reporting Channels — the international directory of official scam and
- * cybercrime reporting authorities (67 countries by continent), the country
+ * cybercrime reporting authorities (all continents, Africa first), the country
  * detail view and the "What to Do If You Have Been Scammed" action guide.
  */
 
@@ -139,7 +139,7 @@ export function DirectoryView() {
             {fr ? "Signaler à GLOPROFAS" : "Report to GLOPROFAS"}
           </Btn>
           <Btn href="/resources/reporting-channels/victim-guide" variant="outlineDark" size="sm">
-            {fr ? "Guide d’urgence en 5 étapes" : "5-step emergency guide"}
+            {fr ? "Guide d’urgence pour victimes" : "Victim emergency guide"}
           </Btn>
         </div>
       </PageHero>
@@ -616,7 +616,7 @@ export function VictimGuideView() {
                     {fr ? "Autorités par pays" : "Authorities by country"}
                   </p>
                   <p className="mt-1.5 text-[12.5px] leading-relaxed text-slatex-300">
-                    {fr ? "67 pays, autorités vérifiées et liens officiels." : "67 countries, verified authorities and official links."}
+                    {fr ? "Tous les continents, autorités vérifiées et liens officiels." : "Every continent, verified authorities and official links."}
                   </p>
                 </A>
                 <A href="/checklists/after-being-scammed-en.pdf" className="card-dark-g p-5">

@@ -221,7 +221,7 @@
           "highlights": [
             "Instant phone number, URL & message verification",
             "Cross-referenced with active regional scam alerts",
-            "AI-assisted warning sign analysis with Jarvis"
+            "AI-assisted warning sign analysis with Oskie"
           ],
           "cta": "Verify a Scam",
           "href": "/check"
@@ -645,10 +645,10 @@
   },
   "assistant": {
     "name": "GLOPROFAS AI Assistant",
-    "open": "Open the GLOPROFAS AI Assistant",
+    "open": "Open Oskie — GLOPROFAS AI Assistant",
     "close": "Close the assistant",
     "clear": "Clear conversation",
-    "welcome": "Hello. I can explain how common scams work, help you check a suspicious message and point you to the right GLOPROFAS guidance. I cannot recover funds or confirm whether a person or business is legitimate.",
+    "welcome": "Hello, I'm Oskie. I can explain how common scams work, help you check a suspicious message and point you to the right GLOPROFAS guidance. I cannot recover funds or confirm whether a person or business is legitimate.",
     "suggestions": [
       "Is this message a scam?",
       "How do I protect my mobile money account?",

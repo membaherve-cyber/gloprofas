@@ -1,0 +1,6 @@
+PASS article-cat-emerging.jpg (current 93)
+PASS check-verify.jpg (93)
+BEST currency-exchange-desk.jpg 84
+BEST executive-phone-laptop.jpg 88
+BEST family-impact.jpg 84
+BEST home-online-shopping.jpg 88

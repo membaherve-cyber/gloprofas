@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Practical Tools to Protect Yourself — searchable article library (36+ guides
+ * Practical Tools to Protect Yourself — searchable article library (guides
  * in five categories) and the full article reading view with the mandated
  * editorial structure, checklists and references.
  */
@@ -15,7 +15,6 @@ import {
   Check,
   CirclePlay,
   ExternalLink,
-  FileDown,
   ListChecks,
   Search,
   ShieldAlert,
@@ -56,16 +55,16 @@ const CATEGORY_LETTER: Record<string, string> = {
 
 const CATEGORY_DESC: Record<string, { en: string; fr: string }> = {
   "online-digital": {
-    en: "Fake websites, phishing, smishing, QR codes, fake support and marketplace fraud.",
-    fr: "Faux sites, hameçonnage, smishing, QR codes, faux supports et fraudes de marketplace.",
+    en: "Fake websites, phishing, smishing, fake support and marketplace fraud.",
+    fr: "Faux sites, hameçonnage, smishing, faux supports et fraudes de marketplace.",
   },
   "money-banking": {
-    en: "Mobile money, banks, SIM swap, cards, investments, crypto and loan scams.",
-    fr: "Mobile money, banques, échange de SIM, cartes, investissements, crypto et faux prêts.",
+    en: "Mobile money, banks, SIM swap, investments, crypto and loan scams.",
+    fr: "Mobile money, banques, échange de SIM, investissements, crypto et faux prêts.",
   },
   "social-engineering": {
-    en: "Romance, impersonation, family emergencies, WhatsApp, social media, jobs and prizes.",
-    fr: "Amour trompeur, usurpation, urgences familiales, WhatsApp, réseaux sociaux, emplois et gains.",
+    en: "Romance, impersonation, WhatsApp, social media, jobs and prizes.",
+    fr: "Amour trompeur, usurpation, WhatsApp, réseaux sociaux, emplois et gains.",
   },
   "business-fraud": {
     en: "Business email compromise, invoice redirection, CEO fraud, procurement fraud.",
@@ -97,12 +96,6 @@ export function ArticleLibraryView() {
     return () => clearTimeout(t);
   }, [q]);
 
-  const counts = useMemo(() => {
-    const map: Record<string, number> = {};
-    for (const a of data?.articles ?? []) map[a.categorySlug] = (map[a.categorySlug] ?? 0) + 1;
-    return map;
-  }, [data]);
-
   const filtered = useMemo(
     () => (data?.articles ?? []).filter((a) => category === "all" || a.categorySlug === category),
     [data, category]
@@ -112,7 +105,7 @@ export function ArticleLibraryView() {
     <>
       <PageHero
         eyebrow={fr ? "Outils pratiques pour vous protéger" : "Practical Tools to Protect Yourself"}
-        title={fr ? "36 guides pour reconnaître, éviter et signaler les arnaques." : "36 guides to recognise, avoid and report scams."}
+        title={fr ? "Des guides pratiques pour reconnaître, éviter et signaler les arnaques." : "Practical guides to recognise, avoid and report scams."}
         lead={
           fr
             ? "Des conseils concrets pour l’Afrique, le Cameroun et le monde entier : chaque guide explique le schéma, les signaux d’alerte, la protection, les réflexes de victime et où signaler."
@@ -158,7 +151,6 @@ export function ArticleLibraryView() {
                 }`}
               >
                 {fr ? "Tous les guides" : "All guides"}
-                <span className="ml-1.5 opacity-70">{data?.count ?? ""}</span>
               </button>
               {CATEGORY_ORDER.map((c) => (
                 <button
@@ -174,7 +166,6 @@ export function ArticleLibraryView() {
                 >
                   <span className="mr-1.5 font-mono text-[11px] opacity-60">{CATEGORY_LETTER[c]}</span>
                   {categoryLabel(c, locale)}
-                  <span className="ml-1.5 opacity-70">{counts[c] ?? ""}</span>
                 </button>
               ))}
             </div>
@@ -368,7 +359,7 @@ export function ArticleDetailView({ slug }: { slug: string }) {
                 </ul>
                 <Btn href="/resources/reporting-channels/victim-guide" variant="signal" size="sm" className="mt-4">
                   <Siren size={14} aria-hidden />
-                  {fr ? "Guide d’urgence : les 5 étapes" : "Emergency guide: the 5 steps"}
+                  {fr ? "Guide d’urgence pour victimes" : "Victim emergency guide"}
                 </Btn>
               </Section>
 
@@ -404,8 +395,8 @@ export function ArticleDetailView({ slug }: { slug: string }) {
                     {fr ? "Vérifiez chaque point avec la liste associée à ce guide." : "Verify every point with the checklist attached to this guide."}
                   </p>
                   <span className="link-g mt-auto pt-3 !text-[13px]">
-                    <FileDown size={14} aria-hidden />
-                    {fr ? "Voir les listes" : "View checklists"}
+                    <ListChecks size={14} aria-hidden />
+                    {fr ? "Consulter les listes" : "View checklists"}
                   </span>
                 </A>
                 <div className="card-g p-5">

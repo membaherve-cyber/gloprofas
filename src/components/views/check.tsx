@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Check a number, link or message — Jarvis heuristic checker.
+ * Check a number, link or message — Oskie heuristic checker.
  * Preserved workflow: paste content → risk assessment → warning signs,
  * recommended actions, matched alerts. Never a verdict.
  */
@@ -75,12 +75,12 @@ export function CheckView() {
   return (
     <>
       <PageHero
-        eyebrow="Jarvis"
+        eyebrow="Oskie"
         title={fr ? "Vérifier un numéro, un lien ou un message" : "Check a number, link or message"}
         lead={
           fr
-            ? "Collez le message suspect, le lien ou le numéro de téléphone. Jarvis le compare aux schémas d'arnaques connus et vous donne une évaluation indicative."
-            : "Paste the suspicious message, link or phone number. Jarvis compares it against known scam patterns and gives you an indicative assessment."
+            ? "Collez le message suspect, le lien ou le numéro de téléphone. Oskie le compare aux schémas d'arnaques connus et vous donne une évaluation indicative."
+            : "Paste the suspicious message, link or phone number. Oskie compares it against known scam patterns and gives you an indicative assessment."
         }
         image="/images/gen/check-verify.jpg"
         imageAlt={fr ? "Personne vérifiant attentivement un message sur son téléphone" : "Person carefully verifying a message on their phone"}

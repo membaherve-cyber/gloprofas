@@ -155,14 +155,14 @@ function ResourceCentreLanding() {
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: BookOpen, href: "/resources/practical-tools", t: { en: "Practical Tools to Protect Yourself", fr: "Outils pratiques pour vous protéger" }, d: { en: "36 in-depth guides covering online, money, social, business and emerging scams.", fr: "36 guides approfondis : en ligne, argent, social, entreprise et arnaques émergentes." }, accent: "bg-brand-50 text-brand-600" },
+              { icon: BookOpen, href: "/resources/practical-tools", t: { en: "Practical Tools to Protect Yourself", fr: "Outils pratiques pour vous protéger" }, d: { en: "In-depth guides covering online, money, social, business and emerging scams.", fr: "Des guides approfondis : en ligne, argent, social, entreprise et arnaques émergentes." }, accent: "bg-brand-50 text-brand-600" },
               { icon: ListChecks, href: "/resources/knowledge-tools", t: { en: "Knowledge & Tools", fr: "Savoir et outils" }, d: { en: "Searchable knowledge library, external resources and printable checklists.", fr: "Bibliothèque de recherche, ressources externes et listes imprimables." }, accent: "bg-mist-50 text-brand-600" },
               { icon: CirclePlay, href: "/resources/video-learning", t: { en: "Video Learning Centre", fr: "Centre d’apprentissage vidéo" }, d: { en: "Short, practical lessons from trusted institutions worldwide.", fr: "Des leçons courtes et pratiques d’institutions fiables du monde entier." }, accent: "bg-[#d23434]/10 text-[#a52222]" },
               { icon: ShieldCheck, href: "/resources/scam-checker", t: { en: "Scam Checker", fr: "Vérificateur d’arnaques" }, d: { en: "Examine a suspicious message or offer for warning signs — free, no account.", fr: "Examinez un message ou une offre suspecte — gratuit, sans compte." }, accent: "bg-[#159769]/10 text-[#0d6e4a]" },
-              { icon: Globe, href: "/resources/reporting-channels", t: { en: "Reporting Channels", fr: "Canaux de signalement" }, d: { en: "Official reporting authorities for 67 countries, organised by continent.", fr: "Autorités officielles pour 67 pays, par continent." }, accent: "bg-signal-100/60 text-signal-600" },
+              { icon: Globe, href: "/resources/reporting-channels", t: { en: "Reporting Channels", fr: "Canaux de signalement" }, d: { en: "Official reporting authorities across every continent, organised with Africa first.", fr: "Autorités officielles de signalement sur tous les continents, l’Afrique en priorité." }, accent: "bg-signal-100/60 text-signal-600" },
               { icon: Siren, href: "/alerts", t: { en: "Latest Scam Alerts", fr: "Dernières alertes" }, d: { en: "Current warnings based on what people are reporting now.", fr: "Avertissements actuels basés sur les signalements." }, accent: "bg-[#d75c09]/10 text-[#a34306]" },
-              { icon: ListChecks, href: "/resources/knowledge-tools?tab=checklists", t: { en: "Prevention Checklists", fr: "Listes de prévention" }, d: { en: "15 printable bilingual checklists with tick boxes, free to download.", fr: "15 listes bilingues à imprimer, avec cases à cocher." }, accent: "bg-brand-50 text-brand-600" },
-              { icon: Siren, href: "/resources/reporting-channels/victim-guide", t: { en: "Victim Action Guide", fr: "Guide d’action des victimes" }, d: { en: "Scammed? The five urgent steps, in the right order.", fr: "Victime ? Les cinq étapes urgentes, dans l’ordre." }, accent: "bg-[#d23434]/10 text-[#a52222]" },
+              { icon: ListChecks, href: "/resources/knowledge-tools?tab=checklists", t: { en: "Prevention Checklists", fr: "Listes de prévention" }, d: { en: "Printable bilingual checklists with tick boxes, free to use.", fr: "Des listes bilingues à imprimer, avec cases à cocher." }, accent: "bg-brand-50 text-brand-600" },
+              { icon: Siren, href: "/resources/reporting-channels/victim-guide", t: { en: "Victim Action Guide", fr: "Guide d’action des victimes" }, d: { en: "Scammed? The urgent steps, in the right order.", fr: "Victime ? Les étapes urgentes, dans l’ordre." }, accent: "bg-[#d23434]/10 text-[#a52222]" },
             ].map((s, i) => (
               <Reveal key={i} delay={i * 60}>
                 <A href={s.href} className="group block h-full">
@@ -372,7 +372,7 @@ function ResourceCentreLanding() {
                     {fr ? "Ouvrir le Scam Checker" : "Open the Scam Checker"}
                   </Btn>
                   <Btn href="/resources/reporting-channels/victim-guide" variant="outlineDark">
-                    {fr ? "Déjà victime ? Les 5 étapes" : "Already affected? The 5 steps"}
+                    {fr ? "Déjà victime ? Les étapes urgentes" : "Already affected? The urgent steps"}
                   </Btn>
                 </div>
                 <ul className="mt-7 grid gap-2 sm:grid-cols-2">
@@ -409,7 +409,7 @@ function ResourceCentreLanding() {
                 }
               />
               <A href="/resources/knowledge-tools?tab=checklists" className="link-g">
-                {fr ? "Les 15 listes" : "All 15 checklists"}
+                {fr ? "Toutes les listes" : "All checklists"}
                 <ArrowRight size={15} strokeWidth={2.2} aria-hidden />
               </A>
             </div>
