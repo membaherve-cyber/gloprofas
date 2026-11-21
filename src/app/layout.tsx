@@ -122,8 +122,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/gen/hero-cafe-woman.jpg",
-        width: 1440,
-        height: 720,
+        width: 1472,
+        height: 736,
         alt: "GLOPROFAS — spot the scam before it costs you",
       },
       {

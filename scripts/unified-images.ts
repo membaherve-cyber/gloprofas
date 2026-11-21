@@ -1,12 +1,13 @@
 /**
- * GLOPROFAS unified art-direction pass — "Blue Hour Twilight" edition.
+ * GLOPROFAS unified art-direction pass — "Blue Hour Twilight" edition,
+ * ultrarealistic professional-photo-configuration re-take.
  *
  * One cohesive photographic language across the entire site:
  *   · Candid editorial documentary photojournalism
  *   · Cool blue-hour twilight / overcast ambience balanced by warm
  *     golden interior practical lights
- *   · 35mm full-frame, 50mm lens, shallow depth of field
- *   · Realistic skin texture, slight film grain, unedited RAW aesthetic
+ *   · Canon EOS R5, 50mm f/1.2L at f/2.0, ISO 400, Portra 400 science
+ *   · Visible skin pores, peach fuzz, film grain, unedited RAW aesthetic
  *   · African subjects and West African settings
  *
  * Includes the 8 user-specified prompts verbatim (adapted only to append
@@ -27,7 +28,7 @@ const DONE = path.join(process.cwd(), "scripts", "unified-done.txt");
 
 /** Shared photographic DNA appended to every supplementary prompt. */
 const STYLE =
-  "Shot on a 35mm full-frame camera with a 50mm lens, shallow depth of field, realistic skin texture with natural pores and wrinkles, authentic fabric weave, slight film grain, accurate color science, candid editorial documentary photojournalism, unedited RAW photo aesthetic, professional photojournalism quality. Strictly no text, no logos, no watermark, no readable screen content, no plastic or airbrushed skin, no 3D render, no CGI, no illustration, no stock-photo posing.";
+  "Professional photographic capture: Canon EOS R5 full-frame mirrorless camera, 50mm f/1.2L prime lens at f/2.0, ISO 400, 1/125 second, handheld available light, Kodak Portra 400 color science with soft highlight rolloff, gentle lens vignetting, fine organic 35mm film grain, subtle chromatic aberration at the frame edges. Ultrarealistic surface detail: skin with visible pores, fine peach-fuzz hair, natural oil sheen on the T-zone, subtle blemishes and uneven skin tone rendered with true subsurface scattering; individual flyaway hairs; authentic fabric fibers, stitching and natural wrinkles; hands with clearly separated fingers, defined knuckles, tendons and natural fingernails. Candid unposed editorial documentary photojournalism, unedited RAW photo aesthetic. Strictly avoid waxy or airbrushed skin, plastic or porcelain sheen, digital beauty retouching, glossy 3D-render look, CGI, HDR halos, oversaturated colors, neon glow, stock-photo posing, text, logos, watermarks, readable screen content.";
 
 type Job = { file: string; dir: string; size: string; prompt: string; also?: string[] };
 
@@ -40,10 +41,10 @@ const JOBS: Job[] = [
   {
     file: "hero-cafe-woman.jpg",
     dir: GEN,
-    size: "1440x720",
+    size: "1472x736",
     also: ["hero-main.jpg"],
     prompt:
-      "Candid editorial photograph of a Black woman in her late 20s with curly hair tied up in a bun, wearing a textured blue denim button-down shirt, sitting at a cafe table by a large floor-to-ceiling window at twilight, looking down at her smartphone with a serious, suspicious expression, white ceramic coffee cup in the foreground. Cool blue hour twilight skyline outside with warm golden and red city bokeh lights, warm ambient indoor lighting on her face. Realistic skin texture with fine pores, natural fabric weave on the denim, slight film grain. Shot on a 35mm full-frame camera, 50mm f/1.4 lens, shallow depth of field, subject positioned slightly right of center with open negative space on the left side for website text, unedited RAW photo aesthetic. Strictly avoid: plastic skin, airbrushed look, 3D render, CGI, glowing phone screen, stock photo smile, watermark, any text.",
+      "Candid editorial photograph of a Black woman in her late 20s with curly hair tied up in a bun, wearing a textured blue denim button-down shirt, sitting at a cafe table by a large floor-to-ceiling window at twilight, looking down at her smartphone with a serious, suspicious expression, white ceramic coffee cup in the foreground. Cool blue hour twilight skyline outside with warm golden and red city bokeh lights, warm ambient indoor lighting on her face, the phone screen glowing with a dim unreadable interface that softly illuminates her fingers. Professional photographic capture: Canon EOS R5, 50mm f/1.2L prime at f/2.0, ISO 400, 1/125s, Kodak Portra 400 color science, fine film grain, shallow depth of field with background cafe patrons softly out of focus yet anatomically believable. Ultrarealistic skin with visible pores, peach fuzz and natural oil sheen on her cheeks and forehead, individual flyaway hairs escaping the bun, denim fibers and stitching in sharp relief, five clearly separated fingers holding the phone. Subject positioned slightly right of center with open negative space on the left side for website text, unedited RAW photo aesthetic. Strictly avoid: waxy or airbrushed skin, plastic sheen, 3D render, CGI, pure-black void phone screen, melted or featureless background faces, stock photo smile, watermark, any text.",
   },
 
   // 2 · In-article feature — phishing & SMS scams (3:2 → 1344x768)
@@ -53,7 +54,7 @@ const JOBS: Job[] = [
     size: "1344x768",
     also: ["scam-phishing.jpg"],
     prompt:
-      "Close-up over-the-shoulder candid photograph of a person's hand holding a smartphone on a commuter train, subtle look of confusion and hesitation as they read an incoming text message, natural overcast daylight streaming through the train window, realistic reflections on the phone glass, authentic fingerprints and screen texture. Shot on a 50mm f/1.8 lens, shallow depth of field blurring the fellow passengers in the background, slight film grain, accurate color science, unedited RAW photo aesthetic. Strictly avoid: readable text, futuristic holograms, neon glow, CGI, airbrushed skin, watermark.",
+      "Close-up over-the-shoulder candid photograph of a person's hand holding a smartphone on a commuter train, subtle look of confusion and hesitation as they read an incoming text message, natural overcast daylight streaming through the train window, realistic reflections of the train ceiling lights on the phone glass, authentic fingerprint smudges and micro-scratches on the screen, crisp phone body edges. Professional photographic capture: Canon EOS R5, 50mm f/1.2L prime at f/2.0, ISO 400, 1/125s, Kodak Portra 400 color science, fine film grain, shallow depth of field with fellow passengers in the background softly blurred yet anatomically believable with distinct heads and shoulders. Ultrarealistic skin on the hand with visible pores, knuckle wrinkles and natural fingernails, individual wrist hairs catching the light. Unedited RAW photo aesthetic. Strictly avoid: readable text, futuristic holograms, neon glow, CGI, waxy or airbrushed skin, melted background faces, watermark.",
   },
 
   // 3 · In-article feature — romance, senior, investment scams (3:2)
@@ -63,7 +64,7 @@ const JOBS: Job[] = [
     size: "1344x768",
     also: ["scam-romance.jpg"],
     prompt:
-      "Candid documentary photograph of an older African adult in their late 60s sitting in a cozy living room armchair, looking intently at a laptop screen with a concerned, furrowed brow, reading glasses resting low on their nose, warm afternoon lamp light mixing with soft window daylight. Natural skin wrinkles, authentic home clutter like framed photos and a knitted throw blanket on the sofa. Shot on a 35mm full-frame camera, 50mm f/2.0 lens, natural color tones, genuine editorial photojournalism feel. Strictly avoid: dramatic dark shadows, cheesy stock photo pose, plastic skin, 3D render, illustration, watermark.",
+      "Candid documentary photograph of an older African adult in their late 60s sitting in a cozy living room armchair, looking intently at a laptop screen with a concerned, furrowed brow, reading glasses resting low on their nose, warm afternoon lamp light mixing with soft window daylight. Deep realistic wrinkles: crow's feet, laugh lines and furrowed brow rendered with true subsurface scattering, age spots and visible pores on the hands, each finger clearly separated and resting naturally on individual keyboard keys, family photos on the wall behind rendered as believable blurred snapshots with plausible frames. Professional photographic capture: Canon EOS R5, 50mm f/1.2L prime at f/2.0, ISO 400, 1/125s, Kodak Portra 400 color science, fine film grain, natural color tones, gentle lens vignetting. Genuine editorial photojournalism feel, unedited RAW photo aesthetic. Strictly avoid: dramatic dark shadows, cheesy stock photo pose, waxy or plastic skin, airbrushed smoothing, 3D render, illustration, watermark.",
   },
 
   // 4 · "Report a Scam" / verification tool card (4:5 → 864x1152)
@@ -73,7 +74,7 @@ const JOBS: Job[] = [
     size: "864x1152",
     also: ["report-scene.jpg"],
     prompt:
-      "Overhead flat-lay editorial photograph of a wooden desk with a laptop open to a clean browser window, a physical notebook with handwritten checklist notes, a pen, and a pair of eyeglasses, natural diffused daylight from a side window casting soft realistic shadows. Crisp focus on paper grain and wood texture, shot on a 50mm macro lens, f/4, natural unedited color grading, authentic workspace aesthetic. Strictly avoid: readable words, floating icons, padlock graphics, 3D render, neon colors, artificial studio lighting, watermark.",
+      "Overhead flat-lay editorial photograph of a wooden desk with a laptop open to a clean browser window, a physical notebook with handwritten checklist notes, a pen, and a pair of eyeglasses, natural diffused daylight from a side window casting soft realistic shadows with correct direction and penumbras. Crisp focus on paper tooth grain, visible wood pore texture and the pen barrel's subtle reflections, faint believable reflections on the eyeglass lenses. Professional photographic capture: Canon EOS R5, 50mm prime at f/4, ISO 400, 1/125s, Kodak Portra 400 color science with natural white balance, fine film grain. Authentic workspace aesthetic, unedited RAW photo look. Strictly avoid: readable words, floating icons, padlock graphics, 3D render, neon colors, artificial studio lighting, watermark.",
   },
 
   // A · Matching article & section image — man in cafe at dusk (3:2)
@@ -83,7 +84,7 @@ const JOBS: Job[] = [
     size: "1344x768",
     also: ["article-cat-online.jpg"],
     prompt:
-      "Candid editorial photograph of an African man in his 30s wearing a casual navy sweater, sitting inside a dimly lit modern cafe at dusk, holding a smartphone and looking at the screen with subtle concern and skepticism. Large window behind him showing a cool twilight blue city street with soft warm amber bokeh lights, warm interior table lamp light illuminating the side of his face. Realistic skin texture, natural hand details, authentic clothing folds. Shot on a 50mm f/1.8 lens, shallow depth of field, documentary photojournalism style, unedited RAW photo aesthetic, slight film grain. Strictly avoid: readable text on screen, hooded hacker, neon glow, plastic skin, CGI, watermark.",
+      "Candid editorial photograph of an African man in his 30s wearing a casual navy sweater, sitting inside a dimly lit modern cafe at dusk, holding a smartphone with a natural relaxed grip — five clearly separated fingers, thumb hovering over the screen — looking at it with subtle concern and skepticism, faint stubble follicles along his jaw. Large window behind him showing a cool twilight blue city street with soft warm amber bokeh lights, warm interior table lamp light illuminating the side of his face with realistic falloff. Professional photographic capture: Canon EOS R5, 50mm f/1.2L prime at f/2.0, ISO 400, 1/125s, Kodak Portra 400 color science, fine film grain, shallow depth of field, unedited RAW photo aesthetic. Ultrarealistic skin with visible pores and natural oil sheen on the forehead and nose, authentic knit texture on the sweater with individual wool fibers, believable background figures. Strictly avoid: readable text on screen, hooded hacker, neon glow, waxy or airbrushed skin, CGI, watermark.",
   },
 
   // B · E-commerce fraud guide — woman with laptop at blue hour (3:2)
@@ -93,7 +94,7 @@ const JOBS: Job[] = [
     size: "1344x768",
     also: ["scam-shopping.jpg"],
     prompt:
-      "Candid over-the-shoulder editorial photograph of an African woman in her 40s sitting at a wooden table near a window at blue hour dusk, scrolling on an open laptop with a hesitant, analytical expression, a credit card resting on the table beside a ceramic mug. Cool deep blue twilight sky visible through the glass, warm indoor tungsten light casting soft natural shadows, shallow depth of field blurring the laptop screen so no text is legible. Shot on a 35mm full-frame DSLR, 50mm f/1.8 lens, natural color science, authentic unedited photo aesthetic. Strictly avoid: gibberish text, floating padlock icons, warning symbols, 3D render, airbrushed skin, watermark.",
+      "Candid over-the-shoulder editorial photograph of an African woman in her 40s sitting at a wooden table near a window at blue hour dusk, scrolling on an open laptop with a hesitant, analytical expression, a credit card resting on the table beside a ceramic mug. The laptop screen shows a softly out-of-focus e-commerce page of colored blocks with no readable text, faintly reflecting in her eyes. Cool deep blue twilight sky through the glass, warm indoor tungsten light casting soft natural shadows with realistic falloff on her face and hands. Professional photographic capture: Canon EOS R5, 50mm f/1.2L prime at f/2.0, ISO 400, 1/125s, Kodak Portra 400 color science, fine film grain, shallow depth of field. Ultrarealistic hands with clearly separated fingers, defined knuckles, natural veins and fingernails resting on individually spaced keyboard keys, laptop edges and hinge rendered with crisp machined precision. Unedited RAW photo aesthetic. Strictly avoid: gibberish text, pure blank white screen, floating padlock icons, warning symbols, 3D render, waxy or airbrushed skin, watermark.",
   },
 
   // C · Deep-dive feature — older man with tablet at twilight (4:5)
@@ -102,7 +103,7 @@ const JOBS: Job[] = [
     dir: GEN,
     size: "864x1152",
     prompt:
-      "Candid documentary portrait of a thoughtful older African man in his 60s wearing eyeglasses and a dark casual collared shirt, sitting in a quiet armchair near a window at twilight, looking at a tablet in his hands with a guarded, reflective expression. Deep twilight blue evening tones outside the window balanced by a warm amber reading lamp indoors. Natural skin wrinkles, realistic hair and fabric texture, genuine emotional authenticity. Shot on an 85mm f/2.0 lens, shallow depth of field, cinematic editorial photojournalism, unedited RAW photo aesthetic. Strictly avoid: dramatic dark shadows, stock photo pose, plastic skin, 3D render, illustration, watermark.",
+      "Candid documentary portrait of a thoughtful older African man in his 60s wearing eyeglasses and a dark casual collared shirt, sitting in a quiet armchair near a window at twilight, holding a tablet with a natural relaxed grip — each finger clearly articulated around the crisp machined tablet bezel, a faint unreadable screen glow softly lighting his hands. Deep twilight blue evening tones outside the window balanced by a warm amber reading lamp indoors whose light genuinely reaches and warms the near side of his face with realistic falloff. Salt-and-pepper stubble with individual hairs, deep forehead creases and crow's feet with true subsurface scattering, visible pores, authentic cotton weave on the shirt. Professional photographic capture: Canon EOS R5, 85mm f/1.4 prime at f/2.0, ISO 400, 1/125s, Kodak Portra 400 color science, fine organic film grain, shallow depth of field. Cinematic editorial photojournalism, unedited RAW photo aesthetic. Strictly avoid: dramatic dark shadows, stock photo pose, waxy or plastic skin, airbrushed smoothing, fused or merged fingers, warped device geometry, 3D render, illustration, watermark.",
   },
 
   // D · "How to verify & stay safe" checklist card (1:1)
@@ -112,7 +113,7 @@ const JOBS: Job[] = [
     size: "1024x1024",
     also: ["check-verify.jpg"],
     prompt:
-      "Close-up editorial photograph of a person's hands resting on a dark cafe table beside a smartphone lying face-down and a notebook with a pen, cool blue hour twilight light from a nearby window mixing with a warm golden cafe lamp reflection. Shallow depth of field with soft city bokeh lights in the background, crisp focus on natural skin texture and paper grain. Shot on a 50mm f/1.8 lens, unedited RAW photo aesthetic, calm and trustworthy mood. Strictly avoid: readable words, digital graphics, neon icons, CGI, watermark.",
+      "Close-up editorial photograph of a person's hands on a dark cafe table beside a smartphone lying face-down and an open notebook with a pen: the right hand holds the pen naturally over the page as if mid-thought, the left hand rests flat and relaxed beside the notebook — every finger clearly separated with visible fingernails, defined knuckles and natural wrinkled skin texture. Cool blue hour twilight light from a nearby window mixing with a warm golden cafe lamp reflection, shallow depth of field with soft city bokeh lights in the background, crisp focus on skin pores and paper tooth grain. Professional photographic capture: Canon EOS R5, 50mm f/1.2L prime at f/2.0, ISO 400, 1/125s, Kodak Portra 400 color science, fine film grain. Calm and trustworthy mood, unedited RAW photo aesthetic. Strictly avoid: interlaced or fused fingers, ambiguous hand anatomy, waxy or over-smoothed skin, digital graphics, neon icons, CGI, watermark.",
   },
 
   /* ============================================================

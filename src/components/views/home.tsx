@@ -177,8 +177,8 @@ export function HomeView() {
           <img
             src="/images/gen/hero-cafe-woman.jpg"
             alt=""
-            width={1440}
-            height={720}
+            width={1472}
+            height={736}
             fetchPriority="high"
             className="img-editorial h-full w-full object-cover object-[70%_center]"
           />
