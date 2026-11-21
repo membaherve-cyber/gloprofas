@@ -144,6 +144,10 @@ export function AdminView() {
 
   async function logout() {
     await fetch("/api/admin/logout", { method: "POST" });
+    // Clear any sensitive credentials held in component state so the
+    // password is never left in the field (or memory) after signing out.
+    setPassword("");
+    setLoginError(null);
     setUnauthorized(true);
     setData(null);
   }

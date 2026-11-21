@@ -47,8 +47,12 @@ export async function POST(req: NextRequest) {
     const res = NextResponse.json({ ok: true, name: user.name, email: user.email });
     res.cookies.set(SESSION_COOKIE, token, {
       httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
+      // SameSite=None + Secure so the session cookie also works when the
+      // site is embedded in a cross-site preview iframe (Lax cookies are
+      // withheld by browsers in that context, causing login to "loop").
+      // localhost is a trustworthy origin, so Secure cookies work in dev too.
+      sameSite: "none",
+      secure: true,
       expires: expiresAt,
       path: "/",
     });

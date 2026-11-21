@@ -7,6 +7,12 @@ export async function POST(req: NextRequest) {
     await db.adminSession.deleteMany({ where: { token } }).catch(() => {});
   }
   const res = NextResponse.json({ ok: true });
-  res.cookies.set("gloprofas_session", "", { httpOnly: true, maxAge: 0, path: "/" });
+  res.cookies.set("gloprofas_session", "", {
+    httpOnly: true,
+    sameSite: "none",
+    secure: true,
+    maxAge: 0,
+    path: "/",
+  });
   return res;
 }
