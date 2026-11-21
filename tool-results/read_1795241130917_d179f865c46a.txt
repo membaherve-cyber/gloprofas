@@ -1,0 +1,505 @@
+     1→/**
+     2→ * GLOPROFAS unified art-direction pass — "Blue Hour Twilight" edition.
+     3→ *
+     4→ * One cohesive photographic language across the entire site:
+     5→ *   · Candid editorial documentary photojournalism
+     6→ *   · Cool blue-hour twilight / overcast ambience balanced by warm
+     7→ *     golden interior practical lights
+     8→ *   · 35mm full-frame, 50mm lens, shallow depth of field
+     9→ *   · Realistic skin texture, slight film grain, unedited RAW aesthetic
+    10→ *   · African subjects and West African settings
+    11→ *
+    12→ * Includes the 8 user-specified prompts verbatim (adapted only to append
+    13→ * negative instructions in natural language) plus in-theme regenerations
+    14→ * of every other displayed image. Legacy filenames are overwritten with
+    15→ * the new canonical frames so all existing references update instantly.
+    16→ *
+    17→ * Resume-safe via scripts/unified-done.txt.
+    18→ * Run: bun scripts/unified-images.ts
+    19→ */
+    20→import ZAI from "z-ai-web-dev-sdk";
+    21→import fs from "fs";
+    22→import path from "path";
+    23→
+    24→const GEN = path.join(process.cwd(), "public", "images", "gen");
+    25→const CTX = path.join(process.cwd(), "public", "images", "context");
+    26→const DONE = path.join(process.cwd(), "scripts", "unified-done.txt");
+    27→
+    28→/** Shared photographic DNA appended to every supplementary prompt. */
+    29→const STYLE =
+    30→  "Shot on a 35mm full-frame camera with a 50mm lens, shallow depth of field, realistic skin texture with natural pores and wrinkles, authentic fabric weave, slight film grain, accurate color science, candid editorial documentary photojournalism, unedited RAW photo aesthetic, professional photojournalism quality. Strictly no text, no logos, no watermark, no readable screen content, no plastic or airbrushed skin, no 3D render, no CGI, no illustration, no stock-photo posing.";
+    31→
+    32→type Job = { file: string; dir: string; size: string; prompt: string; also?: string[] };
+    33→
+    34→const JOBS: Job[] = [
+    35→  /* ============================================================
+    36→     PART 1 — The 8 user-specified canonical images
+    37→     ============================================================ */
+    38→
+    39→  // 1 · Hero — woman at cafe window, twilight (2:1)
+    40→  {
+    41→    file: "hero-cafe-woman.jpg",
+    42→    dir: GEN,
+    43→    size: "1440x720",
+    44→    also: ["hero-main.jpg"],
+    45→    prompt:
+    46→      "Candid editorial photograph of a Black woman in her late 20s with curly hair tied up in a bun, wearing a textured blue denim button-down shirt, sitting at a cafe table by a large floor-to-ceiling window at twilight, looking down at her smartphone with a serious, suspicious expression, white ceramic coffee cup in the foreground. Cool blue hour twilight skyline outside with warm golden and red city bokeh lights, warm ambient indoor lighting on her face. Realistic skin texture with fine pores, natural fabric weave on the denim, slight film grain. Shot on a 35mm full-frame camera, 50mm f/1.4 lens, shallow depth of field, subject positioned slightly right of center with open negative space on the left side for website text, unedited RAW photo aesthetic. Strictly avoid: plastic skin, airbrushed look, 3D render, CGI, glowing phone screen, stock photo smile, watermark, any text.",
+    47→  },
+    48→
+    49→  // 2 · In-article feature — phishing & SMS scams (3:2 → 1344x768)
+    50→  {
+    51→    file: "feature-phishing-sms.jpg",
+    52→    dir: GEN,
+    53→    size: "1344x768",
+    54→    also: ["scam-phishing.jpg"],
+    55→    prompt:
+    56→      "Close-up over-the-shoulder candid photograph of a person's hand holding a smartphone on a commuter train, subtle look of confusion and hesitation as they read an incoming text message, natural overcast daylight streaming through the train window, realistic reflections on the phone glass, authentic fingerprints and screen texture. Shot on a 50mm f/1.8 lens, shallow depth of field blurring the fellow passengers in the background, slight film grain, accurate color science, unedited RAW photo aesthetic. Strictly avoid: readable text, futuristic holograms, neon glow, CGI, airbrushed skin, watermark.",
+    57→  },
+    58→
+    59→  // 3 · In-article feature — romance, senior, investment scams (3:2)
+    60→  {
+    61→    file: "feature-senior-laptop.jpg",
+    62→    dir: GEN,
+    63→    size: "1344x768",
+    64→    also: ["scam-romance.jpg"],
+    65→    prompt:
+    66→      "Candid documentary photograph of an older African adult in their late 60s sitting in a cozy living room armchair, looking intently at a laptop screen with a concerned, furrowed brow, reading glasses resting low on their nose, warm afternoon lamp light mixing with soft window daylight. Natural skin wrinkles, authentic home clutter like framed photos and a knitted throw blanket on the sofa. Shot on a 35mm full-frame camera, 50mm f/2.0 lens, natural color tones, genuine editorial photojournalism feel. Strictly avoid: dramatic dark shadows, cheesy stock photo pose, plastic skin, 3D render, illustration, watermark.",
+    67→  },
+    68→
+    69→  // 4 · "Report a Scam" / verification tool card (4:5 → 864x1152)
+    70→  {
+    71→    file: "report-desk.jpg",
+    72→    dir: GEN,
+    73→    size: "864x1152",
+    74→    also: ["report-scene.jpg"],
+    75→    prompt:
+    76→      "Overhead flat-lay editorial photograph of a wooden desk with a laptop open to a clean browser window, a physical notebook with handwritten checklist notes, a pen, and a pair of eyeglasses, natural diffused daylight from a side window casting soft realistic shadows. Crisp focus on paper grain and wood texture, shot on a 50mm macro lens, f/4, natural unedited color grading, authentic workspace aesthetic. Strictly avoid: readable words, floating icons, padlock graphics, 3D render, neon colors, artificial studio lighting, watermark.",
+    77→  },
+    78→
+    79→  // A · Matching article & section image — man in cafe at dusk (3:2)
+    80→  {
+    81→    file: "article-man-cafe.jpg",
+    82→    dir: GEN,
+    83→    size: "1344x768",
+    84→    also: ["article-cat-online.jpg"],
+    85→    prompt:
+    86→      "Candid editorial photograph of an African man in his 30s wearing a casual navy sweater, sitting inside a dimly lit modern cafe at dusk, holding a smartphone and looking at the screen with subtle concern and skepticism. Large window behind him showing a cool twilight blue city street with soft warm amber bokeh lights, warm interior table lamp light illuminating the side of his face. Realistic skin texture, natural hand details, authentic clothing folds. Shot on a 50mm f/1.8 lens, shallow depth of field, documentary photojournalism style, unedited RAW photo aesthetic, slight film grain. Strictly avoid: readable text on screen, hooded hacker, neon glow, plastic skin, CGI, watermark.",
+    87→  },
+    88→
+    89→  // B · E-commerce fraud guide — woman with laptop at blue hour (3:2)
+    90→  {
+    91→    file: "ecommerce-woman.jpg",
+    92→    dir: GEN,
+    93→    size: "1344x768",
+    94→    also: ["scam-shopping.jpg"],
+    95→    prompt:
+    96→      "Candid over-the-shoulder editorial photograph of an African woman in her 40s sitting at a wooden table near a window at blue hour dusk, scrolling on an open laptop with a hesitant, analytical expression, a credit card resting on the table beside a ceramic mug. Cool deep blue twilight sky visible through the glass, warm indoor tungsten light casting soft natural shadows, shallow depth of field blurring the laptop screen so no text is legible. Shot on a 35mm full-frame DSLR, 50mm f/1.8 lens, natural color science, authentic unedited photo aesthetic. Strictly avoid: gibberish text, floating padlock icons, warning symbols, 3D render, airbrushed skin, watermark.",
+    97→  },
+    98→
+    99→  // C · Deep-dive feature — older man with tablet at twilight (4:5)
+   100→  {
+   101→    file: "investor-senior.jpg",
+   102→    dir: GEN,
+   103→    size: "864x1152",
+   104→    prompt:
+   105→      "Candid documentary portrait of a thoughtful older African man in his 60s wearing eyeglasses and a dark casual collared shirt, sitting in a quiet armchair near a window at twilight, looking at a tablet in his hands with a guarded, reflective expression. Deep twilight blue evening tones outside the window balanced by a warm amber reading lamp indoors. Natural skin wrinkles, realistic hair and fabric texture, genuine emotional authenticity. Shot on an 85mm f/2.0 lens, shallow depth of field, cinematic editorial photojournalism, unedited RAW photo aesthetic. Strictly avoid: dramatic dark shadows, stock photo pose, plastic skin, 3D render, illustration, watermark.",
+   106→  },
+   107→
+   108→  // D · "How to verify & stay safe" checklist card (1:1)
+   109→  {
+   110→    file: "verify-hands.jpg",
+   111→    dir: GEN,
+   112→    size: "1024x1024",
+   113→    also: ["check-verify.jpg"],
+   114→    prompt:
+   115→      "Close-up editorial photograph of a person's hands resting on a dark cafe table beside a smartphone lying face-down and a notebook with a pen, cool blue hour twilight light from a nearby window mixing with a warm golden cafe lamp reflection. Shallow depth of field with soft city bokeh lights in the background, crisp focus on natural skin texture and paper grain. Shot on a 50mm f/1.8 lens, unedited RAW photo aesthetic, calm and trustworthy mood. Strictly avoid: readable words, digital graphics, neon icons, CGI, watermark.",
+   116→  },
+   117→
+   118→  /* ============================================================
+   119→     PART 2 — gen/ supplements in the same unified theme
+   120→     ============================================================ */
+   121→
+   122→  {
+   123→    file: "about-workshop.jpg",
+   124→    dir: GEN,
+   125→    size: "864x1152",
+   126→    prompt:
+   127→      `Candid editorial photograph of a community anti-fraud awareness workshop in a modest hall in Cameroon at dusk: an African facilitator in smart-casual attire speaking warmly from the front, a seated audience of African men and women of different ages taking notes, warm tungsten room lighting with deep blue twilight visible through open louvered windows. ${STYLE}`,
+   128→  },
+   129→  {
+   130→    file: "campaign-seminar.jpg",
+   131→    dir: GEN,
+   132→    size: "1344x768",
+   133→    prompt:
+   134→      `Candid editorial photograph of a professional financial-fraud-prevention seminar in a modern conference room in Africa at dusk: a confident African female presenter gesturing toward a seated audience of professionals with notepads, cool twilight blue light through tall windows balanced by warm interior downlights, corporate but warm atmosphere. ${STYLE}`,
+   135→  },
+   136→  {
+   137→    file: "campaign-school.jpg",
+   138→    dir: GEN,
+   139→    size: "1344x768",
+   140→    prompt:
+   141→      `Candid editorial photograph of a young African speaker educating teenagers about online safety in a bright school classroom in Cameroon, students raising hands eagerly, natural late-afternoon daylight streaming through large windows, energetic and positive mood. ${STYLE}`,
+   142→  },
+   143→  {
+   144→    file: "victim-support.jpg",
+   145→    dir: GEN,
+   146→    size: "1344x768",
+   147→    prompt:
+   148→      `Candid editorial photograph of a compassionate African counselor in a modest office at dusk speaking gently with a young adult who looks relieved and safe, both seated across a small table, soft empathetic body language, warm desk lamp light with deep blue twilight filtering through window blinds, quiet dignity, no distress. ${STYLE}`,
+   149→  },
+   150→  {
+   151→    file: "family-impact.jpg",
+   152→    dir: GEN,
+   153→    size: "1344x768",
+   154→    prompt:
+   155→      `Candid documentary photograph of an African family of four sitting around a simple dining table at home in the evening, discussing household papers together with concerned but supportive expressions, warm lamp light mixed with cool blue dusk from the window, intimate documentary moment, dignity and care. ${STYLE}`,
+   156→  },
+   157→  {
+   158→    file: "scam-mobile-money.jpg",
+   159→    dir: GEN,
+   160→    size: "1344x768",
+   161→    prompt:
+   162→      `Candid editorial photograph of an African market vendor woman at her colorful vegetable stall on a West African street at dusk, checking her mobile money balance on a basic phone with a careful, doubtful expression, warm golden stall lamp glow against the deep blue twilight street, customers blurred in the background. ${STYLE}`,
+   163→  },
+   164→  {
+   165→    file: "scam-momo-notification.jpg",
+   166→    dir: GEN,
+   167→    size: "1344x768",
+   168→    prompt:
+   169→      `Candid editorial photograph of an African shopkeeper behind his counter at dusk frowning at a payment notification on his phone, finger hovering hesitantly over the screen, warm shop bulb light with cool blue evening light through the doorway, moment of doubt and verification. ${STYLE}`,
+   170→  },
+   171→  {
+   172→    file: "scam-investment.jpg",
+   173→    dir: GEN,
+   174→    size: "1344x768",
+   175→    prompt:
+   176→      `Candid editorial photograph of a middle-aged African businessman at a wooden office desk at dusk studying an investment offer on his smartphone with a skeptical, evaluating expression, calculator and notebook on the desk, warm desk lamp light balanced by cool blue twilight through the office window, moment of critical thinking. ${STYLE}`,
+   177→  },
+   178→  {
+   179→    file: "scam-job.jpg",
+   180→    dir: GEN,
+   181→    size: "1344x768",
+   182→    prompt:
+   183→      `Candid editorial photograph of a young African job seeker at a small home table in the evening, looking at a job offer message on her laptop with a doubtful, uncertain expression, printed CV papers beside the laptop, warm desk lamp light against cool blue dusk from the window, hopeful but cautious mood. ${STYLE}`,
+   184→  },
+   185→  {
+   186→    file: "scam-impersonation.jpg",
+   187→    dir: GEN,
+   188→    size: "1344x768",
+   189→    prompt:
+   190→      `Candid editorial photograph of an elderly African man at home in his living room at twilight receiving a phone call, holding the phone slightly away from his ear with a wary, suspicious expression, framed family photos on shelves, warm lamp light mixing with deep blue evening window light, moment of caution. ${STYLE}`,
+   191→  },
+   192→  {
+   193→    file: "scam-advance-fee.jpg",
+   194→    dir: GEN,
+   195→    size: "1344x768",
+   196→    prompt:
+   197→      `Candid editorial photograph of a hopeful young African student in a small internet cafe at night, looking at a message on his phone promising a prize, torn between hope and doubt, hand near his mouth in a thinking gesture, warm cafe lighting with cool blue night visible through the front window. ${STYLE}`,
+   198→  },
+   199→  {
+   200→    file: "scam-loan.jpg",
+   201→    dir: GEN,
+   202→    size: "1344x768",
+   203→    prompt:
+   204→      `Candid editorial photograph of an African woman running a small tailoring business in her workshop at dusk, looking at her phone with a concerned, pressed expression while colorful fabric and a sewing machine surround her, warm work lamp light against deep blue twilight through the window. ${STYLE}`,
+   205→  },
+   206→  {
+   207→    file: "scam-crypto.jpg",
+   208→    dir: GEN,
+   209→    size: "1344x768",
+   210→    prompt:
+   211→      `Candid editorial photograph of a young African man in a modern cafe at dusk looking at cryptocurrency charts on his smartphone with an anxious, uncertain expression, hand on his chin, warm interior table lamp light on his face balanced by cool twilight blue city bokeh through the window behind him. ${STYLE}`,
+   212→  },
+   213→  {
+   214→    file: "scam-crypto-recovery.jpg",
+   215→    dir: GEN,
+   216→    size: "1344x768",
+   217→    prompt:
+   218→      `Candid editorial photograph of an African man at a home desk in the evening reading a message on his phone from a self-styled recovery agent, skeptical guarded expression, one eyebrow raised, notebook and cold cup of tea on the desk, warm desk lamp light against cool blue dusk window. ${STYLE}`,
+   219→  },
+   220→  {
+   221→    file: "scam-business.jpg",
+   222→    dir: GEN,
+   223→    size: "1344x768",
+   224→    prompt:
+   225→      `Candid editorial photograph of an African small-business owner in his shop office at dusk carefully checking payment details on a paper invoice with a pen while comparing with his phone, shelves of goods softly blurred behind, warm bulb light with cool blue evening light through the doorway, diligent independent verification. ${STYLE}`,
+   226→  },
+   227→  {
+   228→    file: "article-cat-money.jpg",
+   229→    dir: GEN,
+   230→    size: "1344x768",
+   231→    prompt:
+   232→      `Close-up editorial photograph of African hands arranging cash banknotes and a smartphone on a dark wooden table at dusk, warm golden lamp light from one side and cool blue twilight from a window on the other, crisp focus on skin texture and paper currency grain, calm trustworthy mood. ${STYLE}`,
+   233→  },
+   234→  {
+   235→    file: "article-cat-social.jpg",
+   236→    dir: GEN,
+   237→    size: "1344x768",
+   238→    prompt:
+   239→      `Candid editorial photograph of two African friends on a sofa in a warm living room in the evening sharing a smartphone, one pointing at the screen with a cautious, warning expression while the other looks concerned, warm lamp light with deep blue dusk through the window. ${STYLE}`,
+   240→  },
+   241→  {
+   242→    file: "article-cat-business.jpg",
+   243→    dir: GEN,
+   244→    size: "1344x768",
+   245→    prompt:
+   246→      `Candid editorial photograph of an African office manager at her desk at dusk reviewing printed documents with a pen, laptop closed beside a mug, warm desk lamp glow against cool blue twilight through the office window, focused and methodical mood. ${STYLE}`,
+   247→  },
+   248→  {
+   249→    file: "article-cat-emerging.jpg",
+   250→    dir: GEN,
+   251→    size: "1344x768",
+   252→    prompt:
+   253→      `Candid editorial photograph of a young African man seen in profile outdoors on a city street at night, his face softly lit from below by the warm glow of a phone held below the frame, cool blue city lights bokeh behind him, contemplative expression. ${STYLE}`,
+   254→  },
+   255→  {
+   256→    file: "resource-centre-hero.jpg",
+   257→    dir: GEN,
+   258→    size: "1344x768",
+   259→    prompt:
+   260→      `Still-life editorial photograph of an open plain notebook, a pen, a smartphone lying face-down and reading glasses arranged on a warm wooden library table at dusk, cool blue hour light from a tall window mixing with a warm golden desk lamp, crisp paper grain and wood texture, calm studious mood. ${STYLE}`,
+   261→  },
+   262→  {
+   263→    file: "reporting-directory.jpg",
+   264→    dir: GEN,
+   265→    size: "1344x768",
+   266→    prompt:
+   267→      `Candid editorial photograph of an African woman at a tidy home desk at dusk calmly completing an online form on a laptop, notebook and pen beside her, a city skyline in deep blue hour visible through the window with warm golden interior lamp light, composed and determined mood. ${STYLE}`,
+   268→  },
+   269→  {
+   270→    file: "knowledge-tools.jpg",
+   271→    dir: GEN,
+   272→    size: "1344x768",
+   273→    prompt:
+   274→      `Overhead flat-lay editorial photograph of a dark wooden desk with a plain open notebook, a fountain pen, a smartphone lying face-down, reading glasses and a small stack of printed guides, warm golden lamp light raking across from one side with cool blue twilight from a window on the other, soft realistic shadows, crisp paper grain. ${STYLE}`,
+   275→  },
+   276→  {
+   277→    file: "video-learning.jpg",
+   278→    dir: GEN,
+   279→    size: "1344x768",
+   280→    prompt:
+   281→      `Candid editorial photograph of an African mother and her teenage son in a warm living room in the evening watching an educational video on a tablet propped against a stack of books on the table, both leaning in with engaged expressions, warm lamp light with deep blue dusk through the window. ${STYLE}`,
+   282→  },
+   283→  {
+   284→    file: "victim-guide.jpg",
+   285→    dir: GEN,
+   286→    size: "1344x768",
+   287→    prompt:
+   288→      `Close-up editorial photograph of a compassionate African counselor's hand resting reassuringly on a young person's hand over a small office table, a plain notebook and tissue box nearby, warm desk lamp light with soft cool blue dusk through window blinds, calm supportive mood. ${STYLE}`,
+   289→  },
+   290→
+   291→  /* ============================================================
+   292→     PART 3 — context/ regenerations in the same unified theme
+   293→     ============================================================ */
+   294→
+   295→  {
+   296→    file: "article-business-controls.jpg",
+   297→    dir: CTX,
+   298→    size: "1344x768",
+   299→    prompt:
+   300→      `Candid editorial photograph of two African business colleagues reviewing a printed invoice together at an office desk at dusk, one pointing at a row of figures, warm desk lamp light with cool blue twilight through the window blinds, focused collaborative mood. ${STYLE}`,
+   301→  },
+   302→  {
+   303→    file: "home-online-shopping.jpg",
+   304→    dir: CTX,
+   305→    size: "1344x768",
+   306→    prompt:
+   307→      `Candid editorial photograph of an African woman at her living-room table at dusk opening a parcel delivery box with a hesitant, uncertain expression, smartphone beside the box, warm lamp light with deep blue twilight through the window. ${STYLE}`,
+   308→  },
+   309→  {
+   310→    file: "article-payment-pause.jpg",
+   311→    dir: CTX,
+   312→    size: "1344x768",
+   313→    prompt:
+   314→      `Close-up editorial photograph of an African person's hand pausing thoughtfully above a smartphone lying on a dark cafe table beside a plain notebook and pen, cool blue hour twilight light from the window mixing with a warm golden lamp reflection, moment of hesitation before paying. ${STYLE}`,
+   315→  },
+   316→  {
+   317→    file: "person-phone-desk.jpg",
+   318→    dir: CTX,
+   319→    size: "1344x768",
+   320→    prompt:
+   321→      `Candid editorial photograph of a young African professional at a home desk at dusk reading his smartphone with a focused, wary expression, closed laptop and mug beside him, warm desk lamp light against cool blue twilight through the window. ${STYLE}`,
+   322→  },
+   323→  {
+   324→    file: "person-finance-phone.jpg",
+   325→    dir: CTX,
+   326→    size: "1344x768",
+   327→    prompt:
+   328→      `Candid editorial photograph of an African woman in her 30s seated at a kitchen table in the evening reviewing her mobile banking on a smartphone with a furrowed, concentrated brow, warm tungsten kitchen light with cool blue dusk through the window. ${STYLE}`,
+   329→  },
+   330→  {
+   331→    file: "urban-professional.jpg",
+   332→    dir: CTX,
+   333→    size: "1344x768",
+   334→    prompt:
+   335→      `Candid editorial street photograph of an African professional man in a smart blazer walking through a city street at blue hour, glancing down at his phone with a wary, careful expression, warm golden shop lights and street bokeh against the cool twilight sky. ${STYLE}`,
+   336→  },
+   337→  {
+   338→    file: "payment-counter.jpg",
+   339→    dir: CTX,
+   340→    size: "1344x768",
+   341→    prompt:
+   342→      `Candid editorial photograph of a West African market vendor's hands counting banknotes beside a small cash tin on a wooden stall counter at dusk, colorful fabrics blurred behind, warm golden lamp glow against deep blue twilight, shallow depth of field. ${STYLE}`,
+   343→  },
+   344→  {
+   345→    file: "intro-phone.jpg",
+   346→    dir: CTX,
+   347→    size: "1344x768",
+   348→    prompt:
+   349→      `Candid over-the-shoulder editorial photograph of an African woman seated on a city bench at blue hour examining her smartphone with a skeptical expression, warm street light bokeh and cool deep blue twilight sky behind her. ${STYLE}`,
+   350→  },
+   351→  {
+   352→    file: "executive-phone-laptop.jpg",
+   353→    dir: CTX,
+   354→    size: "1344x768",
+   355→    prompt:
+   356→      `Candid editorial photograph of an African executive in a crisp shirt standing beside his office desk at dusk, holding his smartphone in one hand while resting the other on a closed laptop, city skyline in deep blue twilight through the window behind, warm desk lamp accent on his face. ${STYLE}`,
+   357→  },
+   358→  {
+   359→    file: "remote-work-call.jpg",
+   360→    dir: CTX,
+   361→    size: "1344x768",
+   362→    prompt:
+   363→      `Candid editorial photograph of an African woman working from home at a dining table at dusk on a video call on her open laptop, leaning slightly toward the screen with a polite but uncertain expression, warm lamp light with cool blue dusk through the window. ${STYLE}`,
+   364→  },
+   365→  {
+   366→    file: "campaign-corporate.jpg",
+   367→    dir: CTX,
+   368→    size: "1344x768",
+   369→    prompt:
+   370→      `Candid editorial photograph of a corporate fraud-awareness training session in a modern office at dusk: an African facilitator presenting to employees seated around a conference table, notepads and pens out, warm interior lights with cool twilight through the glass partition walls. ${STYLE}`,
+   371→  },
+   372→  {
+   373→    file: "campaign-community.jpg",
+   374→    dir: CTX,
+   375→    size: "1344x768",
+   376→    prompt:
+   377→      `Candid editorial photograph of a community awareness forum in a West African neighbourhood at dusk: an African facilitator beside a plain flip chart speaking to seated residents under warm string lights, deep blue evening sky above the courtyard, engaged faces. ${STYLE}`,
+   378→  },
+   379→  {
+   380→    file: "campaign-youth.jpg",
+   381→    dir: CTX,
+   382→    size: "1344x768",
+   383→    prompt:
+   384→      `Candid editorial photograph of African teenagers gathered on school benches at dusk around a young mentor holding a tablet, screen not visible, pointing as he explains, warm courtyard floodlight glow against the cool blue evening sky, engaged curious expressions. ${STYLE}`,
+   385→  },
+   386→  {
+   387→    file: "team-laptops-office.jpg",
+   388→    dir: CTX,
+   389→    size: "1344x768",
+   390→    prompt:
+   391→      `Candid editorial photograph of a small African team in a modest office at dusk reviewing printed documents together around laptops, one person gesturing while explaining, warm ceiling lights with cool blue twilight through the windows, collaborative mood. ${STYLE}`,
+   392→  },
+   393→  {
+   394→    file: "contactless-card-terminal.jpg",
+   395→    dir: CTX,
+   396→    size: "1344x768",
+   397→    prompt:
+   398→      `Candid editorial close-up photograph of an African customer tapping a bank card on a small mobile money merchant terminal at an evening market stall, warm golden lamp glow on the hands against deep blue twilight, shallow depth of field. ${STYLE}`,
+   399→  },
+   400→  {
+   401→    file: "currency-exchange-desk.jpg",
+   402→    dir: CTX,
+   403→    size: "1344x768",
+   404→    prompt:
+   405→      `Candid editorial photograph of a traveller's hands counting mixed banknotes on a wooden exchange counter at dusk, a small tied cash bundle and coins beside, warm interior tungsten light with cool blue street twilight visible through a small window. ${STYLE}`,
+   406→  },
+   407→  {
+   408→    file: "notebook-smartphone-notes.jpg",
+   409→    dir: CTX,
+   410→    size: "1344x768",
+   411→    prompt:
+   412→      `Close-up editorial photograph of an older African man's weathered hands writing in a plain notebook at a kitchen table in the evening, a smartphone lying face-down and folded reading glasses beside him, warm lamp light with soft cool blue dusk from the window, crisp paper grain. ${STYLE}`,
+   413→  },
+   414→  {
+   415→    file: "article-reporting.jpg",
+   416→    dir: CTX,
+   417→    size: "1344x768",
+   418→    prompt:
+   419→      `Candid editorial photograph of an African woman at a home desk at dusk calmly completing an online report on her laptop, notebook and pen beside her, warm desk lamp light against a deep blue twilight window with distant city lights, quiet determination. ${STYLE}`,
+   420→  },
+   421→];
+   422→
+   423→async function main() {
+   424→  fs.mkdirSync(GEN, { recursive: true });
+   425→  fs.mkdirSync(CTX, { recursive: true });
+   426→  if (!fs.existsSync(DONE)) fs.writeFileSync(DONE, "");
+   427→
+   428→  const done = new Set(
+   429→    fs
+   430→      .readFileSync(DONE, "utf8")
+   431→      .split("\n")
+   432→      .map((l) => l.trim())
+   433→      .filter(Boolean)
+   434→  );
+   435→
+   436→  const zai = await ZAI.create();
+   437→  let ok = 0;
+   438→  let skipped = 0;
+   439→  const failed: string[] = [];
+   440→
+   441→  const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+   442→
+   443→  for (const job of JOBS) {
+   444→    if (done.has(job.file)) {
+   445→      console.log(`[skip] ${job.file}`);
+   446→      skipped++;
+   447→      continue;
+   448→    }
+   449→    let success = false;
+   450→    // Up to 6 attempts with rate-limit-aware exponential backoff.
+   451→    for (let attempt = 1; attempt <= 6 && !success; attempt++) {
+   452→      try {
+   453→        const res = await zai.images.generations.create({
+   454→          prompt: job.prompt,
+   455→          size: job.size as "1344x768",
+   456→        });
+   457→        const b64 = res?.data?.[0]?.base64;
+   458→        if (!b64) throw new Error("empty response");
+   459→        const buf = Buffer.from(b64, "base64");
+   460→        fs.writeFileSync(path.join(job.dir, job.file), buf);
+   461→        for (const alias of job.also ?? []) {
+   462→          fs.writeFileSync(path.join(job.dir, alias), buf);
+   463→        }
+   464→        console.log(
+   465→          `[ok] ${job.file}${job.also?.length ? ` (+ ${job.also.join(", ")})` : ""} — ${Math.round(
+   466→            buf.length / 1024
+   467→          )}KB`
+   468→        );
+   469→        success = true;
+   470→        ok++;
+   471→        // Pace requests to stay under the rate limit.
+   472→        await sleep(4000);
+   473→      } catch (e) {
+   474→        const msg = e instanceof Error ? e.message : String(e);
+   475→        const isRate = msg.includes("429") || msg.toLowerCase().includes("too many");
+   476→        const waitMs = isRate ? 30000 * attempt : 5000 * attempt;
+   477→        console.error(
+   478→          `[fail ${attempt}/6] ${job.file}: ${msg.slice(0, 120)} — waiting ${Math.round(
+   479→            waitMs / 1000
+   480→          )}s${isRate ? " (rate limit)" : ""}`
+   481→        );
+   482→        if (attempt < 6) await sleep(waitMs);
+   483→      }
+   484→    }
+   485→    if (success) {
+   486→      fs.appendFileSync(DONE, job.file + "\n");
+   487→      done.add(job.file);
+   488→    } else {
+   489→      failed.push(job.file);
+   490→    }
+   491→  }
+   492→
+   493→  console.log(
+   494→    `DONE: ${ok} generated, ${skipped} skipped, ${failed.length} failed. Failed: ${
+   495→      failed.join(", ") || "none"
+   496→    }`
+   497→  );
+   498→  if (failed.length > 0) process.exitCode = 1;
+   499→}
+   500→
+   501→main().catch((e) => {
+   502→  console.error("FATAL", e);
+   503→  process.exit(1);
+   504→});
+   505→
