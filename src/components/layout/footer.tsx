@@ -99,17 +99,17 @@ export function Footer() {
               {R(L.footer.contactTitle, locale)}
             </h2>
             <dl className="space-y-2 text-[12.5px]">
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-x-2">
                 <dt className="text-slatex-400">{locale === "fr" ? "Courriel" : "Email"}:</dt>
-                <dd>
+                <dd className="min-w-0 [overflow-wrap:anywhere]">
                   <a href="mailto:contact@gloprofas.org" className="text-[#424245] transition-colors duration-300 hover:text-ink-900 hover:underline">
                     contact@gloprofas.org
                   </a>
                 </dd>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-x-2">
                 <dt className="text-slatex-400">{locale === "fr" ? "Emplacement" : "Location"}:</dt>
-                <dd className="text-[#424245]">{locale === "fr" ? "Akwa, Douala, Cameroun · Initiative internationale" : "Akwa, Douala, Cameroon · International initiative"}</dd>
+                <dd className="min-w-0 [overflow-wrap:anywhere] text-[#424245]">{locale === "fr" ? "Akwa, Douala, Cameroun · Initiative internationale" : "Akwa, Douala, Cameroon · International initiative"}</dd>
               </div>
             </dl>
             <p className="mt-5 text-[12px] leading-relaxed text-slatex-400">

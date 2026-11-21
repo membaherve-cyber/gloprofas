@@ -56,6 +56,7 @@ export function Header() {
   const latestAlert = ZITE_CONTENT.alerts[0];
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
@@ -168,8 +169,14 @@ export function Header() {
           </button>
         </div>
       </div>
+    </header>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — rendered OUTSIDE the <header>.
+          The header carries backdrop-filter (frosted glass), which makes it
+          the containing block for fixed-position descendants: a drawer inside
+          it would be squeezed to the header's ~56px height instead of covering
+          the viewport. As a sibling of the header it positions against the
+          viewport as intended. */}
       {open ? (
         <div id="mobile-drawer" className="fixed inset-0 z-[70] xl:hidden" role="dialog" aria-modal="true" aria-label="Menu">
           <button
@@ -250,6 +257,6 @@ export function Header() {
           </div>
         </div>
       ) : null}
-    </header>
+    </>
   );
 }
