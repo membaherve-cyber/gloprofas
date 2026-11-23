@@ -197,7 +197,7 @@ export function HomeView() {
               <h1 className="h1-g mt-5 max-w-[16ch] text-white">{R(L.hero.h1, locale)}</h1>
             </Reveal>
             <Reveal delay={170}>
-              <p className="lead-g mt-6 max-w-xl text-slatex-300">{R(L.hero.lead, locale)}</p>
+              <p className="lead-g mt-6 max-w-xl text-white">{R(L.hero.lead, locale)}</p>
             </Reveal>
             <Reveal delay={240} className="mt-9 flex flex-wrap gap-3">
               <Btn href="/report" variant="signal">
@@ -210,7 +210,7 @@ export function HomeView() {
               </Btn>
             </Reveal>
             <Reveal delay={300}>
-              <p className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12.5px] font-medium text-white/60">
+              <p className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-[12.5px] font-medium text-white">
                 <span className="inline-flex items-center gap-1.5">
                   <Check size={13} className="text-cyanx-500" aria-hidden />
                   {fr ? "Gratuit" : "Free"}
@@ -231,7 +231,7 @@ export function HomeView() {
           <div className="hidden lg:col-span-5 lg:block">
             <Reveal delay={340}>
               <div className="rounded-[28px] border border-white/[0.12] bg-black/40 p-7 backdrop-blur-xl">
-                <p className="eyebrow mb-1 text-white/50">
+                <p className="eyebrow mb-1 text-white">
                   {fr ? "Schémas documentés" : "Documented patterns"}
                 </p>
                 <ul>

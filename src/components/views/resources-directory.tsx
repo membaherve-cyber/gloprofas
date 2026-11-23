@@ -359,7 +359,7 @@ export function CountryDetailView({ code }: { code: string }) {
               {c.status === "verified" ? <BadgeCheck size={13} aria-hidden /> : <Clock size={13} aria-hidden />}
               {R(STATUS_LABEL[c.status as keyof typeof STATUS_LABEL] ?? STATUS_LABEL["pending-verification"], locale)}
             </span>
-            <span className="text-slatex-300">
+            <span className="text-white">
               {fr ? "Vérifié le" : "Verified on"} {formatDate(c.lastVerified)}
             </span>
           </div>

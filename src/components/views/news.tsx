@@ -339,7 +339,7 @@ export function NewsDetailView({ id }: { id: string }) {
         imageAlt={fr ? "Illustration de l'article" : "Article illustration"}
         breadcrumb={[{ label: fr ? "Actualités" : "News", href: "/news" }]}
       >
-        <p className="text-[13px] text-slatex-300">
+        <p className="text-[13px] text-white">
           {art.author} · {formatDate(art.date)}
         </p>
       </PageHero>

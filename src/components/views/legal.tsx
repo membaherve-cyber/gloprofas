@@ -119,7 +119,7 @@ export function LegalView({ slug }: { slug: string }) {
               className={`chip-g transition-colors ${
                 d.slug === slug
                   ? "border-cyanx-500/60 bg-cyanx-500/10 text-cyanx-500"
-                  : "border-white/20 bg-white/[0.06] text-white/80 hover:border-white/40"
+                  : "border-white/20 bg-white/[0.06] text-white hover:border-white/40"
               }`}
             >
               {fr ? d.fr : d.en}

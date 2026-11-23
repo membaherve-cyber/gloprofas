@@ -133,7 +133,7 @@ function ResourceCentreLanding() {
                   ? "Rechercher un guide, une liste, une vidéo…"
                   : "Search a guide, checklist, video…"
               }
-              className="h-12 min-w-0 flex-1 bg-transparent px-4 text-[14.5px] text-white placeholder:text-slatex-400 focus:outline-none"
+              className="h-12 min-w-0 flex-1 bg-transparent px-4 text-[14.5px] text-white placeholder:text-white/70 focus:outline-none"
             />
             <button type="submit" className="btn-g btn-primary-g m-1.5 !h-9 shrink-0" aria-label={fr ? "Rechercher" : "Search"}>
               <Search size={15} aria-hidden />
@@ -614,7 +614,7 @@ function UnifiedSearchView() {
               maxLength={90}
               autoFocus
               placeholder={fr ? "Mots-clés : mobile money, phishing, romance…" : "Keywords: mobile money, phishing, romance…"}
-              className="h-12 min-w-0 flex-1 bg-transparent px-4 text-[14.5px] text-white placeholder:text-slatex-400 focus:outline-none"
+              className="h-12 min-w-0 flex-1 bg-transparent px-4 text-[14.5px] text-white placeholder:text-white/70 focus:outline-none"
             />
             <button type="submit" className="btn-g btn-primary-g m-1.5 !h-9 shrink-0">
               <Search size={15} aria-hidden />

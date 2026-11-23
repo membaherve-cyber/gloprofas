@@ -246,21 +246,21 @@ export function PageHero({
       <div className="container-g relative">
         {breadcrumb && breadcrumb.length > 0 ? (
           <nav aria-label="Breadcrumb" className="mb-6">
-            <ol className="flex flex-wrap items-center gap-2 text-[13px] text-slatex-300">
+            <ol className="flex flex-wrap items-center gap-2 text-[13px] text-white">
               <li>
-                <A href="/" className="hover:text-cyanx-500 transition-colors">
+                <A href="/" className="transition-colors hover:text-cyanx-500">
                   {locale === "fr" ? "Accueil" : "Home"}
                 </A>
               </li>
               {breadcrumb.map((b, i) => (
                 <li key={i} className="flex items-center gap-2">
-                  <span aria-hidden className="text-slatex-400">/</span>
+                  <span aria-hidden className="text-white/80">/</span>
                   {b.href ? (
-                    <A href={b.href} className="hover:text-cyanx-500 transition-colors">
+                    <A href={b.href} className="transition-colors hover:text-cyanx-500">
                       {b.label}
                     </A>
                   ) : (
-                    <span className="text-white/90">{b.label}</span>
+                    <span className="text-white">{b.label}</span>
                   )}
                 </li>
               ))}
@@ -268,9 +268,9 @@ export function PageHero({
           </nav>
         ) : null}
         <Reveal>
-          <p className="eyebrow mb-4">{eyebrow}</p>
+          <p className="eyebrow mb-4 text-white">{eyebrow}</p>
           <h1 className="h1-g max-w-3xl text-white">{title}</h1>
-          {lead ? <p className="lead-g mt-5 max-w-2xl text-slatex-300">{lead}</p> : null}
+          {lead ? <p className="lead-g mt-5 max-w-2xl text-white">{lead}</p> : null}
           {children ? <div className="mt-8">{children}</div> : null}
         </Reveal>
       </div>

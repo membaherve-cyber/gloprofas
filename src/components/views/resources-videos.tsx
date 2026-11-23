@@ -101,7 +101,7 @@ export function VideoCentreView() {
         imageAlt={fr ? "Deux amis regardant une vidéo éducative sur un smartphone" : "Two friends watching an educational video on a smartphone"}
         breadcrumb={[{ label: fr ? "Centre de ressources" : "Resource Centre", href: "/resources" }, { label: fr ? "Vidéos" : "Videos" }]}
       >
-        <p className="mt-1 max-w-xl text-[13.5px] leading-relaxed text-slatex-300">
+        <p className="mt-1 max-w-xl text-[13.5px] leading-relaxed text-white">
           {fr
             ? "Chaque vidéo provient d’une institution fiable (FTC, CISA, ACCC Scamwatch, MTN Ghana, police de Singapour, BBC…) et a été vérifiée : existence, durée, éditeur et sujet."
             : "Every video comes from a trusted institution (FTC, CISA, ACCC Scamwatch, MTN Ghana, Singapore Police, BBC…) and was verified: existence, duration, publisher and topic."}

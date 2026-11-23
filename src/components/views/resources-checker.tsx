@@ -159,7 +159,7 @@ export function ScamCheckerView() {
         imageAlt={fr ? "Mains posées sur une table de café à côté d’un téléphone retourné et d’un carnet, à l’heure bleue" : "Hands resting on a cafe table beside a face-down phone and a notebook at blue hour"}
         breadcrumb={[{ label: fr ? "Centre de ressources" : "Resource Centre", href: "/resources" }, { label: "Scam Checker" }]}
       >
-        <p className="mt-1 max-w-xl text-[13px] leading-relaxed text-slatex-300">{R(CHECKER_PRIVACY, locale)}</p>
+        <p className="mt-1 max-w-xl text-[13px] leading-relaxed text-white">{R(CHECKER_PRIVACY, locale)}</p>
       </PageHero>
 
       <section className="section-y bg-white">

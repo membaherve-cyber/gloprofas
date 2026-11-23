@@ -175,7 +175,7 @@ export function AlertDetailView({ id }: { id: string }) {
         <div className="flex flex-wrap items-center gap-3">
           <RiskBadge risk={alert.risk} className="!bg-white/10" />
           <span className="chip-g border-white/20 bg-white/10 text-white">{alert.country}</span>
-          <span className="text-[13px] text-slatex-300">{formatDate(alert.date)}</span>
+          <span className="text-[13px] text-white">{formatDate(alert.date)}</span>
         </div>
       </PageHero>
 

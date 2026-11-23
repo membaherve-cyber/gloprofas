@@ -343,7 +343,7 @@ export function ArticleDetailView({ slug }: { slug: string }) {
         ]}
       >
         {a ? (
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-slatex-300">
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-white">
             <span className="inline-flex items-center gap-1.5">
               <BookOpen size={14} aria-hidden />
               {a.readingMinutes} {fr ? "min de lecture" : "min read"}
