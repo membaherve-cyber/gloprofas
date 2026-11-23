@@ -659,6 +659,17 @@ label.lbl-g {
   );
 }
 
+/* Inner-page hero scrim — lighter so hero imagery stays visible */
+.hero-scrim-soft {
+  background: linear-gradient(
+    96deg,
+    rgba(2, 8, 20, 0.62) 0%,
+    rgba(2, 8, 20, 0.44) 36%,
+    rgba(2, 8, 20, 0.16) 70%,
+    rgba(2, 8, 20, 0.06) 100%
+  );
+}
+
 .hero-scrim-anim {
   background-size: 220% 100%;
   animation: hero-drift 26s ease-in-out infinite;

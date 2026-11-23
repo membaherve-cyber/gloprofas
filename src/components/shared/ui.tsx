@@ -239,9 +239,9 @@ export function PageHero({
         <img
           src={image}
           alt=""
-          className="img-editorial h-full w-full object-cover opacity-30"
+          className="img-editorial h-full w-full object-cover opacity-70"
         />
-        <div className="absolute inset-0 hero-scrim" />
+        <div className="absolute inset-0 hero-scrim-soft" />
       </div>
       <div className="container-g relative">
         {breadcrumb && breadcrumb.length > 0 ? (
