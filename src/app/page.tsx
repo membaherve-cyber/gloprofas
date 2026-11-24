@@ -15,6 +15,7 @@ import { AssistantLauncher } from "@/components/layout/assistant";
 
 const HomeView = lazy(() => import("@/components/views/home").then((m) => ({ default: m.HomeView })));
 const AboutView = lazy(() => import("@/components/views/about").then((m) => ({ default: m.AboutView })));
+const TeamView = lazy(() => import("@/components/views/team").then((m) => ({ default: m.TeamView })));
 const ActivitiesView = lazy(() => import("@/components/views/activities").then((m) => ({ default: m.ActivitiesView })));
 const ScamsView = lazy(() => import("@/components/views/scams").then((m) => ({ default: m.ScamsView })));
 const ScamDetailView = lazy(() => import("@/components/views/scams").then((m) => ({ default: m.ScamDetailView })));
@@ -50,6 +51,7 @@ function useRouteTitle(section: string, slug: string | undefined, subSlug: strin
         fr: "GLOPROFAS | Sensibilisation aux arnaques et prévention de la fraude",
       },
       about: { en: "About", fr: "À propos" },
+      team: { en: "Our Team", fr: "Notre équipe" },
       activities: { en: "Activities & Programmes", fr: "Activités et programmes" },
       scams: { en: "Scam Awareness Centre", fr: "Centre de sensibilisation aux arnaques" },
       alerts: { en: "Scam Alerts", fr: "Alertes arnaques" },
@@ -103,6 +105,8 @@ function Views() {
         return <HomeView />;
       case "about":
         return <AboutView />;
+      case "team":
+        return <TeamView />;
       case "activities":
         return <ActivitiesView />;
       case "scams":

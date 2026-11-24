@@ -16,6 +16,7 @@ const nbsp = "\u00A0";
 export const L = {
   nav: {
     about: { en: "About", fr: "À propos" },
+    team: { en: "Our Team", fr: "Notre équipe" },
     awareness: { en: "Scam Awareness", fr: "Sensibilisation" },
     activities: { en: "Activities", fr: "Activités" },
     resources: { en: "Resources", fr: "Ressources" },

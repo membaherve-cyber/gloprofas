@@ -46,6 +46,7 @@ export const ROUTES = {
 /** Primary navigation (bilingual labels come from the dictionary). */
 export const NAV_ITEMS = [
   { key: "about", href: "/about" },
+  { key: "team", href: "/team" },
   { key: "awareness", href: "/scams" },
   { key: "activities", href: "/activities" },
   { key: "resources", href: "/resources" },

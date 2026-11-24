@@ -63,7 +63,7 @@ export function Footer() {
               {R(L.footer.quick, locale)}
             </h2>
             <ul className="space-y-2 text-[12.5px]">
-              {NAV_ITEMS.slice(0, 5).map((item) => (
+              {NAV_ITEMS.slice(0, 6).map((item) => (
                 <li key={item.key}>
                   <A
                     href={item.href}
