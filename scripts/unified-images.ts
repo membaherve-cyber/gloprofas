@@ -181,7 +181,7 @@ const JOBS: Job[] = [
     dir: GEN,
     size: "1344x768",
     prompt:
-      `Candid editorial photograph of a young African job seeker at a small home table in the evening, looking at a job offer message on her laptop with a doubtful, uncertain expression, printed CV papers beside the laptop, warm desk lamp light against cool blue dusk from the window, hopeful but cautious mood. ${STYLE}`,
+      `Candid editorial photograph of a young African job seeker at a small home table in the evening, shot from across the table so her open laptop is seen from behind with the back of its lid facing the camera and the screen completely hidden from view, her face visible above the laptop with a doubtful, uncertain expression as she reads a job offer, printed CV papers on the table beside a warm desk lamp, cool blue dusk light from the window, hopeful but cautious mood. Strictly avoid: visible laptop screen, glowing display, readable screen content, keyboard facing the camera. ${STYLE}`,
   },
   {
     file: "scam-impersonation.jpg",

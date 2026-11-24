@@ -14,7 +14,6 @@ family-impact.jpg
 scam-mobile-money.jpg
 scam-momo-notification.jpg
 scam-investment.jpg
-scam-job.jpg
 scam-impersonation.jpg
 scam-advance-fee.jpg
 scam-loan.jpg
@@ -48,3 +47,4 @@ contactless-card-terminal.jpg
 currency-exchange-desk.jpg
 notebook-smartphone-notes.jpg
 article-reporting.jpg
+scam-job.jpg

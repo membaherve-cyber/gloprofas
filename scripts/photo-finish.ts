@@ -53,6 +53,7 @@ const HERO_FILES = new Set([
   "knowledge-tools.jpg",
   "video-learning.jpg",
   "scam-phishing.jpg",
+  "scam-job.jpg",
   "scam-business.jpg",
   "report-desk.jpg",
   "victim-support.jpg",
