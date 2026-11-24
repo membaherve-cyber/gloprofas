@@ -56,3 +56,4 @@ server.log
 # local agent artifacts
 /download/
 /tool-results/
+upload/
