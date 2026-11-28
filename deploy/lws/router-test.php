@@ -1,6 +1,7 @@
 <?php
 /** Local test router — mimics the production .htaccess for `php -S`. */
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = rtrim($uri, '/') ?: '/';
 
 $map = [
     '/api/newsletter' => '/api/newsletter.php',
@@ -10,6 +11,10 @@ $map = [
     '/api/service-enquiry' => '/api/service-enquiry.php',
     '/api/check' => '/api/check.php',
     '/api/assistant' => '/api/assistant.php',
+    '/api/resources/overview' => '/api/resources/overview.php',
+    '/api/resources/articles' => '/api/resources/articles.php',
+    '/api/resources/directory' => '/api/resources/directory.php',
+    '/api/resources/videos' => '/api/resources/videos.php',
     '/api/resources/checklists' => '/api/resources/checklists.php',
     '/api/admin/login' => '/api/admin/login.php',
     '/api/admin/logout' => '/api/admin/logout.php',
@@ -19,6 +24,16 @@ $map = [
 if (isset($map[$uri])) {
     $_SERVER['PHP_SELF'] = $map[$uri];
     require __DIR__ . $map[$uri];
+    return true;
+}
+if (preg_match('#^/api/resources/articles/[^/]+$#', $uri)) {
+    $_SERVER['PHP_SELF'] = '/api/resources/article-item.php';
+    require __DIR__ . '/api/resources/article-item.php';
+    return true;
+}
+if (preg_match('#^/api/resources/directory/[^/]+$#', $uri)) {
+    $_SERVER['PHP_SELF'] = '/api/resources/directory-item.php';
+    require __DIR__ . '/api/resources/directory-item.php';
     return true;
 }
 if (preg_match('#^/api/admin/content/.+#', $uri)) {

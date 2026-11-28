@@ -1,24 +1,36 @@
 /**
  * Export runtime data for the LWS PHP hosting deployment.
  *
- * Produces a single JSON file consumed by the PHP endpoints:
- *   · checker indicators (patterns + labels)         → api/check.php
- *   · warning-sign options + disclaimer              → api/check.php
- *   · alerts index (id/title/summary/risk)           → api/check.php
- *   · published article summaries                    → api/check.php, api/assistant.php
- *   · assistant grounding corpus (categories/alerts/
- *     resources/articles searchable fields)          → api/assistant.php
+ * Produces two JSON files consumed by the PHP endpoints:
  *
- * Run: bun scripts/export-hosting-data.ts /path/to/out.json
+ *  1. api-data.json (checker + assistant layer)
+ *     · checker indicators (patterns + labels)         → api/check.php
+ *     · warning-sign options + disclaimer              → api/check.php
+ *     · alerts index (id/title/summary/risk)           → api/check.php
+ *     · published article summaries                    → api/check.php, api/assistant.php
+ *     · assistant grounding corpus                     → api/assistant.php
+ *
+ *  2. resources-data.json (Resource Centre read model)
+ *     · full articles (+ published flags)              → api/resources/articles*.php
+ *     · full checklists (+ downloadCount)              → api/resources/checklists.php
+ *     · full videos (+ published flags)                → api/resources/videos.php
+ *     · full reporting directory (+ status/verified)   → api/resources/directory*.php
+ *     Sourced from getResourceStore() — identical to what the Next.js
+ *     /api/resources/* routes serve (DB-backed, static fallback).
+ *
+ * Run: bun scripts/export-hosting-data.ts <api-data.json> [resources-data.json]
  */
 import fs from "fs";
 import { PrismaClient } from "@prisma/client";
 import { CHECKER_DISCLAIMER, WARNING_SIGN_OPTIONS } from "@/lib/content/checker-data";
 import { ARTICLES } from "@/lib/content/resource-centre";
 import { ZITE_CONTENT } from "@/lib/content/zite-data";
+import { getResourceStore } from "@/lib/server/resource-store";
 
 async function main() {
-  const outPath = process.argv[2] ?? "/tmp/gloprofas-hosting/api-data.json";
+  const apiPath = process.argv[2] ?? "/tmp/gloprofas-hosting/api-data.json";
+  const resourcesPath =
+    process.argv[3] ?? apiPath.slice(0, apiPath.lastIndexOf("/")) + "/resources-data.json";
   const db = new PrismaClient();
 
   /* Checker indicator patterns live in the DB (seeded from checker-data). */
@@ -104,11 +116,30 @@ async function main() {
     assistant: corpus,
   };
 
-  fs.mkdirSync(outPath.slice(0, outPath.lastIndexOf("/")), { recursive: true });
-  fs.writeFileSync(outPath, JSON.stringify(payload));
+  fs.mkdirSync(apiPath.slice(0, apiPath.lastIndexOf("/")), { recursive: true });
+  fs.writeFileSync(apiPath, JSON.stringify(payload));
+
+  /* Resource Centre read model — exactly what getResourceStore() serves to
+     the Next.js /api/resources/* routes. The PHP ports consume this file. */
+  const store = await getResourceStore();
+  const resourcesPayload = {
+    generatedAt: new Date().toISOString(),
+    articles: store.articles,
+    checklists: store.checklists,
+    videos: store.videos,
+    directory: store.directory,
+  };
+  fs.mkdirSync(resourcesPath.slice(0, resourcesPath.lastIndexOf("/")), { recursive: true });
+  fs.writeFileSync(resourcesPath, JSON.stringify(resourcesPayload));
+
   console.log(
-    `exported ${indicators.length} indicators, ${articles.length} articles, ` +
-      `${corpus.categories.length} categories, ${corpus.alerts.length} alerts → ${outPath}`
+    `exported ${indicators.length} indicators, ${articles.length} article summaries, ` +
+      `${corpus.categories.length} categories, ${corpus.alerts.length} alerts → ${apiPath}`
+  );
+  console.log(
+    `exported resources read model: ${store.articles.length} articles, ` +
+      `${store.checklists.length} checklists, ${store.videos.length} videos, ` +
+      `${store.directory.length} countries → ${resourcesPath}`
   );
 }
 

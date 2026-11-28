@@ -10,6 +10,7 @@ faithfully ports the public Next.js API routes.
 |---|---|---|
 | Frontend | `next dev` :3000 | Static export (`out/`) served by Apache |
 | Public forms | `/api/*` Next.js routes + Prisma/SQLite | `htdocs/api/*.php` + JSONL storage in `htdocs/gloprofas-private/` |
+| Resource Centre reads | `/api/resources/*` Next.js routes + Prisma/SQLite | `htdocs/api/resources/*.php` + `resources-data.json` read model |
 | Scam Checker | `src/lib/server/scam-checker.ts` | `api/check.php` (ported engine, same data via `api-data.json`) |
 | Oskie assistant | z-ai LLM + fallback | `api/assistant.php` (grounded deterministic fallback, same contract) |
 | Admin panel | Full (DB-backed) | Stubs returning 401 — admin stays on the dev/Vercel deployment |
@@ -17,9 +18,14 @@ faithfully ports the public Next.js API routes.
 ## Files
 
 - `*.php` — API endpoints (ports of `src/app/api/*`)
-- `api-data.json` — checker indicators, warning signs, articles, alerts and
-  the assistant grounding corpus. Regenerate with:
-  `bun scripts/export-hosting-data.ts deploy/lws/api-data.json`
+- `_resources.php` — Resource Centre read model (loads `resources-data.json`,
+  projections shared by the `resources/*.php` endpoints)
+- `api-data.json` — checker indicators, warning signs, article summaries,
+  alerts and the assistant grounding corpus
+- `resources-data.json` — full articles / checklists / videos / reporting
+  directory read model (exactly what `getResourceStore()` serves).
+  Regenerate both data files with:
+  `bun scripts/export-hosting-data.ts deploy/lws/api-data.json deploy/lws/resources-data.json`
 - `htaccess.conf` — the web-root `.htaccess` (API rewrites, SPA fallback,
   caching, security headers)
 - `extract.php` — one-time zip extractor used during deployment
@@ -31,13 +37,16 @@ faithfully ports the public Next.js API routes.
 1. Build the static site (isolated copy so the dev server is untouched):
    copy the project without `node_modules`/`.next`, remove `src/app/api`,
    set `output: "export"` in `next.config.ts`, then `next build` → `out/`.
-2. Regenerate `api-data.json` (command above).
+2. Regenerate `api-data.json` AND `resources-data.json` (command above).
 3. Assemble: `out/` + `api/` (PHP files + data) + `.htaccess` → zip.
 4. Upload the zip to `htdocs/` via SFTP (`ssh glopr2913305@gloprofas.org`,
    same password as the main FTP account — see LWS panel → Comptes FTP).
 5. Upload a one-time `extract.php` (see git history for the pattern), call
    it once with its secret key, then confirm both files are gone.
-6. Verify: `https://gloprofas.org/`, `POST /api/check`, `POST /api/newsletter`.
+6. Verify: `https://gloprofas.org/`, `POST /api/check`, `POST /api/newsletter`,
+   `GET /api/resources/overview`, `GET /api/resources/articles`,
+   `GET /api/resources/directory?summary=1`, `GET /api/resources/videos`,
+   `GET /api/resources/checklists`.
 
 ## Data & security notes
 

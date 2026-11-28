@@ -17,8 +17,12 @@ export async function GET(req: Request) {
     const byCategory = new Map<string, number>();
     for (const a of published) byCategory.set(a.categorySlug, (byCategory.get(a.categorySlug) ?? 0) + 1);
 
+    // Stable newest-first (equal dates keep store order — mirrors the PHP port).
     const latest = [...published]
-      .sort((a, b) => (a.publishedAt < b.publishedAt ? 1 : -1))
+      .sort(
+        (a, b) =>
+          a.publishedAt < b.publishedAt ? 1 : a.publishedAt > b.publishedAt ? -1 : 0
+      )
       .slice(0, 6)
       .map(toArticleSummary);
 
